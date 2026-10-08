@@ -1,0 +1,16 @@
+---
+import { useT } from '../../i18n';
+const t = useT(Astro.currentLocale);
+---
+<section class="sec" id="services" aria-labelledby="svcT">
+  <div class="wrap">
+    <div class="sec-title reveal"><span class="kicker"><Fragment set:html={t('sv.k')} /></span><h2 id="svcT"><Fragment set:html={t('sv.t')} /></h2><p><Fragment set:html={t('sv.p')} /></p></div>
+    <div class="svc-grid">
+      <article class="card svc spot reveal"><span class="ico">🔁</span><h3><Fragment set:html={t('sv.1t')} /></h3><p><Fragment set:html={t('sv.1')} /></p></article>
+      <article class="card svc spot reveal"><span class="ico">🏗️</span><h3><Fragment set:html={t('sv.2t')} /></h3><p><Fragment set:html={t('sv.2')} /></p></article>
+      <article class="card svc spot reveal"><span class="ico">📱</span><h3><Fragment set:html={t('sv.3t')} /></h3><p><Fragment set:html={t('sv.3')} /></p></article>
+      <article class="card svc spot reveal"><span class="ico">♿</span><h3><Fragment set:html={t('sv.4t')} /></h3><p><Fragment set:html={t('sv.4')} /></p></article>
+    </div>
+    <div class="cta reveal" style="margin-top:34px"><a class="btn primary" href="mailto:alzuotorieb9999@gmail.com?subject=Project%20enquiry"><Fragment set:html={t('sv.cta')} /></a><a class="btn" href="https://wa.me/962775853203" target="_blank" rel="noopener"><Fragment set:html={t('sv.cta2')} /></a></div>
+  </div>
+</section>

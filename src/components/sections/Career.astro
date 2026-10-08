@@ -1,0 +1,54 @@
+---
+import { useT } from '../../i18n';
+const t = useT(Astro.currentLocale);
+---
+<section class="sec alt" id="career" aria-labelledby="careerT">
+  <div class="wrap">
+    <div class="sec-title reveal"><span class="kicker"><Fragment set:html={t('cr.k')} /></span><h2 id="careerT"><Fragment set:html={t('cr.t')} /></h2></div>
+    <div class="timeline" id="timeline">
+      <div class="rail" aria-hidden="true"><i></i></div>
+      <div class="job reveal"><span class="dot">AZM</span><div class="card spot">
+        <div class="when"><span><Fragment set:html={t('j1.when')} /></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('j1.now')} /></span></span></div>
+        <h3>Saudi Azm <span><Fragment set:html={t('j1.role')} /></span></h3>
+        <p class="co"><Fragment set:html={t('j1.co')} /></p>
+        <ul>
+          <li><Fragment set:html={t('j1.b1')} /></li>
+          <li><Fragment set:html={t('j1.b2')} /></li>
+          <li><Fragment set:html={t('j1.b3')} /></li>
+          <li><Fragment set:html={t('j1.b4')} /></li>
+          <li><Fragment set:html={t('j1.b5')} /></li>
+        </ul>
+        <div class="prods"><span class="tag"><Fragment set:html={t('b.wasl')} /></span><span class="tag"><Fragment set:html={t('b.sba')} /></span><span class="tag"><Fragment set:html={t('b.moj')} /></span><span class="tag"><Fragment set:html={t('b.seac')} /></span><span class="tag"><Fragment set:html={t('b.contracts')} /></span><span class="tag"><Fragment set:html={t('lg.mirafh')} /></span></div>
+      </div></div>
+      <div class="job reveal"><span class="dot">TAH</span><div class="card spot">
+        <div class="when"><span><Fragment set:html={t('j2.when')} /></span></div>
+        <h3>Tahaluf Al Emarat <span><Fragment set:html={t('j2.role')} /></span></h3>
+        <p class="co"><Fragment set:html={t('j2.co')} /></p>
+        <ul><li><Fragment set:html={t('j2.b1')} /></li><li><Fragment set:html={t('j2.b2')} /></li></ul>
+      </div></div>
+      <div class="job reveal"><span class="dot">SHP</span><div class="card spot">
+        <div class="when"><span><Fragment set:html={t('j3.when')} /></span></div>
+        <h3>Shepherd Technologies <span><Fragment set:html={t('j3.role')} /></span></h3>
+        <p class="co"><Fragment set:html={t('j3.co')} /></p>
+        <ul>
+          <li><Fragment set:html={t('j3.b1')} /></li>
+          <li><Fragment set:html={t('j3.b2')} /></li>
+          <li><Fragment set:html={t('j3.b3')} /></li>
+          <li><Fragment set:html={t('j3.b4')} /></li>
+        </ul>
+        <div class="prods"><span class="tag">AngularJS</span><span class="tag">Angular 8</span><span class="tag">Angular 14</span></div>
+      </div></div>
+      <div class="job reveal"><span class="dot">PIN</span><div class="card spot">
+        <div class="when"><span><Fragment set:html={t('j4.when')} /></span></div>
+        <h3>PenguinIN <span><Fragment set:html={t('j4.role')} /></span></h3>
+        <p class="co"><Fragment set:html={t('j4.co')} /></p>
+        <ul><li><Fragment set:html={t('j4.b1')} /></li></ul>
+      </div></div>
+    </div>
+    <div class="edu">
+      <div class="card spot reveal"><b><Fragment set:html={t('e1.t')} /></b><span><Fragment set:html={t('e1.s')} /></span></div>
+      <div class="card spot reveal"><b><Fragment set:html={t('e2.t')} /></b><span><Fragment set:html={t('e2.s')} /></span></div>
+      <div class="card spot reveal"><b><Fragment set:html={t('e3.t')} /></b><span><Fragment set:html={t('e3.s')} /></span></div>
+    </div>
+  </div>
+</section>

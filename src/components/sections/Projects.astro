@@ -1,0 +1,239 @@
+---
+import { useT } from '../../i18n';
+const t = useT(Astro.currentLocale);
+---
+<section class="sec alt" id="projects" aria-labelledby="projT">
+  <div class="wrap">
+    <div class="sec-title reveal"><span class="kicker"><Fragment set:html={t('pj.k')} /></span><h2 id="projT"><Fragment set:html={t('pj.t')} /></h2><p><Fragment set:html={t('pj.p')} /></p></div>
+    <div class="filters" role="group" aria-label={t('pj.filter')}>
+      <button class="chip" aria-pressed="true" data-f="all"><span><Fragment set:html={t('f.all')} /></span> <span class="c" data-n="all"></span></button>
+      <button class="chip" aria-pressed="false" data-f="gov">🏛 <span><Fragment set:html={t('f.gov')} /></span> <span class="c" data-n="gov"></span></button>
+      <button class="chip" aria-pressed="false" data-f="fin">💸 <span><Fragment set:html={t('f.fin')} /></span> <span class="c" data-n="fin"></span></button>
+      <button class="chip" aria-pressed="false" data-f="saas">🏢 <span><Fragment set:html={t('f.saas')} /></span> <span class="c" data-n="saas"></span></button>
+      <button class="chip" aria-pressed="false" data-f="oss">📱 <span><Fragment set:html={t('f.oss')} /></span> <span class="c" data-n="oss"></span></button>
+    </div>
+
+    <div class="projects">
+
+      <!-- Wasl -->
+      <article class="card proj spot reveal" data-c="fin" id="p-wasl">
+        <div class="media">
+          <div class="frame tilt"><div class="bar"><i></i><i></i><i></i><span>wasl · financing brokerage</span></div>
+            <div class="mock" aria-hidden="true">
+              <div class="row"><div class="box"><b>Financing request</b><div class="ln a w80"></div><div class="ln w60"></div><div class="bar-p"><i style="width:72%"></i></div></div><div class="box"><b>Offers received</b><span class="num">4</span><div class="ln w40"></div></div></div>
+              <div class="offer best"><span class="row" style="align-items:center"><span class="bank" style="background:linear-gradient(135deg,#6d4aff,#b9a7ff)"></span><b>Lender A · 3.9% APR</b></span><span class="chip-s">Best match</span></div>
+              <div class="offer"><span class="row" style="align-items:center"><span class="bank" style="background:linear-gradient(135deg,#0c7c5f,#a8ecd6)"></span><b>Lender B · 4.2% APR</b></span><span class="chip-s">Compare</span></div>
+              <div class="offer"><span class="row" style="align-items:center"><span class="bank" style="background:linear-gradient(135deg,#cf6a10,#ffd58a)"></span><b>Lender C · 4.5% APR</b></span><span class="chip-s">Compare</span></div>
+            </div>
+            <span class="illus-note"><Fragment set:html={t('illus')} /></span>
+          </div>
+          <span class="float">🏦 <span><Fragment set:html={t('wasl.float')} /></span></span>
+        </div>
+        <div class="p-body">
+          <div class="org"><span>Saudi Azm × National Housing Co.</span><span class="pill soon"><span class="d"></span><span><Fragment set:html={t('st.launch')} /></span></span></div>
+          <h3><Fragment set:html={t('wasl.t')} /></h3>
+          <div class="alt-name ar-text">منصة وصل للخدمات التمويلية</div>
+          <p><Fragment set:html={t('wasl.p')} /></p>
+          <ul class="hl"><li><Fragment set:html={t('wasl.h1')} /></li><li><Fragment set:html={t('wasl.h2')} /></li><li><Fragment set:html={t('wasl.h3')} /></li></ul>
+          <div class="tags"><span class="tag">Angular</span><span class="tag">Signals</span><span class="tag">.NET Core</span><span class="tag">Azure</span><span class="tag">Fintech</span></div>
+          <div class="p-actions"><button class="btn primary" data-case="p-wasl"><Fragment set:html={t('btn.case')} /></button><a class="btn" href="https://www.argaam.com/en/article/articledetail/id/1832972" target="_blank" rel="noopener"><Fragment set:html={t('btn.news')} /></a></div>
+        </div>
+        <div class="case">
+          <section><h4>🎯 <span><Fragment set:html={t('cs.c')} /></span></h4><p><Fragment set:html={t('wasl.c')} /></p></section>
+          <section><h4>🛠 <span><Fragment set:html={t('cs.a')} /></span></h4><ul><li><Fragment set:html={t('wasl.a1')} /></li><li><Fragment set:html={t('wasl.a2')} /></li><li><Fragment set:html={t('wasl.a3')} /></li></ul></section>
+          <section><h4>🌱 <span><Fragment set:html={t('cs.r')} /></span></h4><p><Fragment set:html={t('wasl.r')} /></p></section>
+        </div>
+      </article>
+
+      <!-- SBA -->
+      <article class="card proj spot reveal" data-c="gov" id="p-sba">
+        <div class="media">
+          <figure class="frame tilt" data-full="/assets/sba-qc.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>qccx.sba.gov.sa</span></div><img src="/assets/sba-qc.jpg" alt="Saudi Bar Association complaints and reports service home page" loading="lazy" width="800" height="503"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
+          <span class="float">🏛️ <span><Fragment set:html={t('sba.float')} /></span></span>
+        </div>
+        <div class="p-body">
+          <div class="org"><span>Saudi Azm · Saudi Bar Association</span><span class="pill gated"><span class="d"></span><span><Fragment set:html={t('st.nafath')} /></span></span></div>
+          <h3><Fragment set:html={t('sba.t')} /></h3>
+          <div class="alt-name ar-text">خدمة الشكاوى والبلاغات — الهيئة السعودية للمحامين</div>
+          <p><Fragment set:html={t('sba.p')} /></p>
+          <ul class="hl"><li><Fragment set:html={t('sba.h1')} /></li><li><Fragment set:html={t('sba.h2')} /></li><li><Fragment set:html={t('sba.h3')} /></li></ul>
+          <div class="tags"><span class="tag">Angular</span><span class="tag">.NET Core</span><span class="tag">PostgreSQL</span><span class="tag">RTL</span><span class="tag">WCAG</span></div>
+          <div class="p-actions"><button class="btn primary" data-case="p-sba"><Fragment set:html={t('btn.case')} /></button><a class="btn" href="https://qccx.sba.gov.sa/" target="_blank" rel="noopener"><Fragment set:html={t('btn.visit')} /></a></div>
+        </div>
+        <div class="case">
+          <section><h4>🎯 <span><Fragment set:html={t('cs.c')} /></span></h4><p><Fragment set:html={t('sba.c')} /></p></section>
+          <section><h4>🛠 <span><Fragment set:html={t('cs.a')} /></span></h4><ul><li><Fragment set:html={t('sba.a1')} /></li><li><Fragment set:html={t('sba.a2')} /></li><li><Fragment set:html={t('sba.a3')} /></li></ul></section>
+          <section><h4>🌱 <span><Fragment set:html={t('cs.r')} /></span></h4><p><Fragment set:html={t('sba.r')} /></p></section>
+        </div>
+      </article>
+
+      <!-- SEAC -->
+      <article class="card proj spot reveal" data-c="gov" id="p-seac">
+        <div class="media">
+          <figure class="frame tilt" data-full="/assets/seac.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>web01.techprocess.net:28059</span></div><img src="/assets/seac.jpg" alt="Saudi Engineering Arbitration Center e-arbitration home page" loading="lazy" width="800" height="503"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
+          <span class="float">⚖️ <span><Fragment set:html={t('seac.float')} /></span></span>
+        </div>
+        <div class="p-body">
+          <div class="org"><span>Saudi Azm · Saudi Council of Engineers</span><span class="pill gated"><span class="d"></span><span><Fragment set:html={t('st.client')} /></span></span></div>
+          <h3><Fragment set:html={t('seac.t')} /></h3>
+          <div class="alt-name ar-text">مركز التحكيم الهندسي السعودي</div>
+          <p><Fragment set:html={t('seac.p')} /></p>
+          <ul class="hl"><li><Fragment set:html={t('seac.h1')} /></li><li><Fragment set:html={t('seac.h2')} /></li><li><Fragment set:html={t('seac.h3')} /></li></ul>
+          <div class="tags"><span class="tag">Angular</span><span class="tag">.NET Core</span><span class="tag">Azure</span><span class="tag">RTL</span></div>
+          <div class="p-actions"><button class="btn primary" data-case="p-seac"><Fragment set:html={t('btn.case')} /></button><a class="btn" href="https://web01.techprocess.net:28059" target="_blank" rel="noopener"><Fragment set:html={t('btn.visit')} /></a></div>
+        </div>
+        <div class="case">
+          <section><h4>🎯 <span><Fragment set:html={t('cs.c')} /></span></h4><p><Fragment set:html={t('seac.c')} /></p></section>
+          <section><h4>🛠 <span><Fragment set:html={t('cs.a')} /></span></h4><ul><li><Fragment set:html={t('seac.a1')} /></li><li><Fragment set:html={t('seac.a2')} /></li><li><Fragment set:html={t('seac.a3')} /></li></ul></section>
+          <section><h4>🌱 <span><Fragment set:html={t('cs.r')} /></span></h4><p><Fragment set:html={t('seac.r')} /></p></section>
+        </div>
+      </article>
+
+      <!-- Contracts -->
+      <article class="card proj spot reveal" data-c="gov" id="p-contracts">
+        <div class="media">
+          <figure class="frame tilt" data-full="/assets/contracts.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>contracts.com.sa</span></div><img src="/assets/contracts.jpg" alt="Contracts digital contracts platform sign-in for individuals and companies" loading="lazy" width="800" height="500"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
+          <span class="float">✍️ <span><Fragment set:html={t('ct.float')} /></span></span>
+        </div>
+        <div class="p-body">
+          <div class="org"><span>Saudi Azm · Legal-tech</span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('st.public')} /></span></span></div>
+          <h3><Fragment set:html={t('ct.t')} /></h3>
+          <div class="alt-name ar-text">عقود — منصة العقود الرقمية</div>
+          <p><Fragment set:html={t('ct.p')} /></p>
+          <ul class="hl"><li><Fragment set:html={t('ct.h1')} /></li><li><Fragment set:html={t('ct.h2')} /></li><li><Fragment set:html={t('ct.h3')} /></li></ul>
+          <div class="tags"><span class="tag">Angular</span><span class="tag">.NET Core</span><span class="tag">Node.js</span><span class="tag">i18n</span></div>
+          <div class="p-actions"><button class="btn primary" data-case="p-contracts"><Fragment set:html={t('btn.case')} /></button><a class="btn" href="https://contracts.com.sa" target="_blank" rel="noopener"><Fragment set:html={t('btn.visit')} /></a></div>
+        </div>
+        <div class="case">
+          <section><h4>🎯 <span><Fragment set:html={t('cs.c')} /></span></h4><p><Fragment set:html={t('ct.c')} /></p></section>
+          <section><h4>🛠 <span><Fragment set:html={t('cs.a')} /></span></h4><ul><li><Fragment set:html={t('ct.a1')} /></li><li><Fragment set:html={t('ct.a2')} /></li><li><Fragment set:html={t('ct.a3')} /></li></ul></section>
+          <section><h4>🌱 <span><Fragment set:html={t('cs.r')} /></span></h4><p><Fragment set:html={t('ct.r')} /></p></section>
+        </div>
+      </article>
+
+      <!-- MoJ + Mirafh -->
+      <article class="card proj spot reveal" data-c="gov" id="p-moj">
+        <div class="media">
+          <div class="frame tilt"><div class="bar"><i></i><i></i><i></i><span>moj.gov.sa · mirafh.sa</span></div>
+            <div class="mock" aria-hidden="true">
+              <div class="row"><div class="box"><b>Requests</b><span class="num">1,284</span><div class="bar-p"><i style="width:64%"></i></div></div><div class="box"><b>In review</b><span class="num">312</span><div class="bar-p"><i style="width:28%"></i></div></div><div class="box"><b>Closed</b><span class="num">972</span><div class="bar-p"><i style="width:82%"></i></div></div></div>
+              <div class="row"><div class="box"><div class="ln a w60"></div><div class="ln w80"></div><div class="ln w40"></div><div class="ln w80"></div></div><div class="box"><div class="ln a w40"></div><div class="ln w60"></div><div class="ln w80"></div><div class="ln w60"></div></div></div>
+            </div>
+            <span class="illus-note"><Fragment set:html={t('illus')} /></span>
+          </div>
+        </div>
+        <div class="p-body">
+          <div class="org"><span>Saudi Azm</span><span class="pill gated"><span class="d"></span><span><Fragment set:html={t('st.restricted')} /></span></span></div>
+          <h3><Fragment set:html={t('moj.t')} /></h3>
+          <div class="alt-name ar-text">وزارة العدل · بوابة مرافه</div>
+          <p><Fragment set:html={t('moj.p')} /></p>
+          <ul class="hl"><li><Fragment set:html={t('moj.h1')} /></li><li><Fragment set:html={t('moj.h2')} /></li><li><Fragment set:html={t('moj.h3')} /></li></ul>
+          <div class="tags"><span class="tag">Angular</span><span class="tag">React Native</span><span class="tag">Design system</span></div>
+        </div>
+      </article>
+
+      <!-- Shepherd HR -->
+      <article class="card proj spot reveal" data-c="saas" id="p-hr">
+        <div class="media">
+          <div class="frame tilt"><div class="bar"><i></i><i></i><i></i><span>shepherd · hr suite</span></div>
+            <div class="mock" aria-hidden="true">
+              <div class="row"><div class="box"><b>Payroll run · Oct</b><span class="num">JOD 248,900</span><div class="bar-p"><i style="width:90%"></i></div></div><div class="box"><b>Review cycle</b><span class="num">86%</span><div class="bar-p"><i style="width:86%"></i></div></div></div>
+              <div class="row"><div class="box"><div class="row" style="justify-content:space-between"><b>Employees</b><span class="chip-s">412</span></div><div class="ln a w80"></div><div class="ln w60"></div><div class="ln w80"></div><div class="ln w40"></div></div><div class="box"><div class="row" style="justify-content:space-between"><b>Goals</b><span class="chip-s">Q4</span></div><div class="ln w60"></div><div class="ln a w40"></div><div class="ln w80"></div></div></div>
+            </div>
+            <span class="illus-note"><Fragment set:html={t('illus')} /></span>
+          </div>
+          <span class="float">🔁 <span><Fragment set:html={t('hr.float')} /></span></span>
+        </div>
+        <div class="p-body">
+          <div class="org"><span>Shepherd Technologies</span><span class="pill gated"><span class="d"></span><span><Fragment set:html={t('st.customer')} /></span></span></div>
+          <h3><Fragment set:html={t('hr.t')} /></h3>
+          <p><Fragment set:html={t('hr.p')} /></p>
+          <ul class="hl"><li><Fragment set:html={t('hr.h1')} /></li><li><Fragment set:html={t('hr.h2')} /></li><li><Fragment set:html={t('hr.h3')} /></li></ul>
+          <div class="tags"><span class="tag">AngularJS</span><span class="tag">Angular 8</span><span class="tag">Angular 14</span><span class="tag">REST</span></div>
+          <div class="p-actions"><button class="btn primary" data-case="p-hr"><Fragment set:html={t('btn.case')} /></button></div>
+        </div>
+        <div class="case">
+          <section><h4>🎯 <span><Fragment set:html={t('cs.c')} /></span></h4><p><Fragment set:html={t('hr.c')} /></p></section>
+          <section><h4>🛠 <span><Fragment set:html={t('cs.a')} /></span></h4><ul><li><Fragment set:html={t('hr.a1')} /></li><li><Fragment set:html={t('hr.a2')} /></li><li><Fragment set:html={t('hr.a3')} /></li></ul></section>
+          <section><h4>🌱 <span><Fragment set:html={t('cs.r')} /></span></h4><p><Fragment set:html={t('hr.r')} /></p></section>
+        </div>
+      </article>
+
+      <!-- Shepherd e-learning -->
+      <article class="card proj spot reveal" data-c="saas" id="p-lms">
+        <div class="media">
+          <div class="frame tilt"><div class="bar"><i></i><i></i><i></i><span>shepherd · e-learning</span></div>
+            <div class="mock" aria-hidden="true">
+              <div class="row">
+                <div class="course"><div class="th" style="background:linear-gradient(135deg,#6d4aff,#ffb8d6)"></div><div><b>Onboarding 101</b><div class="bar-p"><i style="width:100%"></i></div></div></div>
+                <div class="course"><div class="th" style="background:linear-gradient(135deg,#0c7c5f,#bfe0ff)"></div><div><b>Security basics</b><div class="bar-p"><i style="width:60%"></i></div></div></div>
+                <div class="course"><div class="th" style="background:linear-gradient(135deg,#cf6a10,#ffe6a3)"></div><div><b>Leadership</b><div class="bar-p"><i style="width:25%"></i></div></div></div>
+              </div>
+              <div class="row"><div class="box"><b>My learning</b><div class="ln a w80"></div><div class="ln w60"></div></div><div class="box"><b>Certificates</b><span class="num">3</span></div></div>
+            </div>
+            <span class="illus-note"><Fragment set:html={t('illus')} /></span>
+          </div>
+        </div>
+        <div class="p-body">
+          <div class="org"><span>Shepherd Technologies</span><span class="pill gated"><span class="d"></span><span><Fragment set:html={t('st.customer')} /></span></span></div>
+          <h3><Fragment set:html={t('lms.t')} /></h3>
+          <p><Fragment set:html={t('lms.p')} /></p>
+          <ul class="hl"><li><Fragment set:html={t('lms.h1')} /></li><li><Fragment set:html={t('lms.h2')} /></li><li><Fragment set:html={t('lms.h3')} /></li></ul>
+          <div class="tags"><span class="tag">Angular</span><span class="tag">REST</span><span class="tag">a11y</span></div>
+        </div>
+      </article>
+
+      <!-- Tahaluf -->
+      <article class="card proj spot reveal" data-c="saas" id="p-tahaluf">
+        <div class="media">
+          <div class="frame tilt"><div class="bar"><i></i><i></i><i></i><span>tahaluf · low-code studio</span></div>
+            <div class="mock" aria-hidden="true">
+              <div class="row" style="align-items:center;justify-content:center;gap:6px"><span class="node on">Form</span><span class="arrow">→</span><span class="node">Approve</span><span class="arrow">→</span><span class="node">Notify</span><span class="arrow">→</span><span class="node on">Done</span></div>
+              <div class="row"><div class="box"><b>Fields</b><div class="ln a w60"></div><div class="ln w80"></div><div class="ln w40"></div></div><div class="box"><b>Rules</b><div class="ln w80"></div><div class="ln a w40"></div><div class="ln w60"></div></div><div class="box"><b>Preview</b><div class="ln w60"></div><div class="ln w80"></div></div></div>
+            </div>
+            <span class="illus-note"><Fragment set:html={t('illus')} /></span>
+          </div>
+        </div>
+        <div class="p-body">
+          <div class="org"><span>Tahaluf Al Emarat · UAE</span><span class="pill gated"><span class="d"></span><span><Fragment set:html={t('st.internal')} /></span></span></div>
+          <h3><Fragment set:html={t('th.t')} /></h3>
+          <p><Fragment set:html={t('th.p')} /></p>
+          <ul class="hl"><li><Fragment set:html={t('th.h1')} /></li><li><Fragment set:html={t('th.h2')} /></li><li><Fragment set:html={t('th.h3')} /></li></ul>
+          <div class="tags"><span class="tag">Angular 16</span><span class="tag">PrimeNG</span><span class="tag">RxJS</span></div>
+        </div>
+      </article>
+
+      <!-- PenguinIN -->
+      <article class="card proj spot reveal" data-c="saas" id="p-penguin">
+        <div class="media">
+          <figure class="frame tilt" data-full="/assets/penguinin.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>penguinin.com</span></div><img src="/assets/penguinin.jpg" alt="PenguinIN indoor and campus-wide navigation website" loading="lazy" style="object-position:50% 100%" width="799" height="506"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
+        </div>
+        <div class="p-body">
+          <div class="org"><span>PenguinIN</span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('st.site')} /></span></span></div>
+          <h3><Fragment set:html={t('pg.t')} /></h3>
+          <p><Fragment set:html={t('pg.p')} /></p>
+          <ul class="hl"><li><Fragment set:html={t('pg.h1')} /></li><li><Fragment set:html={t('pg.h2')} /></li><li><Fragment set:html={t('pg.h3')} /></li></ul>
+          <div class="tags"><span class="tag">React</span><span class="tag">OpenLayers</span><span class="tag">Node.js</span><span class="tag">PostgreSQL</span></div>
+          <div class="p-actions"><a class="btn" href="https://penguinin.com" target="_blank" rel="noopener"><Fragment set:html={t('btn.visit')} /></a></div>
+        </div>
+      </article>
+
+      <!-- Bareeq -->
+      <article class="card proj spot reveal" data-c="oss" id="p-bareeq">
+        <div class="media">
+          <figure class="frame tilt" data-full="/assets/bareeq.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>github.com/oriebalzyuot96/angular</span></div><img src="/assets/bareeq.jpg" alt="GitHub repository with mobile, portal, web and shared design-tokens folders" loading="lazy" width="799" height="506"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
+          <span class="float">💎 <span><Fragment set:html={t('bq.float')} /></span></span>
+        </div>
+        <div class="p-body">
+          <div class="org"><span><Fragment set:html={t('bq.org')} /></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('st.public2')} /></span></span></div>
+          <h3><Fragment set:html={t('bq.t')} /></h3>
+          <div class="alt-name ar-text">بريق العقيق</div>
+          <p><Fragment set:html={t('bq.p')} /></p>
+          <ul class="hl"><li><code>web</code> · <code>portal</code> · <code>mobile</code> · <code>shared/design-tokens</code></li><li><Fragment set:html={t('bq.h2')} /></li><li><Fragment set:html={t('bq.h3')} /></li></ul>
+          <div class="tags"><span class="tag">Angular 21</span><span class="tag">Signals</span><span class="tag">Expo</span><span class="tag">TypeScript</span></div>
+          <div class="p-actions"><a class="btn" href="https://github.com/oriebalzyuot96/angular" target="_blank" rel="noopener"><Fragment set:html={t('btn.code')} /></a></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

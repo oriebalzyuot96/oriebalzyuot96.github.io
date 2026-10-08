@@ -545,3 +545,91 @@ kbd{font:700 .74rem var(--mono);background:var(--soft-2);border:1px solid var(--
 /* reduced motion must also stop smooth scrolling on the root element itself */
 :root[data-motion="reduced"]{scroll-behavior:auto}
 @media (prefers-reduced-motion:reduce){:root:not([data-motion="full"]){scroll-behavior:auto}}
+
+/* sound: header icon state + mashroo3hub-style ripple */
+.snd-on{display:none}
+:root[data-sound] .snd-on{display:block}:root[data-sound] .snd-off{display:none}
+.ripple-layer{position:absolute;inset:0;border-radius:inherit;overflow:hidden;pointer-events:none}
+.ripple{position:absolute;border-radius:50%;background:currentColor;opacity:.18;transform:scale(0);animation:ripple .55s cubic-bezier(.2,.8,.2,1)}
+@keyframes ripple{to{transform:scale(2.4);opacity:0}}
+
+/* ───────── hire landing pages ───────── */
+.hire-hero{padding:48px 0 72px}
+.crumbs{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:.86rem;font-weight:600;color:var(--ink-3);margin-bottom:28px}
+.crumbs a{color:var(--accent)}
+.crumbs a:hover{text-decoration:underline}
+.hire-head{display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center}
+.hire-avatar{width:132px;height:132px;border-radius:50%;object-fit:cover;object-position:50% 22%;border:5px solid var(--surface);box-shadow:0 0 0 2px var(--accent-2),var(--shadow-lg)}
+.hire-head h1{font-size:clamp(2rem,4.6vw,3.4rem);line-height:1.1;letter-spacing:-.035em;font-weight:800;margin:14px 0 12px;text-wrap:balance}
+:root[lang="ar"] .hire-head h1{letter-spacing:0;line-height:1.3}
+.hire-head .lede{font-size:1.1rem;color:var(--ink-2);max-width:760px}
+.hire-head .cta{justify-content:flex-start}
+.hello .flag{font-size:1.2rem}
+.svc-grid.three{grid-template-columns:repeat(3,1fr)}
+.svc .n{font:700 .8rem var(--mono);color:var(--accent)}
+.svc.region{text-decoration:none}
+.svc.region h2{font-size:1.25rem}
+.svc.region .go{margin-top:auto;color:var(--accent);font-weight:700}
+.faq{display:grid;gap:12px;max-width:860px;margin-inline:auto}
+.faq details{padding:0;overflow:hidden}
+.faq summary{cursor:pointer;list-style:none;padding:18px 22px;font-weight:700;display:flex;justify-content:space-between;gap:12px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:1.4rem;color:var(--accent);line-height:1;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 22px 20px;color:var(--ink-2)}
+@media (max-width:900px){.svc-grid.three{grid-template-columns:1fr}}
+@media (max-width:640px){.hire-head{grid-template-columns:1fr;text-align:center;justify-items:center}.hire-head .cta{justify-content:center}.hire-avatar{width:104px;height:104px}}
+.nav-hire{background:var(--soft);color:var(--accent)!important}
+
+/* ───────── alignment pass ───────── */
+img{height:auto}
+.frame>img{height:auto;aspect-ratio:16/10}
+
+/* bento: explicit areas so tiles always line up edge to edge */
+.bento{grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:minmax(150px,auto);grid-template-areas:
+  "photo years now   now"
+  "photo video video clock"
+  "photo video video a11y"
+  "code  code  stack stack"}
+.bento>.t-photo{grid-area:photo}.bento>.t-years{grid-area:years}.bento>.t-now{grid-area:now}.bento>.t-video{grid-area:video;min-height:300px}
+.bento>.t-clock{grid-area:clock}.bento>.t-a11y{grid-area:a11y}.bento>.t-code{grid-area:code}.bento>.t-stack{grid-area:stack}
+.t-photo img{min-height:0;height:100%}
+.t-stack{justify-content:center;gap:12px}
+.t-stack .mini-marq{mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.t-stack{mask-image:none}
+.t-code pre{min-height:9.5em}
+@media (max-width:1020px){
+  .bento{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:
+    "photo years" "photo clock" "now now" "video video" "code code" "stack a11y"}
+  .t-photo img{aspect-ratio:auto}
+}
+@media (max-width:640px){
+  .bento{grid-template-areas:"photo photo" "years clock" "now now" "video video" "code code" "stack stack" "a11y a11y"}
+  .t-photo img{aspect-ratio:1/1;height:auto}
+  .t-video{min-height:220px}
+}
+
+/* about: email never breaks mid-word; columns end together */
+.info .item b.ltr{overflow-wrap:normal;word-break:normal;font-size:.92rem}
+.info>a.item[href^="mailto"]{grid-column:1/-1}
+.about{align-items:start}
+.intro .pic{aspect-ratio:16/11}
+.principles{margin-top:2px}
+.t-photo .cap{flex-wrap:wrap;row-gap:6px}
+.t-photo .cap b{white-space:nowrap}
+@media (max-width:900px){.intro .pic{aspect-ratio:auto;height:min(340px,70vw)}}
+/* hire hero: left-aligned text column, badge-style market codes */
+.hire-head .lede{margin-inline:0;text-align:start}
+.hire-head>div{min-width:0}
+.hello .flag{font:800 .72rem var(--mono);letter-spacing:.06em;background:var(--accent);color:var(--accent-ink);border-radius:999px;padding:3px 8px}
+.svc.region .ico{font:800 .85rem var(--mono);letter-spacing:.06em;width:auto;padding-inline:12px;border-radius:12px}
+.hire-cta .btn .flag,.cta .btn .code{font:800 .72rem var(--mono)}
+@media (max-width:640px){.hire-head .lede{text-align:center;margin-inline:auto}}
+.lang-glyph{font-size:1.05rem;line-height:1}
+.info .item b.ltr{overflow-wrap:break-word}.info .item>div{min-width:0}
+/* large-text safety: long words wrap, grid children may shrink */
+h1,h2,h3,h4,p,li,dd,summary,.lede{overflow-wrap:break-word}
+:root[data-font="xl"] h1,:root[data-font="l"] h1{hyphens:auto}
+.about>*,.info>*,.svc-grid>*,.hire-head>*,.card{min-width:0}
+@media (max-width:520px){.info{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:640px){.hire-head{grid-template-columns:minmax(0,1fr)}.hire-head h1{font-size:clamp(1.6rem,8vw,2.2rem)}}

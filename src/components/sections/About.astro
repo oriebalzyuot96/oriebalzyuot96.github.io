@@ -1,0 +1,30 @@
+---
+import { useT } from '../../i18n';
+const t = useT(Astro.currentLocale);
+---
+<section class="sec" id="about" aria-labelledby="aboutT">
+  <div class="wrap">
+    <div class="sec-title reveal"><span class="kicker"><Fragment set:html={t('about.k')} /></span><h2 id="aboutT"><Fragment set:html={t('about.t')} /></h2></div>
+    <div class="about">
+      <article class="card intro spot reveal">
+        <div class="pic"><img src="/assets/orieb.jpg" alt={t('photo.alt')} loading="lazy"><span class="badge"><Fragment set:html={t('about.badge')} /></span></div>
+        <h3><Fragment set:html={t('about.h')} /></h3>
+        <p><Fragment set:html={t('about.p1')} /></p>
+        <p><Fragment set:html={t('about.p2')} /></p>
+      </article>
+      <div class="info">
+        <div class="card item reveal"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg></span><div><small><Fragment set:html={t('i.name')} /></small><b>Orieb Alzyuot</b><span class="sub ar-text">عريب الزيوت</span></div></div>
+        <div class="card item reveal"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg></span><div><small><Fragment set:html={t('i.loc')} /></small><b><Fragment set:html={t('i.locv')} /></b><span class="sub"><Fragment set:html={t('i.locs')} /></span></div></div>
+        <a class="card item reveal" href="mailto:alzuotorieb9999@gmail.com"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="3"></rect><path d="M3 7l9 6 9-6"></path></svg></span><div><small><Fragment set:html={t('i.email')} /></small><b class="ltr">alzuotorieb9999@gmail.com</b></div></a>
+        <a class="card item reveal" href="tel:+962775853203"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"></path></svg></span><div><small><Fragment set:html={t('i.phone')} /></small><b class="ltr">+962 77585 3203</b><span class="sub"><Fragment set:html={t('i.wa')} /></span></div></a>
+        <div class="card item reveal"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 9l10-5 10 5-10 5z"></path><path d="M6 11v5c3 2 9 2 12 0v-5"></path></svg></span><div><small><Fragment set:html={t('i.edu')} /></small><b><Fragment set:html={t('i.eduv')} /></b><span class="sub"><Fragment set:html={t('i.edus')} /></span></div></div>
+        <div class="card item reveal"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"></path></svg></span><div><small><Fragment set:html={t('i.lang')} /></small><b><Fragment set:html={t('i.langv')} /></b><span class="sub"><Fragment set:html={t('i.langs')} /></span></div></div>
+        <div class="principles">
+          <div class="card principle spot reveal"><span class="n">01</span><h4><Fragment set:html={t('pr.1t')} /></h4><p><Fragment set:html={t('pr.1')} /></p></div>
+          <div class="card principle spot reveal"><span class="n">02</span><h4><Fragment set:html={t('pr.2t')} /></h4><p><Fragment set:html={t('pr.2')} /></p></div>
+          <div class="card principle spot reveal"><span class="n">03</span><h4><Fragment set:html={t('pr.3t')} /></h4><p><Fragment set:html={t('pr.3')} /></p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

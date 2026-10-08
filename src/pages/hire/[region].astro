@@ -1,0 +1,7 @@
+---
+import HirePage from '../../components/HirePage.astro';
+import { REGIONS } from '../../data/hire';
+export const getStaticPaths = () => REGIONS.map(region => ({ params: { region: region.slug }, props: { region } }));
+const { region } = Astro.props;
+---
+<HirePage region={region} />

@@ -1,0 +1,82 @@
+---
+import { useT } from '../../i18n';
+const t = useT(Astro.currentLocale);
+---
+<section class="hero" id="home" aria-labelledby="heroTitle">
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="grid-dots" aria-hidden="true"></div>
+  <canvas class="stars" id="stars" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="hero-head">
+      <span class="hello stagger" style="--i:0"><img src="/assets/orieb.jpg" alt="" width="30" height="30"><span><Fragment set:html={t('hero.hello')} /></span> · <span class="live"><Fragment set:html={t('hero.open')} /></span></span>
+      <h1 id="heroTitle"><span class="line stagger" style="--i:1"><Fragment set:html={t('hero.l1')} /></span> <span class="line stagger" style="--i:2"><span><Fragment set:html={t('hero.l2a')} /></span> <span class="rot" id="rot" data-words={t('hero.words')}><span class="w">{t('hero.words').split('|')[0]}</span></span><span><Fragment set:html={t('hero.l2b')} /></span></span> <span class="line stagger" style="--i:3"><Fragment set:html={t('hero.l3')} /></span></h1>
+      <p class="lede stagger" style="--i:4"><Fragment set:html={t('hero.lede')} /></p>
+      <div class="cta stagger" style="--i:5">
+        <a class="btn primary magnet" href="#projects"><span><Fragment set:html={t('hero.cta1')} /></span> <svg class="flip-rtl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        <button class="btn magnet" data-play-intro><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"></path></svg><span><Fragment set:html={t('hero.cta2')} /></span></button>
+        <a class="btn" href="/Orieb-Alzyuot-CV.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 21h14"></path></svg><span><Fragment set:html={t('hero.cta3')} /></span></a>
+      </div>
+    </div>
+
+    <!-- bento -->
+    <div class="bento">
+      <figure class="card tile t-photo spot pop" style="--i:0">
+        <img src="/assets/orieb.jpg" alt={t('photo.alt')} width="400" height="400">
+        <span class="hand"><Fragment set:html={t('bento.hand')} /></span>
+        <figcaption class="cap"><span><b><Fragment set:html={t('bento.name')} /></b><span><Fragment set:html={t('bento.role')} /></span></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('bento.avail')} /></span></span></figcaption>
+      </figure>
+      <div class="card tile t-years pop" style="--i:1">
+        <span class="k"><Fragment set:html={t('bento.exp')} /></span>
+        <span class="big ltr"><span data-count-to="6">0</span>+</span>
+        <p><Fragment set:html={t('bento.years')} /></p>
+        <svg viewBox="0 0 200 56" preserveAspectRatio="none" aria-hidden="true"><path class="spark" d="M0 50 L25 44 L50 46 L75 34 L100 36 L125 22 L150 24 L175 10 L200 4" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </div>
+      <div class="card tile t-now spot pop" style="--i:2">
+        <span class="k"><Fragment set:html={t('bento.nowk')} /></span>
+        <h3><Fragment set:html={t('bento.now')} /></h3>
+        <ul>
+          <li><i>💸</i><span><Fragment set:html={t('b.wasl')} /></span></li>
+          <li><i>🏛️</i><span><Fragment set:html={t('b.sba')} /></span></li>
+          <li><i>⚖️</i><span><Fragment set:html={t('b.moj')} /></span></li>
+          <li><i>🏗️</i><span><Fragment set:html={t('b.seac')} /></span></li>
+          <li><i>📄</i><span><Fragment set:html={t('b.contracts')} /></span></li>
+        </ul>
+      </div>
+      <button class="card tile t-video spot pop" style="--i:3" data-play-intro aria-label={t('bento.videoAria')}>
+        <img src="/assets/intro-poster.jpg" alt="" loading="lazy">
+        <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"></path></svg></span>
+        <span class="vlabel"><b><Fragment set:html={t('bento.video')} /></b><span><Fragment set:html={t('bento.videoSub')} /></span></span>
+      </button>
+      <div class="card tile t-clock pop" style="--i:4">
+        <span class="k"><Fragment set:html={t('bento.clock')} /></span>
+        <span class="time ltr" id="clock">--:--</span>
+        <span><Fragment set:html={t('bento.tz')} /></span>
+      </div>
+      <div class="card tile t-code pop" style="--i:5" role="img" aria-label={t('bento.codeAria')}>
+        <div class="bar"><i></i><i></i><i></i><span>orieb.component.ts</span></div>
+<pre id="typed" aria-hidden="true"></pre>
+      </div>
+      <div class="card tile t-stack pop" style="--i:6">
+        <span class="k"><Fragment set:html={t('bento.stack')} /></span>
+        <div class="mini-marq ltr" aria-hidden="true"><span>Angular 21</span><span>Signals</span><span>TypeScript</span><span>React</span><span>React Native</span><span>Expo</span><span>Next.js</span><span>Angular 21</span><span>Signals</span><span>TypeScript</span><span>React</span><span>React Native</span><span>Expo</span><span>Next.js</span></div>
+        <div class="mini-marq rev ltr" aria-hidden="true"><span>.NET Core</span><span>Node.js</span><span>PostgreSQL</span><span>Azure</span><span>Docker</span><span>CI/CD</span><span>WCAG</span><span>.NET Core</span><span>Node.js</span><span>PostgreSQL</span><span>Azure</span><span>Docker</span><span>CI/CD</span><span>WCAG</span></div>
+        <p class="sr">Angular 21, Signals, TypeScript, React, React Native, Expo, Next.js, .NET Core, Node.js, PostgreSQL, Azure, Docker, CI/CD, WCAG.</p>
+      </div>
+      <button class="card tile t-a11y pop" style="--i:7" data-open-settings>
+        <span class="k"><Fragment set:html={t('bento.a11yk')} /></span>
+        <b><Fragment set:html={t('bento.a11y')} /></b>
+        <span><Fragment set:html={t('bento.a11ySub')} /></span>
+        <span class="go"><Fragment set:html={t('bento.a11yGo')} /></span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- logos -->
+<div class="logos" role="region" aria-labelledby="logosTitle">
+  <p id="logosTitle"><Fragment set:html={t('logos.t')} /></p>
+  <div class="logos-mask"><div class="track">
+    <span><i>💸</i><span><Fragment set:html={t('lg.wasl')} /></span></span><span><i>🏛️</i><span><Fragment set:html={t('lg.sba')} /></span></span><span><i>⚖️</i><span><Fragment set:html={t('lg.moj')} /></span></span><span><i>🏗️</i><span><Fragment set:html={t('lg.sce')} /></span></span><span><i>📄</i><span><Fragment set:html={t('lg.contracts')} /></span></span><span><i>🧭</i><span><Fragment set:html={t('lg.mirafh')} /></span></span><span><i>🧩</i><span><Fragment set:html={t('lg.tahaluf')} /></span></span><span><i>👥</i><span><Fragment set:html={t('lg.shepherd')} /></span></span><span><i>🐧</i><span><Fragment set:html={t('lg.penguin')} /></span></span>
+    <span aria-hidden="true"><i>💸</i><span><Fragment set:html={t('lg.wasl')} /></span></span><span aria-hidden="true"><i>🏛️</i><span><Fragment set:html={t('lg.sba')} /></span></span><span aria-hidden="true"><i>⚖️</i><span><Fragment set:html={t('lg.moj')} /></span></span><span aria-hidden="true"><i>🏗️</i><span><Fragment set:html={t('lg.sce')} /></span></span><span aria-hidden="true"><i>📄</i><span><Fragment set:html={t('lg.contracts')} /></span></span><span aria-hidden="true"><i>🧭</i><span><Fragment set:html={t('lg.mirafh')} /></span></span><span aria-hidden="true"><i>🧩</i><span><Fragment set:html={t('lg.tahaluf')} /></span></span><span aria-hidden="true"><i>👥</i><span><Fragment set:html={t('lg.shepherd')} /></span></span><span aria-hidden="true"><i>🐧</i><span><Fragment set:html={t('lg.penguin')} /></span></span>
+  </div></div>
+</div>

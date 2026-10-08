@@ -1,0 +1,6 @@
+---
+import Base from '../../layouts/Base.astro';
+import Home from '../../components/Home.astro';
+import { HOME_META, homeSchema } from '../../data/seo';
+---
+<Base title={HOME_META.ar.title} description={HOME_META.ar.description} schema={homeSchema('ar')}><Home /></Base>
