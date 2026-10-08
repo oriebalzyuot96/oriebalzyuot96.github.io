@@ -2,14 +2,18 @@
 import { useT } from '../../i18n';
 const t = useT(Astro.currentLocale);
 ---
-<footer><div class="wrap"><span>© 2026 Orieb Alzyuot · <span class="ar-text">عريب الزيوت</span></span></div></footer>
+
 
 <!-- floating -->
 <button class="fab a11y" data-open-settings aria-label={t('a11y.aria')} title="Ctrl + ,">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="4.5" r="1.8"></circle><path d="M5 8.5l7 1.5 7-1.5M12 10v5m0 0l-3.5 6.5M12 15l3.5 6.5"></path></svg>
   <span class="count" data-count></span>
 </button>
-<button class="fab totop" id="toTop" aria-label={t('top.aria')}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"></path></svg></button>
+<button class="totop" id="toTop" aria-label={t('top.aria')}>
+  <svg class="ring" viewBox="0 0 64 64" aria-hidden="true"><circle class="track" cx="32" cy="32" r="28"></circle><circle class="fill" id="topRing" cx="32" cy="32" r="28" pathLength="100"></circle></svg>
+  <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6M6 11l6-6 6 6"></path></svg></span>
+  <span class="pct" id="topPct" aria-hidden="true">0%</span>
+</button>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <div class="scrim" id="scrim"></div>

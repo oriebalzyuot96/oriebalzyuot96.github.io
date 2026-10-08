@@ -7,7 +7,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import path from 'node:path';
 
 const here = process.env.REEL_DIR || path.dirname(fileURLToPath(import.meta.url));
-const assets = path.resolve(here, '../../assets');
+const assets = path.resolve(here, '../../public/assets');
 const FPS = 30, DURATION = 40, W = 1280, H = 720;
 
 const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH });

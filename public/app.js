@@ -39,9 +39,22 @@
     const meta = $('meta[name="theme-color"]'); if (meta) meta.content = isDark() ? '#0f0d16' : '#6d4aff';
     save();
   }
+  /* View Transitions, ported from mashroo3hub: theme = circular reveal from the click point; other prefs fade */
+  function runVT(apply, kind = 'fade', to) {
+    if (typeof document.startViewTransition !== 'function' || reducedMotion()) { apply(); return; }
+    root.dataset.vt = kind; if (to) root.dataset.vtTo = to; else delete root.dataset.vtTo;
+    const done = () => { if (root.dataset.vt === kind) { delete root.dataset.vt; delete root.dataset.vtTo; } };
+    document.startViewTransition(apply).finished.then(done, done);
+  }
+  document.addEventListener('pointerdown', e => { root.style.setProperty('--vt-x', Math.round(e.clientX) + 'px'); root.style.setProperty('--vt-y', Math.round(e.clientY) + 'px'); }, { capture: true, passive: true });
+  document.addEventListener('keydown', () => { root.style.removeProperty('--vt-x'); root.style.removeProperty('--vt-y'); }, { capture: true, passive: true });
+  const VISUAL = new Set(['theme', 'accent', 'contrast', 'font', 'readable', 'spacing']);
+
   function setPref(k, v) {
     prefs[k] = v;
     if (k === 'lang' && v !== PAGE_LANG) { prefs.lang = v; save(); goLang(v); return; }
+    if (k === 'theme') { runVT(applyPrefs, 'reveal', isDark() ? 'dark' : 'light'); return; }
+    if (VISUAL.has(k)) { runVT(applyPrefs, 'fade'); return; }
     applyPrefs();
   }
 
@@ -290,7 +303,9 @@
   // live Amman clock
   function tick() {
     const fmt = new Intl.DateTimeFormat(prefs.lang === 'ar' ? 'ar-JO-u-nu-latn' : 'en-GB', { timeZone: 'Asia/Amman', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
-    const c = $('#clock'); if (c) c.textContent = fmt.format(new Date());
+    const now = fmt.format(new Date());
+    const c = $('#clock'); if (c) c.textContent = now;
+    $$('[data-clock]').forEach(el => { el.textContent = now.slice(0, 5); });
   }
   tick(); setInterval(tick, 1000);
 
@@ -342,7 +357,10 @@
     const y = scrollY, max = document.documentElement.scrollHeight - innerHeight;
     hdr.classList.toggle('scrolled', y > 10);
     bar.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
-    top.classList.toggle('show', y > 700);
+    top.classList.toggle('show', y > 500);
+    const pct = max > 0 ? Math.round((y / max) * 100) : 0;
+    const ring = $('#topRing'); if (ring) ring.style.strokeDashoffset = String(100 - pct);
+    const pl = $('#topPct'); if (pl) pl.textContent = pct + '%';
     const r = tl ? tl.getBoundingClientRect() : { top: 0, height: 1 }; const p = Math.min(1, Math.max(0, (innerHeight * .6 - r.top) / r.height));
     if (rail) rail.style.height = (p * 100).toFixed(1) + '%';
   }
