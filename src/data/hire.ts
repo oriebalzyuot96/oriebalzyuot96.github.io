@@ -34,6 +34,19 @@ const commonFaq = (place: T): { q: T; a: T }[] => [
 
 export const REGIONS: Region[] = [
   {
+    slug: 'freelance', flag: '🌍',
+    metaTitle: { en: 'Freelance Senior Front-End & Angular Developer (Remote, GCC & Worldwide) · Orieb Alzyuot', ar: 'مطور واجهات أمامية و Angular مستقل بخبرة Senior (عن بُعد، الخليج والعالم) · عريب الزيوت' },
+    metaDesc: { en: 'Freelance Senior Front-End developer for Angular migrations, front-end architecture, React Native apps, Astro sites and WCAG / Arabic RTL audits. Remote for Saudi Arabia, the UAE, Jordan, Europe and beyond.', ar: 'مطور واجهات أمامية مستقل بخبرة Senior: ترحيل Angular ومعمارية الواجهات وتطبيقات React Native ومواقع Astro وتدقيق WCAG والعربية. عن بُعد للسعودية والإمارات والأردن وأوروبا وغيرها.' },
+    h1: { en: 'Freelance Senior Front-End Developer', ar: 'مطور واجهات أمامية مستقل بخبرة Senior' },
+    lede: { en: 'Need senior front-end help without a long hiring cycle? I take on fixed-scope projects and monthly contracts, remote, in English or Arabic.', ar: 'تحتاج خبرة Senior في الواجهات الأمامية دون دورة توظيف طويلة؟ أعمل على مشاريع محددة النطاق وعقود شهرية، عن بُعد، بالعربية أو الإنجليزية.' },
+    why: [
+      { icon: '🚀', title: { en: 'Production-proven', ar: 'مُجرّب في الإنتاج' }, text: { en: '10 platforms shipped, including live national services and a SAMA-licensed fintech.', ar: '10 منصات مُسلّمة، منها خدمات وطنية فعّالة ومنصة مالية مرخّصة من ساما.' } },
+      { icon: '🧾', title: { en: 'Clear scope', ar: 'نطاق واضح' }, text: { en: 'Written scope, milestones and a demo at each step. No surprises.', ar: 'نطاق مكتوب ومراحل وعرض في كل خطوة، بلا مفاجآت.' } },
+      { icon: '🌍', title: { en: 'Bilingual', ar: 'ثنائي اللغة' }, text: { en: 'Native Arabic, professional English, and RTL done right.', ar: 'عربية أم، وإنجليزية مهنية، وواجهات من اليمين لليسار كما يجب.' } },
+    ],
+    faq: commonFaq({ en: 'your country', ar: 'بلدك' }),
+  },
+  {
     slug: 'saudi-arabia', flag: 'KSA', country: 'Saudi Arabia',
     metaTitle: { en: 'Hire a Senior Front-End Developer in Saudi Arabia (Angular, Remote / Freelance) · Orieb Alzyuot', ar: 'توظيف مطور واجهات أمامية Senior في السعودية (Angular، عن بُعد / عمل حر) · عريب الزيوت' },
     metaDesc: { en: 'Senior Front-End & Angular developer who has shipped Saudi government and fintech platforms: Saudi Bar Association, Meerath (Ministry of Justice), Engineering Arbitration and the SAMA-licensed Wasl. Available remote, freelance or for relocation to Riyadh.', ar: 'خبرة Senior في الواجهات الأمامية و Angular مع منصات حكومية ومالية سعودية: الهيئة السعودية للمحامين وميراث (وزارة العدل) والتحكيم الهندسي ومنصة وصل المرخّصة من ساما. متاح عن بُعد أو بنظام العمل الحر أو الانتقال إلى الرياض.' },
@@ -71,20 +84,7 @@ export const REGIONS: Region[] = [
       { icon: '🎓', title: { en: 'Strong foundations', ar: 'أساس قوي' }, text: { en: 'B.Sc. Communication & Software Engineering, Al-Balqa Applied University: ranked 2nd in class.', ar: 'بكالوريوس هندسة الاتصالات والبرمجيات من جامعة البلقاء التطبيقية، الثاني على الدفعة.' } },
     ],
     faq: commonFaq({ en: 'Jordan', ar: 'الأردن' }),
-  },
-  {
-    slug: 'freelance', flag: '🌍',
-    metaTitle: { en: 'Freelance Senior Front-End & Angular Developer (Remote, GCC & Worldwide) · Orieb Alzyuot', ar: 'مطور واجهات أمامية و Angular مستقل بخبرة Senior (عن بُعد، الخليج والعالم) · عريب الزيوت' },
-    metaDesc: { en: 'Freelance Senior Front-End developer for Angular migrations, front-end architecture, React Native apps, Astro sites and WCAG / Arabic RTL audits. Remote for Saudi Arabia, the UAE, Jordan, Europe and beyond.', ar: 'مطور واجهات أمامية مستقل بخبرة Senior: ترحيل Angular ومعمارية الواجهات وتطبيقات React Native ومواقع Astro وتدقيق WCAG والعربية. عن بُعد للسعودية والإمارات والأردن وأوروبا وغيرها.' },
-    h1: { en: 'Freelance Senior Front-End Developer', ar: 'مطور واجهات أمامية مستقل بخبرة Senior' },
-    lede: { en: 'Need senior front-end help without a long hiring cycle? I take on fixed-scope projects and monthly contracts, remote, in English or Arabic.', ar: 'تحتاج خبرة Senior في الواجهات الأمامية دون دورة توظيف طويلة؟ أعمل على مشاريع محددة النطاق وعقود شهرية، عن بُعد، بالعربية أو الإنجليزية.' },
-    why: [
-      { icon: '🚀', title: { en: 'Production-proven', ar: 'مُجرّب في الإنتاج' }, text: { en: '10 platforms shipped, including live national services and a SAMA-licensed fintech.', ar: '10 منصات مُسلّمة، منها خدمات وطنية فعّالة ومنصة مالية مرخّصة من ساما.' } },
-      { icon: '🧾', title: { en: 'Clear scope', ar: 'نطاق واضح' }, text: { en: 'Written scope, milestones and a demo at each step. No surprises.', ar: 'نطاق مكتوب ومراحل وعرض في كل خطوة، بلا مفاجآت.' } },
-      { icon: '🌍', title: { en: 'Bilingual', ar: 'ثنائي اللغة' }, text: { en: 'Native Arabic, professional English, and RTL done right.', ar: 'عربية أم، وإنجليزية مهنية، وواجهات من اليمين لليسار كما يجب.' } },
-    ],
-    faq: commonFaq({ en: 'your country', ar: 'بلدك' }),
-  },
+  }
 ];
 
 export const HIRE_INDEX = {
