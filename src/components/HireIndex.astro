@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import { langOf } from '../i18n';
+import { REGIONS, HIRE_INDEX, UI, regionName } from '../data/hire';
+const lang = langOf(Astro.currentLocale);
+const L = (o: Record<string, string>) => o[lang];
+const pre = lang === 'ar' ? '/ar' : '';
+---
+<Base title={L(HIRE_INDEX.metaTitle)} description={L(HIRE_INDEX.metaDesc)} ogImage="/assets/orieb.jpg">
+  <section class="hero hire-hero">
+    <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="grid-dots" aria-hidden="true"></div>
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href={`${pre}/`}>{L(UI.crumbHome)}</a><span aria-hidden="true">›</span><span aria-current="page">{L(UI.crumbHire)}</span></nav>
+      <div class="hire-head">
+        <img src="/assets/orieb.jpg" alt="" width="120" height="120" class="hire-avatar">
+        <div>
+          <h1>{L(HIRE_INDEX.h1)}</h1>
+          <p class="lede">{L(HIRE_INDEX.lede)}</p>
+        </div>
+      </div>
+      <div class="svc-grid" style="margin-top:44px">
+        {REGIONS.map(r => (
+          <a class="card svc spot region" href={`${pre}/hire/${r.slug}/`}>
+            <span class="ico">{r.flag}</span><h2>{L(regionName[r.slug])}</h2><p>{L(r.lede)}</p><span class="go">{L(UI.work) === 'See my work' ? 'Read more →' : 'اقرأ المزيد ←'}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

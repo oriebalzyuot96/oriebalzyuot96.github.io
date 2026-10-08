@@ -1,0 +1,17 @@
+---
+import { useT } from '../../i18n';
+const t = useT(Astro.currentLocale);
+---
+<section class="sec alt" id="intro" aria-labelledby="introT">
+  <div class="wrap">
+    <div class="sec-title reveal"><span class="kicker"><Fragment set:html={t('vid.k')} /></span><h2 id="introT"><Fragment set:html={t('vid.t')} /></h2><p><Fragment set:html={t('vid.p')} /></p></div>
+    <div class="player card reveal">
+      <video id="introVideo" controls playsinline preload="metadata" poster="/assets/intro-poster.jpg" width="1280" height="720">
+        <source src="/assets/orieb-intro.webm" type="video/webm">
+        <source src="/assets/orieb-intro.mp4" type="video/mp4">
+        <track kind="captions" src="/assets/orieb-intro.en.vtt" srclang="en" label="English" default>
+        <track kind="captions" src="/assets/orieb-intro.ar.vtt" srclang="ar" label="العربية">
+      </video>
+    </div>
+  </div>
+</section>

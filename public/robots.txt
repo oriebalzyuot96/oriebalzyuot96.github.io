@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /tools/
+
+Sitemap: https://oriebalzyuot96.github.io/sitemap-index.xml

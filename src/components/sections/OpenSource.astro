@@ -1,0 +1,15 @@
+---
+import { useT } from '../../i18n';
+const t = useT(Astro.currentLocale);
+---
+<section class="sec" id="oss" aria-labelledby="ossT">
+  <div class="wrap">
+    <div class="sec-title reveal"><span class="kicker"><Fragment set:html={t('os.k')} /></span><h2 id="ossT"><Fragment set:html={t('os.t')} /></h2><p><Fragment set:html={t('os.p')} /></p></div>
+    <div class="oss">
+      <a class="card issue spot reveal" href="https://github.com/mozilla/pdf.js/issues/20306" target="_blank" rel="noopener"><span class="lib">📄</span><div><h3><span>Mozilla pdf.js</span><span class="ltr" style="color:var(--accent)">#20306</span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('os.res')} /></span></span></h3><p><Fragment set:html={t('os.1')} /></p></div></a>
+      <a class="card issue spot reveal" href="https://github.com/primefaces/primeng/issues/13468" target="_blank" rel="noopener"><span class="lib">🎨</span><div><h3><span>PrimeNG</span><span class="ltr" style="color:var(--accent)">#13468</span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('os.res')} /></span></span></h3><p><Fragment set:html={t('os.2')} /></p></div></a>
+      <a class="card issue spot reveal" href="https://github.com/primefaces/primeng/issues/13479" target="_blank" rel="noopener"><span class="lib">🎨</span><div><h3><span>PrimeNG</span><span class="ltr" style="color:var(--accent)">#13479</span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('os.res')} /></span></span></h3><p><Fragment set:html={t('os.3')} /></p></div></a>
+      <a class="card issue spot reveal" href="https://github.com/primefaces/primeng/issues/13506" target="_blank" rel="noopener"><span class="lib">🎨</span><div><h3><span>PrimeNG</span><span class="ltr" style="color:var(--accent)">#13506</span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('os.closed')} /></span></span></h3><p><Fragment set:html={t('os.4')} /></p></div></a>
+    </div>
+  </div>
+</section>

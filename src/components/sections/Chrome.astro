@@ -1,0 +1,15 @@
+---
+import { useT } from '../../i18n';
+const t = useT(Astro.currentLocale);
+---
+<a class="skip" href="#main"><Fragment set:html={t('skip')} /></a>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<!-- intro splash (once per session, skipped for reduced motion) -->
+<div class="splash" id="splash" aria-hidden="true">
+  <div class="splash-in">
+    <div class="splash-logo"><span>O</span><span>G</span></div>
+    <div class="splash-name"><span class="ltr">Orieb Alzyuot</span><span class="ar-text">عريب الزيوت</span></div>
+    <div class="splash-bar"><i></i></div>
+  </div>
+</div>

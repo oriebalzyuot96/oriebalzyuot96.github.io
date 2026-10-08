@@ -1,0 +1,80 @@
+---
+import Base from '../layouts/Base.astro';
+import { langOf } from '../i18n';
+import { REGIONS, SERVICES, MODELS, UI, regionName, type Region } from '../data/hire';
+
+interface Props { region: Region }
+const { region } = Astro.props;
+const lang = langOf(Astro.currentLocale);
+const L = (o: Record<string, string>) => o[lang];
+const pre = lang === 'ar' ? '/ar' : '';
+const SITE = 'https://oriebalzyuot96.github.io';
+const url = `${SITE}${pre}/hire/${region.slug}/`;
+const schema = [
+  { '@type': 'Service', name: L(region.h1), url, provider: { '@id': `${SITE}/#orieb` }, serviceType: 'Senior front-end development',
+    ...(region.country ? { areaServed: { '@type': 'Country', name: region.country } } : { areaServed: 'Worldwide (remote)' }), availableLanguage: ['Arabic', 'English'] },
+  { '@type': 'FAQPage', mainEntity: region.faq.map(f => ({ '@type': 'Question', name: L(f.q), acceptedAnswer: { '@type': 'Answer', text: L(f.a) } })) },
+  { '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: L(UI.crumbHome), item: `${SITE}${pre}/` },
+    { '@type': 'ListItem', position: 2, name: L(UI.crumbHire), item: `${SITE}${pre}/hire/` },
+    { '@type': 'ListItem', position: 3, name: L(regionName[region.slug]), item: url } ] },
+];
+const others = REGIONS.filter(r => r.slug !== region.slug);
+---
+<Base title={L(region.metaTitle)} description={L(region.metaDesc)} schema={schema} ogImage="/assets/orieb.jpg">
+  <section class="hero hire-hero">
+    <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="grid-dots" aria-hidden="true"></div>
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href={`${pre}/`}>{L(UI.crumbHome)}</a><span aria-hidden="true">›</span><a href={`${pre}/hire/`}>{L(UI.crumbHire)}</a><span aria-hidden="true">›</span><span aria-current="page">{L(regionName[region.slug])}</span></nav>
+      <div class="hire-head">
+        <img src="/assets/orieb.jpg" alt="" width="120" height="120" class="hire-avatar">
+        <div>
+          <span class="hello"><span class="flag" aria-hidden="true">{region.flag}</span><span>Orieb Alzyuot · <span class="ar-text">عريب الزيوت</span></span></span>
+          <h1>{L(region.h1)}</h1>
+          <p class="lede">{L(region.lede)}</p>
+          <div class="cta">
+            <a class="btn primary" href={`mailto:alzuotorieb9999@gmail.com?subject=${encodeURIComponent('Hiring: ' + regionName[region.slug].en)}`}>✉️ {L(UI.cta)}</a>
+            <a class="btn" href="https://wa.me/962775853203" target="_blank" rel="noopener">💬 {L(UI.wa)}</a>
+            <a class="btn" href="/Orieb-Alzyuot-CV.pdf" target="_blank" rel="noopener">⬇ {L(UI.cv)}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec alt">
+    <div class="wrap">
+      <div class="sec-title"><span class="kicker">{L(UI.kicker)}</span><h2>{L(UI.why)}</h2></div>
+      <div class="svc-grid three">
+        {region.why.map(w => <article class="card svc spot"><span class="ico">{w.icon}</span><h3>{L(w.title)}</h3><p>{L(w.text)}</p></article>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-title"><h2>{L(UI.services)}</h2></div>
+      <div class="svc-grid">
+        {SERVICES.map(s => <article class="card svc spot"><span class="ico">{s.icon}</span><h3>{L(s.title)}</h3><p>{L(s.text)}</p></article>)}
+      </div>
+      <div class="sec-title" style="margin-top:72px"><h2>{L(UI.models)}</h2></div>
+      <div class="svc-grid three">
+        {MODELS.map((m, i) => <article class="card svc"><span class="n">0{i + 1}</span><h3>{L(m.title)}</h3><p>{L(m.text)}</p></article>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec alt">
+    <div class="wrap">
+      <div class="sec-title"><h2>{L(UI.faq)}</h2></div>
+      <div class="faq">
+        {region.faq.map(f => <details class="card"><summary>{L(f.q)}</summary><p>{L(f.a)}</p></details>)}
+      </div>
+      <div class="cta" style="margin-top:36px">
+        <a class="btn primary" href={`${pre}/#projects`}>{L(UI.work)} →</a>
+        {others.map(o => <a class="btn" href={`${pre}/hire/${o.slug}/`}><span class="code">{o.flag}</span> {L(regionName[o.slug])}</a>)}
+      </div>
+    </div>
+  </section>
+</Base>

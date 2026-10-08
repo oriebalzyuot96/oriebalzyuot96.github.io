@@ -1,0 +1,101 @@
+---
+import { useT } from '../../i18n';
+const t = useT(Astro.currentLocale);
+---
+<footer><div class="wrap"><span>© 2026 Orieb Alzyuot · <span class="ar-text">عريب الزيوت</span></span></div></footer>
+
+<!-- floating -->
+<button class="fab a11y" data-open-settings aria-label={t('a11y.aria')} title="Ctrl + ,">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="4.5" r="1.8"></circle><path d="M5 8.5l7 1.5 7-1.5M12 10v5m0 0l-3.5 6.5M12 15l3.5 6.5"></path></svg>
+  <span class="count" data-count></span>
+</button>
+<button class="fab totop" id="toTop" aria-label={t('top.aria')}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"></path></svg></button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="scrim" id="scrim"></div>
+
+<!-- settings drawer -->
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dTitle" inert>
+  <div class="dh">
+    <h2 id="dTitle"><span class="ico">♿</span><span><Fragment set:html={t('d.t')} /></span></h2>
+    <button class="ibtn" id="dClose" aria-label={t('close')}>✕</button>
+  </div>
+  <div class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" aria-controls="t-look" id="tb-look">🎨<span><Fragment set:html={t('d.look')} /></span></button>
+    <button role="tab" aria-selected="false" aria-controls="t-access" id="tb-access" tabindex="-1">♿<span><Fragment set:html={t('d.access')} /></span></button>
+    <button role="tab" aria-selected="false" aria-controls="t-general" id="tb-general" tabindex="-1">🌐<span><Fragment set:html={t('d.general')} /></span></button>
+    <button role="tab" aria-selected="false" aria-controls="t-keys" id="tb-keys" tabindex="-1">⌨️<span><Fragment set:html={t('d.keys')} /></span></button>
+  </div>
+  <div class="db">
+    <div role="tabpanel" id="t-look" aria-labelledby="tb-look">
+      <div class="grp"><span class="lbl" id="l-theme"><Fragment set:html={t('d.theme')} /></span>
+        <div class="seg" role="radiogroup" aria-labelledby="l-theme" data-pref="theme">
+          <button role="radio" data-v="light">☀️<span><Fragment set:html={t('d.light')} /></span></button><button role="radio" data-v="dark">🌙<span><Fragment set:html={t('d.dark')} /></span></button><button role="radio" data-v="system">🖥<span><Fragment set:html={t('d.system')} /></span></button>
+        </div></div>
+      <div class="grp"><span class="lbl" id="l-accent"><Fragment set:html={t('d.accent')} /></span>
+        <div class="swatches" role="radiogroup" aria-labelledby="l-accent" data-pref="accent">
+          <button class="sw" role="radio" data-v="lavender" aria-label="Lavender" style="background:#6d4aff"></button>
+          <button class="sw" role="radio" data-v="lilac" aria-label="Lilac" style="background:#9340c4"></button>
+          <button class="sw" role="radio" data-v="rose" aria-label="Rose" style="background:#cf2f71"></button>
+          <button class="sw" role="radio" data-v="ocean" aria-label="Ocean" style="background:#2058d8"></button>
+          <button class="sw" role="radio" data-v="mint" aria-label="Mint" style="background:#0c7c5f"></button>
+          <button class="sw" role="radio" data-v="amber" aria-label="Amber" style="background:#a64b07"></button>
+        </div></div>
+      <div class="grp"><span class="lbl" id="l-font"><Fragment set:html={t('d.size')} /></span>
+        <div class="seg" role="radiogroup" aria-labelledby="l-font" data-pref="font">
+          <button role="radio" data-v="s"><span style="font-size:.8rem">A</span><span><Fragment set:html={t('d.s')} /></span></button><button role="radio" data-v="m"><span>A</span><span><Fragment set:html={t('d.m')} /></span></button><button role="radio" data-v="l"><span style="font-size:1.15rem">A</span><span><Fragment set:html={t('d.l')} /></span></button><button role="radio" data-v="xl"><span style="font-size:1.3rem">A</span><span><Fragment set:html={t('d.xl')} /></span></button>
+        </div></div>
+    </div>
+    <div role="tabpanel" id="t-access" aria-labelledby="tb-access" hidden>
+      <div class="grp"><span class="lbl" id="l-contrast"><Fragment set:html={t('d.contrast')} /></span><p class="hint"><Fragment set:html={t('d.contrastH')} /></p>
+        <div class="seg" role="radiogroup" aria-labelledby="l-contrast" data-pref="contrast">
+          <button role="radio" data-v="none">◐<span><Fragment set:html={t('d.normal')} /></span></button><button role="radio" data-v="yellow">🟨<span><Fragment set:html={t('d.yellow')} /></span></button><button role="radio" data-v="grayscale">⬛<span><Fragment set:html={t('d.gray')} /></span></button><button role="radio" data-v="invert">🔄<span><Fragment set:html={t('d.invert')} /></span></button>
+        </div></div>
+      <div class="grp"><span class="lbl" id="l-motion"><Fragment set:html={t('d.motion')} /></span>
+        <div class="seg" role="radiogroup" aria-labelledby="l-motion" data-pref="motion">
+          <button role="radio" data-v="system">🖥<span><Fragment set:html={t('d.system')} /></span></button><button role="radio" data-v="full">✨<span><Fragment set:html={t('d.full')} /></span></button><button role="radio" data-v="reduced">⏸<span><Fragment set:html={t('d.reduced')} /></span></button>
+        </div></div>
+      <div class="grp"><span class="lbl"><Fragment set:html={t('d.aids')} /></span>
+        <button class="toggle" role="switch" data-pref="readable"><span><b><Fragment set:html={t('d.readable')} /></b><small><Fragment set:html={t('d.readableH')} /></small></span><span class="switch"></span></button>
+        <button class="toggle" role="switch" data-pref="links"><span><b><Fragment set:html={t('d.links')} /></b><small><Fragment set:html={t('d.linksH')} /></small></span><span class="switch"></span></button>
+        <button class="toggle" role="switch" data-pref="spacing"><span><b><Fragment set:html={t('d.spacing')} /></b><small><Fragment set:html={t('d.spacingH')} /></small></span><span class="switch"></span></button>
+        <button class="toggle" role="switch" data-pref="cursor"><span><b><Fragment set:html={t('d.cursor')} /></b><small><Fragment set:html={t('d.cursorH')} /></small></span><span class="switch"></span></button>
+      </div>
+    </div>
+    <div role="tabpanel" id="t-general" aria-labelledby="tb-general" hidden>
+      <div class="grp"><span class="lbl" id="l-lang"><Fragment set:html={t('d.lang')} /></span>
+        <div class="seg" role="radiogroup" aria-labelledby="l-lang" data-pref="lang">
+          <button role="radio" data-v="en" lang="en"><b class="lang-glyph">A</b><span>English</span></button><button role="radio" data-v="ar" lang="ar"><b class="lang-glyph">ع</b><span>العربية</span></button>
+        </div>
+        <p class="hint" style="margin-top:10px"><Fragment set:html={t('d.langH')} /></p></div>
+      <div class="grp"><span class="lbl"><Fragment set:html={t('d.soundT')} /></span>
+        <button class="toggle" role="switch" id="soundToggle"><span><b><Fragment set:html={t('d.sound')} /></b><small><Fragment set:html={t('d.soundH')} /></small></span><span class="switch"></span></button>
+      </div>
+    </div>
+    <div role="tabpanel" id="t-keys" aria-labelledby="tb-keys" hidden>
+      <ul class="keys">
+        <li><span><Fragment set:html={t('k.cmd')} /></span><span><kbd>Ctrl</kbd><kbd>K</kbd></span></li>
+        <li><span><Fragment set:html={t('k.set')} /></span><span><kbd>Ctrl</kbd><kbd>,</kbd></span></li>
+        <li><span><Fragment set:html={t('k.theme')} /></span><span><kbd>Alt</kbd><kbd>T</kbd></span></li>
+        <li><span><Fragment set:html={t('k.lang')} /></span><span><kbd>Alt</kbd><kbd>L</kbd></span></li>
+        <li><span><Fragment set:html={t('k.sec')} /></span><span><kbd>Alt</kbd><kbd>1</kbd>…<kbd>7</kbd></span></li>
+        <li><span><Fragment set:html={t('k.sound')} /></span><span><kbd>Alt</kbd><kbd>S</kbd></span></li>
+        <li><span><Fragment set:html={t('k.esc')} /></span><span><kbd>Esc</kbd></span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="df"><button class="btn" id="reset"><Fragment set:html={t('d.reset')} /></button><button class="btn primary" id="done"><Fragment set:html={t('d.done')} /></button></div>
+</aside>
+
+<!-- command palette -->
+<div class="palette" id="palette" role="dialog" aria-modal="true" aria-label={t('cmd.aria')}>
+  <div class="q"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+    <input id="pq" type="text" role="combobox" aria-expanded="true" aria-controls="plist" aria-autocomplete="list" placeholder={t('cmd.ph')} autocomplete="off"></div>
+  <ul id="plist" role="listbox"></ul>
+  <div class="foot"><span><kbd>↑</kbd><kbd>↓</kbd> <span><Fragment set:html={t('cmd.nav')} /></span></span><span><kbd>Enter</kbd> <span><Fragment set:html={t('cmd.open')} /></span></span><span><kbd>Esc</kbd> <span><Fragment set:html={t('cmd.close')} /></span></span></div>
+</div>
+
+<!-- modal -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Details">
+  <div class="sheet" id="sheet"></div>
+</div>

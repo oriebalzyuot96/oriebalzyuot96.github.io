@@ -1,0 +1,18 @@
+---
+import { useT } from '../../i18n';
+const t = useT(Astro.currentLocale);
+---
+<section class="sec" id="skills" aria-labelledby="skillsT">
+  <div class="wrap">
+    <div class="sec-title reveal"><span class="kicker"><Fragment set:html={t('sk.k')} /></span><h2 id="skillsT"><Fragment set:html={t('sk.t')} /></h2><p><Fragment set:html={t('sk.p')} /></p></div>
+    <div class="skill-grid">
+      <div class="card sk spot reveal"><h3><span class="ico">🎨</span><span><Fragment set:html={t('sk.fe')} /></span></h3><ul data-skills="angular|Angular · AngularJS → v22|x,typescript|TypeScript|x,reactivex|RxJS · Signals|x,react|React|a,nextdotjs|Next.js|a,astro|Astro|a,svelte|Svelte|p,primeng|PrimeNG|x,css|CSS · RTL · design tokens|x"></ul></div>
+      <div class="card sk spot reveal"><h3><span class="ico">📱</span><span><Fragment set:html={t('sk.mo')} /></span></h3><ul data-skills="react|React Native|a,expo|Expo|a,pwa|PWA|p"></ul><h3 style="margin-top:22px"><span class="ico">🗄️</span><span><Fragment set:html={t('sk.db')} /></span></h3><ul data-skills="postgresql|PostgreSQL|a,mongodb|MongoDB|p,mysql|SQL|a"></ul></div>
+      <div class="card sk spot reveal"><h3><span class="ico">⚙️</span><span><Fragment set:html={t('sk.be')} /></span></h3><ul data-skills="dotnet|.NET Core · C#|a,nodedotjs|Node.js · Express|a,openapiinitiative|REST · Microservices|a,python|Python|p"></ul><h3 style="margin-top:22px"><span class="ico">☁️</span><span><Fragment set:html={t('sk.ops')} /></span></h3><ul data-skills="docker|Docker|a,githubactions|CI/CD|a,azure|Microsoft Azure|a,git|Git|x"></ul></div>
+      <div class="card sk spot reveal"><h3><span class="ico">♿</span><span><Fragment set:html={t('sk.q')} /></span></h3><ul data-skills="w3c|WCAG accessibility|x,jest|Unit testing|a,owasp|App security|a,github|Code review|x"></ul></div>
+      <div class="card sk spot reveal"><h3><span class="ico">✏️</span><span><Fragment set:html={t('sk.ds')} /></span></h3><ul data-skills="figma|Figma|x,adobe|Adobe XD|a,jira|Agile · Jira|x"></ul></div>
+      <div class="card sk spot reveal"><h3><span class="ico">🤖</span><span><Fragment set:html={t('sk.ai')} /></span></h3><ul data-skills="anthropic|Claude · Claude Code|a,cursor|Cursor|a,openai|LLM features · RAG|p"></ul></div>
+    </div>
+    <div class="legend reveal"><span><span class="lv x"><Fragment set:html={t('lv.x')} /></span></span><span><span class="lv a"><Fragment set:html={t('lv.a')} /></span></span><span><span class="lv p"><Fragment set:html={t('lv.p')} /></span></span></div>
+  </div>
+</section>

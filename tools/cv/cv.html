@@ -12,7 +12,7 @@
 :root{--ink:#1d1a2b;--ink2:#4a4562;--ink3:#7a7495;--acc:#5b3df5;--soft:#f1edff;--line:#e4def6}
 html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 body{font:9.4pt/1.48 Pretendard,"Segoe UI",Arial,sans-serif;color:var(--ink);background:#fff}
-.page{width:210mm;height:297mm;padding:13mm 14mm 11mm;position:relative;overflow:hidden;page-break-after:always}
+.page{width:210mm;height:297mm;padding:11mm 14mm 11mm;position:relative;overflow:hidden;page-break-after:always}
 .page:last-child{page-break-after:auto}
 .page::before{content:"";position:absolute;inset:0 0 auto 0;height:5px;background:linear-gradient(90deg,#5b3df5,#b9a7ff,#ff8fc4)}
 a{color:inherit;text-decoration:none}
@@ -25,7 +25,7 @@ h1 .ar{font-family:"IBM Plex Sans Arabic";font-size:15pt;color:var(--ink3);font-
 .photo{width:84px;height:84px;border-radius:50%;object-fit:cover;object-position:50% 22%;border:3px solid var(--soft);box-shadow:0 0 0 1.5px var(--acc)}
 .avail{margin-top:7px;font-size:8.3pt;color:var(--ink2)}
 .avail i{font-style:normal;background:var(--soft);color:var(--acc);font-weight:700;border-radius:20px;padding:1px 7px;margin-right:3px}
-h2{font-size:9.2pt;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:800;margin:11px 0 5px;display:flex;align-items:center;gap:8px}
+h2{font-size:9.2pt;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:800;margin:10px 0 5px;display:flex;align-items:center;gap:8px}
 h2::after{content:"";flex:1;height:1px;background:var(--line)}
 .summary{color:var(--ink2);font-size:9.5pt}
 .summary b{color:var(--ink)}
@@ -39,7 +39,7 @@ h2::after{content:"";flex:1;height:1px;background:var(--line)}
 .jh .d{font-size:8.5pt;color:var(--ink3);white-space:nowrap;font-weight:600}
 .about{font-size:8.3pt;color:var(--ink3);font-style:italic;margin:1px 0 3px}
 ul{padding-left:14px}
-li{margin:1.5px 0;color:var(--ink2)}
+li{margin:1px 0;color:var(--ink2)}
 li::marker{color:var(--acc)}
 li b{color:var(--ink)}
 .plat{display:grid;grid-template-columns:repeat(2,1fr);gap:5px 12px;margin:5px 0 2px}
@@ -66,7 +66,7 @@ li b{color:var(--ink)}
       </div>
       <div class="avail"><i>Remote</i><i>Relocation</i><i>Full-time</i><i>Contract</i><i>Freelance</i></div>
     </div>
-    <img class="photo" src="../../assets/orieb.jpg" alt="Orieb Alzyuot">
+    <img class="photo" src="../../public/assets/orieb.jpg" alt="Orieb Alzyuot">
   </header>
 
   <h2>Profile</h2>
@@ -74,7 +74,7 @@ li b{color:var(--ink)}
 
   <h2>Core skills</h2>
   <div class="skills">
-    <div><b>Front-end architecture</b>Angular (AngularJS → v22, Signals, standalone, RxJS), TypeScript, React, Next.js, PrimeNG, design systems &amp; tokens</div>
+    <div><b>Front-end architecture</b>Angular (AngularJS → v22, Signals, standalone, RxJS), TypeScript, React, Next.js, Astro, Svelte, PrimeNG, design systems &amp; tokens</div>
     <div><b>Mobile</b>React Native, Expo, shared web/mobile logic and theming</div>
     <div><b>Back end &amp; data</b>.NET Core / C#, Node.js / Express, REST &amp; microservices, PostgreSQL, MongoDB, SQL</div>
     <div><b>Platform</b>Microsoft Azure, Docker, CI/CD pipelines, Git</div>
@@ -147,7 +147,7 @@ li b{color:var(--ink)}
     </ul>
     <ul class="oss">
       <li><b>Bareeq Al-Aeeq</b>: Angular 21 (Signals) web + portal and Expo mobile monorepo with shared design tokens. <span style="color:var(--acc)">github.com/oriebalzyuot96/angular</span></li>
-      <li><b>Personal portfolio</b>: bilingual (EN/AR, RTL), WCAG-minded, with an accessibility settings panel and command palette, no framework. <span style="color:var(--acc)">oriebalzyuot96.github.io</span></li>
+      <li><b>Personal portfolio</b>: built with <b>Astro</b>, static bilingual pages (EN/AR, RTL), WCAG-minded, with an accessibility panel, command palette and synthesised UI sound. <span style="color:var(--acc)">oriebalzyuot96.github.io</span></li>
     </ul>
   </div>
 

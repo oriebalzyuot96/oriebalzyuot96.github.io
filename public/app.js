@@ -1,12 +1,14 @@
-/* Orieb Alzyuot · portfolio runtime
-   Preferences (theme, accent, a11y, language) · i18n · motion · palette · modals. No dependencies. */
+/* Orieb Alzyuot · portfolio runtime (static Astro pages: / is English, /ar/ is Arabic).
+   Preferences (theme, accent, a11y) · language links · motion · palette · modals. No dependencies. */
 (() => {
   'use strict';
   const root = document.documentElement;
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
-  const AR = window.I18N_AR || {};
+  const I18N = window.I18N || {};
+  const PAGE_LANG = root.lang === 'ar' ? 'ar' : 'en';
   const reduceMQ = matchMedia('(prefers-reduced-motion: reduce)');
+  const sfx = k => window.UiSound && window.UiSound.play(k);
   const darkMQ = matchMedia('(prefers-color-scheme: dark)');
 
   /* ───────── preferences ───────── */
@@ -14,8 +16,7 @@
     readable: false, links: false, spacing: false, cursor: false };
   let prefs = { ...DEF };
   try { Object.assign(prefs, JSON.parse(localStorage.getItem('oa-prefs') || '{}')); } catch (e) { /* storage blocked */ }
-  const qLang = new URLSearchParams(location.search).get('lang');
-  if (qLang === 'ar' || qLang === 'en') prefs.lang = qLang;
+  prefs.lang = PAGE_LANG; // the URL decides the language; prefs only remember the visitor's last choice
   const save = () => { try { localStorage.setItem('oa-prefs', JSON.stringify(prefs)); } catch (e) {} };
   const reducedMotion = () => prefs.motion === 'reduced' || (prefs.motion === 'system' && reduceMQ.matches);
   const isDark = () => prefs.theme === 'dark' || (prefs.theme === 'system' && darkMQ.matches);
@@ -40,38 +41,18 @@
   }
   function setPref(k, v) {
     prefs[k] = v;
-    if (k === 'lang') setLang(v);
+    if (k === 'lang' && v !== PAGE_LANG) { prefs.lang = v; save(); goLang(v); return; }
     applyPrefs();
   }
 
-  /* ───────── i18n ───────── */
-  const EN = {}, EN_ATTR = {};
-  function t(key, fallback) { return prefs.lang === 'ar' && AR[key] != null ? AR[key] : (EN[key] ?? fallback ?? key); }
-  function setLang(lang) {
-    root.lang = lang; root.dir = lang === 'ar' ? 'rtl' : 'ltr';
-    $$('[data-i18n]').forEach(el => {
-      const k = el.dataset.i18n;
-      if (!(k in EN)) EN[k] = el.innerHTML;
-      el.innerHTML = lang === 'ar' && AR[k] != null ? AR[k] : EN[k];
-    });
-    $$('[data-i18n-attr]').forEach(el => {
-      el.dataset.i18nAttr.split(';').forEach(pair => {
-        const [attr, k] = pair.split(':');
-        const id = k + '@' + attr;
-        if (!(id in EN_ATTR)) EN_ATTR[id] = el.getAttribute(attr);
-        el.setAttribute(attr, lang === 'ar' && AR[k] != null ? AR[k] : EN_ATTR[id]);
-      });
-    });
-    const lb = $('#langBtn');
-    if (lb) { $('#langLbl').textContent = lang === 'ar' ? 'EN' : 'ع'; lb.setAttribute('lang', lang === 'ar' ? 'en' : 'ar'); lb.setAttribute('aria-label', lang === 'ar' ? 'Switch to English' : 'التبديل إلى العربية'); }
-    document.title = lang === 'ar' ? 'عريب الزيوت · Senior Front-End Engineer' : 'Orieb Alzyuot · Senior Front-End Engineer';
-    const canon = $('link[rel=canonical]'); if (canon) canon.href = 'https://oriebalzyuot96.github.io/' + (lang === 'ar' ? '?lang=ar' : '');
-    const v = $('#introVideo');
-    if (v && v.textTracks) [...v.textTracks].forEach(tr => { tr.mode = tr.language === lang ? 'showing' : 'disabled'; });
-    words = (lang === 'ar' ? (AR['hero.words'] || '') : 'trust|understand|enjoy').split('|');
-    wi = 0; const w = $('#rot .w'); if (w) w.textContent = words[0];
-    if (typeof buildPalette === 'function') buildPalette('');
+  /* ───────── i18n (strings are rendered at build time; these are the few runtime ones) ───────── */
+  const t = (key, fallback) => I18N[key] ?? fallback ?? key;
+  function altPath(lang) {
+    const p = location.pathname.replace(/^\/ar(\/|$)/, '/');
+    return (lang === 'ar' ? '/ar' + (p === '/' ? '/' : p) : p) + location.hash;
   }
+  function goLang(lang) { location.href = altPath(lang); }
+  { const v = $('#introVideo'); if (v && v.textTracks) [...v.textTracks].forEach(tr => { tr.mode = tr.language === PAGE_LANG ? 'showing' : 'disabled'; }); }
 
   /* ───────── controls ───────── */
   $$('[data-pref]').forEach(g => {
@@ -87,17 +68,28 @@
       const nb = bs[(i + d + bs.length) % bs.length]; setPref(k, nb.dataset.v); nb.focus();
     });
   });
-  const toggleTheme = () => setPref('theme', isDark() ? 'light' : 'dark');
-  const toggleLang = () => { setPref('lang', prefs.lang === 'ar' ? 'en' : 'ar'); toast(prefs.lang === 'ar' ? 'تم التبديل إلى العربية' : 'Switched to English'); };
+  const toggleTheme = () => { setPref('theme', isDark() ? 'light' : 'dark'); sfx('pop'); };
+  const toggleLang = () => { sfx('step'); setPref('lang', PAGE_LANG === 'ar' ? 'en' : 'ar'); };
   $('#themeBtn').addEventListener('click', toggleTheme);
-  $('#langBtn').addEventListener('click', toggleLang);
-  $('#reset').addEventListener('click', () => { const lang = prefs.lang; prefs = { ...DEF, lang }; applyPrefs(); toast(t('toast.reset', 'Settings reset')); });
+  $('#reset').addEventListener('click', () => { const lang = prefs.lang; prefs = { ...DEF, lang }; applyPrefs(); window.UiSound && window.UiSound.reset(); syncSound(); sfx('pop'); toast(t('toast.reset', 'Settings reset')); });
+
+  /* sound toggle (header button, drawer switch, Alt+S, palette) */
+  function syncSound() {
+    const on = !!(window.UiSound && window.UiSound.enabled);
+    $('#soundToggle').setAttribute('aria-checked', String(on));
+    $('#soundBtn').setAttribute('aria-pressed', String(on));
+    root.toggleAttribute('data-sound', on);
+  }
+  const toggleSound = () => { if (!window.UiSound) return; window.UiSound.setEnabled(!window.UiSound.enabled); syncSound(); toast(window.UiSound.enabled ? t('toast.soundOn', 'Sound on 🔊') : t('toast.soundOff', 'Sound off 🔇')); };
+  $('#soundToggle').addEventListener('click', toggleSound);
+  $('#soundBtn').addEventListener('click', toggleSound);
+  syncSound();
 
   /* ───────── toast ───────── */
   let toastT;
   function toast(msg) { const el = $('#toast'); el.textContent = msg; el.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove('show'), 2200); }
   $$('[data-copy]').forEach(b => b.addEventListener('click', async () => {
-    try { await navigator.clipboard.writeText(b.dataset.copy); toast(t('toast.copied', 'Copied ✓')); } catch (e) { toast(b.dataset.copy); }
+    try { await navigator.clipboard.writeText(b.dataset.copy); sfx('success'); toast(t('toast.copied', 'Copied ✓')); } catch (e) { toast(b.dataset.copy); }
   }));
 
   /* ───────── overlays: shared focus handling ───────── */
@@ -116,6 +108,7 @@
     lastFocus = document.activeElement; openLayer = name;
     el.classList.add('open'); el.removeAttribute('inert'); scrim.classList.add('open');
     document.body.style.overflow = 'hidden';
+    sfx(name === 'palette' ? 'pop' : 'whoosh');
     setTimeout(() => (focusEl || el).focus(), 40);
   }
   function closeOverlay(silent) {
@@ -177,6 +170,7 @@
   }
   function playIntro() {
     const sec = $('#intro'); const v = $('#introVideo');
+    if (!sec || !v) { location.href = (document.documentElement.lang === 'ar' ? '/ar/' : '/') + '#intro'; return; }
     sec.scrollIntoView({ behavior: reducedMotion() ? 'auto' : 'smooth', block: 'center' });
     setTimeout(() => { v.focus(); const p = v.play(); if (p && p.catch) p.catch(() => {}); }, reducedMotion() ? 0 : 650);
   }
@@ -190,7 +184,7 @@
   /* ───────── command palette ───────── */
   const palette = $('#palette'), pq = $('#pq'), plist = $('#plist');
   const L = (en, ar) => () => (prefs.lang === 'ar' ? ar : en);
-  const go = id => () => { closeOverlay(true); document.getElementById(id).scrollIntoView({ behavior: reducedMotion() ? 'auto' : 'smooth' }); };
+  const go = id => () => { closeOverlay(true); const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: reducedMotion() ? 'auto' : 'smooth' }); else location.href = (document.documentElement.lang === 'ar' ? '/ar/' : '/') + '#' + id; };
   const CMDS = [
     { e: '🏠', l: L('Home', 'الرئيسية'), g: L('Section', 'قسم'), run: go('home') },
     { e: '👋', l: L('About me', 'عنّي'), g: L('Section', 'قسم'), run: go('about') },
@@ -207,9 +201,10 @@
     { e: '👥', l: L('HR solution (Shepherd)', 'نظام الموارد البشرية (Shepherd)'), g: L('Project', 'مشروع'), run: () => { closeOverlay(true); openCase('p-hr'); } },
     { e: '🌗', l: L('Toggle dark mode', 'تبديل الوضع الداكن'), g: L('Action', 'إجراء'), run: () => { closeOverlay(true); toggleTheme(); } },
     { e: '🌐', l: L('العربية / English', 'English / العربية'), g: L('Action', 'إجراء'), run: () => { closeOverlay(true); toggleLang(); } },
+    { e: '🔊', l: L('Sound on / off', 'تشغيل / إيقاف الأصوات'), g: L('Action', 'إجراء'), run: () => { closeOverlay(true); toggleSound(); } },
     { e: '♿', l: L('Accessibility settings', 'إعدادات الوصول'), g: L('Action', 'إجراء'), run: () => { closeOverlay(true); openSettings(); } },
     { e: '🟨', l: L('High contrast (yellow)', 'تباين عالٍ (أصفر)'), g: L('Action', 'إجراء'), run: () => { closeOverlay(true); setPref('contrast', prefs.contrast === 'yellow' ? 'none' : 'yellow'); } },
-    { e: '📥', l: L('Download CV (PDF)', 'تحميل السيرة الذاتية'), g: L('Link', 'رابط'), run: () => { closeOverlay(true); open('Orieb-Alzyuot-CV.pdf', '_blank', 'noopener'); } },
+    { e: '📥', l: L('Download CV (PDF)', 'تحميل السيرة الذاتية'), g: L('Link', 'رابط'), run: () => { closeOverlay(true); open('/Orieb-Alzyuot-CV.pdf', '_blank', 'noopener'); } },
     { e: '📧', l: L('Copy email address', 'نسخ البريد الإلكتروني'), g: L('Action', 'إجراء'), run: async () => { closeOverlay(true); try { await navigator.clipboard.writeText('alzuotorieb9999@gmail.com'); toast(t('toast.copied', 'Copied ✓')); } catch (e) {} } },
     { e: '🐙', l: L('GitHub profile', 'حساب GitHub'), g: L('Link', 'رابط'), run: () => { closeOverlay(true); open('https://github.com/oriebalzyuot96', '_blank', 'noopener'); } },
     { e: '💼', l: L('LinkedIn profile', 'حساب LinkedIn'), g: L('Link', 'رابط'), run: () => { closeOverlay(true); open('https://www.linkedin.com/in/orieb-alzyuot996', '_blank', 'noopener'); } },
@@ -229,7 +224,7 @@
   pq.addEventListener('input', () => { sel = 0; buildPalette(pq.value); });
   pq.addEventListener('keydown', e => {
     if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); if (!shown.length) return; sel = (sel + (e.key === 'ArrowDown' ? 1 : -1) + shown.length) % shown.length; buildPalette(pq.value); $('#opt' + sel)?.scrollIntoView({ block: 'nearest' }); }
-    else if (e.key === 'Enter' && shown[sel]) { e.preventDefault(); shown[sel].run(); }
+    else if (e.key === 'Enter' && shown[sel]) { e.preventDefault(); sfx('step'); shown[sel].run(); }
   });
   plist.addEventListener('click', e => { const li = e.target.closest('li[id]'); if (li) shown[+li.id.slice(3)].run(); });
   palette.addEventListener('keydown', e => trap(palette, e));
@@ -243,7 +238,8 @@
     else if (e.key === 'Escape' && openLayer) { e.preventDefault(); closeOverlay(); }
     else if (e.altKey && e.code === 'KeyT') { e.preventDefault(); toggleTheme(); }
     else if (e.altKey && e.code === 'KeyL') { e.preventDefault(); toggleLang(); }
-    else if (e.altKey && /^Digit[1-7]$/.test(e.code)) { e.preventDefault(); document.getElementById(SECS[+e.code.slice(5) - 1]).scrollIntoView(); }
+    else if (e.altKey && e.code === 'KeyS') { e.preventDefault(); toggleSound(); }
+    else if (e.altKey && /^Digit[1-7]$/.test(e.code)) { e.preventDefault(); go(SECS[+e.code.slice(5) - 1])(); }
   });
 
   /* ───────── skills ───────── */
@@ -251,7 +247,7 @@
   $$('[data-skills]').forEach(ul => {
     ul.innerHTML = ul.dataset.skills.split(',').map(s => {
       const [ic, label, lv] = s.split('|');
-      return `<li><span><img src="https://cdn.jsdelivr.net/npm/simple-icons@11/icons/${ic}.svg" alt="" loading="lazy" width="18" height="18" onerror="this.remove()"><span class="ltr">${label}</span></span><span class="lv ${lv}" data-i18n="${LV[lv][0]}">${LV[lv][1]}</span></li>`;
+      return `<li><span><img src="https://cdn.jsdelivr.net/npm/simple-icons@11/icons/${ic}.svg" alt="" loading="lazy" width="18" height="18" onerror="this.remove()"><span class="ltr">${label}</span></span><span class="lv ${lv}">${t(LV[lv][0], LV[lv][1])}</span></li>`;
     }).join('');
   });
 
@@ -264,7 +260,7 @@
   }));
 
   /* ───────── hero motion ───────── */
-  let words = ['trust', 'understand', 'enjoy'], wi = 0;
+  let words = ($('#rot')?.dataset.words || 'trust').split('|'), wi = 0;
   setInterval(() => {
     if (reducedMotion() || document.hidden) return;
     const w = $('#rot .w'); if (!w || words.length < 2) return;
@@ -285,6 +281,7 @@
   ].map(([c, s]) => c ? `<span class="c-c">${s}</span>` : s);
   const typed = $('#typed');
   function typeCode() {
+    if (!typed) return;
     if (reducedMotion()) { typed.innerHTML = CODE.join('\n'); return; }
     let i = 0; const step = () => { typed.innerHTML = CODE.slice(0, i + 1).join('\n'); if (++i < CODE.length) setTimeout(step, 180); };
     step();
@@ -293,7 +290,7 @@
   // live Amman clock
   function tick() {
     const fmt = new Intl.DateTimeFormat(prefs.lang === 'ar' ? 'ar-JO-u-nu-latn' : 'en-GB', { timeZone: 'Asia/Amman', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
-    $('#clock').textContent = fmt.format(new Date());
+    const c = $('#clock'); if (c) c.textContent = fmt.format(new Date());
   }
   tick(); setInterval(tick, 1000);
 
@@ -346,20 +343,18 @@
     hdr.classList.toggle('scrolled', y > 10);
     bar.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
     top.classList.toggle('show', y > 700);
-    const r = tl.getBoundingClientRect(); const p = Math.min(1, Math.max(0, (innerHeight * .6 - r.top) / r.height));
-    rail.parentElement.style.setProperty('--fill', (p * 100).toFixed(1) + '%');
-    rail.style.height = (p * 100).toFixed(1) + '%';
+    const r = tl ? tl.getBoundingClientRect() : { top: 0, height: 1 }; const p = Math.min(1, Math.max(0, (innerHeight * .6 - r.top) / r.height));
+    if (rail) rail.style.height = (p * 100).toFixed(1) + '%';
   }
   addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
   top.addEventListener('click', () => scrollTo({ top: 0, behavior: reducedMotion() ? 'auto' : 'smooth' }));
   const links = $$('.menu a');
   const so = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id)); }), { rootMargin: '-45% 0px -50% 0px' });
-  ['about', 'intro', 'skills', 'projects', 'oss', 'career', 'archiving', 'contact'].forEach(id => so.observe(document.getElementById(id)));
+  ['about', 'intro', 'skills', 'projects', 'oss', 'career', 'archiving', 'contact'].forEach(id => { const el = document.getElementById(id); if (el) so.observe(el); });
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .08, rootMargin: '0px 0px -40px 0px' });
   $$('.reveal').forEach(el => io.observe(el));
 
   /* ───────── boot ───────── */
-  if (prefs.lang === 'ar') setLang('ar'); else { words = ['trust', 'understand', 'enjoy']; }
   applyPrefs(); onScroll();
   let splashShown = false;
   try { splashShown = sessionStorage.getItem('oa-splash') === '1'; sessionStorage.setItem('oa-splash', '1'); } catch (e) {}
