@@ -343,5 +343,16 @@
  "toast.reset": "Settings reset",
  "toast.soundOn": "Sound on 🔊",
  "toast.soundOff": "Sound off 🔇",
- "nav.hire": "Hire me"
+ "nav.hire": "Hire me",
+ "f.sample": "Design samples",
+ "st.live": "Live demo",
+ "btn.live": "Open live demo ↗",
+ "s3.org": "Design sample · 2026",
+ "s3.float": "3D · Three.js",
+ "s3.t": "Sample 03 · 3D Landing Page",
+ "s3.alt": "Sample 03 landing page: dark hero with a glossy 3D knot and the headline “Front-end built to simplify complexity.”",
+ "s3.p": "A cinematic, bilingual landing page built as a standalone Astro site: a real-time Three.js hero, a scroll-driven switch between dark and light, and 3D fact cards, all in lavender.",
+ "s3.h1": "Three.js hero (glossy knot, lattice, particle ring) reacting to mouse and scroll",
+ "s3.h2": "Loader, word-by-word reveal, 3D counters, draggable work gallery, full-screen menu",
+ "s3.h3": "English + Arabic RTL, synthesised UI sound, reduced-motion and no-WebGL fallbacks"
 }
