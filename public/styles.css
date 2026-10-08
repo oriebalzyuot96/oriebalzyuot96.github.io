@@ -633,3 +633,4 @@ h1,h2,h3,h4,p,li,dd,summary,.lede{overflow-wrap:break-word}
 .about>*,.info>*,.svc-grid>*,.hire-head>*,.card{min-width:0}
 @media (max-width:520px){.info{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:640px){.hire-head{grid-template-columns:minmax(0,1fr)}.hire-head h1{font-size:clamp(1.6rem,8vw,2.2rem)}}
+@media (max-width:420px){.btn{white-space:normal;text-align:center}}
