@@ -1,0 +1,54 @@
+---
+import { langOf } from '../i18n';
+const lang = langOf(Astro.currentLocale);
+const pre = lang === 'ar' ? '/ar' : '';
+const T = {
+  en: { tag: 'Senior Front-End & Full-Stack Engineer · Angular, React, React Native, Astro', avail: 'Open to senior roles & freelance', email: 'Email me', cv: 'Download CV',
+        explore: 'Explore', about: 'About', projects: 'Projects', career: 'Career', video: 'Intro video', skills: 'Skills',
+        hire: 'Hire me', ksa: 'Saudi Arabia', uae: 'UAE', jor: 'Jordan', free: 'Freelance / remote',
+        connect: 'Connect', made: 'Built with Astro · bilingual · accessible', local: 'Amman', rights: 'All rights reserved.', other: 'العربية' },
+  ar: { tag: 'خبرة Senior في الواجهات الأمامية والتطوير المتكامل · Angular و React و React Native و Astro', avail: 'أرحّب بأدوار Senior والعمل الحر', email: 'راسلني', cv: 'تحميل السيرة الذاتية',
+        explore: 'استكشف', about: 'عنّي', projects: 'المشاريع', career: 'المسيرة', video: 'الفيديو التعريفي', skills: 'المهارات',
+        hire: 'وظّفني', ksa: 'السعودية', uae: 'الإمارات', jor: 'الأردن', free: 'عمل حر / عن بُعد',
+        connect: 'تواصل', made: 'مبني بـ Astro · ثنائي اللغة · سهل الوصول', local: 'عمّان', rights: 'جميع الحقوق محفوظة.', other: 'English' },
+}[lang];
+const altHref = lang === 'ar' ? Astro.url.pathname.replace(/^\/ar(\/|$)/, '/') : '/ar' + Astro.url.pathname;
+---
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="ft-card">
+      <div class="ft-brand">
+        <img src="/assets/orieb-face.jpg" alt="" width="72" height="72">
+        <div>
+          <b>Orieb Alzyuot <span class="ar-text">· عريب الزيوت</span></b>
+          <p>{T.tag}</p>
+          <span class="ft-avail"><i></i>{T.avail}</span>
+        </div>
+        <div class="ft-cta">
+          <a class="btn primary" href="mailto:alzuotorieb9999@gmail.com">✉️ {T.email}</a>
+          <a class="btn" href="/Orieb-Alzyuot-CV.pdf" target="_blank" rel="noopener">⬇ {T.cv}</a>
+        </div>
+      </div>
+      <nav class="ft-cols" aria-label="Footer">
+        <div><h3>{T.explore}</h3><ul>
+          <li><a href={`${pre}/#about`}>{T.about}</a></li><li><a href={`${pre}/#intro`}>{T.video}</a></li>
+          <li><a href={`${pre}/#skills`}>{T.skills}</a></li><li><a href={`${pre}/#projects`}>{T.projects}</a></li><li><a href={`${pre}/#career`}>{T.career}</a></li></ul></div>
+        <div><h3>{T.hire}</h3><ul>
+          <li><a href={`${pre}/hire/saudi-arabia/`}>{T.ksa}</a></li><li><a href={`${pre}/hire/uae/`}>{T.uae}</a></li>
+          <li><a href={`${pre}/hire/jordan/`}>{T.jor}</a></li><li><a href={`${pre}/hire/freelance/`}>{T.free}</a></li></ul></div>
+        <div><h3>{T.connect}</h3><ul>
+          <li><a href="https://github.com/oriebalzyuot96" target="_blank" rel="noopener">GitHub ↗</a></li>
+          <li><a href="https://www.linkedin.com/in/orieb-alzyuot996" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+          <li><a href="https://wa.me/962775853203" target="_blank" rel="noopener">WhatsApp ↗</a></li>
+          <li><a class="ltr" href="mailto:alzuotorieb9999@gmail.com">alzuotorieb9999@gmail.com</a></li></ul></div>
+      </nav>
+    </div>
+    <div class="ft-sign" aria-hidden="true">Orieb<span>.</span></div>
+    <div class="ft-bar">
+      <span>© 2026 Orieb Alzyuot. {T.rights}</span>
+      <span class="ft-time">🕒 {T.local} <b class="ltr" data-clock>--:--</b></span>
+      <span>{T.made}</span>
+      <a href={altHref} lang={lang === 'ar' ? 'en' : 'ar'}>🌐 {T.other}</a>
+    </div>
+  </div>
+</footer>

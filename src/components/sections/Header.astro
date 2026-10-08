@@ -10,7 +10,7 @@ const altLang = lang === 'ar' ? 'en' : 'ar';
 ---
 <header class="top" id="hdr">
   <div class="wrap">
-    <a href={`${home}#home`} class="brand" aria-label={t('brand.aria')}><img src="/assets/orieb.jpg" alt="" width="38" height="38"><span>Orieb<b>.dev</b></span></a>
+    <a href={`${home}#home`} class="brand" aria-label={t('brand.aria')}><img src="/assets/orieb-face.jpg" alt="" width="38" height="38"><span>Orieb<b>.dev</b></span></a>
     <nav class="menu" aria-label={t('nav.aria')}>
       <a href={`${home}#about`}><Fragment set:html={t('nav.about')} /></a><a href={`${home}#intro`}><Fragment set:html={t('nav.video')} /></a><a href={`${home}#skills`}><Fragment set:html={t('nav.skills')} /></a><a href={`${home}#projects`}><Fragment set:html={t('nav.projects')} /></a><a href={`${home}#career`}><Fragment set:html={t('nav.career')} /></a><a href={`${home}#contact`}><Fragment set:html={t('nav.contact')} /></a><a href={lang === 'ar' ? '/ar/hire/' : '/hire/'} class="nav-hire"><Fragment set:html={t('nav.hire')} /></a>
     </nav>

@@ -3,6 +3,7 @@ import { langOf, runtimeDict } from '../i18n';
 import Chrome from '../components/sections/Chrome.astro';
 import Header from '../components/sections/Header.astro';
 import Overlays from '../components/sections/Overlays.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 
 interface Props {
   title: string;
@@ -80,6 +81,7 @@ if(p.theme&&p.theme!=='system')r.setAttribute('data-theme',p.theme);
 <main id="main">
   <slot />
 </main>
+<SiteFooter />
 <Overlays />
 <script is:inline set:html={`window.I18N=${JSON.stringify(runtime)};`} />
 <script is:inline src="/sound.js" defer></script>

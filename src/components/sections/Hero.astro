@@ -8,7 +8,7 @@ const t = useT(Astro.currentLocale);
   <canvas class="stars" id="stars" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="hero-head">
-      <span class="hello stagger" style="--i:0"><img src="/assets/orieb.jpg" alt="" width="30" height="30"><span><Fragment set:html={t('hero.hello')} /></span> · <span class="live"><Fragment set:html={t('hero.open')} /></span></span>
+      <span class="hello stagger" style="--i:0"><img src="/assets/orieb-face.jpg" alt="" width="30" height="30"><span><Fragment set:html={t('hero.hello')} /></span> · <span class="live"><Fragment set:html={t('hero.open')} /></span></span>
       <h1 id="heroTitle"><span class="line stagger" style="--i:1"><Fragment set:html={t('hero.l1')} /></span> <span class="line stagger" style="--i:2"><span><Fragment set:html={t('hero.l2a')} /></span> <span class="rot" id="rot" data-words={t('hero.words')}><span class="w">{t('hero.words').split('|')[0]}</span></span><span><Fragment set:html={t('hero.l2b')} /></span></span> <span class="line stagger" style="--i:3"><Fragment set:html={t('hero.l3')} /></span></h1>
       <p class="lede stagger" style="--i:4"><Fragment set:html={t('hero.lede')} /></p>
       <div class="cta stagger" style="--i:5">
