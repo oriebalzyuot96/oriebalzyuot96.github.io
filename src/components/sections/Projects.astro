@@ -11,9 +11,26 @@ const t = useT(Astro.currentLocale);
       <button class="chip" aria-pressed="false" data-f="fin">💸 <span><Fragment set:html={t('f.fin')} /></span> <span class="c" data-n="fin"></span></button>
       <button class="chip" aria-pressed="false" data-f="saas">🏢 <span><Fragment set:html={t('f.saas')} /></span> <span class="c" data-n="saas"></span></button>
       <button class="chip" aria-pressed="false" data-f="oss">📱 <span><Fragment set:html={t('f.oss')} /></span> <span class="c" data-n="oss"></span></button>
+      <button class="chip" aria-pressed="false" data-f="sample">✨ <span><Fragment set:html={t('f.sample')} /></span> <span class="c" data-n="sample"></span></button>
     </div>
 
     <div class="projects">
+      <!-- Sample 03 -->
+      <article class="card proj spot reveal" data-c="sample" id="p-sample3">
+        <div class="media">
+          <figure class="frame tilt" data-full="/assets/sample3.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>oriebalzyuot96.github.io/sample-3</span></div><img src="/assets/sample3.jpg" alt={t('s3.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
+          <span class="float">✨ <span><Fragment set:html={t('s3.float')} /></span></span>
+        </div>
+        <div class="p-body">
+          <div class="org"><span><Fragment set:html={t('s3.org')} /></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('st.live')} /></span></span></div>
+          <h3><Fragment set:html={t('s3.t')} /></h3>
+          <p><Fragment set:html={t('s3.p')} /></p>
+          <ul class="hl"><li><Fragment set:html={t('s3.h1')} /></li><li><Fragment set:html={t('s3.h2')} /></li><li><Fragment set:html={t('s3.h3')} /></li></ul>
+          <div class="tags"><span class="tag">Astro</span><span class="tag">Three.js</span><span class="tag">WebGL</span><span class="tag">i18n · RTL</span><span class="tag">a11y</span></div>
+          <div class="p-actions"><a class="btn primary" href={Astro.currentLocale === 'ar' ? 'https://oriebalzyuot96.github.io/sample-3/ar/' : 'https://oriebalzyuot96.github.io/sample-3/'} target="_blank" rel="noopener"><Fragment set:html={t('btn.live')} /></a><a class="btn" href="https://github.com/oriebalzyuot96/sample-3" target="_blank" rel="noopener"><Fragment set:html={t('btn.code')} /></a></div>
+        </div>
+      </article>
+
 
       <!-- Wasl -->
       <article class="card proj spot reveal" data-c="fin" id="p-wasl">
