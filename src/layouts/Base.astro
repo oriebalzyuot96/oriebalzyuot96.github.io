@@ -12,7 +12,7 @@ interface Props {
   schema?: Record<string, unknown>[];
   ogImage?: string;
 }
-const { title, description, schema = [], ogImage = '/assets/intro-poster.jpg' } = Astro.props;
+const { title, description, schema = [], ogImage = '/assets/linkedin-site.jpg' } = Astro.props;
 const SITE = 'https://oriebalzyuot96.github.io';
 const lang = langOf(Astro.currentLocale);
 const enPath = Astro.url.pathname.replace(/^\/ar(\/|$)/, '/');
@@ -53,9 +53,15 @@ const runtime = runtimeDict(Astro.currentLocale);
 <meta property="og:title" content={title}>
 <meta property="og:description" content={description}>
 <meta property="og:image" content={SITE + ogImage}>
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta property="og:image:alt" content="Orieb Alzyuot, Senior Front-End Engineer. Portfolio, Angular, React, Astro.">
 <meta property="og:locale" content={lang === 'ar' ? 'ar_SA' : 'en_US'}>
 <meta property="og:locale:alternate" content={lang === 'ar' ? 'en_US' : 'ar_SA'}>
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content={title}>
+<meta name="twitter:description" content={description}>
+<meta name="twitter:image" content={SITE + ogImage}>
 <meta name="theme-color" content="#6d4aff">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop stop-color='%236d4aff'/><stop offset='1' stop-color='%23b9a7ff'/></linearGradient></defs><rect width='64' height='64' rx='18' fill='url(%23g)'/><text x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial' font-weight='800' font-size='26' fill='white'>OG</text></svg>">
 <link rel="sitemap" href="/sitemap-index.xml">
