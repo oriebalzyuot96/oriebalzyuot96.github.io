@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <url>
+    <loc>https://oriebalzyuot96.github.io/</loc>
+    <lastmod>2026-10-08</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oriebalzyuot96.github.io/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://oriebalzyuot96.github.io/?lang=ar"/>
+    <image:image><image:loc>https://oriebalzyuot96.github.io/assets/orieb.jpg</image:loc><image:title>Orieb Alzyuot, Senior Front-End Engineer</image:title></image:image>
+    <video:video>
+      <video:thumbnail_loc>https://oriebalzyuot96.github.io/assets/intro-poster.jpg</video:thumbnail_loc>
+      <video:title>Orieb Alzyuot · 40-second intro</video:title>
+      <video:description>Senior Front-End and Full-Stack Engineer: platforms shipped, stack and principles.</video:description>
+      <video:content_loc>https://oriebalzyuot96.github.io/assets/orieb-intro.mp4</video:content_loc>
+      <video:duration>40</video:duration>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://oriebalzyuot96.github.io/?lang=ar</loc>
+    <lastmod>2026-10-08</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oriebalzyuot96.github.io/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://oriebalzyuot96.github.io/?lang=ar"/>
+  </url>
+  <url><loc>https://oriebalzyuot96.github.io/Orieb-Alzyuot-CV.pdf</loc><lastmod>2026-10-08</lastmod></url>
+</urlset>
