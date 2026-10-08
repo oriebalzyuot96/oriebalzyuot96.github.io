@@ -21,7 +21,7 @@ const schema = [
 ];
 const others = REGIONS.filter(r => r.slug !== region.slug);
 ---
-<Base title={L(region.metaTitle)} description={L(region.metaDesc)} schema={schema} ogImage="/assets/orieb.jpg">
+<Base title={L(region.metaTitle)} description={L(region.metaDesc)} schema={schema}>
   <section class="hero hire-hero">
     <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
     <div class="grid-dots" aria-hidden="true"></div>

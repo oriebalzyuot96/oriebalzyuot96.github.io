@@ -6,7 +6,7 @@ const lang = langOf(Astro.currentLocale);
 const L = (o: Record<string, string>) => o[lang];
 const pre = lang === 'ar' ? '/ar' : '';
 ---
-<Base title={L(HIRE_INDEX.metaTitle)} description={L(HIRE_INDEX.metaDesc)} ogImage="/assets/orieb.jpg">
+<Base title={L(HIRE_INDEX.metaTitle)} description={L(HIRE_INDEX.metaDesc)}>
   <section class="hero hire-hero">
     <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
     <div class="grid-dots" aria-hidden="true"></div>
