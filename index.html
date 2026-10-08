@@ -1,349 +1,214 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr" class="no-js">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Orieb Alzyuot · Portfolio</title>
-<meta name="description" content="Orieb Alzyuot — Senior Front-End & Full-Stack Engineer. Angular, React, React Native, .NET, Node. Saudi government and enterprise platforms.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Orieb Alzyuot (عريب الزيوت) · Senior Front-End &amp; Angular Developer · Freelance</title>
+<meta name="description" content="Orieb Alzyuot (عريب الزيوت), Senior Front-End &amp; Full-Stack Engineer in Amman, Jordan. Angular, React, React Native, .NET and Node developer for Saudi government and fintech platforms. Available remote, freelance and for relocation.">
+<meta name="keywords" content="Orieb, Orieb Alzyuot, عريب, عريب الزيوت, senior front-end developer, senior front end engineer, freelance front-end developer, freelance Angular developer, Angular developer Jordan, Angular developer Saudi Arabia, Angular developer Riyadh, remote Angular developer, Angular migration, AngularJS to Angular, React Native developer, full-stack developer Amman, Arabic RTL web developer, accessibility WCAG developer, مطور واجهات أمامية, مبرمج Angular, مطور فرونت اند, مطور مستقل, مطور ويب الأردن, مطور ويب السعودية">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://oriebalzyuot96.github.io/">
+<link rel="alternate" hreflang="ar" href="https://oriebalzyuot96.github.io/?lang=ar">
+<link rel="alternate" hreflang="x-default" href="https://oriebalzyuot96.github.io/">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ar_SA">
+<meta property="og:site_name" content="Orieb Alzyuot">
+<meta name="author" content="Orieb Alzyuot">
+<link rel="canonical" href="https://oriebalzyuot96.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://oriebalzyuot96.github.io/">
 <meta property="og:title" content="Orieb Alzyuot — Senior Front-End Engineer">
-<meta property="og:description" content="6+ years building enterprise and government platforms in Angular, React, React Native, .NET and Node.">
-<meta property="og:image" content="https://oriieebgsmile96.github.io/assets/orieb.jpg">
-<meta name="theme-color" content="#7c5cff">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='18' fill='%237c5cff'/><text x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial' font-weight='700' font-size='26' fill='white'>OA</text></svg>">
+<meta property="og:description" content="6+ years building Saudi government, fintech and enterprise platforms in Angular, React, React Native, .NET and Node.">
+<meta property="og:image" content="https://oriebalzyuot96.github.io/assets/intro-poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#6d4aff">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop stop-color='%236d4aff'/><stop offset='1' stop-color='%23b9a7ff'/></linearGradient></defs><rect width='64' height='64' rx='18' fill='url(%23g)'/><text x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial' font-weight='800' font-size='26' fill='white'>OA</text></svg>">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600&family=Atkinson+Hyperlegible:wght@400;700&family=Gaegu:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Atkinson+Hyperlegible:wght@400;700&family=Gaegu:wght@700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <script>
-/* apply saved preferences before paint (no flash) */
-(function(){try{var p=JSON.parse(localStorage.getItem('oa-prefs')||'{}'),r=document.documentElement;
-for(var k in p){if(k==='accent')continue;if(p[k]!=null&&p[k]!==false&&p[k]!=='system'&&p[k]!=='none'&&p[k]!=='m')r.setAttribute('data-'+k,p[k]===true?'on':p[k]);}
-if(p.accent)r.setAttribute('data-accent',p.accent);}catch(e){}})();
+/* Apply saved preferences before first paint so there is no flash of the wrong theme, language or contrast. */
+(function(){var r=document.documentElement;r.classList.remove('no-js');try{var p=JSON.parse(localStorage.getItem('oa-prefs')||'{}');
+if(p.theme&&p.theme!=='system')r.setAttribute('data-theme',p.theme);
+var q=new URLSearchParams(location.search).get('lang');if(q==='ar'||q==='en')p.lang=q;if(p.lang==='ar'){r.lang='ar';r.dir='rtl'}
+['accent','font','contrast','motion'].forEach(function(k){var v=p[k];if(v&&v!=='lavender'&&v!=='m'&&v!=='none'&&v!=='system')r.setAttribute('data-'+k,v)});
+['readable','links','spacing','cursor'].forEach(function(k){if(p[k])r.setAttribute('data-'+k,'on')});}catch(e){}})();
 </script>
-<style>
-/* ───────── tokens ───────── */
-:root{
-  --bg:#f8f6ff; --bg-2:#f1edff; --surface:#ffffff; --surface-2:#faf9ff;
-  --ink:#1f1b2e; --ink-2:#55506d; --ink-3:#827c9c; --line:#e8e3f8;
-  --accent:#6d4aff; --accent-ink:#ffffff; --accent-2:#b9a7ff; --soft:#efeaff; --soft-2:#f6f2ff;
-  --pink:#ffb8d6; --mint:#a8ecd6; --butter:#ffe6a3;
-  --shadow:0 18px 40px -22px #6d4aff40; --shadow-lg:0 30px 70px -30px #6d4aff55;
-  --radius:24px; --fs:1; --ls:normal; --lh:1.65; --ws:normal;
-  --font:"Pretendard","IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",sans-serif;
-  color-scheme:light;
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="motion.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Person",
+   "@id": "https://oriebalzyuot96.github.io/#orieb",
+   "name": "Orieb Alzyuot",
+   "alternateName": [
+    "عريب الزيوت",
+    "Orieb"
+   ],
+   "jobTitle": "Senior Front-End & Full-Stack Engineer",
+   "description": "Senior Front-End & Full-Stack Engineer building Saudi government, fintech and enterprise platforms with Angular, React, React Native, .NET and Node.",
+   "image": "https://oriebalzyuot96.github.io/assets/orieb.jpg",
+   "url": "https://oriebalzyuot96.github.io/",
+   "email": "mailto:alzuotorieb9999@gmail.com",
+   "telephone": "+962775853203",
+   "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Amman",
+    "addressCountry": "JO"
+   },
+   "worksFor": {
+    "@type": "Organization",
+    "name": "Saudi Azm",
+    "alternateName": "عزم السعودية"
+   },
+   "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "Al-Balqa Applied University"
+   },
+   "knowsLanguage": [
+    "ar",
+    "en"
+   ],
+   "knowsAbout": [
+    "Angular",
+    "AngularJS",
+    "Angular Signals",
+    "TypeScript",
+    "React",
+    "React Native",
+    "Expo",
+    "Next.js",
+    ".NET Core",
+    "Node.js",
+    "PostgreSQL",
+    "Microsoft Azure",
+    "Docker",
+    "CI/CD",
+    "Web accessibility (WCAG)",
+    "Arabic RTL interfaces",
+    "Front-end architecture",
+    "Angular migration",
+    "Fintech"
+   ],
+   "sameAs": [
+    "https://github.com/oriebalzyuot96",
+    "https://www.linkedin.com/in/orieb-alzyuot996"
+   ]
+  },
+  {
+   "@type": "ProfilePage",
+   "@id": "https://oriebalzyuot96.github.io/#page",
+   "url": "https://oriebalzyuot96.github.io/",
+   "name": "Orieb Alzyuot · Senior Front-End & Angular Developer",
+   "inLanguage": [
+    "en",
+    "ar"
+   ],
+   "mainEntity": {
+    "@id": "https://oriebalzyuot96.github.io/#orieb"
+   },
+   "dateModified": "2026-10-08"
+  },
+  {
+   "@type": "ProfessionalService",
+   "@id": "https://oriebalzyuot96.github.io/#freelance",
+   "name": "Orieb Alzyuot · Freelance Front-End & Angular Development",
+   "provider": {
+    "@id": "https://oriebalzyuot96.github.io/#orieb"
+   },
+   "areaServed": [
+    "Saudi Arabia",
+    "Jordan",
+    "United Arab Emirates",
+    "Worldwide (remote)"
+   ],
+   "availableLanguage": [
+    "Arabic",
+    "English"
+   ],
+   "url": "https://oriebalzyuot96.github.io/#services",
+   "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Services",
+    "itemListElement": [
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Angular migration (AngularJS or legacy Angular to Angular 21)"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Front-end architecture and design systems"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "React Native / Expo mobile apps"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Accessibility (WCAG) and Arabic RTL audits"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "@type": "VideoObject",
+   "name": "Orieb Alzyuot · 40-second intro",
+   "description": "Motion intro: Senior Front-End & Full-Stack Engineer, platforms shipped, stack and principles.",
+   "thumbnailUrl": "https://oriebalzyuot96.github.io/assets/intro-poster.jpg",
+   "contentUrl": "https://oriebalzyuot96.github.io/assets/orieb-intro.mp4",
+   "uploadDate": "2026-10-08",
+   "duration": "PT40S"
+  }
+ ]
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#110f18; --bg-2:#17141f; --surface:#1c1927; --surface-2:#211d2e;
-  --ink:#f2effb; --ink-2:#bdb6d6; --ink-3:#8d86a8; --line:#2e2942;
-  --accent:#b39dff; --accent-ink:#1a1528; --accent-2:#7c5cff; --soft:#2a2340; --soft-2:#1f1a2f;
-  --shadow:0 18px 40px -22px #0009; --shadow-lg:0 30px 70px -30px #000c; color-scheme:dark;
-}}
-:root[data-theme="dark"]{
-  --bg:#110f18; --bg-2:#17141f; --surface:#1c1927; --surface-2:#211d2e;
-  --ink:#f2effb; --ink-2:#bdb6d6; --ink-3:#8d86a8; --line:#2e2942;
-  --accent:#b39dff; --accent-ink:#1a1528; --accent-2:#7c5cff; --soft:#2a2340; --soft-2:#1f1a2f;
-  --shadow:0 18px 40px -22px #0009; --shadow-lg:0 30px 70px -30px #000c; color-scheme:dark;
-}
-/* accent presets (like mashroo3hub) */
-:root[data-accent="lilac"]{--accent:#9b4dca;--accent-2:#e0b8ff;--soft:#f6ecff}
-:root[data-accent="rose"]{--accent:#d63a7a;--accent-2:#ffb8d6;--soft:#ffeef5}
-:root[data-accent="ocean"]{--accent:#2563eb;--accent-2:#a8c7ff;--soft:#eaf1ff}
-:root[data-accent="mint"]{--accent:#0f8a6a;--accent-2:#a8ecd6;--soft:#e6f8f2}
-:root[data-accent="amber"]{--accent:#b45309;--accent-2:#ffd58a;--soft:#fff4e0}
-:root[data-theme="dark"][data-accent="lilac"],:root[data-theme="dark"][data-accent="rose"],:root[data-theme="dark"][data-accent="ocean"],:root[data-theme="dark"][data-accent="mint"],:root[data-theme="dark"][data-accent="amber"]{--soft:#262036}
-:root[data-theme="dark"][data-accent="lilac"]{--accent:#d6a6ff}
-:root[data-theme="dark"][data-accent="rose"]{--accent:#ff8fbf}
-:root[data-theme="dark"][data-accent="ocean"]{--accent:#8db4ff}
-:root[data-theme="dark"][data-accent="mint"]{--accent:#6fe0bd}
-:root[data-theme="dark"][data-accent="amber"]{--accent:#ffc266}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"])[data-accent]{--soft:#262036}
-  :root:not([data-theme="light"])[data-accent="lilac"]{--accent:#d6a6ff}
-  :root:not([data-theme="light"])[data-accent="rose"]{--accent:#ff8fbf}
-  :root:not([data-theme="light"])[data-accent="ocean"]{--accent:#8db4ff}
-  :root:not([data-theme="light"])[data-accent="mint"]{--accent:#6fe0bd}
-  :root:not([data-theme="light"])[data-accent="amber"]{--accent:#ffc266}
-}
-/* accessibility modes (same attribute contract as mashroo3hub) */
-:root[data-font="s"]{--fs:.9} :root[data-font="l"]{--fs:1.12} :root[data-font="xl"]{--fs:1.25}
-:root[data-readable="on"]{--font:"Atkinson Hyperlegible","IBM Plex Sans Arabic",Verdana,sans-serif}
-:root[data-spacing="on"]{--ls:.04em;--lh:1.95;--ws:.12em}
-:root[data-links="on"] a:not(.btn):not(.fab){text-decoration:underline!important;text-decoration-thickness:2px!important;text-underline-offset:3px;background:color-mix(in srgb,var(--butter) 55%,transparent)}
-:root[data-links="on"] .btn,:root[data-links="on"] .fab{outline:2px dashed var(--accent);outline-offset:2px}
-:root[data-cursor="on"],:root[data-cursor="on"] *{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 24 24'%3E%3Cpath d='M4 2l15 10-7 1.5L8.5 21z' fill='%23000' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E") 4 2,auto!important}
-:root[data-contrast="grayscale"] body{filter:grayscale(1)}
-:root[data-contrast="invert"] body{filter:invert(1) hue-rotate(180deg)}
-:root[data-contrast="invert"] img{filter:invert(1) hue-rotate(180deg)}
-:root[data-contrast="yellow"]{--bg:#000;--bg-2:#000;--surface:#000;--surface-2:#000;--ink:#ffff00;--ink-2:#ffff00;--ink-3:#ffff00;--line:#ffff00;--accent:#ffff00;--accent-ink:#000;--accent-2:#ffff00;--soft:#000;--soft-2:#000;--shadow:none;--shadow-lg:none}
-:root[data-contrast="yellow"] .hero::before,:root[data-contrast="yellow"] .blob,:root[data-contrast="yellow"] .sticker{display:none}
-:root[data-contrast="yellow"] *{border-color:#ff0!important}
-:root[data-motion="reduced"] *,:root[data-motion="reduced"] *::before,:root[data-motion="reduced"] *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-:root[data-motion="reduced"] .reveal{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){:root:not([data-motion="full"]) *{animation:none!important;transition:none!important}:root:not([data-motion="full"]) .reveal{opacity:1;transform:none}}
-
-/* ───────── base ───────── */
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;font-size:calc(16px * var(--fs));scroll-padding-top:84px}
-body{background:var(--bg);color:var(--ink);font-family:var(--font);line-height:var(--lh);letter-spacing:var(--ls);word-spacing:var(--ws);-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background .3s,color .3s}
-a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
-button{font:inherit;color:inherit;letter-spacing:inherit}
-:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:8px}
-::selection{background:var(--accent-2);color:#1a1528}
-.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
-.ar{font-family:"IBM Plex Sans Arabic",sans-serif;direction:rtl;unicode-bidi:isolate}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-.skip{position:fixed;left:16px;top:-60px;z-index:200;background:var(--accent);color:var(--accent-ink);padding:10px 16px;border-radius:12px;font-weight:700}
-.skip:focus{top:16px}
-
-/* ───────── header ───────── */
-header.top{position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(16px);border-bottom:1px solid transparent;transition:border-color .3s}
-header.top.scrolled{border-bottom-color:var(--line)}
-header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem;letter-spacing:-.02em}
-.brand img{width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid var(--accent-2)}
-.brand b{color:var(--accent)}
-.menu{display:flex;gap:4px}
-.menu a{padding:8px 14px;border-radius:999px;font-size:.92rem;font-weight:600;color:var(--ink-2);transition:.2s}
-.menu a:hover,.menu a.active{background:var(--soft);color:var(--accent)}
-.hdr-r{display:flex;gap:8px;align-items:center}
-.ibtn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;cursor:pointer;transition:.2s;position:relative}
-.ibtn:hover{border-color:var(--accent);color:var(--accent)}
-.ibtn svg{width:20px;height:20px}
-.count{position:absolute;top:-4px;right:-4px;min-width:18px;height:18px;border-radius:9px;background:var(--accent);color:var(--accent-ink);font-size:11px;font-weight:700;display:none;place-items:center;padding:0 5px}
-.count.show{display:grid}
-@media (max-width:880px){.menu{display:none}}
-
-/* ───────── hero ───────── */
-.hero{position:relative;padding:72px 0 96px;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 60% at 80% 20%,color-mix(in srgb,var(--accent-2) 45%,transparent),transparent 70%),radial-gradient(40% 50% at 10% 90%,color-mix(in srgb,var(--pink) 35%,transparent),transparent 70%);opacity:.7;pointer-events:none}
-.hero .wrap{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
-.hello{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);padding:8px 16px;border-radius:999px;font-weight:600;font-size:.92rem;box-shadow:var(--shadow)}
-.hello .wave{display:inline-block;animation:wave 2.4s ease-in-out infinite;transform-origin:70% 70%}
-@keyframes wave{0%,60%,100%{transform:rotate(0)}10%,30%{transform:rotate(14deg)}20%,40%{transform:rotate(-8deg)}}
-.hero h1{font-size:clamp(2.6rem,6.2vw,4.6rem);line-height:1.08;letter-spacing:-.04em;font-weight:800;margin:22px 0 18px}
-.hero h1 .hl{position:relative;color:var(--accent);white-space:nowrap}
-.hero h1 .hl::after{content:"";position:absolute;left:-2%;right:-2%;bottom:.06em;height:.3em;background:var(--accent-2);opacity:.35;border-radius:6px;z-index:-1}
-.hero .name-ar{text-align:left;font-size:1.15rem;color:var(--ink-3);margin-bottom:6px}
-.hero p.lede{font-size:1.15rem;color:var(--ink-2);max-width:540px}
-.hero p.lede b{color:var(--ink)}
-.cta{display:flex;gap:10px;margin-top:30px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:999px;font-weight:700;font-size:.95rem;border:1.5px solid var(--line);background:var(--surface);transition:.25s;cursor:pointer}
-.btn:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
-.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);box-shadow:var(--shadow)}
-.btn.primary:hover{color:var(--accent-ink);box-shadow:var(--shadow-lg)}
-.quick{display:flex;gap:18px;margin-top:30px;flex-wrap:wrap;color:var(--ink-3);font-size:.9rem;font-weight:500}
-.quick span{display:flex;align-items:center;gap:6px}
-
-.photo-wrap{position:relative;justify-self:center;width:min(380px,82vw);aspect-ratio:1}
-.blob{position:absolute;inset:-6%;background:conic-gradient(from 120deg,var(--accent-2),var(--pink),var(--accent),var(--accent-2));border-radius:42% 58% 63% 37%/45% 41% 59% 55%;animation:morph 12s ease-in-out infinite;filter:blur(.5px);opacity:.85}
-@keyframes morph{50%{border-radius:58% 42% 38% 62%/55% 61% 39% 45%;transform:rotate(12deg)}}
-.photo{position:absolute;inset:0;border-radius:50%;overflow:hidden;border:8px solid var(--surface);box-shadow:var(--shadow-lg)}
-.photo img{width:100%;height:100%;object-fit:cover}
-.sticker{position:absolute;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:10px 14px;font-weight:700;font-size:.85rem;box-shadow:var(--shadow);display:flex;align-items:center;gap:8px;white-space:nowrap;animation:float 5s ease-in-out infinite}
-.sticker small{display:block;font-weight:500;color:var(--ink-3);font-size:.72rem}
-.sticker .em{font-size:1.4rem}
-.s1{top:4%;left:-14%}.s2{top:44%;right:-18%;animation-delay:-1.5s}.s3{bottom:2%;left:-6%;animation-delay:-3s}
-@keyframes float{50%{transform:translateY(-10px)}}
-.hand{font-family:"Gaegu",cursive;color:var(--accent);font-size:1.35rem;position:absolute;top:-34px;right:4%;transform:rotate(6deg)}
-@media (max-width:900px){.hero .wrap{grid-template-columns:1fr;text-align:center}.hero .name-ar{text-align:center}.hero p.lede{margin:0 auto}.cta,.quick{justify-content:center}.photo-wrap{order:-1;width:min(300px,70vw)}.s1{left:-8%}.s2{right:-10%}.s3{left:0}}
-@media (max-width:480px){.sticker{font-size:.75rem;padding:7px 10px}.sticker .em{font-size:1.1rem}.s2{right:-4%}.s1{left:-4%}}
-
-/* ───────── sections ───────── */
-section.sec{padding:96px 0}
-.sec.alt{background:var(--bg-2)}
-.sec-title{text-align:center;margin-bottom:52px}
-.sec-title .kicker{display:inline-block;font-family:"Gaegu",cursive;font-size:1.3rem;color:var(--accent)}
-.sec-title h2{font-size:clamp(2rem,4.4vw,2.9rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;display:inline-block;position:relative;padding-bottom:14px}
-.sec-title h2::after{content:"";position:absolute;left:50%;bottom:0;width:56px;height:5px;border-radius:5px;background:linear-gradient(90deg,var(--accent),var(--accent-2));transform:translateX(-50%)}
-.sec-title p{color:var(--ink-2);max-width:620px;margin:14px auto 0}
-
-.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
-
-/* about */
-.about{display:grid;grid-template-columns:.8fr 1.2fr;gap:24px}
-.intro{padding:32px;display:flex;flex-direction:column;gap:18px;position:relative;overflow:hidden}
-.intro .pic{width:100%;aspect-ratio:4/3;border-radius:18px;overflow:hidden;background:var(--soft)}
-.intro .pic img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
-.intro h3{font-size:1.4rem;letter-spacing:-.02em}
-.intro p{color:var(--ink-2)}
-.info{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.info .item{padding:22px;display:flex;gap:14px;align-items:flex-start;transition:.25s}
-.info .item:hover{transform:translateY(-3px);border-color:var(--accent-2)}
-.ico{flex:none;width:46px;height:46px;border-radius:14px;background:var(--soft);color:var(--accent);display:grid;place-items:center}
-.ico svg{width:22px;height:22px}
-.info small{display:block;font-size:.8rem;color:var(--ink-3);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
-.info b{display:block;font-size:1rem;margin-top:2px;overflow-wrap:anywhere}
-.info span.sub{text-align:left;display:block;font-size:.85rem;color:var(--ink-2)}
-.keywords{grid-column:1/-1;padding:22px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.keywords strong{margin-right:6px}
-.kw{padding:6px 12px;border-radius:999px;background:var(--soft);color:var(--accent);font-weight:700;font-size:.85rem}
-@media (max-width:880px){.about{grid-template-columns:1fr}}
-@media (max-width:520px){.info{grid-template-columns:1fr}}
-
-/* skills */
-.skills{padding:12px 32px}
-.srow{display:grid;grid-template-columns:170px 1fr;gap:20px;padding:22px 0;border-bottom:1px dashed var(--line);align-items:center}
-.srow:last-child{border:0}
-.srow h3{font-size:1.05rem;display:flex;align-items:center;gap:10px}
-.srow h3 i{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--soft)}
-.badges{display:flex;flex-wrap:wrap;gap:10px}
-.badge{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line);font-weight:600;font-size:.9rem;transition:.2s}
-.badge:hover{border-color:var(--accent);transform:translateY(-2px)}
-.badge img{width:18px;height:18px}
-.badge.star{background:var(--soft);border-color:var(--accent-2);color:var(--accent)}
-:root[data-theme="dark"] .badge img{filter:invert(1)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .badge img{filter:invert(1)}}
-@media (max-width:640px){.srow{grid-template-columns:1fr;gap:12px}.skills{padding:8px 20px}}
-
-/* archiving */
-.arch{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.arch a{padding:28px;display:flex;flex-direction:column;gap:10px;transition:.25s}
-.arch a:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--accent-2)}
-.arch .logo{display:flex;align-items:center;gap:12px;font-size:1.25rem;font-weight:800}
-.arch .logo span{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:var(--soft);color:var(--accent)}
-.arch .url{color:var(--accent);font-weight:600;font-size:.9rem}
-.arch p{color:var(--ink-2);font-size:.95rem}
-.arch ul{padding-left:18px;color:var(--ink-2);font-size:.9rem}
-@media (max-width:820px){.arch{grid-template-columns:1fr}}
-
-/* projects */
-.filters{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:-24px 0 36px}
-.chip{padding:9px 16px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);font-weight:700;font-size:.88rem;cursor:pointer;color:var(--ink-2)}
-.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
-.projects{display:grid;gap:28px}
-.proj{padding:36px;transition:.3s}
-.proj[hidden]{display:none}
-.proj-head{text-align:center;margin-bottom:26px}
-.proj-head h3{font-size:clamp(1.5rem,3vw,2rem);letter-spacing:-.03em;font-weight:800}
-.proj-head .ar{color:var(--ink-3);font-size:1.05rem}
-.proj-head .period{display:inline-block;margin-top:8px;font-size:.85rem;color:var(--ink-3);font-weight:600}
-.proj-body{display:grid;grid-template-columns:1.05fr 1fr;gap:32px;align-items:start}
-.shot{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--soft-2);cursor:zoom-in;box-shadow:var(--shadow)}
-.shot .bar{display:flex;gap:6px;align-items:center;padding:9px 12px;background:var(--surface-2);border-bottom:1px solid var(--line)}
-.shot .bar i{width:9px;height:9px;border-radius:50%;background:#ff8a80}.shot .bar i:nth-child(2){background:#ffd166}.shot .bar i:nth-child(3){background:#7ee0a1}
-.shot .bar span{flex:1;margin-left:8px;font-size:.75rem;color:var(--ink-3);background:var(--surface);border-radius:6px;padding:2px 10px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-.shot img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;transition:transform .6s}
-.shot:hover img{transform:scale(1.03)}
-.shot .zoom{position:absolute;right:12px;bottom:12px;background:var(--surface);border-radius:999px;padding:5px 12px;font-size:.78rem;font-weight:700;box-shadow:var(--shadow)}
-.mock{aspect-ratio:16/10;display:grid;place-items:center;text-align:center;padding:24px;background:linear-gradient(135deg,var(--soft),var(--soft-2))}
-.mock .big{font-size:3rem}
-.mock b{display:block;font-size:1.2rem;margin-top:6px}
-.mock span{font-size:.85rem;color:var(--ink-3)}
-.desc p{color:var(--ink-2)}
-.desc p+p{margin-top:10px}
-.spec{margin-top:20px;border-top:1px solid var(--line)}
-.spec div{display:grid;grid-template-columns:118px 1fr;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:.92rem}
-.spec dt{font-weight:700;display:flex;align-items:center;gap:6px}
-.spec dt::before{content:"✔";color:var(--accent);font-size:.8rem}
-.spec dd{color:var(--ink-2)}
-.spec dd a{color:var(--accent);font-weight:600;word-break:break-all}
-.spec ul{padding-left:16px}
-.access{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:999px;margin-left:6px;vertical-align:1px}
-.access.live{background:color-mix(in srgb,var(--mint) 45%,transparent);color:#0b6b52}
-.access.gated{background:color-mix(in srgb,var(--butter) 60%,transparent);color:#8a5a00}
-:root[data-theme="dark"] .access.live{color:var(--mint)}:root[data-theme="dark"] .access.gated{color:var(--butter)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .access.live{color:var(--mint)}:root:not([data-theme="light"]) .access.gated{color:var(--butter)}}
-@media (max-width:880px){.proj-body{grid-template-columns:1fr}.proj{padding:24px 18px}.spec div{grid-template-columns:1fr;gap:2px}}
-
-/* career */
-.timeline{position:relative;max-width:880px;margin:0 auto}
-.timeline::before{content:"";position:absolute;left:27px;top:8px;bottom:8px;width:3px;border-radius:3px;background:linear-gradient(var(--accent),var(--accent-2),transparent)}
-.job{position:relative;padding-left:78px;margin-bottom:26px}
-.job .dot{position:absolute;left:0;top:18px;width:57px;height:57px;border-radius:18px;background:var(--surface);border:2px solid var(--accent-2);display:grid;place-items:center;font-weight:800;color:var(--accent);font-size:.95rem;box-shadow:var(--shadow)}
-.job .card{padding:26px 28px}
-.job .when{font-size:.85rem;font-weight:700;color:var(--accent)}
-.job h3{font-size:1.25rem;letter-spacing:-.02em;margin-top:2px}
-.job h3 span{color:var(--ink-3);font-weight:600;font-size:1rem}
-.job .co{margin-top:10px;font-size:.9rem;color:var(--ink-3);background:var(--soft-2);border-radius:12px;padding:10px 14px}
-.job ul{margin-top:14px;padding-left:18px;color:var(--ink-2);display:grid;gap:6px}
-.job ul li::marker{color:var(--accent)}
-.edu{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:880px;margin:40px auto 0}
-.edu .card{padding:22px}
-.edu b{display:block}
-.edu span{font-size:.88rem;color:var(--ink-2)}
-@media (max-width:760px){.edu{grid-template-columns:1fr}.job{padding-left:64px}.job .dot{width:48px;height:48px;font-size:.8rem;left:4px}.timeline::before{left:27px}}
-
-/* contact */
-.contact{padding:56px 40px;text-align:center;background:linear-gradient(135deg,var(--soft),var(--surface) 60%);position:relative;overflow:hidden}
-.contact img{width:96px;height:96px;border-radius:50%;object-fit:cover;margin:0 auto 18px;border:4px solid var(--surface);box-shadow:var(--shadow)}
-.contact h2{font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.03em;font-weight:800}
-.contact p{color:var(--ink-2);margin:10px auto 0;max-width:520px}
-.contact .cta{justify-content:center}
-.avail{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:22px}
-.avail span{font-size:.82rem;font-weight:700;padding:6px 12px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
-footer{padding:36px 0 60px;text-align:center;color:var(--ink-3);font-size:.88rem}
-
-/* floating */
-.fab{position:fixed;z-index:70;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;border:0;cursor:pointer;box-shadow:var(--shadow-lg);transition:.25s}
-.fab svg{width:24px;height:24px}
-.fab.a11y{left:20px;bottom:20px;background:var(--accent);color:var(--accent-ink)}
-.fab.a11y:hover{transform:scale(1.08) rotate(-8deg)}
-.fab.totop{right:20px;bottom:20px;background:var(--surface);color:var(--accent);border:1px solid var(--line);opacity:0;pointer-events:none}
-.fab.totop.show{opacity:1;pointer-events:auto}
-.fab .count{top:0;right:0}
-
-/* settings drawer */
-.scrim{position:fixed;inset:0;background:#0f0a1e66;backdrop-filter:blur(3px);z-index:90;opacity:0;pointer-events:none;transition:.25s}
-.scrim.open{opacity:1;pointer-events:auto}
-.drawer{position:fixed;top:0;left:0;bottom:0;width:min(420px,100vw);z-index:100;background:var(--surface);border-right:1px solid var(--line);box-shadow:var(--shadow-lg);transform:translateX(-102%);transition:transform .3s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column}
-.drawer.open{transform:none}
-.dh{display:flex;align-items:center;justify-content:space-between;padding:20px 22px;border-bottom:1px solid var(--line)}
-.dh h2{font-size:1.15rem;display:flex;align-items:center;gap:10px}
-.dh h2 span{width:36px;height:36px;border-radius:12px;background:var(--soft);color:var(--accent);display:grid;place-items:center}
-.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin:16px 22px 4px;background:var(--soft-2);padding:4px;border-radius:14px;border:1px solid var(--line)}
-.tabs button{border:0;background:none;padding:9px 6px;border-radius:10px;font-weight:700;font-size:.85rem;cursor:pointer;color:var(--ink-2)}
-.tabs button[aria-selected="true"]{background:var(--surface);color:var(--accent);box-shadow:0 2px 8px -4px #0003}
-.db{padding:10px 22px 22px;overflow-y:auto;flex:1}
-.grp{margin-top:20px}
-.grp>label,.grp>.lbl{display:block;font-weight:700;font-size:.9rem;margin-bottom:10px}
-.grp .hint{font-size:.8rem;color:var(--ink-3);margin-top:-6px;margin-bottom:10px}
-.seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:4px;background:var(--soft-2);border:1px solid var(--line);padding:4px;border-radius:14px}
-.seg button{border:0;background:none;padding:10px 4px;border-radius:10px;font-weight:600;font-size:.85rem;cursor:pointer;color:var(--ink-2);display:flex;flex-direction:column;align-items:center;gap:4px}
-.seg button[aria-checked="true"]{background:var(--accent);color:var(--accent-ink)}
-.swatches{display:flex;gap:10px;flex-wrap:wrap}
-.sw{width:40px;height:40px;border-radius:50%;border:3px solid var(--surface);box-shadow:0 0 0 1px var(--line);cursor:pointer;position:relative}
-.sw[aria-checked="true"]{box-shadow:0 0 0 3px var(--ink)}
-.sw[aria-checked="true"]::after{content:"✓";position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-weight:800}
-.toggle{width:100%;text-align:left;color:var(--ink);display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border:1px solid var(--line);border-radius:14px;margin-top:10px;cursor:pointer;background:var(--surface-2)}
-.toggle b{display:block;font-size:.92rem}
-.toggle small{color:var(--ink-3);font-size:.8rem}
-.switch{flex:none;width:46px;height:26px;border-radius:13px;background:var(--line);position:relative;transition:.2s}
-.switch::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 1px 3px #0003}
-.toggle[aria-checked="true"] .switch{background:var(--accent)}
-.toggle[aria-checked="true"] .switch::after{transform:translateX(20px)}
-.keys{list-style:none;display:grid;gap:8px;margin-top:20px}
-.keys li{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border:1px solid var(--line);border-radius:12px;font-size:.9rem}
-kbd{font:600 .78rem ui-monospace,monospace;background:var(--soft-2);border:1px solid var(--line);border-bottom-width:3px;border-radius:7px;padding:3px 8px;margin-left:3px}
-.df{padding:16px 22px;border-top:1px solid var(--line);display:flex;gap:10px}
-.df .btn{flex:1;justify-content:center;padding:11px}
-
-/* lightbox */
-.lb{position:fixed;inset:0;z-index:120;background:#0f0a1ee6;display:none;place-items:center;padding:24px}
-.lb.open{display:grid}
-.lb img{max-height:86vh;border-radius:14px;box-shadow:0 30px 80px #000}
-.lb button{position:absolute;top:18px;right:18px;background:#fff;color:#000;border:0;width:44px;height:44px;border-radius:50%;font-size:22px;cursor:pointer}
-.lb p{position:absolute;bottom:20px;left:0;right:0;text-align:center;color:#fff;font-weight:600}
-
-.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
-.reveal.in{opacity:1;transform:none}
-</style>
+</script>
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
+<a class="skip" href="#main" data-i18n="skip">Skip to content</a>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<!-- intro splash (once per session, skipped for reduced motion) -->
+<div class="splash" id="splash" aria-hidden="true">
+  <div class="splash-in">
+    <div class="splash-logo"><span>O</span><span>A</span></div>
+    <div class="splash-name"><span class="ltr">Orieb Alzyuot</span><span class="ar-text">عريب الزيوت</span></div>
+    <div class="splash-bar"><i></i></div>
+  </div>
+</div>
 
 <!-- ───────── header ───────── -->
 <header class="top" id="hdr">
   <div class="wrap">
-    <a href="#home" class="brand" aria-label="Orieb Alzyuot, home"><img src="assets/orieb.jpg" alt=""><span>Orieb<b>.dev</b></span></a>
-    <nav class="menu" aria-label="Sections">
-      <a href="#about">About</a><a href="#skills">Skills</a><a href="#archiving">Archiving</a><a href="#projects">Projects</a><a href="#career">Career</a>
+    <a href="#home" class="brand" aria-label="Orieb Alzyuot — home" data-i18n-attr="aria-label:brand.aria"><img src="assets/orieb.jpg" alt="" width="38" height="38"><span>Orieb<b>.dev</b></span></a>
+    <nav class="menu" aria-label="Sections" data-i18n-attr="aria-label:nav.aria">
+      <a href="#about" data-i18n="nav.about">About</a><a href="#intro" data-i18n="nav.video">Video</a><a href="#skills" data-i18n="nav.skills">Skills</a><a href="#projects" data-i18n="nav.projects">Projects</a><a href="#career" data-i18n="nav.career">Career</a><a href="#services" data-i18n="nav.services">Hire me</a><a href="#contact" data-i18n="nav.contact">Contact</a>
     </nav>
     <div class="hdr-r">
-      <button class="ibtn" id="themeBtn" aria-label="Toggle dark mode" title="Toggle theme (Alt+T)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <button class="ibtn hide-sm" id="cmdBtn" aria-label="Open command palette" data-i18n-attr="aria-label:cmd.aria" title="Ctrl + K">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><kbd>Ctrl K</kbd>
       </button>
-      <button class="ibtn" data-open-settings aria-label="Display and accessibility settings" title="Settings (Ctrl+,)">
+      <button class="ibtn" id="langBtn" aria-label="التبديل إلى العربية" lang="ar"><span id="langLbl">ع</span></button>
+      <button class="ibtn" id="themeBtn" aria-label="Toggle dark mode" data-i18n-attr="aria-label:theme.aria" title="Alt + T">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <button class="ibtn" data-open-settings aria-label="Display and accessibility settings" data-i18n-attr="aria-label:a11y.aria" title="Ctrl + ,">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="4.5" r="1.8"/><path d="M5 8.5l7 1.5 7-1.5M12 10v5m0 0l-3.5 6.5M12 15l3.5 6.5"/></svg>
         <span class="count" data-count></span>
       </button>
@@ -353,470 +218,601 @@ kbd{font:600 .78rem ui-monospace,monospace;background:var(--soft-2);border:1px s
 
 <main id="main">
 <!-- ───────── hero ───────── -->
-<section class="hero" id="home">
+<section class="hero" id="home" aria-labelledby="heroTitle">
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="grid-dots" aria-hidden="true"></div>
+  <canvas class="stars" id="stars" aria-hidden="true"></canvas>
   <div class="wrap">
-    <div>
-      <span class="hello"><span class="wave" aria-hidden="true">👋</span> Hello, I'm Orieb</span>
-      <h1>I build interfaces people <span class="hl">trust</span>, end to end.</h1>
-      <p class="name-ar ar">أريب الزيوت</p>
-      <p class="lede">Senior Front-End &amp; Full-Stack Engineer with <b>6+ years</b> shipping Saudi government and enterprise platforms in <b>Angular, React and React Native</b>, backed by <b>.NET Core, Node and Azure</b>.</p>
-      <div class="cta">
-        <a class="btn primary" href="#projects">View my projects ✨</a>
-        <a class="btn" href="Orieb-Alzyuot-Resume.pdf" target="_blank" rel="noopener">Download résumé</a>
+    <div class="hero-head">
+      <span class="hello stagger" style="--i:0"><img src="assets/orieb.jpg" alt="" width="30" height="30"><span data-i18n="hero.hello">Hi, I'm Orieb</span> · <span class="live" data-i18n="hero.open">Open to work</span></span>
+      <h1 id="heroTitle"><span class="line stagger" style="--i:1" data-i18n="hero.l1">I build interfaces</span> <span class="line stagger" style="--i:2"><span data-i18n="hero.l2a">people</span> <span class="rot" id="rot"><span class="w">trust</span></span><span data-i18n="hero.l2b">,</span></span> <span class="line stagger" style="--i:3" data-i18n="hero.l3">end to end.</span></h1>
+      <p class="lede stagger" style="--i:4" data-i18n="hero.lede">Senior Front-End &amp; Full-Stack Engineer with <b>6+ years</b> shipping Saudi <b>government, fintech and enterprise</b> platforms in <b>Angular, React and React Native</b>, backed by <b>.NET Core, Node and Azure</b>.</p>
+      <div class="cta stagger" style="--i:5">
+        <a class="btn primary magnet" href="#projects"><span data-i18n="hero.cta1">Explore my work</span> <svg class="flip-rtl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <button class="btn magnet" data-play-intro><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg><span data-i18n="hero.cta2">Watch 40-sec intro</span></button>
+        <a class="btn" href="Orieb-Alzyuot-CV.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 21h14"/></svg><span data-i18n="hero.cta3">Download CV</span></a>
       </div>
-      <div class="quick"><span>📍 Amman, Jordan</span><span>💼 Saudi Azm (remote)</span><span>🌐 English · العربية</span></div>
     </div>
-    <div class="photo-wrap">
-      <span class="hand" aria-hidden="true">that's me! ♡</span>
-      <div class="blob" aria-hidden="true"></div>
-      <div class="photo"><img src="assets/orieb.jpg" alt="Portrait of Orieb Alzyuot" width="400" height="400"></div>
-      <div class="sticker s1" aria-hidden="true"><span class="em">🅰️</span><span>Angular 21<small>Signals expert</small></span></div>
-      <div class="sticker s2" aria-hidden="true"><span class="em">🚀</span><span>6+ years<small>in production</small></span></div>
-      <div class="sticker s3" aria-hidden="true"><span class="em">💜</span><span>a11y first<small>WCAG · RTL</small></span></div>
+
+    <!-- bento -->
+    <div class="bento">
+      <figure class="card tile t-photo spot pop" style="--i:0">
+        <img src="assets/orieb.jpg" alt="Portrait of Orieb Alzyuot" data-i18n-attr="alt:photo.alt" width="400" height="400">
+        <span class="hand" data-i18n="bento.hand">that's me! ♡</span>
+        <figcaption class="cap"><span><b data-i18n="bento.name">Orieb Alzyuot</b><span data-i18n="bento.role">Senior Front-End · Full-Stack</span></span><span class="pill live"><span class="d"></span><span data-i18n="bento.avail">Available</span></span></figcaption>
+      </figure>
+      <div class="card tile t-years pop" style="--i:1">
+        <span class="k" data-i18n="bento.exp">Experience</span>
+        <span class="big ltr"><span data-count-to="6">0</span>+</span>
+        <p data-i18n="bento.years">years in production, 4 companies, 3 countries</p>
+        <svg viewBox="0 0 200 56" preserveAspectRatio="none" aria-hidden="true"><path class="spark" d="M0 50 L25 44 L50 46 L75 34 L100 36 L125 22 L150 24 L175 10 L200 4" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="card tile t-now spot pop" style="--i:2">
+        <span class="k" data-i18n="bento.nowk">Now · Saudi Azm</span>
+        <h3 data-i18n="bento.now">Leading front-end architecture on Saudi government &amp; fintech platforms</h3>
+        <ul>
+          <li><i>💸</i><span data-i18n="b.wasl">Wasl financing</span></li>
+          <li><i>🏛️</i><span data-i18n="b.sba">Saudi Bar Association</span></li>
+          <li><i>⚖️</i><span data-i18n="b.moj">Ministry of Justice</span></li>
+          <li><i>🏗️</i><span data-i18n="b.seac">Engineering Arbitration</span></li>
+          <li><i>📄</i><span data-i18n="b.contracts">Contracts e-sign</span></li>
+        </ul>
+      </div>
+      <button class="card tile t-video spot pop" style="--i:3" data-play-intro aria-label="Play my 40-second intro video" data-i18n-attr="aria-label:bento.videoAria">
+        <img src="assets/intro-poster.jpg" alt="" loading="lazy">
+        <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+        <span class="vlabel"><b data-i18n="bento.video">My story in 40 seconds</b><span data-i18n="bento.videoSub">Intro video · captions</span></span>
+      </button>
+      <div class="card tile t-clock pop" style="--i:4">
+        <span class="k" data-i18n="bento.clock">Local time · Amman</span>
+        <span class="time ltr" id="clock">--:--</span>
+        <span data-i18n="bento.tz">GMT+3 — same hours as Riyadh</span>
+      </div>
+      <div class="card tile t-code pop" style="--i:5" role="img" aria-label="Code sample: an Angular component using signals" data-i18n-attr="aria-label:bento.codeAria">
+        <div class="bar"><i></i><i></i><i></i><span>orieb.component.ts</span></div>
+<pre id="typed" aria-hidden="true"></pre>
+      </div>
+      <div class="card tile t-stack pop" style="--i:6">
+        <span class="k" data-i18n="bento.stack">Daily stack</span>
+        <div class="mini-marq ltr" aria-hidden="true"><span>Angular 21</span><span>Signals</span><span>TypeScript</span><span>React</span><span>React Native</span><span>Expo</span><span>Next.js</span><span>Angular 21</span><span>Signals</span><span>TypeScript</span><span>React</span><span>React Native</span><span>Expo</span><span>Next.js</span></div>
+        <div class="mini-marq rev ltr" aria-hidden="true"><span>.NET Core</span><span>Node.js</span><span>PostgreSQL</span><span>Azure</span><span>Docker</span><span>CI/CD</span><span>WCAG</span><span>.NET Core</span><span>Node.js</span><span>PostgreSQL</span><span>Azure</span><span>Docker</span><span>CI/CD</span><span>WCAG</span></div>
+        <p class="sr">Angular 21, Signals, TypeScript, React, React Native, Expo, Next.js, .NET Core, Node.js, PostgreSQL, Azure, Docker, CI/CD, WCAG.</p>
+      </div>
+      <button class="card tile t-a11y pop" style="--i:7" data-open-settings>
+        <span class="k" data-i18n="bento.a11yk">Accessibility</span>
+        <b data-i18n="bento.a11y">Try this site your way</b>
+        <span data-i18n="bento.a11ySub">Contrast, text size, motion, readable font, Arabic RTL.</span>
+        <span class="go" data-i18n="bento.a11yGo">Open settings →</span>
+      </button>
     </div>
   </div>
 </section>
 
+<!-- logos -->
+<div class="logos" role="region" aria-labelledby="logosTitle">
+  <p id="logosTitle" data-i18n="logos.t">Platforms &amp; teams I've shipped with</p>
+  <div class="logos-mask"><div class="track">
+    <span><i>💸</i><span data-i18n="lg.wasl">Wasl Financing</span></span><span><i>🏛️</i><span data-i18n="lg.sba">Saudi Bar Association</span></span><span><i>⚖️</i><span data-i18n="lg.moj">Ministry of Justice</span></span><span><i>🏗️</i><span data-i18n="lg.sce">Saudi Council of Engineers</span></span><span><i>📄</i><span data-i18n="lg.contracts">Contracts</span></span><span><i>🧭</i><span data-i18n="lg.mirafh">Mirafh</span></span><span><i>🇦🇪</i><span data-i18n="lg.tahaluf">Tahaluf Al Emarat</span></span><span><i>👥</i><span data-i18n="lg.shepherd">Shepherd</span></span><span><i>🐧</i><span data-i18n="lg.penguin">PenguinIN</span></span>
+    <span aria-hidden="true"><i>💸</i><span data-i18n="lg.wasl">Wasl Financing</span></span><span aria-hidden="true"><i>🏛️</i><span data-i18n="lg.sba">Saudi Bar Association</span></span><span aria-hidden="true"><i>⚖️</i><span data-i18n="lg.moj">Ministry of Justice</span></span><span aria-hidden="true"><i>🏗️</i><span data-i18n="lg.sce">Saudi Council of Engineers</span></span><span aria-hidden="true"><i>📄</i><span data-i18n="lg.contracts">Contracts</span></span><span aria-hidden="true"><i>🧭</i><span data-i18n="lg.mirafh">Mirafh</span></span><span aria-hidden="true"><i>🇦🇪</i><span data-i18n="lg.tahaluf">Tahaluf Al Emarat</span></span><span aria-hidden="true"><i>👥</i><span data-i18n="lg.shepherd">Shepherd</span></span><span aria-hidden="true"><i>🐧</i><span data-i18n="lg.penguin">PenguinIN</span></span>
+  </div></div>
+</div>
+
 <!-- ───────── about ───────── -->
-<section class="sec alt" id="about">
+<section class="sec" id="about" aria-labelledby="aboutT">
   <div class="wrap">
-    <div class="sec-title reveal"><span class="kicker">who am I?</span><br><h2>About Me</h2></div>
+    <div class="sec-title reveal"><span class="kicker" data-i18n="about.k">who am I?</span><h2 id="aboutT" data-i18n="about.t">About Me</h2></div>
     <div class="about">
-      <article class="card intro reveal">
-        <div class="pic"><img src="assets/orieb.jpg" alt="Portrait of Orieb Alzyuot" loading="lazy"></div>
-        <h3>Hi! I own the front end, from Figma to production 💜</h3>
-        <p>I take products from design to production and stay accountable for them after launch: the component system, the data layer, the pipeline, and the 2 a.m. bug.</p>
-        <p>Right now I lead front-end architecture on Saudi public-sector platforms, migrate legacy apps to modern Angular, and build the .NET and Node services underneath.</p>
+      <article class="card intro spot reveal">
+        <div class="pic"><img src="assets/orieb.jpg" alt="Portrait of Orieb Alzyuot" data-i18n-attr="alt:photo.alt" loading="lazy"><span class="badge" data-i18n="about.badge">📍 Amman · working with Riyadh</span></div>
+        <h3 data-i18n="about.h">I own the front end, from Figma to production 💜</h3>
+        <p data-i18n="about.p1">I design the system before the screens: feature boundaries, Signals-based state, typed API contracts and shared design tokens, so large teams can move fast without breaking each other.</p>
+        <p data-i18n="about.p2">Today I lead front-end architecture at Saudi Azm on government and fintech platforms, migrate legacy apps to modern Angular, and build the .NET and Node services underneath.</p>
       </article>
       <div class="info">
-        <div class="card item reveal"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><div><small>Name</small><b>Orieb Alzyuot</b><span class="sub ar">أريب الزيوت</span></div></div>
-        <div class="card item reveal"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><div><small>Location</small><b>Amman, Jordan</b><span class="sub">Open to relocation</span></div></div>
-        <a class="card item reveal" href="mailto:alzuotorieb9999@gmail.com"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 7l9 6 9-6"/></svg></span><div><small>Email</small><b>alzuotorieb9999@gmail.com</b></div></a>
-        <a class="card item reveal" href="tel:+962775853203"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg></span><div><small>Phone</small><b>+962 77585 3203</b><span class="sub">WhatsApp available</span></div></a>
-        <div class="card item reveal"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg></span><div><small>Education</small><b>B.Sc. Communication &amp; Software Eng.</b><span class="sub">Al-Balqa Applied University · GPA 3.58 · 2nd in class</span></div></div>
-        <div class="card item reveal"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span><div><small>Experience</small><b>6+ years · 4 companies</b><span class="sub">KSA · UAE · Jordan</span></div></div>
-        <div class="card keywords reveal"><strong>Keywords</strong><span class="kw">#Architecture</span><span class="kw">#Angular_Migration</span><span class="kw">#Signals</span><span class="kw">#Accessibility</span><span class="kw">#RTL</span><span class="kw">#Performance</span><span class="kw">#Docker</span><span class="kw">#Mentoring</span></div>
+        <div class="card item reveal"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><div><small data-i18n="i.name">Name</small><b>Orieb Alzyuot</b><span class="sub ar-text">عريب الزيوت</span></div></div>
+        <div class="card item reveal"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><div><small data-i18n="i.loc">Location</small><b data-i18n="i.locv">Amman, Jordan</b><span class="sub" data-i18n="i.locs">Open to relocation</span></div></div>
+        <a class="card item reveal" href="mailto:alzuotorieb9999@gmail.com"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 7l9 6 9-6"/></svg></span><div><small data-i18n="i.email">Email</small><b class="ltr">alzuotorieb9999@gmail.com</b></div></a>
+        <a class="card item reveal" href="tel:+962775853203"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg></span><div><small data-i18n="i.phone">Phone</small><b class="ltr">+962 77585 3203</b><span class="sub" data-i18n="i.wa">WhatsApp available</span></div></a>
+        <div class="card item reveal"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg></span><div><small data-i18n="i.edu">Education</small><b data-i18n="i.eduv">B.Sc. Communication &amp; Software Eng.</b><span class="sub" data-i18n="i.edus">Al-Balqa Applied University · GPA 3.58 · 2nd in class</span></div></div>
+        <div class="card item reveal"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><div><small data-i18n="i.lang">Languages</small><b data-i18n="i.langv">Arabic · English</b><span class="sub" data-i18n="i.langs">Native Arabic, professional English</span></div></div>
+        <div class="principles">
+          <div class="card principle spot reveal"><span class="n">01</span><h4 data-i18n="pr.1t">Architecture first</h4><p data-i18n="pr.1">Clear boundaries, typed contracts and tokens before pixels.</p></div>
+          <div class="card principle spot reveal"><span class="n">02</span><h4 data-i18n="pr.2t">Modernise safely</h4><p data-i18n="pr.2">AngularJS → Angular 21, step by step, while features keep shipping.</p></div>
+          <div class="card principle spot reveal"><span class="n">03</span><h4 data-i18n="pr.3t">Human-first</h4><p data-i18n="pr.3">WCAG, native-feeling Arabic RTL and honest error states.</p></div>
+        </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── video ───────── -->
+<section class="sec alt" id="intro" aria-labelledby="introT">
+  <div class="wrap">
+    <div class="sec-title reveal"><span class="kicker" data-i18n="vid.k">press play</span><h2 id="introT" data-i18n="vid.t">My story in 40 seconds</h2><p data-i18n="vid.p">A short motion intro: who I am, what I've shipped and how I work. Captions are included.</p></div>
+    <div class="player card reveal">
+      <video id="introVideo" controls playsinline preload="metadata" poster="assets/intro-poster.jpg" width="1280" height="720">
+        <source src="assets/orieb-intro.webm" type="video/webm">
+        <source src="assets/orieb-intro.mp4" type="video/mp4">
+        <track kind="captions" src="assets/orieb-intro.en.vtt" srclang="en" label="English" default>
+        <track kind="captions" src="assets/orieb-intro.ar.vtt" srclang="ar" label="العربية">
+      </video>
     </div>
   </div>
 </section>
 
 <!-- ───────── skills ───────── -->
-<section class="sec" id="skills">
+<section class="sec" id="skills" aria-labelledby="skillsT">
   <div class="wrap">
-    <div class="sec-title reveal"><span class="kicker">what I use</span><br><h2>Skills</h2><p>Highlighted badges are where I go deepest.</p></div>
-    <div class="card skills reveal">
-      <div class="srow"><h3><i></i>Frontend</h3><div class="badges" data-icons="angular:Angular v2→v22:star,typescript:TypeScript:star,react:React,nextdotjs:Next.js,javascript:JavaScript,html5:HTML5,css:CSS3 · RTL,primeng:PrimeNG"></div></div>
-      <div class="srow"><h3><i></i>Mobile</h3><div class="badges" data-icons="react:React Native:star,expo:Expo"></div></div>
-      <div class="srow"><h3><i></i>Backend</h3><div class="badges" data-icons="dotnet:.NET Core,nodedotjs:Node.js,express:Express,python:Python,openapiinitiative:REST · Microservices"></div></div>
-      <div class="srow"><h3><i></i>Database</h3><div class="badges" data-icons="postgresql:PostgreSQL,mongodb:MongoDB,mysql:SQL"></div></div>
-      <div class="srow"><h3><i></i>DevOps &amp; Cloud</h3><div class="badges" data-icons="docker:Docker:star,azure:Microsoft Azure,githubactions:CI/CD,git:Git"></div></div>
-      <div class="srow"><h3><i></i>Design &amp; Tools</h3><div class="badges" data-icons="figma:Figma:star,adobe:Adobe XD,jira:Jira · Agile,anthropic:Claude AI,cursor:Cursor"></div></div>
-      <div class="srow"><h3><i></i>Quality</h3><div class="badges" data-icons="w3c:WCAG Accessibility:star,jest:Unit testing,owasp:App security,github:Code review"></div></div>
+    <div class="sec-title reveal"><span class="kicker" data-i18n="sk.k">what I use</span><h2 id="skillsT" data-i18n="sk.t">Skills</h2><p data-i18n="sk.p">Grouped by where I spend my time, with an honest level for each.</p></div>
+    <div class="skill-grid">
+      <div class="card sk spot reveal"><h3><span class="ico">🎨</span><span data-i18n="sk.fe">Front end</span></h3><ul data-skills="angular|Angular · AngularJS → v22|x,typescript|TypeScript|x,reactivex|RxJS · Signals|x,react|React|a,nextdotjs|Next.js|a,primeng|PrimeNG|x,css|CSS · RTL · design tokens|x"></ul></div>
+      <div class="card sk spot reveal"><h3><span class="ico">📱</span><span data-i18n="sk.mo">Mobile</span></h3><ul data-skills="react|React Native|a,expo|Expo|a,pwa|PWA|p"></ul><h3 style="margin-top:22px"><span class="ico">🗄️</span><span data-i18n="sk.db">Data</span></h3><ul data-skills="postgresql|PostgreSQL|a,mongodb|MongoDB|p,mysql|SQL|a"></ul></div>
+      <div class="card sk spot reveal"><h3><span class="ico">⚙️</span><span data-i18n="sk.be">Back end</span></h3><ul data-skills="dotnet|.NET Core · C#|a,nodedotjs|Node.js · Express|a,openapiinitiative|REST · Microservices|a,python|Python|p"></ul><h3 style="margin-top:22px"><span class="ico">☁️</span><span data-i18n="sk.ops">Cloud &amp; DevOps</span></h3><ul data-skills="docker|Docker|a,githubactions|CI/CD|a,azure|Microsoft Azure|a,git|Git|x"></ul></div>
+      <div class="card sk spot reveal"><h3><span class="ico">♿</span><span data-i18n="sk.q">Quality</span></h3><ul data-skills="w3c|WCAG accessibility|x,jest|Unit testing|a,owasp|App security|a,github|Code review|x"></ul></div>
+      <div class="card sk spot reveal"><h3><span class="ico">✏️</span><span data-i18n="sk.ds">Design &amp; delivery</span></h3><ul data-skills="figma|Figma|x,adobe|Adobe XD|a,jira|Agile · Jira|x"></ul></div>
+      <div class="card sk spot reveal"><h3><span class="ico">🤖</span><span data-i18n="sk.ai">AI-assisted engineering</span></h3><ul data-skills="anthropic|Claude · Claude Code|a,cursor|Cursor|a,openai|LLM features · RAG|p"></ul></div>
     </div>
-  </div>
-</section>
-
-<!-- ───────── archiving ───────── -->
-<section class="sec alt" id="archiving">
-  <div class="wrap">
-    <div class="sec-title reveal"><span class="kicker">find me online</span><br><h2>Archiving</h2></div>
-    <div class="arch">
-      <a class="card reveal" href="https://github.com/oriieebgSmile96" target="_blank" rel="noopener">
-        <div class="logo"><span><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.6.2 2.8.1 3.2.8.8 1.2 1.9 1.2 3.1 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg></span>GitHub</div>
-        <div class="url">github.com/oriieebgSmile96</div>
-        <p>Source code storage. Featured:</p>
-        <ul><li>Bareeq Al-Aeeq: Angular 21 + Expo monorepo</li><li>Refactoring and Angular study samples</li><li>Technical assessments</li></ul>
-      </a>
-      <a class="card reveal" href="https://www.linkedin.com/in/orieb-alzyuot996" target="_blank" rel="noopener">
-        <div class="logo"><span><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.3c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V21H9z"/></svg></span>LinkedIn</div>
-        <div class="url">in/orieb-alzyuot996</div>
-        <p>Professional network, recommendations and verified skill badges:</p>
-        <ul><li>Angular · React · Node.js</li><li>JavaScript · TypeScript</li><li>Git · Agile methodologies</li></ul>
-      </a>
-      <a class="card reveal" href="Orieb-Alzyuot-Resume.pdf" target="_blank" rel="noopener">
-        <div class="logo"><span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></span>Résumé</div>
-        <div class="url">Orieb-Alzyuot-Resume.pdf</div>
-        <p>Two-page résumé, updated October 2026:</p>
-        <ul><li>Experience and enterprise platforms</li><li>Skills and certifications</li><li>Availability: remote, relocation, freelance</li></ul>
-      </a>
-    </div>
+    <div class="legend reveal"><span><span class="lv x" data-i18n="lv.x">Expert</span></span><span><span class="lv a" data-i18n="lv.a">Advanced</span></span><span><span class="lv p" data-i18n="lv.p">Proficient</span></span></div>
   </div>
 </section>
 
 <!-- ───────── projects ───────── -->
-<section class="sec" id="projects">
+<section class="sec alt" id="projects" aria-labelledby="projT">
   <div class="wrap">
-    <div class="sec-title reveal"><span class="kicker">things I shipped</span><br><h2>Projects</h2><p>Click a screenshot to enlarge it. Government portals are live, but most flows sit behind national sign-in (Nafath) or staff accounts.</p></div>
-    <div class="filters" role="group" aria-label="Filter projects">
-      <button class="chip" aria-pressed="true" data-f="all">All</button>
-      <button class="chip" aria-pressed="false" data-f="gov">🏛 Government &amp; legal</button>
-      <button class="chip" aria-pressed="false" data-f="saas">🏢 SaaS &amp; enterprise</button>
-      <button class="chip" aria-pressed="false" data-f="oss">📱 Mobile &amp; open source</button>
+    <div class="sec-title reveal"><span class="kicker" data-i18n="pj.k">things I shipped</span><h2 id="projT" data-i18n="pj.t">Projects</h2><p data-i18n="pj.p">Real screenshots where the product is public. Most government flows sit behind national sign-in (Nafath), so private products are shown as labelled illustrations.</p></div>
+    <div class="filters" role="group" aria-label="Filter projects" data-i18n-attr="aria-label:pj.filter">
+      <button class="chip" aria-pressed="true" data-f="all"><span data-i18n="f.all">All</span> <span class="c" data-n="all"></span></button>
+      <button class="chip" aria-pressed="false" data-f="gov">🏛 <span data-i18n="f.gov">Government &amp; legal</span> <span class="c" data-n="gov"></span></button>
+      <button class="chip" aria-pressed="false" data-f="fin">💸 <span data-i18n="f.fin">Fintech</span> <span class="c" data-n="fin"></span></button>
+      <button class="chip" aria-pressed="false" data-f="saas">🏢 <span data-i18n="f.saas">SaaS &amp; enterprise</span> <span class="c" data-n="saas"></span></button>
+      <button class="chip" aria-pressed="false" data-f="oss">📱 <span data-i18n="f.oss">Mobile &amp; open source</span> <span class="c" data-n="oss"></span></button>
     </div>
 
     <div class="projects">
-      <!-- SBA -->
-      <article class="card proj reveal" data-c="gov">
-        <div class="proj-head"><h3>Saudi Bar Association · Complaints &amp; Reports</h3><div class="ar">خدمة الشكاوى والبلاغات — الهيئة السعودية للمحامين</div><span class="period">Saudi Azm · 2024 – present</span></div>
-        <div class="proj-body">
-          <figure class="shot" data-full="assets/sba-qc.jpg" tabindex="0" role="button" aria-label="Enlarge Saudi Bar Association screenshot"><div class="bar"><i></i><i></i><i></i><span>qccx.sba.gov.sa</span></div><img src="assets/sba-qc.jpg" alt="Saudi Bar Association complaints and reports service, Arabic home page" loading="lazy"><span class="zoom">🔍 Enlarge</span></figure>
-          <div class="desc">
-            <p>The Saudi Bar Association regulates the legal profession in the Kingdom. This unified service receives complaints against lawyers and reports against people impersonating them, to protect the integrity of the profession and the rights of beneficiaries.</p>
-            <p>I built the front end, including the quality-control workflow that tracks each case from submission to decision.</p>
-            <dl class="spec">
-              <div><dt>Key features</dt><dd><ul><li>Complaint and report submission with document upload</li><li>QC review queues, scoring, escalation and audit trail</li><li>Applicant dashboard with live case status</li></ul></dd></div>
-              <div><dt>Live</dt><dd><a href="https://qccx.sba.gov.sa/" target="_blank" rel="noopener">qccx.sba.gov.sa</a><span class="access gated">● Nafath / staff sign-in</span></dd></div>
-              <div><dt>Frontend</dt><dd>Angular · TypeScript · RTL · WCAG</dd></div>
-              <div><dt>Backend</dt><dd>.NET Core · PostgreSQL · REST</dd></div>
-              <div><dt>Deployment</dt><dd>Docker · Azure · CI/CD</dd></div>
-            </dl>
+
+      <!-- Wasl -->
+      <article class="card proj spot reveal" data-c="fin" id="p-wasl">
+        <div class="media">
+          <div class="frame tilt"><div class="bar"><i></i><i></i><i></i><span>wasl · financing brokerage</span></div>
+            <div class="mock" aria-hidden="true">
+              <div class="row"><div class="box"><b>Financing request</b><div class="ln a w80"></div><div class="ln w60"></div><div class="bar-p"><i style="width:72%"></i></div></div><div class="box"><b>Offers received</b><span class="num">4</span><div class="ln w40"></div></div></div>
+              <div class="offer best"><span class="row" style="align-items:center"><span class="bank" style="background:linear-gradient(135deg,#6d4aff,#b9a7ff)"></span><b>Lender A · 3.9% APR</b></span><span class="chip-s">Best match</span></div>
+              <div class="offer"><span class="row" style="align-items:center"><span class="bank" style="background:linear-gradient(135deg,#0c7c5f,#a8ecd6)"></span><b>Lender B · 4.2% APR</b></span><span class="chip-s">Compare</span></div>
+              <div class="offer"><span class="row" style="align-items:center"><span class="bank" style="background:linear-gradient(135deg,#cf6a10,#ffd58a)"></span><b>Lender C · 4.5% APR</b></span><span class="chip-s">Compare</span></div>
+            </div>
+            <span class="illus-note" data-i18n="illus">Illustration</span>
           </div>
+          <span class="float">🏦 <span data-i18n="wasl.float">SAMA licensed · 2026</span></span>
+        </div>
+        <div class="p-body">
+          <div class="org"><span>Saudi Azm × National Housing Co.</span><span class="pill soon"><span class="d"></span><span data-i18n="st.launch">Launching</span></span></div>
+          <h3 data-i18n="wasl.t">Wasl · Digital Financing Platform</h3>
+          <div class="alt-name ar-text">منصة وصل للخدمات التمويلية</div>
+          <p data-i18n="wasl.p">A digital financing-brokerage platform, set up as a 50/50 joint venture between Saudi Azm and the National Housing Company. It connects customers with licensed financing entities across the Kingdom. The Saudi Central Bank (SAMA) granted it a digital brokerage licence in August 2026.</p>
+          <ul class="hl"><li data-i18n="wasl.h1">Financing request journeys built for clarity and trust</li><li data-i18n="wasl.h2">Offer comparison and application tracking</li><li data-i18n="wasl.h3">Secure, accessible Arabic-first UI to fintech standards</li></ul>
+          <div class="tags"><span class="tag">Angular</span><span class="tag">Signals</span><span class="tag">.NET Core</span><span class="tag">Azure</span><span class="tag">Fintech</span></div>
+          <div class="p-actions"><button class="btn primary" data-case="p-wasl" data-i18n="btn.case">Read case study</button><a class="btn" href="https://www.argaam.com/en/article/articledetail/id/1832972" target="_blank" rel="noopener" data-i18n="btn.news">In the news ↗</a></div>
+        </div>
+        <div class="case">
+          <section><h4>🎯 <span data-i18n="cs.c">Challenge</span></h4><p data-i18n="wasl.c">Financing is high-stakes: users must trust every step, and the platform has to meet SAMA's regulatory and security expectations from day one.</p></section>
+          <section><h4>🛠 <span data-i18n="cs.a">What I did</span></h4><ul><li data-i18n="wasl.a1">Front-end architecture for request, offer and tracking flows</li><li data-i18n="wasl.a2">Reusable, accessible form and status components</li><li data-i18n="wasl.a3">Typed API contracts with the .NET services</li></ul></section>
+          <section><h4>🌱 <span data-i18n="cs.r">Outcome</span></h4><p data-i18n="wasl.r">A platform ready for full operation after the SAMA licence, on a component base that scales with new financing partners.</p></section>
+        </div>
+      </article>
+
+      <!-- SBA -->
+      <article class="card proj spot reveal" data-c="gov" id="p-sba">
+        <div class="media">
+          <figure class="frame tilt" data-full="assets/sba-qc.jpg" tabindex="0" role="button" aria-label="Enlarge screenshot" data-i18n-attr="aria-label:zoom.aria"><div class="bar"><i></i><i></i><i></i><span>qccx.sba.gov.sa</span></div><img src="assets/sba-qc.jpg" alt="Saudi Bar Association complaints and reports service home page" loading="lazy" width="800" height="503"><span class="zoom" data-i18n="zoom">🔍 Enlarge</span></figure>
+          <span class="float">🏛️ <span data-i18n="sba.float">Live government service</span></span>
+        </div>
+        <div class="p-body">
+          <div class="org"><span>Saudi Azm · Saudi Bar Association</span><span class="pill gated"><span class="d"></span><span data-i18n="st.nafath">Nafath sign-in</span></span></div>
+          <h3 data-i18n="sba.t">Complaints &amp; Reports Service</h3>
+          <div class="alt-name ar-text">خدمة الشكاوى والبلاغات — الهيئة السعودية للمحامين</div>
+          <p data-i18n="sba.p">A unified service for complaints against lawyers and reports against people impersonating the profession. It protects the profession's integrity and the rights of beneficiaries.</p>
+          <ul class="hl"><li data-i18n="sba.h1">Submission with documents, from intake to decision</li><li data-i18n="sba.h2">Quality-control queues, scoring, escalation, audit trail</li><li data-i18n="sba.h3">Applicant dashboard with live case status</li></ul>
+          <div class="tags"><span class="tag">Angular</span><span class="tag">.NET Core</span><span class="tag">PostgreSQL</span><span class="tag">RTL</span><span class="tag">WCAG</span></div>
+          <div class="p-actions"><button class="btn primary" data-case="p-sba" data-i18n="btn.case">Read case study</button><a class="btn" href="https://qccx.sba.gov.sa/" target="_blank" rel="noopener" data-i18n="btn.visit">Visit ↗</a></div>
+        </div>
+        <div class="case">
+          <section><h4>🎯 <span data-i18n="cs.c">Challenge</span></h4><p data-i18n="sba.c">Complaints carry legal weight. Every action needs an audit trail, and the UI has to work for citizens, lawyers and QC staff alike, in Arabic first.</p></section>
+          <section><h4>🛠 <span data-i18n="cs.a">What I did</span></h4><ul><li data-i18n="sba.a1">Front-end architecture and role-based routing</li><li data-i18n="sba.a2">QC review workflow: queues, scoring, escalation</li><li data-i18n="sba.a3">Native RTL, accessible tables and forms</li></ul></section>
+          <section><h4>🌱 <span data-i18n="cs.r">Outcome</span></h4><p data-i18n="sba.r">A live national service that tracks each case end to end, with consistent quality review behind it.</p></section>
         </div>
       </article>
 
       <!-- SEAC -->
-      <article class="card proj reveal" data-c="gov">
-        <div class="proj-head"><h3>Saudi Engineering Arbitration Center</h3><div class="ar">مركز التحكيم الهندسي السعودي</div><span class="period">Saudi Azm · Client: Saudi Council of Engineers</span></div>
-        <div class="proj-body">
-          <figure class="shot" data-full="assets/seac.jpg" tabindex="0" role="button" aria-label="Enlarge Engineering Arbitration Center screenshot"><div class="bar"><i></i><i></i><i></i><span>web01.techprocess.net:28059</span></div><img src="assets/seac.jpg" alt="Saudi Engineering Arbitration Center e-arbitration home page" loading="lazy"><span class="zoom">🔍 Enlarge</span></figure>
-          <div class="desc">
-            <p>SEAC is set up under the Saudi Council of Engineers to settle engineering and construction disputes through arbitration and conciliation, for ministries, companies and individual engineers.</p>
-            <p>The e-arbitration portal lets each party file and follow a case online: arbitrators, establishments, individuals and experts.</p>
-            <dl class="spec">
-              <div><dt>Key features</dt><dd><ul><li>Role-based portals for 4 user types</li><li>Case filing, hearings and joining as a respondent</li><li>Document exchange and case timeline</li></ul></dd></div>
-              <div><dt>Live</dt><dd><a href="https://web01.techprocess.net:28059" target="_blank" rel="noopener">web01.techprocess.net:28059</a><span class="access gated">● Client environment</span></dd></div>
-              <div><dt>Frontend</dt><dd>Angular · TypeScript · RTL</dd></div>
-              <div><dt>Backend</dt><dd>.NET Core · Azure</dd></div>
-            </dl>
-          </div>
+      <article class="card proj spot reveal" data-c="gov" id="p-seac">
+        <div class="media">
+          <figure class="frame tilt" data-full="assets/seac.jpg" tabindex="0" role="button" aria-label="Enlarge screenshot" data-i18n-attr="aria-label:zoom.aria"><div class="bar"><i></i><i></i><i></i><span>web01.techprocess.net:28059</span></div><img src="assets/seac.jpg" alt="Saudi Engineering Arbitration Center e-arbitration home page" loading="lazy" width="800" height="503"><span class="zoom" data-i18n="zoom">🔍 Enlarge</span></figure>
+          <span class="float">⚖️ <span data-i18n="seac.float">4 role portals</span></span>
+        </div>
+        <div class="p-body">
+          <div class="org"><span>Saudi Azm · Saudi Council of Engineers</span><span class="pill gated"><span class="d"></span><span data-i18n="st.client">Client environment</span></span></div>
+          <h3 data-i18n="seac.t">Saudi Engineering Arbitration Center</h3>
+          <div class="alt-name ar-text">مركز التحكيم الهندسي السعودي</div>
+          <p data-i18n="seac.p">E-arbitration for engineering and construction disputes under the Saudi Council of Engineers, serving ministries, companies and individual engineers.</p>
+          <ul class="hl"><li data-i18n="seac.h1">Portals for arbitrators, establishments, individuals and experts</li><li data-i18n="seac.h2">Case filing, hearings and joining as a respondent</li><li data-i18n="seac.h3">Document exchange and case timeline</li></ul>
+          <div class="tags"><span class="tag">Angular</span><span class="tag">.NET Core</span><span class="tag">Azure</span><span class="tag">RTL</span></div>
+          <div class="p-actions"><button class="btn primary" data-case="p-seac" data-i18n="btn.case">Read case study</button><a class="btn" href="https://web01.techprocess.net:28059" target="_blank" rel="noopener" data-i18n="btn.visit">Visit ↗</a></div>
+        </div>
+        <div class="case">
+          <section><h4>🎯 <span data-i18n="cs.c">Challenge</span></h4><p data-i18n="seac.c">Four very different user types share one case, each with its own permissions, documents and deadlines.</p></section>
+          <section><h4>🛠 <span data-i18n="cs.a">What I did</span></h4><ul><li data-i18n="seac.a1">Role-based portal shell and guards</li><li data-i18n="seac.a2">Case timeline and document-exchange UI</li><li data-i18n="seac.a3">Shared component library with the other Azm platforms</li></ul></section>
+          <section><h4>🌱 <span data-i18n="cs.r">Outcome</span></h4><p data-i18n="seac.r">Arbitration moved online: parties file and follow cases without paper.</p></section>
         </div>
       </article>
 
       <!-- Contracts -->
-      <article class="card proj reveal" data-c="gov">
-        <div class="proj-head"><h3>Contracts · Digital Contracts &amp; e-Signature</h3><div class="ar">عقود — منصة العقود الرقمية</div><span class="period">Saudi Azm · Legal-tech</span></div>
-        <div class="proj-body">
-          <figure class="shot" data-full="assets/contracts.jpg" tabindex="0" role="button" aria-label="Enlarge Contracts screenshot"><div class="bar"><i></i><i></i><i></i><span>contracts.com.sa</span></div><img src="assets/contracts.jpg" alt="Contracts digital contracts platform sign-in page for individuals and companies" loading="lazy"><span class="zoom">🔍 Enlarge</span></figure>
-          <div class="desc">
-            <p>A digital contracts platform where individuals and companies create, manage and e-sign documents anytime and anywhere. It replaces paper contracts with automated, auditable workflows.</p>
-            <dl class="spec">
-              <div><dt>Key features</dt><dd><ul><li>Separate sign-in flows for individuals and companies</li><li>Template-driven contract builder and document generation</li><li>e-Signature, approvals and signed-version history</li></ul></dd></div>
-              <div><dt>Live</dt><dd><a href="https://contracts.com.sa" target="_blank" rel="noopener">contracts.com.sa</a><span class="access live">● Public sign-up</span></dd></div>
-              <div><dt>Frontend</dt><dd>Angular · TypeScript · Arabic / English</dd></div>
-              <div><dt>Backend</dt><dd>.NET Core · Node.js · PDF engine</dd></div>
-            </dl>
-          </div>
+      <article class="card proj spot reveal" data-c="gov" id="p-contracts">
+        <div class="media">
+          <figure class="frame tilt" data-full="assets/contracts.jpg" tabindex="0" role="button" aria-label="Enlarge screenshot" data-i18n-attr="aria-label:zoom.aria"><div class="bar"><i></i><i></i><i></i><span>contracts.com.sa</span></div><img src="assets/contracts.jpg" alt="Contracts digital contracts platform sign-in for individuals and companies" loading="lazy" width="800" height="500"><span class="zoom" data-i18n="zoom">🔍 Enlarge</span></figure>
+          <span class="float">✍️ <span data-i18n="ct.float">e-Signature</span></span>
+        </div>
+        <div class="p-body">
+          <div class="org"><span>Saudi Azm · Legal-tech</span><span class="pill live"><span class="d"></span><span data-i18n="st.public">Public sign-up</span></span></div>
+          <h3 data-i18n="ct.t">Contracts · Digital Contracts &amp; e-Signature</h3>
+          <div class="alt-name ar-text">عقود — منصة العقود الرقمية</div>
+          <p data-i18n="ct.p">Individuals and companies create, manage and e-sign contracts anytime, anywhere, with automated and auditable workflows replacing paper.</p>
+          <ul class="hl"><li data-i18n="ct.h1">Separate sign-in flows for individuals and companies</li><li data-i18n="ct.h2">Template-driven contract builder</li><li data-i18n="ct.h3">e-Signature, approvals and version history</li></ul>
+          <div class="tags"><span class="tag">Angular</span><span class="tag">.NET Core</span><span class="tag">Node.js</span><span class="tag">i18n</span></div>
+          <div class="p-actions"><button class="btn primary" data-case="p-contracts" data-i18n="btn.case">Read case study</button><a class="btn" href="https://contracts.com.sa" target="_blank" rel="noopener" data-i18n="btn.visit">Visit ↗</a></div>
+        </div>
+        <div class="case">
+          <section><h4>🎯 <span data-i18n="cs.c">Challenge</span></h4><p data-i18n="ct.c">A signed contract has to be legally valid, and the experience has to work for a single person and for a large company alike.</p></section>
+          <section><h4>🛠 <span data-i18n="cs.a">What I did</span></h4><ul><li data-i18n="ct.a1">Dual onboarding: individuals and companies</li><li data-i18n="ct.a2">Dynamic contract builder from typed schemas</li><li data-i18n="ct.a3">Bilingual document preview</li></ul></section>
+          <section><h4>🌱 <span data-i18n="cs.r">Outcome</span></h4><p data-i18n="ct.r">A public, self-serve e-signature product live at contracts.com.sa.</p></section>
         </div>
       </article>
 
-      <!-- Mirafh -->
-      <article class="card proj reveal" data-c="gov">
-        <div class="proj-head"><h3>Mirafh Portal</h3><div class="ar">بوابة مرافه</div><span class="period">Saudi Azm · Enterprise platform</span></div>
-        <div class="proj-body">
-          <figure class="shot"><div class="bar"><i></i><i></i><i></i><span>mirafh.sa</span></div><div class="mock"><div><div class="big">🧭</div><b>Mirafh Portal</b><span>Private rollout · screenshots on request</span></div></div></figure>
-          <div class="desc">
-            <p>An enterprise digital platform with a responsive, component-driven interface, built from Figma and Adobe XD designs on a design system shared between web and mobile.</p>
-            <dl class="spec">
-              <div><dt>Key features</dt><dd><ul><li>Reusable component library and design tokens</li><li>Responsive from 360px to wide desktop</li><li>Shared UI language across web and React Native</li></ul></dd></div>
-              <div><dt>Live</dt><dd><a href="https://mirafh.sa" target="_blank" rel="noopener">mirafh.sa</a><span class="access gated">● Rolling out</span></dd></div>
-              <div><dt>Frontend</dt><dd>Angular · React Native</dd></div>
-            </dl>
+      <!-- MoJ + Mirafh -->
+      <article class="card proj spot reveal" data-c="gov" id="p-moj">
+        <div class="media">
+          <div class="frame tilt"><div class="bar"><i></i><i></i><i></i><span>moj.gov.sa · mirafh.sa</span></div>
+            <div class="mock" aria-hidden="true">
+              <div class="row"><div class="box"><b>Requests</b><span class="num">1,284</span><div class="bar-p"><i style="width:64%"></i></div></div><div class="box"><b>In review</b><span class="num">312</span><div class="bar-p"><i style="width:28%"></i></div></div><div class="box"><b>Closed</b><span class="num">972</span><div class="bar-p"><i style="width:82%"></i></div></div></div>
+              <div class="row"><div class="box"><div class="ln a w60"></div><div class="ln w80"></div><div class="ln w40"></div><div class="ln w80"></div></div><div class="box"><div class="ln a w40"></div><div class="ln w60"></div><div class="ln w80"></div><div class="ln w60"></div></div></div>
+            </div>
+            <span class="illus-note" data-i18n="illus">Illustration</span>
           </div>
+        </div>
+        <div class="p-body">
+          <div class="org"><span>Saudi Azm</span><span class="pill gated"><span class="d"></span><span data-i18n="st.restricted">Restricted</span></span></div>
+          <h3 data-i18n="moj.t">Ministry of Justice &amp; Mirafh Portal</h3>
+          <div class="alt-name ar-text">وزارة العدل · بوابة مرافه</div>
+          <p data-i18n="moj.p">Front-end delivery on Ministry of Justice platforms, plus Mirafh, an enterprise portal built from Figma and Adobe XD on a design system shared across web and mobile.</p>
+          <ul class="hl"><li data-i18n="moj.h1">Reusable component library and design tokens</li><li data-i18n="moj.h2">Responsive from 360px to wide desktop</li><li data-i18n="moj.h3">One UI language for web and React Native</li></ul>
+          <div class="tags"><span class="tag">Angular</span><span class="tag">React Native</span><span class="tag">Design system</span></div>
         </div>
       </article>
 
-      <!-- Bareeq -->
-      <article class="card proj reveal" data-c="oss">
-        <div class="proj-head"><h3>Bareeq Al-Aeeq</h3><div class="ar">بريق العقيق</div><span class="period">Personal product · 2026 · Open source</span></div>
-        <div class="proj-body">
-          <figure class="shot" data-full="assets/bareeq.jpg" tabindex="0" role="button" aria-label="Enlarge Bareeq repository screenshot"><div class="bar"><i></i><i></i><i></i><span>github.com/oriieebgSmile96/angular</span></div><img src="assets/bareeq.jpg" alt="GitHub repository with mobile, portal, web and shared design-tokens folders" loading="lazy"><span class="zoom">🔍 Enlarge</span></figure>
-          <div class="desc">
-            <p>A multi-platform product on one architecture: an Angular 21 web app and admin portal using Signals and modular feature design, plus an Expo (React Native) mobile client. All of them share design tokens.</p>
-            <dl class="spec">
-              <div><dt>Key features</dt><dd><ul><li>Monorepo: <code>web</code>, <code>portal</code>, <code>mobile</code>, <code>shared/design-tokens</code></li><li>Signals-first state, no NgRx boilerplate</li><li>One token source themes web and mobile</li></ul></dd></div>
-              <div><dt>GitHub</dt><dd><a href="https://github.com/oriieebgSmile96/angular" target="_blank" rel="noopener">oriieebgSmile96/angular</a><span class="access live">● Public</span></dd></div>
-              <div><dt>Frontend</dt><dd>Angular 21 · Signals · SCSS</dd></div>
-              <div><dt>Mobile</dt><dd>Expo · React Native · TypeScript</dd></div>
-            </dl>
+      <!-- Shepherd HR -->
+      <article class="card proj spot reveal" data-c="saas" id="p-hr">
+        <div class="media">
+          <div class="frame tilt"><div class="bar"><i></i><i></i><i></i><span>shepherd · hr suite</span></div>
+            <div class="mock" aria-hidden="true">
+              <div class="row"><div class="box"><b>Payroll run · Oct</b><span class="num">JOD 248,900</span><div class="bar-p"><i style="width:90%"></i></div></div><div class="box"><b>Review cycle</b><span class="num">86%</span><div class="bar-p"><i style="width:86%"></i></div></div></div>
+              <div class="row"><div class="box"><div class="row" style="justify-content:space-between"><b>Employees</b><span class="chip-s">412</span></div><div class="ln a w80"></div><div class="ln w60"></div><div class="ln w80"></div><div class="ln w40"></div></div><div class="box"><div class="row" style="justify-content:space-between"><b>Goals</b><span class="chip-s">Q4</span></div><div class="ln w60"></div><div class="ln a w40"></div><div class="ln w80"></div></div></div>
+            </div>
+            <span class="illus-note" data-i18n="illus">Illustration</span>
           </div>
+          <span class="float">🔁 <span data-i18n="hr.float">AngularJS → 8 → 14</span></span>
+        </div>
+        <div class="p-body">
+          <div class="org"><span>Shepherd Technologies</span><span class="pill gated"><span class="d"></span><span data-i18n="st.customer">Customer sign-in</span></span></div>
+          <h3 data-i18n="hr.t">HR Solution · Payroll &amp; Performance</h3>
+          <p data-i18n="hr.p">A cloud human-capital-management suite covering time tracking, payroll and performance. I shipped new features, fixed bugs and improved performance across three generations of the codebase: AngularJS (1.x), Angular 8 and Angular 14.</p>
+          <ul class="hl"><li data-i18n="hr.h1">New features in the Payroll and Performance modules</li><li data-i18n="hr.h2">Bug fixing and performance tuning in the legacy AngularJS code</li><li data-i18n="hr.h3">Upgrades and refactors through Angular 8 and 14</li></ul>
+          <div class="tags"><span class="tag">AngularJS</span><span class="tag">Angular 8</span><span class="tag">Angular 14</span><span class="tag">REST</span></div>
+          <div class="p-actions"><button class="btn primary" data-case="p-hr" data-i18n="btn.case">Read case study</button></div>
+        </div>
+        <div class="case">
+          <section><h4>🎯 <span data-i18n="cs.c">Challenge</span></h4><p data-i18n="hr.c">A live HR product spread across AngularJS, Angular 8 and Angular 14, where payroll mistakes are not an option.</p></section>
+          <section><h4>🛠 <span data-i18n="cs.a">What I did</span></h4><ul><li data-i18n="hr.a1">Built new payroll and performance features</li><li data-i18n="hr.a2">Fixed production bugs across all three stacks</li><li data-i18n="hr.a3">Improved rendering and load performance</li></ul></section>
+          <section><h4>🌱 <span data-i18n="cs.r">Outcome</span></h4><p data-i18n="hr.r">A faster, more maintainable HR suite that kept shipping while it was being modernised.</p></section>
+        </div>
+      </article>
+
+      <!-- Shepherd e-learning -->
+      <article class="card proj spot reveal" data-c="saas" id="p-lms">
+        <div class="media">
+          <div class="frame tilt"><div class="bar"><i></i><i></i><i></i><span>shepherd · e-learning</span></div>
+            <div class="mock" aria-hidden="true">
+              <div class="row">
+                <div class="course"><div class="th" style="background:linear-gradient(135deg,#6d4aff,#ffb8d6)"></div><div><b>Onboarding 101</b><div class="bar-p"><i style="width:100%"></i></div></div></div>
+                <div class="course"><div class="th" style="background:linear-gradient(135deg,#0c7c5f,#bfe0ff)"></div><div><b>Security basics</b><div class="bar-p"><i style="width:60%"></i></div></div></div>
+                <div class="course"><div class="th" style="background:linear-gradient(135deg,#cf6a10,#ffe6a3)"></div><div><b>Leadership</b><div class="bar-p"><i style="width:25%"></i></div></div></div>
+              </div>
+              <div class="row"><div class="box"><b>My learning</b><div class="ln a w80"></div><div class="ln w60"></div></div><div class="box"><b>Certificates</b><span class="num">3</span></div></div>
+            </div>
+            <span class="illus-note" data-i18n="illus">Illustration</span>
+          </div>
+        </div>
+        <div class="p-body">
+          <div class="org"><span>Shepherd Technologies</span><span class="pill gated"><span class="d"></span><span data-i18n="st.customer">Customer sign-in</span></span></div>
+          <h3 data-i18n="lms.t">E-Learning System</h3>
+          <p data-i18n="lms.p">An e-learning platform that sits alongside the HR suite, so organisations can train their people where they already manage them.</p>
+          <ul class="hl"><li data-i18n="lms.h1">Course catalogue and learning screens</li><li data-i18n="lms.h2">Enrolment and learner progress</li><li data-i18n="lms.h3">Features, fixes and performance work</li></ul>
+          <div class="tags"><span class="tag">Angular</span><span class="tag">REST</span><span class="tag">a11y</span></div>
         </div>
       </article>
 
       <!-- Tahaluf -->
-      <article class="card proj reveal" data-c="saas">
-        <div class="proj-head"><h3>Low-Code Business Automation Platform</h3><span class="period">Tahaluf Al Emarat Technical Solutions · 2023</span></div>
-        <div class="proj-body">
-          <figure class="shot"><div class="bar"><i></i><i></i><i></i><span>internal · low-code studio</span></div><div class="mock"><div><div class="big">🧩</div><b>Form &amp; Workflow Designer</b><span>Internal enterprise product</span></div></div></figure>
-          <div class="desc">
-            <p>Tahaluf is a UAE company that delivers digital transformation, AI and workflow automation to government and enterprise clients. I built core modules of their low-code / no-code automation platform.</p>
-            <dl class="spec">
-              <div><dt>Key features</dt><dd><ul><li>Drag-and-drop form and workflow designer modules</li><li>Lower initial page load and memory overhead</li><li>Fixed UI integration defects across modules</li></ul></dd></div>
-              <div><dt>Frontend</dt><dd>Angular 16 · PrimeNG · RxJS</dd></div>
-              <div><dt>Access</dt><dd><span class="access gated">● Internal product</span></dd></div>
-            </dl>
+      <article class="card proj spot reveal" data-c="saas" id="p-tahaluf">
+        <div class="media">
+          <div class="frame tilt"><div class="bar"><i></i><i></i><i></i><span>tahaluf · low-code studio</span></div>
+            <div class="mock" aria-hidden="true">
+              <div class="row" style="align-items:center;justify-content:center;gap:6px"><span class="node on">Form</span><span class="arrow">→</span><span class="node">Approve</span><span class="arrow">→</span><span class="node">Notify</span><span class="arrow">→</span><span class="node on">Done</span></div>
+              <div class="row"><div class="box"><b>Fields</b><div class="ln a w60"></div><div class="ln w80"></div><div class="ln w40"></div></div><div class="box"><b>Rules</b><div class="ln w80"></div><div class="ln a w40"></div><div class="ln w60"></div></div><div class="box"><b>Preview</b><div class="ln w60"></div><div class="ln w80"></div></div></div>
+            </div>
+            <span class="illus-note" data-i18n="illus">Illustration</span>
           </div>
         </div>
-      </article>
-
-      <!-- Shepherd -->
-      <article class="card proj reveal" data-c="saas">
-        <div class="proj-head"><h3>HCM Suite · Payroll &amp; Performance</h3><span class="period">Shepherd Technologies · 2021 – 2023</span></div>
-        <div class="proj-body">
-          <figure class="shot"><div class="bar"><i></i><i></i><i></i><span>app · payroll / performance</span></div><div class="mock"><div><div class="big">📊</div><b>Payroll &amp; Performance</b><span>B2B SaaS · customer sign-in</span></div></div></figure>
-          <div class="desc">
-            <p>Shepherd builds cloud human-capital software covering time tracking, payroll and performance management. I delivered the Payroll and Performance single-page apps and refactored the legacy front end.</p>
-            <dl class="spec">
-              <div><dt>Key features</dt><dd><ul><li>Payroll runs, payslips and adjustments</li><li>Performance review cycles and goals</li><li>Accessibility and speed refactor of legacy code</li></ul></dd></div>
-              <div><dt>Frontend</dt><dd>Angular · TypeScript · REST APIs</dd></div>
-              <div><dt>Access</dt><dd><span class="access gated">● Customer sign-in</span></dd></div>
-            </dl>
-          </div>
+        <div class="p-body">
+          <div class="org"><span>Tahaluf Al Emarat · UAE</span><span class="pill gated"><span class="d"></span><span data-i18n="st.internal">Internal product</span></span></div>
+          <h3 data-i18n="th.t">Low-Code Business Automation</h3>
+          <p data-i18n="th.p">Core modules of a low-code / no-code automation platform for UAE government and enterprise: form and workflow designers that let business teams build processes without code.</p>
+          <ul class="hl"><li data-i18n="th.h1">Designer modules in Angular 16 and PrimeNG</li><li data-i18n="th.h2">Reduced initial page load and memory overhead</li><li data-i18n="th.h3">Reported PrimeNG defects upstream with reproducers</li></ul>
+          <div class="tags"><span class="tag">Angular 16</span><span class="tag">PrimeNG</span><span class="tag">RxJS</span></div>
         </div>
       </article>
 
       <!-- PenguinIN -->
-      <article class="card proj reveal" data-c="saas">
-        <div class="proj-head"><h3>Indoor Navigation CMS</h3><span class="period">PenguinIN · 2020 – 2021</span></div>
-        <div class="proj-body">
-          <figure class="shot" data-full="assets/penguinin.jpg" tabindex="0" role="button" aria-label="Enlarge PenguinIN screenshot"><div class="bar"><i></i><i></i><i></i><span>penguinin.com</span></div><img src="assets/penguinin.jpg" alt="PenguinIN indoor and campus-wide navigation website" loading="lazy" style="object-position:50% 100%"><span class="zoom">🔍 Enlarge</span></figure>
-          <div class="desc">
-            <p>PenguinIN powers PenNav (turn-by-turn indoor navigation) and PenTrack (sub-metre real-time tracking) for hospitals, universities, malls and airports. I built the CMS venue teams use to manage maps and points of interest.</p>
-            <dl class="spec">
-              <div><dt>Key features</dt><dd><ul><li>Floor-plan and POI editing on interactive maps</li><li>Venue, building and floor management</li><li>Content APIs consumed by the PenNav apps</li></ul></dd></div>
-              <div><dt>Company</dt><dd><a href="https://penguinin.com" target="_blank" rel="noopener">penguinin.com</a><span class="access live">● Public site</span></dd></div>
-              <div><dt>Frontend</dt><dd>React · OpenLayers</dd></div>
-              <div><dt>Backend</dt><dd>Node.js · PostgreSQL</dd></div>
-            </dl>
-          </div>
+      <article class="card proj spot reveal" data-c="saas" id="p-penguin">
+        <div class="media">
+          <figure class="frame tilt" data-full="assets/penguinin.jpg" tabindex="0" role="button" aria-label="Enlarge screenshot" data-i18n-attr="aria-label:zoom.aria"><div class="bar"><i></i><i></i><i></i><span>penguinin.com</span></div><img src="assets/penguinin.jpg" alt="PenguinIN indoor and campus-wide navigation website" loading="lazy" style="object-position:50% 100%" width="799" height="506"><span class="zoom" data-i18n="zoom">🔍 Enlarge</span></figure>
+        </div>
+        <div class="p-body">
+          <div class="org"><span>PenguinIN</span><span class="pill live"><span class="d"></span><span data-i18n="st.site">Public site</span></span></div>
+          <h3 data-i18n="pg.t">Indoor Navigation CMS</h3>
+          <p data-i18n="pg.p">The CMS behind PenNav and PenTrack indoor positioning for hospitals, universities, malls and airports. Venue teams use it to manage maps and points of interest.</p>
+          <ul class="hl"><li data-i18n="pg.h1">Floor-plan and POI editing on interactive maps</li><li data-i18n="pg.h2">Venue, building and floor management</li><li data-i18n="pg.h3">Node.js and PostgreSQL content APIs</li></ul>
+          <div class="tags"><span class="tag">React</span><span class="tag">OpenLayers</span><span class="tag">Node.js</span><span class="tag">PostgreSQL</span></div>
+          <div class="p-actions"><a class="btn" href="https://penguinin.com" target="_blank" rel="noopener" data-i18n="btn.visit">Visit ↗</a></div>
         </div>
       </article>
+
+      <!-- Bareeq -->
+      <article class="card proj spot reveal" data-c="oss" id="p-bareeq">
+        <div class="media">
+          <figure class="frame tilt" data-full="assets/bareeq.jpg" tabindex="0" role="button" aria-label="Enlarge screenshot" data-i18n-attr="aria-label:zoom.aria"><div class="bar"><i></i><i></i><i></i><span>github.com/oriebalzyuot96/angular</span></div><img src="assets/bareeq.jpg" alt="GitHub repository with mobile, portal, web and shared design-tokens folders" loading="lazy" width="799" height="506"><span class="zoom" data-i18n="zoom">🔍 Enlarge</span></figure>
+          <span class="float">💎 <span data-i18n="bq.float">Open source</span></span>
+        </div>
+        <div class="p-body">
+          <div class="org"><span data-i18n="bq.org">Personal product · 2026</span><span class="pill live"><span class="d"></span><span data-i18n="st.public2">Public repo</span></span></div>
+          <h3 data-i18n="bq.t">Bareeq Al-Aeeq</h3>
+          <div class="alt-name ar-text">بريق العقيق</div>
+          <p data-i18n="bq.p">A multi-platform monorepo: an Angular 21 web app and admin portal on Signals, plus an Expo (React Native) client. All of them are themed from one design-token source.</p>
+          <ul class="hl"><li><code>web</code> · <code>portal</code> · <code>mobile</code> · <code>shared/design-tokens</code></li><li data-i18n="bq.h2">Signals-first state, no store boilerplate</li><li data-i18n="bq.h3">One token source for web and mobile</li></ul>
+          <div class="tags"><span class="tag">Angular 21</span><span class="tag">Signals</span><span class="tag">Expo</span><span class="tag">TypeScript</span></div>
+          <div class="p-actions"><a class="btn" href="https://github.com/oriebalzyuot96/angular" target="_blank" rel="noopener" data-i18n="btn.code">View code ↗</a></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── open source ───────── -->
+<section class="sec" id="oss" aria-labelledby="ossT">
+  <div class="wrap">
+    <div class="sec-title reveal"><span class="kicker" data-i18n="os.k">giving back</span><h2 id="ossT" data-i18n="os.t">Open-source radar</h2><p data-i18n="os.p">When a library breaks in production, I report it upstream with a reproducer instead of quietly working around it.</p></div>
+    <div class="oss">
+      <a class="card issue spot reveal" href="https://github.com/mozilla/pdf.js/issues/20306" target="_blank" rel="noopener"><span class="lib">📄</span><div><h3><span>Mozilla pdf.js</span><span class="ltr" style="color:var(--accent)">#20306</span><span class="pill live"><span class="d"></span><span data-i18n="os.res">Resolved</span></span></h3><p data-i18n="os.1">PDFs stopped rendering on iPhone 15 Pro after the 5.4 upgrade while iPhone 11 still worked. I isolated the device-specific regression.</p></div></a>
+      <a class="card issue spot reveal" href="https://github.com/primefaces/primeng/issues/13468" target="_blank" rel="noopener"><span class="lib">🎨</span><div><h3><span>PrimeNG</span><span class="ltr" style="color:var(--accent)">#13468</span><span class="pill live"><span class="d"></span><span data-i18n="os.res">Resolved</span></span></h3><p data-i18n="os.2">ContextMenu items could no longer be swapped at right-click time after the processedItems internals changed.</p></div></a>
+      <a class="card issue spot reveal" href="https://github.com/primefaces/primeng/issues/13479" target="_blank" rel="noopener"><span class="lib">🎨</span><div><h3><span>PrimeNG</span><span class="ltr" style="color:var(--accent)">#13479</span><span class="pill live"><span class="d"></span><span data-i18n="os.res">Resolved</span></span></h3><p data-i18n="os.3">Dialog drag broke when the cursor crossed into the body, so the handle disappeared mid-drag.</p></div></a>
+      <a class="card issue spot reveal" href="https://github.com/primefaces/primeng/issues/13506" target="_blank" rel="noopener"><span class="lib">🎨</span><div><h3><span>PrimeNG</span><span class="ltr" style="color:var(--accent)">#13506</span><span class="pill live"><span class="d"></span><span data-i18n="os.closed">Closed</span></span></h3><p data-i18n="os.4">Proposed server-side lazy loading for Dropdown virtual scroll (page index and size on scroll-to-end).</p></div></a>
     </div>
   </div>
 </section>
 
 <!-- ───────── career ───────── -->
-<section class="sec alt" id="career">
+<section class="sec alt" id="career" aria-labelledby="careerT">
   <div class="wrap">
-    <div class="sec-title reveal"><span class="kicker">where I've been</span><br><h2>Career</h2></div>
-    <div class="timeline">
-      <div class="job reveal"><span class="dot">AZM</span><div class="card">
-        <div class="when">Nov 2023 – Present · Remote</div>
-        <h3>Saudi Azm <span>· Senior Front-End &amp; Full-Stack Developer</span></h3>
-        <p class="co">Riyadh IT company founded in 2017 and listed on the Saudi Nomu market since 2022. It builds digital-government, fintech and process-automation platforms.</p>
+    <div class="sec-title reveal"><span class="kicker" data-i18n="cr.k">where I've been</span><h2 id="careerT" data-i18n="cr.t">Career</h2></div>
+    <div class="timeline" id="timeline">
+      <div class="rail" aria-hidden="true"><i></i></div>
+      <div class="job reveal"><span class="dot">AZM</span><div class="card spot">
+        <div class="when"><span data-i18n="j1.when">Nov 2023 – Present · Remote</span><span class="pill live"><span class="d"></span><span data-i18n="j1.now">Current</span></span></div>
+        <h3>Saudi Azm <span data-i18n="j1.role">· Senior Front-End &amp; Full-Stack Developer</span></h3>
+        <p class="co" data-i18n="j1.co">A Riyadh digital-government and fintech company founded in 2017 and listed on the Saudi Nomu market since 2022.</p>
         <ul>
-          <li>Lead end-to-end front-end architecture for large enterprise web and mobile apps, from Figma / Adobe XD to production.</li>
-          <li>Drive migration of legacy apps to Angular v21/v22 with Signals for faster rendering and long-term maintainability.</li>
-          <li>Introduced Docker for front-end projects: reproducible environments and secure, consistent CI/CD.</li>
-          <li>Build and scale .NET Core and Node.js microservices on Azure; design REST APIs and PostgreSQL integrations.</li>
-          <li>Ship cross-platform features in React Native.</li>
+          <li data-i18n="j1.b1">Lead end-to-end front-end architecture for government and fintech platforms, from Figma / Adobe XD to production.</li>
+          <li data-i18n="j1.b2">Drive migrations of legacy apps to Angular v21/v22 with Signals for faster rendering and long-term maintainability.</li>
+          <li data-i18n="j1.b3">Introduced Docker across front-end projects: reproducible environments and secure, consistent CI/CD.</li>
+          <li data-i18n="j1.b4">Build .NET Core and Node.js microservices on Azure; design REST APIs and PostgreSQL integrations.</li>
+          <li data-i18n="j1.b5">Ship cross-platform features in React Native; run technical reviews and sprint planning.</li>
         </ul>
+        <div class="prods"><span class="tag" data-i18n="b.wasl">Wasl financing</span><span class="tag" data-i18n="b.sba">Saudi Bar Association</span><span class="tag" data-i18n="b.moj">Ministry of Justice</span><span class="tag" data-i18n="b.seac">Engineering Arbitration</span><span class="tag" data-i18n="b.contracts">Contracts e-sign</span><span class="tag" data-i18n="lg.mirafh">Mirafh</span></div>
       </div></div>
-      <div class="job reveal"><span class="dot">TAH</span><div class="card">
-        <div class="when">Jun 2023 – Nov 2023 · Amman</div>
-        <h3>Tahaluf Al Emarat <span>· Front-End Web Developer</span></h3>
-        <p class="co">UAE digital-transformation company delivering enterprise systems, AI and workflow automation to government and enterprise.</p>
-        <ul><li>Built key modules of a low-code / no-code automation platform in Angular 16 and PrimeNG.</li><li>Reduced initial page load and memory overhead and resolved UI integration bugs.</li></ul>
+      <div class="job reveal"><span class="dot">TAH</span><div class="card spot">
+        <div class="when"><span data-i18n="j2.when">Jun 2023 – Nov 2023 · Amman</span></div>
+        <h3>Tahaluf Al Emarat <span data-i18n="j2.role">· Front-End Web Developer</span></h3>
+        <p class="co" data-i18n="j2.co">A UAE digital-transformation company delivering enterprise systems, AI and workflow automation to government.</p>
+        <ul><li data-i18n="j2.b1">Built key modules of a low-code / no-code automation platform in Angular 16 and PrimeNG.</li><li data-i18n="j2.b2">Reduced initial page load and memory overhead; resolved UI integration bugs.</li></ul>
       </div></div>
-      <div class="job reveal"><span class="dot">SHP</span><div class="card">
-        <div class="when">Nov 2021 – Jun 2023 · Amman</div>
-        <h3>Shepherd Technologies <span>· Front-End Web Developer</span></h3>
-        <p class="co">Cloud human-capital-management vendor: time tracking, payroll, performance and task management.</p>
-        <ul><li>Delivered responsive SPAs for the Payroll and Performance modules with Angular and REST.</li><li>Refactored legacy code for accessibility, maintainability and speed.</li></ul>
+      <div class="job reveal"><span class="dot">SHP</span><div class="card spot">
+        <div class="when"><span data-i18n="j3.when">Nov 2021 – Jun 2023 · Amman</span></div>
+        <h3>Shepherd Technologies <span data-i18n="j3.role">· Front-End Web Developer</span></h3>
+        <p class="co" data-i18n="j3.co">A cloud human-capital-management vendor: time tracking, payroll, performance and e-learning.</p>
+        <ul>
+          <li data-i18n="j3.b1">Worked across AngularJS (1.x), Angular 8 and Angular 14 on the HR solution: new features, bug fixes and performance improvements.</li>
+          <li data-i18n="j3.b2">Delivered responsive Payroll and Performance SPAs on REST APIs.</li>
+          <li data-i18n="j3.b3">Contributed to the e-learning system: course, enrolment and progress screens.</li>
+          <li data-i18n="j3.b4">Refactored legacy code for accessibility, maintainability and speed.</li>
+        </ul>
+        <div class="prods"><span class="tag">AngularJS</span><span class="tag">Angular 8</span><span class="tag">Angular 14</span></div>
       </div></div>
-      <div class="job reveal"><span class="dot">PIN</span><div class="card">
-        <div class="when">Nov 2020 – Nov 2021 · Amman</div>
-        <h3>PenguinIN <span>· Full-Stack Web Developer</span></h3>
-        <p class="co">Indoor positioning company (PenNav, PenTrack) serving healthcare, education, hospitality and retail venues.</p>
-        <ul><li>Built indoor-navigation CMS products with Node.js, React, OpenLayers and PostgreSQL.</li></ul>
+      <div class="job reveal"><span class="dot">PIN</span><div class="card spot">
+        <div class="when"><span data-i18n="j4.when">Nov 2020 – Nov 2021 · Amman</span></div>
+        <h3>PenguinIN <span data-i18n="j4.role">· Full-Stack Web Developer</span></h3>
+        <p class="co" data-i18n="j4.co">An indoor positioning company (PenNav, PenTrack) serving healthcare, education and retail venues.</p>
+        <ul><li data-i18n="j4.b1">Built indoor-navigation CMS products with React, OpenLayers, Node.js and PostgreSQL.</li></ul>
       </div></div>
     </div>
     <div class="edu">
-      <div class="card reveal"><b>🎓 B.Sc. Communication &amp; Software Engineering</b><span>Al-Balqa Applied University · 2014–2018 · GPA 3.58/4 · ranked 2nd</span></div>
-      <div class="card reveal"><b>💻 Full-Stack Immersive</b><span>Hack Reactor curriculum · 12 weeks · Mar–Aug 2020</span></div>
-      <div class="card reveal"><b>✅ LinkedIn Verified Skills</b><span>Angular, React, Node.js, JavaScript, TypeScript, Git, Agile</span></div>
+      <div class="card spot reveal"><b data-i18n="e1.t">🎓 B.Sc. Communication &amp; Software Engineering</b><span data-i18n="e1.s">Al-Balqa Applied University · 2014–2018 · GPA 3.58/4 · ranked 2nd</span></div>
+      <div class="card spot reveal"><b data-i18n="e2.t">💻 Full-Stack Immersive</b><span data-i18n="e2.s">Hack Reactor curriculum · 12 weeks · 2020</span></div>
+      <div class="card spot reveal"><b data-i18n="e3.t">✅ LinkedIn Verified Skills</b><span data-i18n="e3.s">Angular, React, Node.js, JavaScript, TypeScript, Git, Agile</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── freelance services ───────── -->
+<section class="sec" id="services" aria-labelledby="svcT">
+  <div class="wrap">
+    <div class="sec-title reveal"><span class="kicker" data-i18n="sv.k">hire me</span><h2 id="svcT" data-i18n="sv.t">Freelance &amp; contract services</h2><p data-i18n="sv.p">Available remotely for teams in Saudi Arabia, the Gulf, Jordan and Europe, either full-time or as a freelance Senior Front-End / Angular developer.</p></div>
+    <div class="svc-grid">
+      <article class="card svc spot reveal"><span class="ico">🔁</span><h3 data-i18n="sv.1t">Angular migration</h3><p data-i18n="sv.1">AngularJS or legacy Angular to Angular 21 with standalone components and Signals, step by step, without freezing feature work.</p></article>
+      <article class="card svc spot reveal"><span class="ico">🏗️</span><h3 data-i18n="sv.2t">Front-end architecture</h3><p data-i18n="sv.2">Feature boundaries, design systems and tokens, typed API contracts and CI/CD for large Angular or React codebases.</p></article>
+      <article class="card svc spot reveal"><span class="ico">📱</span><h3 data-i18n="sv.3t">React Native apps</h3><p data-i18n="sv.3">Expo / React Native apps that share logic and design tokens with your web platform.</p></article>
+      <article class="card svc spot reveal"><span class="ico">♿</span><h3 data-i18n="sv.4t">Accessibility &amp; Arabic RTL</h3><p data-i18n="sv.4">WCAG audits and fixes, plus Arabic-first RTL interfaces that feel native, not mirrored.</p></article>
+    </div>
+    <div class="cta reveal" style="margin-top:34px"><a class="btn primary" href="mailto:alzuotorieb9999@gmail.com?subject=Project%20enquiry" data-i18n="sv.cta">Start a project ✉️</a><a class="btn" href="https://wa.me/962775853203" target="_blank" rel="noopener" data-i18n="sv.cta2">WhatsApp me</a></div>
+  </div>
+</section>
+
+<!-- ───────── archiving ───────── -->
+<section class="sec" id="archiving" aria-labelledby="archT">
+  <div class="wrap">
+    <div class="sec-title reveal"><span class="kicker" data-i18n="ar.k">find me online</span><h2 id="archT" data-i18n="ar.t">Archiving</h2></div>
+    <div class="arch">
+      <a class="card spot reveal" href="https://github.com/oriebalzyuot96" target="_blank" rel="noopener">
+        <div class="logo"><span class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.6.2 2.8.1 3.2.8.8 1.2 1.9 1.2 3.1 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg></span>GitHub</div>
+        <div class="url">github.com/oriebalzyuot96</div>
+        <p data-i18n="ar.gh">Source code and open-source work:</p>
+        <ul><li data-i18n="ar.gh1">Bareeq Al-Aeeq: Angular 21 + Expo monorepo</li><li data-i18n="ar.gh2">Bug reports to pdf.js and PrimeNG</li><li data-i18n="ar.gh3">Technical assessments and samples</li></ul>
+      </a>
+      <a class="card spot reveal" href="https://www.linkedin.com/in/orieb-alzyuot996" target="_blank" rel="noopener">
+        <div class="logo"><span class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.3c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V21H9z"/></svg></span>LinkedIn</div>
+        <div class="url">in/orieb-alzyuot996</div>
+        <p data-i18n="ar.li">Network, recommendations and verified skills:</p>
+        <ul><li>Angular · React · Node.js</li><li>JavaScript · TypeScript</li><li data-i18n="ar.li3">Git · Agile methodologies</li></ul>
+      </a>
+      <a class="card spot reveal" href="Orieb-Alzyuot-CV.pdf" target="_blank" rel="noopener">
+        <div class="logo"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></span><span data-i18n="ar.cv">CV</span></div>
+        <div class="url">Orieb-Alzyuot-CV.pdf</div>
+        <p data-i18n="ar.cvp">Senior CV, two pages, October 2026:</p>
+        <ul><li data-i18n="ar.cv1">Experience and delivered platforms</li><li data-i18n="ar.cv2">Open-source contributions</li><li data-i18n="ar.cv3">Education and certifications</li></ul>
+      </a>
     </div>
   </div>
 </section>
 
 <!-- ───────── contact ───────── -->
-<section class="sec" id="contact">
+<section class="sec" id="contact" style="padding-top:0" aria-labelledby="contactT">
   <div class="wrap">
     <div class="card contact reveal">
-      <img src="assets/orieb.jpg" alt="">
-      <h2>Let's build something together 💜</h2>
-      <p>Open to senior and lead front-end roles, full-stack product work, or a fixed-scope Angular migration.</p>
-      <div class="cta">
-        <a class="btn primary" href="mailto:alzuotorieb9999@gmail.com">✉️ Email me</a>
-        <a class="btn" href="https://wa.me/962775853203" target="_blank" rel="noopener">💬 WhatsApp</a>
-        <a class="btn" href="https://www.linkedin.com/in/orieb-alzyuot996" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn" href="https://github.com/oriieebgSmile96" target="_blank" rel="noopener">GitHub</a>
+      <div class="avatars"><img src="assets/orieb.jpg" alt="" width="96" height="96"></div>
+      <h2 id="contactT" data-i18n="ct2.t">Let's build something people trust 💜</h2>
+      <p data-i18n="ct2.p">Open to senior and lead front-end roles, full-stack product work, or a fixed-scope Angular migration.</p>
+      <div class="c-grid">
+        <div class="c-card"><small data-i18n="i.email">Email</small><a class="ltr" href="mailto:alzuotorieb9999@gmail.com"><span>alzuotorieb9999@gmail.com</span></a><button class="copy" data-copy="alzuotorieb9999@gmail.com" data-i18n="copy">Copy</button></div>
+        <div class="c-card"><small>WhatsApp</small><a class="ltr" href="https://wa.me/962775853203" target="_blank" rel="noopener"><span>+962 77585 3203</span></a><button class="copy" data-copy="+962775853203" data-i18n="copy">Copy</button></div>
+        <a class="c-card" href="https://www.linkedin.com/in/orieb-alzyuot996" target="_blank" rel="noopener"><small>LinkedIn</small><span class="ltr">in/orieb-alzyuot996 ↗</span></a>
+        <a class="c-card" href="https://github.com/oriebalzyuot96" target="_blank" rel="noopener"><small>GitHub</small><span class="ltr">oriebalzyuot96 ↗</span></a>
       </div>
-      <div class="avail"><span>🌍 Remote</span><span>✈️ Relocation</span><span>⏱ Full-time</span><span>🕐 Part-time</span><span>📦 Freelance</span></div>
+      <div class="avail"><span data-i18n="av.1">🌍 Remote</span><span data-i18n="av.2">✈️ Relocation</span><span data-i18n="av.3">⏱ Full-time</span><span data-i18n="av.4">🕐 Part-time</span><span data-i18n="av.5">📦 Freelance</span></div>
     </div>
   </div>
 </section>
 </main>
 
-<footer>© 2026 Orieb Alzyuot · Hand-built with HTML, CSS and a little JS · <a href="#home">Back to top ↑</a></footer>
+<footer><div class="wrap"><span>© 2026 Orieb Alzyuot · <span class="ar-text">عريب الزيوت</span></span><span data-i18n="ft.b">Hand-built: semantic HTML, CSS custom properties, vanilla JS. No framework, bilingual, accessible.</span></div></footer>
 
-<!-- floating buttons -->
-<button class="fab a11y" data-open-settings aria-label="Open accessibility settings" title="Accessibility (Ctrl+,)">
+<!-- floating -->
+<button class="fab a11y" data-open-settings aria-label="Open accessibility settings" data-i18n-attr="aria-label:a11y.aria" title="Ctrl + ,">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="4.5" r="1.8"/><path d="M5 8.5l7 1.5 7-1.5M12 10v5m0 0l-3.5 6.5M12 15l3.5 6.5"/></svg>
   <span class="count" data-count></span>
 </button>
-<button class="fab totop" id="toTop" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<button class="fab totop" id="toTop" aria-label="Back to top" data-i18n-attr="aria-label:top.aria"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="scrim" id="scrim"></div>
 
 <!-- settings drawer -->
-<div class="scrim" id="scrim"></div>
-<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dTitle" aria-hidden="true" inert>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dTitle" inert>
   <div class="dh">
-    <h2 id="dTitle"><span>♿</span>Display &amp; accessibility</h2>
-    <button class="ibtn" id="dClose" aria-label="Close settings">✕</button>
+    <h2 id="dTitle"><span class="ico">♿</span><span data-i18n="d.t">Display &amp; accessibility</span></h2>
+    <button class="ibtn" id="dClose" aria-label="Close" data-i18n-attr="aria-label:close">✕</button>
   </div>
   <div class="tabs" role="tablist">
-    <button role="tab" aria-selected="true" aria-controls="t-look" id="tb-look">🎨 Appearance</button>
-    <button role="tab" aria-selected="false" aria-controls="t-access" id="tb-access">♿ Access</button>
-    <button role="tab" aria-selected="false" aria-controls="t-keys" id="tb-keys">⌨️ Keys</button>
+    <button role="tab" aria-selected="true" aria-controls="t-look" id="tb-look">🎨<span data-i18n="d.look">Look</span></button>
+    <button role="tab" aria-selected="false" aria-controls="t-access" id="tb-access" tabindex="-1">♿<span data-i18n="d.access">Access</span></button>
+    <button role="tab" aria-selected="false" aria-controls="t-general" id="tb-general" tabindex="-1">🌐<span data-i18n="d.general">General</span></button>
+    <button role="tab" aria-selected="false" aria-controls="t-keys" id="tb-keys" tabindex="-1">⌨️<span data-i18n="d.keys">Keys</span></button>
   </div>
   <div class="db">
     <div role="tabpanel" id="t-look" aria-labelledby="tb-look">
-      <div class="grp"><span class="lbl" id="l-theme">Theme</span>
+      <div class="grp"><span class="lbl" id="l-theme" data-i18n="d.theme">Theme</span>
         <div class="seg" role="radiogroup" aria-labelledby="l-theme" data-pref="theme">
-          <button role="radio" data-v="light">☀️<span>Light</span></button><button role="radio" data-v="dark">🌙<span>Dark</span></button><button role="radio" data-v="system">🖥<span>System</span></button>
+          <button role="radio" data-v="light">☀️<span data-i18n="d.light">Light</span></button><button role="radio" data-v="dark">🌙<span data-i18n="d.dark">Dark</span></button><button role="radio" data-v="system">🖥<span data-i18n="d.system">System</span></button>
         </div></div>
-      <div class="grp"><span class="lbl" id="l-accent">Accent colour</span>
+      <div class="grp"><span class="lbl" id="l-accent" data-i18n="d.accent">Accent colour</span>
         <div class="swatches" role="radiogroup" aria-labelledby="l-accent" data-pref="accent">
-          <button class="sw" role="radio" data-v="lavender" aria-label="Lavender" style="background:#7c5cff"></button>
-          <button class="sw" role="radio" data-v="lilac" aria-label="Lilac" style="background:#9b4dca"></button>
-          <button class="sw" role="radio" data-v="rose" aria-label="Rose" style="background:#d63a7a"></button>
-          <button class="sw" role="radio" data-v="ocean" aria-label="Ocean" style="background:#2563eb"></button>
-          <button class="sw" role="radio" data-v="mint" aria-label="Mint" style="background:#0f8a6a"></button>
-          <button class="sw" role="radio" data-v="amber" aria-label="Amber" style="background:#b45309"></button>
+          <button class="sw" role="radio" data-v="lavender" aria-label="Lavender" style="background:#6d4aff"></button>
+          <button class="sw" role="radio" data-v="lilac" aria-label="Lilac" style="background:#9340c4"></button>
+          <button class="sw" role="radio" data-v="rose" aria-label="Rose" style="background:#cf2f71"></button>
+          <button class="sw" role="radio" data-v="ocean" aria-label="Ocean" style="background:#2058d8"></button>
+          <button class="sw" role="radio" data-v="mint" aria-label="Mint" style="background:#0c7c5f"></button>
+          <button class="sw" role="radio" data-v="amber" aria-label="Amber" style="background:#a64b07"></button>
         </div></div>
-      <div class="grp"><span class="lbl" id="l-font">Text size</span>
+      <div class="grp"><span class="lbl" id="l-font" data-i18n="d.size">Text size</span>
         <div class="seg" role="radiogroup" aria-labelledby="l-font" data-pref="font">
-          <button role="radio" data-v="s"><span style="font-size:.8rem">A</span><span>Small</span></button><button role="radio" data-v="m"><span>A</span><span>Normal</span></button><button role="radio" data-v="l"><span style="font-size:1.15rem">A</span><span>Large</span></button><button role="radio" data-v="xl"><span style="font-size:1.3rem">A</span><span>X-Large</span></button>
+          <button role="radio" data-v="s"><span style="font-size:.8rem">A</span><span data-i18n="d.s">Small</span></button><button role="radio" data-v="m"><span>A</span><span data-i18n="d.m">Normal</span></button><button role="radio" data-v="l"><span style="font-size:1.15rem">A</span><span data-i18n="d.l">Large</span></button><button role="radio" data-v="xl"><span style="font-size:1.3rem">A</span><span data-i18n="d.xl">X-Large</span></button>
         </div></div>
     </div>
     <div role="tabpanel" id="t-access" aria-labelledby="tb-access" hidden>
-      <div class="grp"><span class="lbl" id="l-contrast">Contrast</span><p class="hint">For low vision or colour sensitivity.</p>
+      <div class="grp"><span class="lbl" id="l-contrast" data-i18n="d.contrast">Contrast</span><p class="hint" data-i18n="d.contrastH">For low vision or colour sensitivity.</p>
         <div class="seg" role="radiogroup" aria-labelledby="l-contrast" data-pref="contrast">
-          <button role="radio" data-v="none">◐<span>Normal</span></button><button role="radio" data-v="yellow">🟨<span>Yellow</span></button><button role="radio" data-v="grayscale">⬛<span>Gray</span></button><button role="radio" data-v="invert">🔄<span>Invert</span></button>
+          <button role="radio" data-v="none">◐<span data-i18n="d.normal">Normal</span></button><button role="radio" data-v="yellow">🟨<span data-i18n="d.yellow">Yellow</span></button><button role="radio" data-v="grayscale">⬛<span data-i18n="d.gray">Gray</span></button><button role="radio" data-v="invert">🔄<span data-i18n="d.invert">Invert</span></button>
         </div></div>
-      <div class="grp"><span class="lbl" id="l-motion">Motion</span>
+      <div class="grp"><span class="lbl" id="l-motion" data-i18n="d.motion">Motion</span>
         <div class="seg" role="radiogroup" aria-labelledby="l-motion" data-pref="motion">
-          <button role="radio" data-v="system">🖥<span>System</span></button><button role="radio" data-v="full">✨<span>Full</span></button><button role="radio" data-v="reduced">⏸<span>Reduced</span></button>
+          <button role="radio" data-v="system">🖥<span data-i18n="d.system">System</span></button><button role="radio" data-v="full">✨<span data-i18n="d.full">Full</span></button><button role="radio" data-v="reduced">⏸<span data-i18n="d.reduced">Reduced</span></button>
         </div></div>
-      <div class="grp"><span class="lbl">Reading aids</span>
-        <button class="toggle" role="switch" data-pref="readable"><span><b>Readable font</b><small>Atkinson Hyperlegible, designed for low vision</small></span><span class="switch"></span></button>
-        <button class="toggle" role="switch" data-pref="links"><span><b>Highlight links</b><small>Underline and mark every link</small></span><span class="switch"></span></button>
-        <button class="toggle" role="switch" data-pref="spacing"><span><b>Wide spacing</b><small>More letter, word and line spacing</small></span><span class="switch"></span></button>
-        <button class="toggle" role="switch" data-pref="cursor"><span><b>Big cursor</b><small>Larger, high-contrast pointer</small></span><span class="switch"></span></button>
+      <div class="grp"><span class="lbl" data-i18n="d.aids">Reading aids</span>
+        <button class="toggle" role="switch" data-pref="readable"><span><b data-i18n="d.readable">Readable font</b><small data-i18n="d.readableH">Atkinson Hyperlegible, designed for low vision</small></span><span class="switch"></span></button>
+        <button class="toggle" role="switch" data-pref="links"><span><b data-i18n="d.links">Highlight links</b><small data-i18n="d.linksH">Underline and mark every link</small></span><span class="switch"></span></button>
+        <button class="toggle" role="switch" data-pref="spacing"><span><b data-i18n="d.spacing">Wide spacing</b><small data-i18n="d.spacingH">More letter, word and line spacing</small></span><span class="switch"></span></button>
+        <button class="toggle" role="switch" data-pref="cursor"><span><b data-i18n="d.cursor">Big cursor</b><small data-i18n="d.cursorH">Larger, high-contrast pointer</small></span><span class="switch"></span></button>
       </div>
+    </div>
+    <div role="tabpanel" id="t-general" aria-labelledby="tb-general" hidden>
+      <div class="grp"><span class="lbl" id="l-lang" data-i18n="d.lang">Language</span>
+        <div class="seg" role="radiogroup" aria-labelledby="l-lang" data-pref="lang">
+          <button role="radio" data-v="en" lang="en">🇬🇧<span>English</span></button><button role="radio" data-v="ar" lang="ar">🇯🇴<span>العربية</span></button>
+        </div>
+        <p class="hint" style="margin-top:10px" data-i18n="d.langH">Arabic switches the whole layout to right-to-left.</p></div>
     </div>
     <div role="tabpanel" id="t-keys" aria-labelledby="tb-keys" hidden>
       <ul class="keys">
-        <li>Open / close these settings<span><kbd>Ctrl</kbd><kbd>,</kbd></span></li>
-        <li>Toggle dark mode<span><kbd>Alt</kbd><kbd>T</kbd></span></li>
-        <li>Close dialog or image<span><kbd>Esc</kbd></span></li>
-        <li>Skip to content<span><kbd>Tab</kbd> on load</span></li>
-        <li>Go to section 1–6<span><kbd>Alt</kbd><kbd>1</kbd>…<kbd>6</kbd></span></li>
+        <li><span data-i18n="k.cmd">Command palette</span><span><kbd>Ctrl</kbd><kbd>K</kbd></span></li>
+        <li><span data-i18n="k.set">These settings</span><span><kbd>Ctrl</kbd><kbd>,</kbd></span></li>
+        <li><span data-i18n="k.theme">Toggle dark mode</span><span><kbd>Alt</kbd><kbd>T</kbd></span></li>
+        <li><span data-i18n="k.lang">Switch language</span><span><kbd>Alt</kbd><kbd>L</kbd></span></li>
+        <li><span data-i18n="k.sec">Jump to section</span><span><kbd>Alt</kbd><kbd>1</kbd>…<kbd>7</kbd></span></li>
+        <li><span data-i18n="k.esc">Close any dialog</span><span><kbd>Esc</kbd></span></li>
       </ul>
     </div>
   </div>
-  <div class="df"><button class="btn" id="reset">↺ Reset all</button><button class="btn primary" id="done">Done</button></div>
+  <div class="df"><button class="btn" id="reset" data-i18n="d.reset">↺ Reset all</button><button class="btn primary" id="done" data-i18n="d.done">Done</button></div>
 </aside>
 
-<!-- lightbox -->
-<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Screenshot preview"><button id="lbClose" aria-label="Close preview">✕</button><img alt=""><p></p></div>
+<!-- command palette -->
+<div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Command palette" data-i18n-attr="aria-label:cmd.aria">
+  <div class="q"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="pq" type="text" role="combobox" aria-expanded="true" aria-controls="plist" aria-autocomplete="list" placeholder="Search sections, projects, actions…" data-i18n-attr="placeholder:cmd.ph" autocomplete="off"></div>
+  <ul id="plist" role="listbox"></ul>
+  <div class="foot"><span><kbd>↑</kbd><kbd>↓</kbd> <span data-i18n="cmd.nav">navigate</span></span><span><kbd>Enter</kbd> <span data-i18n="cmd.open">open</span></span><span><kbd>Esc</kbd> <span data-i18n="cmd.close">close</span></span></div>
+</div>
 
-<script>
-(function(){
-  const root=document.documentElement, $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-  const DEF={theme:'system',accent:'lavender',font:'m',contrast:'none',motion:'system',readable:false,links:false,spacing:false,cursor:false};
-  let prefs=Object.assign({},DEF);
-  try{Object.assign(prefs,JSON.parse(localStorage.getItem('oa-prefs')||'{}'))}catch(e){}
+<!-- modal -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Details">
+  <div class="sheet" id="sheet"></div>
+</div>
 
-  function apply(){
-    for(const k in DEF){
-      const v=prefs[k], neutral=(v===DEF[k]);
-      if(k==='theme'){v==='system'?root.removeAttribute('data-theme'):root.setAttribute('data-theme',v);continue}
-      neutral?root.removeAttribute('data-'+k):root.setAttribute('data-'+k,v===true?'on':v);
-    }
-    $$('[data-pref]').forEach(g=>{const k=g.dataset.pref;
-      if(g.getAttribute('role')==='switch')g.setAttribute('aria-checked',!!prefs[k]);
-      else g.querySelectorAll('[data-v]').forEach(b=>{const on=b.dataset.v===String(prefs[k]);b.setAttribute('aria-checked',on);b.tabIndex=on?0:-1});
-    });
-    const n=['font','contrast','motion','readable','links','spacing','cursor'].filter(k=>prefs[k]!==DEF[k]).length;
-    $$('[data-count]').forEach(c=>{c.textContent=n;c.classList.toggle('show',n>0)});
-    try{localStorage.setItem('oa-prefs',JSON.stringify(prefs))}catch(e){}
-  }
-  function isDark(){return prefs.theme==='dark'||(prefs.theme==='system'&&matchMedia('(prefers-color-scheme: dark)').matches)}
-  function toggleTheme(){prefs.theme=isDark()?'light':'dark';apply()}
-
-  // controls
-  $$('[data-pref]').forEach(g=>{const k=g.dataset.pref;
-    if(g.getAttribute('role')==='switch'){g.onclick=()=>{prefs[k]=!prefs[k];apply()};return}
-    g.addEventListener('click',e=>{const b=e.target.closest('[data-v]');if(b){prefs[k]=b.dataset.v;apply()}});
-    g.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key))return;e.preventDefault();
-      const bs=[...g.querySelectorAll('[data-v]')],i=bs.findIndex(b=>b.dataset.v===String(prefs[k]));
-      const d=(e.key==='ArrowRight'||e.key==='ArrowDown')?1:-1, nb=bs[(i+d+bs.length)%bs.length];prefs[k]=nb.dataset.v;apply();nb.focus()});
-  });
-  $('#themeBtn').onclick=toggleTheme;
-  $('#reset').onclick=()=>{prefs=Object.assign({},DEF);apply()};
-
-  // drawer
-  const drawer=$('#drawer'),scrim=$('#scrim');let lastFocus=null;
-  function openD(){lastFocus=document.activeElement;drawer.classList.add('open');scrim.classList.add('open');drawer.removeAttribute('inert');drawer.setAttribute('aria-hidden','false');setTimeout(()=>$('#dClose').focus(),50)}
-  function closeD(){drawer.classList.remove('open');scrim.classList.remove('open');drawer.setAttribute('inert','');drawer.setAttribute('aria-hidden','true');lastFocus&&lastFocus.focus()}
-  $$('[data-open-settings]').forEach(b=>b.onclick=openD);
-  [$('#dClose'),$('#done'),scrim].forEach(el=>el.onclick=closeD);
-  drawer.addEventListener('keydown',e=>{if(e.key!=='Tab')return;const f=[...drawer.querySelectorAll('button:not([tabindex="-1"]),[href]')].filter(x=>x.offsetParent!==null);
-    if(!f.length)return;const a=f[0],z=f[f.length-1];if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}});
-  const tabs=$$('.tabs [role=tab]');
-  tabs.forEach((t,i)=>{t.onclick=()=>{tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;$('#'+x.getAttribute('aria-controls')).hidden=!on})};
-    t.onkeydown=e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){const n=tabs[(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length];n.click();n.focus()}}});
-
-  // lightbox
-  const lb=$('#lb');let lbFrom=null;
-  function openLb(f){lbFrom=f;const img=f.querySelector('img');lb.querySelector('img').src=f.dataset.full;lb.querySelector('img').alt=img.alt;lb.querySelector('p').textContent=img.alt;lb.classList.add('open');$('#lbClose').focus()}
-  function closeLb(){lb.classList.remove('open');lbFrom&&lbFrom.focus()}
-  $$('.shot[data-full]').forEach(f=>{f.onclick=()=>openLb(f);f.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openLb(f)}}});
-  $('#lbClose').onclick=closeLb;lb.onclick=e=>{if(e.target===lb)closeLb()};
-
-  // keyboard shortcuts
-  const secs=['home','about','skills','archiving','projects','career'];
-  document.addEventListener('keydown',e=>{
-    if((e.ctrlKey||e.metaKey)&&e.key===','){e.preventDefault();drawer.classList.contains('open')?closeD():openD()}
-    else if(e.key==='Escape'){if(lb.classList.contains('open'))closeLb();else if(drawer.classList.contains('open'))closeD()}
-    else if(e.altKey&&(e.key==='t'||e.key==='T')){e.preventDefault();toggleTheme()}
-    else if(e.altKey&&/^[1-6]$/.test(e.key)){e.preventDefault();document.getElementById(secs[+e.key-1]).scrollIntoView()}
-  });
-
-  // skill badges (Simple Icons)
-  $$('.badges').forEach(b=>{b.innerHTML=b.dataset.icons.split(',').map(s=>{const[ic,label,star]=s.split(':');
-    return `<span class="badge${star?' star':''}"><img src="https://cdn.jsdelivr.net/npm/simple-icons@11/icons/${ic}.svg" alt="" loading="lazy" onerror="this.remove()">${label}</span>`}).join('')});
-
-  // filters
-  $$('.chip').forEach(c=>c.onclick=()=>{$$('.chip').forEach(x=>x.setAttribute('aria-pressed',x===c));
-    const f=c.dataset.f;$$('.proj').forEach(p=>p.hidden=f!=='all'&&p.dataset.c!==f)});
-
-  // header, to-top, active nav
-  const hdr=$('#hdr'),top=$('#toTop');
-  const onScroll=()=>{hdr.classList.toggle('scrolled',scrollY>10);top.classList.toggle('show',scrollY>600)};
-  addEventListener('scroll',onScroll,{passive:true});onScroll();
-  top.onclick=()=>scrollTo({top:0});
-  const links=$$('.menu a');
-  const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
-  secs.forEach(id=>so.observe(document.getElementById(id)));
-
-  // reveal
-  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});
-  $$('.reveal').forEach(el=>io.observe(el));
-
-  apply();
-})();
-</script>
+<script src="i18n.ar.js" defer></script>
+<script src="app.js" defer></script>
 </body>
 </html>
