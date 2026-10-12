@@ -219,6 +219,21 @@ const t = useT(Astro.currentLocale);
         <button class="chip" aria-pressed="false" data-f="rbk">🎓 <span><Fragment set:html={t('f.rbk')} /></span> <span class="c" data-n="rbk"></span></button>
       </div>
       <div class="projects">
+  <article class="card proj spot reveal" data-c="oss" id="p-nawa">
+          <div class="media">
+            <figure class="frame tilt" data-full="/assets/nawa-ui.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>oriebalzyuot96.github.io/nawa-ui</span></div><img src="/assets/nawa-ui.jpg" alt={t('nw.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
+            <span class="float">🧩 <span><Fragment set:html={t('nw.float')} /></span></span>
+          </div>
+          <div class="p-body">
+            <div class="org"><span><Fragment set:html={t('nw.org')} /></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('st.live')} /></span></span></div>
+            <h3><Fragment set:html={t('nw.t')} /></h3>
+            <p><Fragment set:html={t('nw.p')} /></p>
+            <ul class="hl"><li><Fragment set:html={t('nw.h1')} /></li><li><Fragment set:html={t('nw.h2')} /></li><li><Fragment set:html={t('nw.h3')} /></li></ul>
+            <div class="tags"><span class="tag">React</span><span class="tag">Vue</span><span class="tag">Svelte</span><span class="tag">Angular</span><span class="tag">React Native</span><span class="tag">Charts</span><span class="tag">WCAG 2.2</span></div>
+            <div class="p-actions"><a class="btn primary" href={Astro.currentLocale === 'ar' ? 'https://oriebalzyuot96.github.io/nawa-ui/ar/' : 'https://oriebalzyuot96.github.io/nawa-ui/'} target="_blank" rel="noopener"><Fragment set:html={t('nw.docs')} /></a><a class="btn" href="https://github.com/oriebalzyuot96/nawa-ui" target="_blank" rel="noopener"><Fragment set:html={t('nw.gh')} /></a></div>
+          </div>
+        </article>
+
   <article class="card proj spot reveal" data-c="sample" id="p-sample3">
           <div class="media">
             <figure class="frame tilt" data-full="/assets/sample3.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>oriebalzyuot96.github.io/sample-3</span></div><img src="/assets/sample3.jpg" alt={t('s3.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
@@ -246,6 +261,21 @@ const t = useT(Astro.currentLocale);
             <ul class="hl"><li><Fragment set:html={t('bg.h1')} /></li><li><Fragment set:html={t('bg.h2')} /></li><li><Fragment set:html={t('bg.h3')} /></li></ul>
             <div class="tags"><span class="tag">Three.js</span><span class="tag">WebGL</span><span class="tag">Scroll animation</span><span class="tag">i18n · RTL</span><span class="tag">a11y</span></div>
             <div class="p-actions"><a class="btn primary" href={Astro.currentLocale === 'ar' ? '/samples/burger/ar/' : '/samples/burger/'} target="_blank" rel="noopener"><Fragment set:html={t('btn.live')} /></a></div>
+          </div>
+        </article>
+
+  <article class="card proj spot reveal" data-c="sample" id="p-descent">
+          <div class="media">
+            <figure class="frame tilt" data-full="/assets/descent.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>oriebalzyuot96.github.io/samples/descent</span></div><img src="/assets/descent.jpg" alt={t('ds.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
+            <span class="float">🪼 <span><Fragment set:html={t('ds.float')} /></span></span>
+          </div>
+          <div class="p-body">
+            <div class="org"><span><Fragment set:html={t('ds.org')} /></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('st.live')} /></span></span></div>
+            <h3><Fragment set:html={t('ds.t')} /></h3>
+            <p><Fragment set:html={t('ds.p')} /></p>
+            <ul class="hl"><li><Fragment set:html={t('ds.h1')} /></li><li><Fragment set:html={t('ds.h2')} /></li><li><Fragment set:html={t('ds.h3')} /></li></ul>
+            <div class="tags"><span class="tag">Three.js</span><span class="tag">WebGL</span><span class="tag">Cursor-reactive</span><span class="tag">Scroll storytelling</span><span class="tag">a11y</span></div>
+            <div class="p-actions"><a class="btn primary" href={Astro.currentLocale === 'ar' ? '/samples/descent/ar/' : '/samples/descent/'} target="_blank" rel="noopener"><Fragment set:html={t('btn.live')} /></a></div>
           </div>
         </article>
 
@@ -339,7 +369,7 @@ const t = useT(Astro.currentLocale);
             <div class="alt-name ar-text">مخبز جود داي</div>
             <p><Fragment set:html={t('bk.p')} /></p>
             <ul class="hl"><li><Fragment set:html={t('bk.h1')} /></li><li><Fragment set:html={t('bk.h2')} /></li><li><Fragment set:html={t('bk.h3')} /></li></ul>
-            <div class="tags"><span class="tag">Vanilla JS · ES modules</span><span class="tag">Cart & checkout</span><span class="tag">Form validation</span><span class="tag">i18n · RTL</span><span class="tag">a11y</span></div>
+            <div class="tags"><span class="tag">React 19 · TypeScript</span><span class="tag">Three.js</span><span class="tag">Custom UI kit</span><span class="tag">i18n · RTL</span><span class="tag">a11y</span></div>
             <div class="p-actions"><a class="btn primary" href={Astro.currentLocale === 'ar' ? '/samples/bakery/?lang=ar' : '/samples/bakery/'} target="_blank" rel="noopener"><Fragment set:html={t('btn.live')} /></a></div>
           </div>
         </article>
@@ -355,7 +385,7 @@ const t = useT(Astro.currentLocale);
             <div class="alt-name ar-text">بتاع كلّو</div>
             <p><Fragment set:html={t('b3.p')} /></p>
             <ul class="hl"><li><Fragment set:html={t('b3.h1')} /></li><li><Fragment set:html={t('b3.h2')} /></li><li><Fragment set:html={t('b3.h3')} /></li></ul>
-            <div class="tags"><span class="tag">Vanilla JS · ES modules</span><span class="tag">Search & filters</span><span class="tag">Booking flow</span><span class="tag">i18n · RTL</span><span class="tag">a11y</span></div>
+            <div class="tags"><span class="tag">Next.js 15 · static export</span><span class="tag">Three.js</span><span class="tag">Custom UI kit</span><span class="tag">i18n · RTL</span><span class="tag">a11y</span></div>
             <div class="p-actions"><a class="btn primary" href={Astro.currentLocale === 'ar' ? '/samples/bta3klo/?lang=ar' : '/samples/bta3klo/'} target="_blank" rel="noopener"><Fragment set:html={t('btn.live')} /></a></div>
           </div>
         </article>
@@ -371,7 +401,7 @@ const t = useT(Astro.currentLocale);
             <div class="alt-name ar-text">ترافلنجي</div>
             <p><Fragment set:html={t('tv.p')} /></p>
             <ul class="hl"><li><Fragment set:html={t('tv.h1')} /></li><li><Fragment set:html={t('tv.h2')} /></li><li><Fragment set:html={t('tv.h3')} /></li></ul>
-            <div class="tags"><span class="tag">Vanilla JS · ES modules</span><span class="tag">SVG map</span><span class="tag">Trip planner</span><span class="tag">i18n · RTL</span><span class="tag">a11y</span></div>
+            <div class="tags"><span class="tag">Svelte 5 · TypeScript</span><span class="tag">Three.js 3D map</span><span class="tag">Custom UI kit</span><span class="tag">i18n · RTL</span><span class="tag">a11y</span></div>
             <div class="p-actions"><a class="btn primary" href={Astro.currentLocale === 'ar' ? '/samples/travelnji/?lang=ar' : '/samples/travelnji/'} target="_blank" rel="noopener"><Fragment set:html={t('btn.live')} /></a></div>
           </div>
         </article>
@@ -387,7 +417,7 @@ const t = useT(Astro.currentLocale);
             <div class="alt-name ar-text">احجز معلّم</div>
             <p><Fragment set:html={t('gf.p')} /></p>
             <ul class="hl"><li><Fragment set:html={t('gf.h1')} /></li><li><Fragment set:html={t('gf.h2')} /></li><li><Fragment set:html={t('gf.h3')} /></li></ul>
-            <div class="tags"><span class="tag">Vanilla JS · ES modules</span><span class="tag">Two-sided flow</span><span class="tag">Live preview</span><span class="tag">i18n · RTL</span><span class="tag">a11y</span></div>
+            <div class="tags"><span class="tag">React 19 · Vite</span><span class="tag">Three.js</span><span class="tag">Custom UI kit</span><span class="tag">i18n · RTL</span><span class="tag">a11y</span></div>
             <div class="p-actions"><a class="btn primary" href={Astro.currentLocale === 'ar' ? '/samples/greenfield/?lang=ar' : '/samples/greenfield/'} target="_blank" rel="noopener"><Fragment set:html={t('btn.live')} /></a></div>
           </div>
         </article>
