@@ -1,0 +1,61 @@
+---
+/* Clean, import-friendly article layout (Medium "Import a story" reads the <article> element). */
+const { frontmatter } = Astro.props;
+const SITE = 'https://oriebalzyuot96.github.io';
+const url = SITE + Astro.url.pathname;
+const ld = {
+  '@context': 'https://schema.org', '@type': 'BlogPosting', headline: frontmatter.title, description: frontmatter.description,
+  datePublished: frontmatter.date, author: { '@type': 'Person', name: 'Orieb Alzyuot', url: SITE }, image: SITE + '/assets/orieb.jpg', mainEntityOfPage: url,
+};
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{frontmatter.title} · Orieb Alzyuot</title>
+<meta name="description" content={frontmatter.description}>
+<meta name="author" content="Orieb Alzyuot">
+<link rel="canonical" href={url}>
+<meta property="og:type" content="article">
+<meta property="og:title" content={frontmatter.title}>
+<meta property="og:description" content={frontmatter.description}>
+<meta property="og:url" content={url}>
+<meta property="og:image" content={SITE + '/assets/orieb.jpg'}>
+<meta property="article:author" content="Orieb Alzyuot">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.css">
+<script type="application/ld+json" set:html={JSON.stringify(ld)} />
+<style>
+  :root{--ink:#1d1a2b;--ink2:#4f4968;--acc:#6d4aff;--soft:#f3efff;--line:#e6e1f5;--bg:#fff;color-scheme:light dark}
+  @media (prefers-color-scheme:dark){:root{--ink:#f2efff;--ink2:#bdb5dc;--acc:#b9a7ff;--soft:#211a3a;--line:#2f2850;--bg:#120e20}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.75 Pretendard,system-ui,sans-serif}
+  header,footer{max-width:760px;margin:0 auto;padding:22px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:15px}
+  header a,footer a{color:var(--acc);text-decoration:none;font-weight:700}
+  article{overflow-wrap:break-word;max-width:760px;margin:0 auto;padding:10px 20px 40px}
+  .meta{color:var(--ink2);font-size:15px;margin-bottom:8px}
+  h1{font-size:clamp(32px,5vw,46px);line-height:1.12;letter-spacing:-.03em;margin:.2em 0 .5em}
+  h2{font-size:28px;letter-spacing:-.02em;margin:1.8em 0 .5em;line-height:1.25}
+  a{color:var(--acc);overflow-wrap:anywhere}
+  p,li{color:var(--ink)}
+  blockquote{margin:1.4em 0;padding:.6em 1.2em;border-inline-start:4px solid var(--acc);background:var(--soft);border-radius:0 12px 12px 0}
+  pre{max-width:100%;padding:16px 18px;border-radius:12px;overflow-x:auto;font-size:14.5px;line-height:1.6}
+  code{font-family:"JetBrains Mono",Consolas,monospace;font-size:.88em}
+  :not(pre)>code{background:var(--soft);padding:.12em .4em;border-radius:6px}
+  table{border-collapse:collapse;width:100%;font-size:16px;margin:1.2em 0;display:block;overflow-x:auto}
+  th,td{border:1px solid var(--line);padding:8px 12px;text-align:start}
+  th{background:var(--soft)}
+  hr{border:0;border-top:1px solid var(--line);margin:2em 0}
+  img{max-width:100%;height:auto}
+</style>
+</head>
+<body>
+<header><a href="/">← Orieb Alzyuot</a><a href="/#contact">Hire me</a></header>
+<article>
+  <div class="meta">By Orieb Alzyuot · {new Date(frontmatter.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })} · {frontmatter.readTime}</div>
+  <slot />
+</article>
+<footer><span>© 2026 Orieb Alzyuot</span><a href="/">oriebalzyuot96.github.io</a></footer>
+</body>
+</html>
