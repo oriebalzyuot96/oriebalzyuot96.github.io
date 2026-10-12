@@ -1,0 +1,60 @@
+---
+/* Public StackBlitz projects and CodePen pens: bug reproductions, component experiments and CSS demos. */
+const ar = Astro.currentLocale === 'ar';
+const L = (en: string, a: string) => (ar ? a : en);
+const blitz = [
+  { u: 'https://stackblitz.com/edit/angular-date-picker-component-kz15oo', t: 'Angular Date Picker', d: L('Custom date picker with an input mask, opening from the field or a form-field trigger.', 'منتقي تاريخ مخصّص بقناع إدخال، يفتح من الحقل أو من زر الحقل.'), m: L('443 views · 4 forks', '443 مشاهدة · 4 نسخ'), tag: 'Angular' },
+  { u: 'https://stackblitz.com/edit/x5xydd-djqqiy', t: 'PrimeNG ContextMenu', d: L('Reproduction for my PrimeNG report #13468: swapping menu items at right-click time.', 'إعادة إنتاج لبلاغي في PrimeNG رقم ‎#13468: تبديل عناصر القائمة عند النقر بالزر الأيمن.'), m: L('Bug reproduction', 'إعادة إنتاج خطأ'), tag: 'PrimeNG' },
+  { u: 'https://stackblitz.com/edit/angular-pdfjs-mozilla-vkf25ow3', t: 'Angular + pdf.js', d: L('Isolated the pdf.js rendering regression on newer iPhones (pdf.js #20306).', 'عزل خطأ عرض pdf.js على أجهزة iPhone الأحدث (pdf.js ‎#20306).'), m: L('Bug reproduction', 'إعادة إنتاج خطأ'), tag: 'pdf.js' },
+  { u: 'https://stackblitz.com/edit/65h6nx-6emdb2', t: 'PrimeNG Tree Checkbox', d: L('Tree selection with checkboxes: partial states and selection sync.', 'شجرة اختيار بمربعات تحديد: الحالات الجزئية ومزامنة الاختيار.'), m: L('Component experiment', 'تجربة مكوّن'), tag: 'PrimeNG' },
+  { u: 'https://stackblitz.com/edit/vitejs-vite-d8zod5uq', t: 'Read-only editor tooltip', d: L('A tooltip that tells users why an editor is read-only.', 'تلميح يوضّح للمستخدم سبب كون المحرّر للقراءة فقط.'), m: L('UX pattern', 'نمط تجربة مستخدم'), tag: 'Vite · TS' },
+  { u: 'https://stackblitz.com/edit/angular-ivy-hbyqzm', t: 'PDF editor', d: L('In-browser PDF viewing and annotation experiment in Angular.', 'تجربة عرض ملفات PDF والتعليق عليها داخل المتصفح بـ Angular.'), m: L('Experiment', 'تجربة'), tag: 'Angular' },
+];
+const pens = [
+  { u: 'https://codepen.io/oriebalzyuot96/pen/bGXLqGo', t: 'Wheel Gallery', d: L('A rotating image gallery in pure CSS, no JavaScript.', 'معرض صور دوّار بـ CSS فقط، دون JavaScript.'), tag: 'CSS only' },
+  { u: 'https://codepen.io/oriebalzyuot96/pen/eYwXpzY', t: 'Conic Gradient Loader', d: L('A loader built with conic-gradient and masks.', 'مؤشّر تحميل مبني بـ conic-gradient والأقنعة.'), tag: 'CSS' },
+  { u: 'https://codepen.io/oriebalzyuot96/pen/NWMrOPy', t: 'Custom Y-axis labels', d: L('Formatted, localised axis labels for dashboards.', 'تسميات محاور منسّقة ومترجمة للوحات البيانات.'), tag: 'Highcharts' },
+  { u: 'https://codepen.io/oriebalzyuot96/pen/LYmRjRX', t: 'Time-series demo', d: L('Zoomable time-series chart for live data.', 'رسم بياني زمني قابل للتكبير للبيانات المباشرة.'), tag: 'Highcharts' },
+  { u: 'https://codepen.io/oriebalzyuot96/pen/gOzwxrY', t: 'Chart annotations', d: L('Annotating events directly on a chart.', 'إضافة ملاحظات للأحداث مباشرة على الرسم.'), tag: 'Highcharts' },
+  { u: 'https://codepen.io/oriebalzyuot96/pen/mdLrMON', t: 'Numeric x-axis bug', d: L('Minimal reproduction sent to a vendor’s support team.', 'إعادة إنتاج مصغّرة أُرسلت لفريق دعم المزوّد.'), tag: L('Bug report', 'بلاغ خطأ') },
+];
+---
+<section class="sec" id="playgrounds" aria-labelledby="playT">
+  <div class="wrap">
+    <div class="sec-title reveal">
+      <span class="kicker">{L('playgrounds', 'ساحات التجربة')}</span>
+      <h2 id="playT">{L('StackBlitz & CodePen', 'StackBlitz و CodePen')}</h2>
+      <p>{L('Small, runnable proofs: bug reproductions I sent upstream, component experiments and pure-CSS demos. Open any of them and play.',
+            'نماذج صغيرة قابلة للتشغيل: إعادة إنتاج أخطاء أرسلتها للمكتبات، وتجارب مكوّنات، وعروض CSS خالصة. افتح أيًّا منها وجرّب.')}</p>
+    </div>
+    <div class="pg-cols">
+      <div class="pg-col reveal">
+        <div class="pg-head"><span class="pg-logo pg-sb" aria-hidden="true">⚡</span><h3>StackBlitz</h3><a class="btn" href="https://stackblitz.com/@oriebalzyuot96" target="_blank" rel="noopener">{L('All projects ↗', 'كل المشاريع ↗')}</a></div>
+        <ul class="pg-list">
+          {blitz.map(x => <li><a class="card pg spot" href={x.u} target="_blank" rel="noopener"><span class="pg-t"><b lang="en" dir="ltr">{x.t}</b><span class="tag">{x.tag}</span></span><span class="pg-d">{x.d}</span><span class="pg-m">{x.m}</span></a></li>)}
+        </ul>
+      </div>
+      <div class="pg-col reveal">
+        <div class="pg-head"><span class="pg-logo pg-cp" aria-hidden="true">✒️</span><h3>CodePen</h3><a class="btn" href="https://codepen.io/oriebalzyuot96" target="_blank" rel="noopener">{L('All pens ↗', 'كل الأعمال ↗')}</a></div>
+        <ul class="pg-list">
+          {pens.map(x => <li><a class="card pg spot" href={x.u} target="_blank" rel="noopener"><span class="pg-t"><b lang="en" dir="ltr">{x.t}</b><span class="tag">{x.tag}</span></span><span class="pg-d">{x.d}</span></a></li>)}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .pg-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px}
+  .pg-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .pg-head h3{margin:0;font-size:1.35rem;flex:1}
+  .pg-logo{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:20px}
+  .pg-sb{background:#1389fd22}.pg-cp{background:var(--soft)}
+  .pg-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+  .pg{display:grid;gap:4px;padding:14px 18px;text-decoration:none;color:inherit}
+  .pg-t{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .pg-t b{font-size:1.02rem}
+  .pg-d{color:var(--ink-2);font-size:.93rem}
+  .pg-m{color:var(--accent);font-weight:700;font-size:.82rem}
+  .pg:hover b{color:var(--accent)}
+  @media (max-width:860px){.pg-cols{grid-template-columns:1fr}}
+</style>
