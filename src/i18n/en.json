@@ -355,4 +355,14 @@
  "s3.h1": "Three.js hero (glossy knot, lattice, particle ring) reacting to mouse and scroll",
  "s3.h2": "Loader, word-by-word reveal, 3D counters, draggable work gallery, full-screen menu",
  "s3.h3": "English + Arabic RTL, synthesised UI sound, reduced-motion and no-WebGL fallbacks"
+,
+ "cv.org": "Mobile engineering exercise · 2026",
+ "cv.float": "React Native · Expo-free",
+ "cv.t": "Asset Conversion · AED ⇄ USDT",
+ "cv.alt": "Asset Conversion app on three screens: balances and amount entry in light mode, the quote review with fee breakdown, and the dark theme.",
+ "cv.p": "A React Native app for converting between AED and USDT. Live quotes with exact decimal maths, a 15-second quote expiry enforced in the UI and at confirmation, and a themed, accessible design system with light, dark and four colour palettes.",
+ "cv.h1": "Exact money maths: every example from the brief is an automated test, and amounts are always rounded down",
+ "cv.h2": "Safe async quotes: out-of-order responses are discarded, double confirmation is blocked, and failures can be simulated",
+ "cv.h3": "60 automated tests, WCAG AA contrast, reduced-motion and font-scaling support, plus a 3-minute demo video",
+ "cv.video": "Watch the demo ↗"
 }
