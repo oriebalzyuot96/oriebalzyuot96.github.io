@@ -457,5 +457,13 @@
  "nw.h2": "WCAG 2.2 AA focus and keyboard patterns, RTL and Arabic, skeletons, toasts, dialogs and a DataTable",
  "nw.h3": "Charts: Bar, Line, Area, Combo, Pie, Donut, Scatter, Bubble, Radar, Gauge and Waterfall, plus an organisation chart",
  "nw.docs": "Open docs ↗",
- "nw.gh": "GitHub ↗"
+ "nw.gh": "GitHub ↗",
+ "bn.org": "Personal product · EdTech · 2026",
+ "bn.float": "Bulbul cheers · Three.js garden",
+ "bn.t": "Bustan · A learning garden for kids and adults",
+ "bn.alt": "Bustan learning app: a cute 3D bird on a tree stump in the middle of a growing garden island, with lesson plots for Arabic, Quran, maths and languages.",
+ "bn.p": "My own Arabic-first learning app for the whole family. Kids grow a 3D garden as they learn Arabic letters, short surahs, maths and first words in English, Turkish and German. Adults get a calmer track with grammar, mental maths, streaks and stats.",
+ "bn.h1": "Letter tracing on canvas with stroke guidance, positional letter forms, harakat drag-and-drop blending, adaptive maths with a speed mode, and flashcards with spaced repetition",
+ "bn.h2": "Quran text bundled verbatim from Tanzil and checked byte-for-byte against Quran.com, with hide-and-recall memorisation, Alafasy recitation and simplified meanings that are clearly labelled",
+ "bn.h3": "100% custom accessible UI kit (combobox, switch, tabs, dialog, toasts), Arabic RTL + English UI, kid and adult profiles, parents' corner with a hold-to-open gate, all local with no AI"
 }

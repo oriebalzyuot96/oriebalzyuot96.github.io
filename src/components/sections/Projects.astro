@@ -294,6 +294,23 @@ const t = useT(Astro.currentLocale);
           </div>
         </article>
 
+  <article class="card proj spot reveal" data-c="oss" id="p-bustan">
+          <div class="media">
+            <figure class="frame tilt" data-full="/assets/bustan.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>oriebalzyuot96.github.io/samples/bustan</span></div><img src="/assets/bustan.jpg" alt={t('bn.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
+            <span class="float">🐦 <span><Fragment set:html={t('bn.float')} /></span></span>
+          </div>
+          <div class="p-body">
+            <div class="org"><span><Fragment set:html={t('bn.org')} /></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('st.live')} /></span></span></div>
+            <h3><Fragment set:html={t('bn.t')} /></h3>
+            <div class="alt-name ar-text">بستان</div>
+            <p><Fragment set:html={t('bn.p')} /></p>
+            <ul class="hl"><li><Fragment set:html={t('bn.h1')} /></li><li><Fragment set:html={t('bn.h2')} /></li><li><Fragment set:html={t('bn.h3')} /></li></ul>
+            <div class="tags"><span class="tag">React 19</span><span class="tag">Three.js</span><span class="tag">Arabic RTL</span><span class="tag">EdTech</span><span class="tag">Multilingual</span></div>
+            <div class="p-actions"><a class="btn primary" href={Astro.currentLocale === 'ar' ? '/samples/bustan/' : '/samples/bustan/?lang=en'} target="_blank" rel="noopener"><Fragment set:html={t('btn.live')} /></a></div>
+          </div>
+        </article>
+
+
 
   <article class="card proj spot reveal" data-c="oss" id="p-yanbu">
           <div class="media">
