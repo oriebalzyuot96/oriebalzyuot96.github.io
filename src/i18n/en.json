@@ -482,5 +482,15 @@
  "ng.h1": "The client is never trusted: puzzles render on the server and the answer is sealed with AES-256-GCM",
  "ng.h2": "Short-lived, single-use, HMAC-signed pass tokens verified on your own backend, like siteverify without the third party",
  "ng.h3": "Everyone can pass it: mouse, touch, full keyboard and a screen-reader alternative, in Arabic and English with RTL",
- "ng.site": "Open website ↗"
+ "ng.site": "Open website ↗",
+ "st.api": "Node.js API",
+ "na.org": "Backend · Node.js · 2026",
+ "na.float": "Sessions · sync · live boards",
+ "na.alt": "5min Refresh API: OpenAPI docs page and architecture diagram",
+ "na.t": "5min Refresh API · Production backend for the puzzle game",
+ "na.p": "A Fastify 5 + PostgreSQL API for 5min Refresh: accounts and guests, offline-first progress sync, streaks, XP and speed leaderboards streamed over SSE, and a daily challenge. Ships with OpenAPI docs, Docker, CI and a one-click Render blueprint.",
+ "na.h1": "Cookie sessions done right: argon2id, HttpOnly + Partitioned cookies, session rotation, CSRF tokens and strict CORS",
+ "na.h2": "Offline-first sync that merges conflict-free (max stars, best time) and never awards XP twice, with ETags and anti-cheat checks",
+ "na.h3": "Zod schemas drive validation and OpenAPI 3.1, with 89 tests at 94% coverage and a real Postgres run in CI",
+ "na.btn": "View API design"
 }
