@@ -688,3 +688,9 @@ footer.site-footer .wrap{display:block}
 #contact{padding-bottom:24px}
 
 .co-tag{display:inline-block;font-size:.72em;font-weight:800;letter-spacing:.02em;padding:2px 8px;border-radius:999px;background:var(--soft);color:var(--accent);margin-inline-end:6px;vertical-align:1px;white-space:nowrap}
+
+.pj-part+.pj-part{margin-top:72px}
+.pj-head{display:flex;gap:18px;align-items:flex-start;margin-bottom:28px}
+.pj-num{font:800 2.4rem/1 var(--mono,monospace);color:var(--accent);opacity:.85}
+.pj-head h3{margin:0;font-size:clamp(1.4rem,2.6vw,1.9rem);letter-spacing:-.02em}
+.pj-head p{margin:6px 0 0;color:var(--ink-2);max-width:68ch}

@@ -93,7 +93,7 @@
  "lv.p": "Proficient",
  "pj.k": "things I shipped",
  "pj.t": "Projects",
- "pj.p": "Real screenshots where the product is public. Most government flows sit behind national sign-in (Nafath), so private products are shown as labelled illustrations.",
+ "pj.p": "Two parts: products I delivered inside engineering teams, and work I designed and built myself end to end, as a senior UI/UX and front-end engineer.",
  "f.all": "All",
  "f.gov": "Government &amp; legal",
  "f.fin": "Fintech",
@@ -426,5 +426,10 @@
  "gf.p": "An enhanced 2026 rebuild of our 2020 RBK Greenfield team project: students find private tutors by subject and city, and teachers post ads with their subject, place and price. The rebuild completes both sides of the flow.",
  "gf.h1": "Subject chips with city, level, price and online filters; teacher pages with a weekly timetable to pick a slot",
  "gf.h2": "Validated \"connect\" requests with status tracking for students, and an inbox with accept for teachers",
- "gf.h3": "Ad editor with a live preview card, edit and delete; English and Arabic (RTL), light and dark, WCAG AA contrast"
+ "gf.h3": "Ad editor with a live preview card, edit and delete; English and Arabic (RTL), light and dark, WCAG AA contrast",
+ "pj.co.t": "Company projects",
+ "pj.co.p": "Government, fintech and enterprise products I delivered at Saudi Azm, Shepherd, Tahaluf and PenguinIN. Most flows sit behind national sign-in (Nafath), so private products are shown as labelled illustrations.",
+ "pj.own.t": "My own work · UI/UX design & build",
+ "pj.own.p": "Products, client sites and design samples I designed and built myself: UX, visual design, design systems, motion and code. Live demos where possible.",
+ "f.own": "Products & clients"
 }

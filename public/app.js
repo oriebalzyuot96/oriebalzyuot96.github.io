@@ -265,12 +265,15 @@
   });
 
   /* ───────── project filters ───────── */
-  const projs = $$('.proj');
-  $$('[data-n]').forEach(c => { const f = c.dataset.n; c.textContent = f === 'all' ? projs.length : projs.filter(p => p.dataset.c === f).length; });
-  $$('.chip').forEach(c => c.addEventListener('click', () => {
-    $$('.chip').forEach(x => x.setAttribute('aria-pressed', String(x === c)));
-    const f = c.dataset.f; projs.forEach(p => { p.hidden = f !== 'all' && p.dataset.c !== f; });
-  }));
+  // each part (company / own work) has its own filter row
+  $$('.pj-part').forEach(part => {
+    const projs = $$('.proj', part), chips = $$('.chip', part);
+    $$('[data-n]', part).forEach(c => { const f = c.dataset.n; c.textContent = f === 'all' ? projs.length : projs.filter(p => p.dataset.c === f).length; });
+    chips.forEach(c => c.addEventListener('click', () => {
+      chips.forEach(x => x.setAttribute('aria-pressed', String(x === c)));
+      const f = c.dataset.f; projs.forEach(p => { p.hidden = f !== 'all' && p.dataset.c !== f; });
+    }));
+  });
 
   /* ───────── hero motion ───────── */
   let words = ($('#rot')?.dataset.words || 'trust').split('|'), wi = 0;
