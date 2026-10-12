@@ -39,6 +39,7 @@ const DEMOS: Record<string, () => Promise<{ mount: (el: HTMLElement) => void }>>
   'custom-select': () => import('./demos/custom-select'),
   'a11y-modes': () => import('./demos/a11y-modes'),
   'xss-storage': () => import('./demos/xss-storage'),
+  'mfe-playground': () => import('./demos/mfe-playground'),
 };
 
 function mountDemos() {

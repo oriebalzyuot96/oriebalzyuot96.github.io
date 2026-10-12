@@ -3,6 +3,11 @@
 const ar = Astro.currentLocale === 'ar';
 const L = (en: string, a: string) => (ar ? a : en);
 const posts = [
+  { href: '/blog/micro-frontends-2026/', icon: '🧩', time: L('16 min read', 'قراءة 16 دقيقة'),
+    t: 'Micro-Frontends in 2026: When to Split, When to Use Storybook, and When You Just Need a Component Library',
+    p: L('A decision guide: Module Federation 2.0, Native Federation, import maps, Web Components and monorepos, a scoring checklist, the real costs, Storybook, and building a component library.',
+         'دليل لاتخاذ القرار: Module Federation 2.0 و Native Federation و import maps و Web Components والمستودعات الموحّدة، مع قائمة تقييم، والتكاليف الحقيقية، و Storybook، وبناء مكتبة مكوّنات.'),
+    tags: ['Micro-Frontends', 'Storybook', 'Design Systems'] },
   { href: '/blog/front-end-security-2026/', icon: '🔐', time: L('15 min read', 'قراءة 15 دقيقة'),
     t: 'Front-End Security in 2026: Cookies, Tokens, CAPTCHA and the Things We Get Wrong',
     p: L('HttpOnly cookies vs localStorage, CSRF, CSP and Trusted Types, SRI, route-param encryption, login hardening, and a checklist for building your own CAPTCHA.',
