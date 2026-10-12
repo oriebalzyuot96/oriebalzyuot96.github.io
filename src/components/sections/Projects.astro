@@ -12,6 +12,7 @@ const t = useT(Astro.currentLocale);
       <button class="chip" aria-pressed="false" data-f="saas">🏢 <span><Fragment set:html={t('f.saas')} /></span> <span class="c" data-n="saas"></span></button>
       <button class="chip" aria-pressed="false" data-f="oss">📱 <span><Fragment set:html={t('f.oss')} /></span> <span class="c" data-n="oss"></span></button>
       <button class="chip" aria-pressed="false" data-f="sample">✨ <span><Fragment set:html={t('f.sample')} /></span> <span class="c" data-n="sample"></span></button>
+      <button class="chip" aria-pressed="false" data-f="rbk">🎓 <span>{t('f.rbk')}</span> <span class="c" data-n="rbk"></span></button>
     </div>
 
     <div class="projects">
@@ -317,6 +318,75 @@ const t = useT(Astro.currentLocale);
           <div class="p-actions"><button class="btn primary" type="button" onclick="this.closest('.proj').querySelector('[data-full]').click()"><Fragment set:html={t('btn.shots')} /></button></div>
         </div>
       </article>
+
+      <!-- RBK rebuild: bakery -->
+      <article class="card proj spot reveal" data-c="rbk" id="p-bakery">
+        <div class="media">
+          <figure class="frame tilt" data-full="/assets/bakery.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>goodday · bakery shop</span></div><img src="/assets/bakery.jpg" alt={t('bk.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
+          <span class="float">🥐 <span><Fragment set:html={t('bk.float')} /></span></span>
+        </div>
+        <div class="p-body">
+          <div class="org"><span><Fragment set:html={t('bk.org')} /></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('st.live')} /></span></span></div>
+          <h3><Fragment set:html={t('bk.t')} /></h3>
+          <div class="alt-name ar-text">مخبز جود داي</div>
+          <p><Fragment set:html={t('bk.p')} /></p>
+          <ul class="hl"><li><Fragment set:html={t('bk.h1')} /></li><li><Fragment set:html={t('bk.h2')} /></li><li><Fragment set:html={t('bk.h3')} /></li></ul>
+          <div class="tags"><span class="tag">Vanilla JS · ES modules</span><span class="tag">Cart & checkout</span><span class="tag">Form validation</span><span class="tag">i18n · RTL</span><span class="tag">a11y</span></div>
+          <div class="p-actions"><a class="btn primary" href={Astro.currentLocale === 'ar' ? '/samples/bakery/?lang=ar' : '/samples/bakery/'} target="_blank" rel="noopener"><Fragment set:html={t('btn.live')} /></a></div>
+        </div>
+      </article>
+
+      <!-- RBK rebuild: bta3klo -->
+      <article class="card proj spot reveal" data-c="rbk" id="p-bta3klo">
+        <div class="media">
+          <figure class="frame tilt" data-full="/assets/bta3klo.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>bta3 kolo · home services</span></div><img src="/assets/bta3klo.jpg" alt={t('b3.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
+          <span class="float">🧰 <span><Fragment set:html={t('b3.float')} /></span></span>
+        </div>
+        <div class="p-body">
+          <div class="org"><span><Fragment set:html={t('b3.org')} /></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('st.live')} /></span></span></div>
+          <h3><Fragment set:html={t('b3.t')} /></h3>
+          <div class="alt-name ar-text">بتاع كلّو</div>
+          <p><Fragment set:html={t('b3.p')} /></p>
+          <ul class="hl"><li><Fragment set:html={t('b3.h1')} /></li><li><Fragment set:html={t('b3.h2')} /></li><li><Fragment set:html={t('b3.h3')} /></li></ul>
+          <div class="tags"><span class="tag">Vanilla JS · ES modules</span><span class="tag">Search & filters</span><span class="tag">Booking flow</span><span class="tag">i18n · RTL</span><span class="tag">a11y</span></div>
+          <div class="p-actions"><a class="btn primary" href={Astro.currentLocale === 'ar' ? '/samples/bta3klo/?lang=ar' : '/samples/bta3klo/'} target="_blank" rel="noopener"><Fragment set:html={t('btn.live')} /></a></div>
+        </div>
+      </article>
+
+      <!-- RBK rebuild: travelnji -->
+      <article class="card proj spot reveal" data-c="rbk" id="p-travelnji">
+        <div class="media">
+          <figure class="frame tilt" data-full="/assets/travelnji.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>travelnji · eco travel</span></div><img src="/assets/travelnji.jpg" alt={t('tv.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
+          <span class="float">🗺️ <span><Fragment set:html={t('tv.float')} /></span></span>
+        </div>
+        <div class="p-body">
+          <div class="org"><span><Fragment set:html={t('tv.org')} /></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('st.live')} /></span></span></div>
+          <h3><Fragment set:html={t('tv.t')} /></h3>
+          <div class="alt-name ar-text">ترافلنجي</div>
+          <p><Fragment set:html={t('tv.p')} /></p>
+          <ul class="hl"><li><Fragment set:html={t('tv.h1')} /></li><li><Fragment set:html={t('tv.h2')} /></li><li><Fragment set:html={t('tv.h3')} /></li></ul>
+          <div class="tags"><span class="tag">Vanilla JS · ES modules</span><span class="tag">SVG map</span><span class="tag">Trip planner</span><span class="tag">i18n · RTL</span><span class="tag">a11y</span></div>
+          <div class="p-actions"><a class="btn primary" href={Astro.currentLocale === 'ar' ? '/samples/travelnji/?lang=ar' : '/samples/travelnji/'} target="_blank" rel="noopener"><Fragment set:html={t('btn.live')} /></a></div>
+        </div>
+      </article>
+
+      <!-- RBK rebuild: greenfield -->
+      <article class="card proj spot reveal" data-c="rbk" id="p-greenfield">
+        <div class="media">
+          <figure class="frame tilt" data-full="/assets/greenfield.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>book a teacher · tutors</span></div><img src="/assets/greenfield.jpg" alt={t('gf.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
+          <span class="float">🎓 <span><Fragment set:html={t('gf.float')} /></span></span>
+        </div>
+        <div class="p-body">
+          <div class="org"><span><Fragment set:html={t('gf.org')} /></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('st.live')} /></span></span></div>
+          <h3><Fragment set:html={t('gf.t')} /></h3>
+          <div class="alt-name ar-text">احجز معلّم</div>
+          <p><Fragment set:html={t('gf.p')} /></p>
+          <ul class="hl"><li><Fragment set:html={t('gf.h1')} /></li><li><Fragment set:html={t('gf.h2')} /></li><li><Fragment set:html={t('gf.h3')} /></li></ul>
+          <div class="tags"><span class="tag">Vanilla JS · ES modules</span><span class="tag">Two-sided flow</span><span class="tag">Live preview</span><span class="tag">i18n · RTL</span><span class="tag">a11y</span></div>
+          <div class="p-actions"><a class="btn primary" href={Astro.currentLocale === 'ar' ? '/samples/greenfield/?lang=ar' : '/samples/greenfield/'} target="_blank" rel="noopener"><Fragment set:html={t('btn.live')} /></a></div>
+        </div>
+      </article>
+
     </div>
   </div>
 </section>
