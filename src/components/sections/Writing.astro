@@ -3,6 +3,26 @@
 const ar = Astro.currentLocale === 'ar';
 const L = (en: string, a: string) => (ar ? a : en);
 const posts = [
+  { href: '/blog/front-end-security-2026/', icon: '🔐', time: L('15 min read', 'قراءة 15 دقيقة'),
+    t: 'Front-End Security in 2026: Cookies, Tokens, CAPTCHA and the Things We Get Wrong',
+    p: L('HttpOnly cookies vs localStorage, CSRF, CSP and Trusted Types, SRI, route-param encryption, login hardening, and a checklist for building your own CAPTCHA.',
+         'الكوكيز HttpOnly مقابل localStorage، وهجمات CSRF، وسياسة CSP و Trusted Types، وتشفير معاملات المسار، وتقوية تسجيل الدخول، وقائمة تحقق لبناء CAPTCHA خاص بك.'),
+    tags: ['Security', 'Cookies', 'CAPTCHA'] },
+  { href: '/blog/accessibility-that-ships/', icon: '♿', time: L('13 min read', 'قراءة 13 دقيقة'),
+    t: 'Accessibility That Ships: A Senior Front-End Checklist',
+    p: L('WCAG 2.2 in practice: semantics, focus, keyboard patterns, an accessible custom select, live regions, contrast modes, and Arabic RTL. With live demos.',
+         'معايير WCAG 2.2 عمليًا: البنية الدلالية، والتركيز، وأنماط لوحة المفاتيح، وقائمة اختيار مخصّصة سهلة الوصول، وأوضاع التباين، والعربية من اليمين لليسار. مع عروض تفاعلية.'),
+    tags: ['Accessibility', 'WCAG 2.2', 'RTL'] },
+  { href: '/blog/theming-done-right/', icon: '🌗', time: L('12 min read', 'قراءة 12 دقيقة'),
+    t: 'Theming Done Right: Light, Dark, Brand Palettes and User Preferences',
+    p: L('Token tiers, system mode with a user override, no flash of the wrong theme, contrast-safe palettes from one seed colour, and a View Transitions circle reveal.',
+         'مستويات الرموز، ووضع النظام مع اختيار المستخدم، ومنع وميض الثيم الخاطئ، ولوحات ألوان آمنة التباين من لون واحد، وانتقال دائري بواجهة View Transitions.'),
+    tags: ['Design Systems', 'Dark Mode', 'CSS'] },
+  { href: '/blog/scss-in-2026/', icon: '🎨', time: L('12 min read', 'قراءة 12 دقيقة'),
+    t: 'The Best Way to Write SCSS in 2026',
+    p: L('@use and @forward, tokens as custom properties, cascade layers, logical properties, container queries, :has(), and when Sass still earns its place.',
+         'استخدام @use و @forward، والرموز كمتغيرات CSS، وطبقات @layer، والخصائص المنطقية، واستعلامات الحاوية، و :has()، ومتى يبقى Sass مفيدًا.'),
+    tags: ['SCSS', 'CSS', 'Architecture'] },
   { href: '/blog/ai-engineering-cursor-claude/', icon: '🤖', time: L('10 min read', 'قراءة 10 دقائق'),
     t: 'Rules, Skills and Guardrails: How I Engineer with Cursor and Claude Code',
     p: L('The AI-assisted engineering system behind my production apps: 176 scoped rules, Claude skills, sync scripts and checks that turn rules into build failures.',
@@ -37,15 +57,16 @@ const posts = [
   </div>
 </section>
 <style>
-  .wr-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+  .wr-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
   .wr{display:flex;flex-direction:column;gap:10px;padding:26px;text-decoration:none;color:inherit}
   .wr-ico{font-size:30px}
   .wr-meta{font-size:.85rem;color:var(--ink-3);font-weight:600}
-  .wr h3{margin:0;font-size:1.3rem;line-height:1.3;letter-spacing:-.01em}
+  .wr h3{margin:0;font-size:1.18rem;line-height:1.3;letter-spacing:-.01em}
   [dir="rtl"] .wr h3{text-align:right}
   .wr p{margin:0;color:var(--ink-2)}
   .wr-tags{display:flex;flex-wrap:wrap;gap:6px}
   .wr-go{margin-top:auto;font-weight:800;color:var(--accent)}
   .wr:hover .wr-go{text-decoration:underline}
-  @media (max-width:760px){.wr-grid{grid-template-columns:1fr}}
+  @media (max-width:1060px){.wr-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media (max-width:680px){.wr-grid{grid-template-columns:1fr}}
 </style>
