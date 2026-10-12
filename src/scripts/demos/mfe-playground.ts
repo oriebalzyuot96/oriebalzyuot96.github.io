@@ -28,8 +28,11 @@ export function mount(el: HTMLElement) {
   const id = el.id || 'mfe';
   const state = { mode: 'singleton' as Mode, remotes: REMOTES.map(r => ({ ...r })) };
 
-  const fwOpts = (sel: Fw) => (Object.keys(FW) as Fw[]).map(k => `<option value="${k}"${k === sel ? ' selected' : ''}>${FW[k].label}</option>`).join('');
-  const dsOpts = (sel: Ds) => (Object.keys(DS) as Ds[]).map(k => `<option value="${k}"${k === sel ? ' selected' : ''}>${DS[k].label}</option>`).join('');
+  // Custom segmented radio groups instead of native <select> (keyboard: arrows within a group).
+  const seg = (name: string, k: 'fw' | 'ds', keys: string[], labels: Record<string, { label: string }>, sel: string, aria: string) =>
+    `<div class="seg mf-seg" role="radiogroup" aria-label="${aria}">${keys.map(v => `<label><input type="radio" name="${name}" data-k="${k}" value="${v}"${v === sel ? ' checked' : ''}><span>${labels[v].label}</span></label>`).join('')}</div>`;
+  const fwOpts = (i: number, sel: Fw) => seg(`${id}-fw-${i}`, 'fw', Object.keys(FW), FW, sel, 'Framework');
+  const dsOpts = (i: number, sel: Ds) => seg(`${id}-ds-${i}`, 'ds', Object.keys(DS), DS, sel, 'Design system');
 
   el.innerHTML = `
     <span class="d-kicker">Live demo</span>
@@ -47,8 +50,8 @@ export function mount(el: HTMLElement) {
         <fieldset class="mf-remote" data-i="${i}">
           <legend><label class="d-check"><input type="checkbox" data-k="on" checked> ${r.name} remote</label></legend>
           <div class="mf-sel">
-            <label>Framework <select data-k="fw">${fwOpts(r.fw)}</select></label>
-            <label>Design system <select data-k="ds">${dsOpts(r.ds)}</select></label>
+            <div class="mf-field"><span class="mf-lbl">Framework</span>${fwOpts(i, r.fw)}</div>
+            <div class="mf-field"><span class="mf-lbl">Design system</span>${dsOpts(i, r.ds)}</div>
           </div>
         </fieldset>`).join('')}
         <div class="d-row">
@@ -123,7 +126,7 @@ export function mount(el: HTMLElement) {
   };
 
   el.addEventListener('change', e => {
-    const t = e.target as HTMLInputElement | HTMLSelectElement;
+    const t = e.target as HTMLInputElement;
     if (t.name === `${id}-mode`) state.mode = t.value as Mode;
     const box = t.closest<HTMLElement>('.mf-remote');
     if (box) {
@@ -143,8 +146,8 @@ export function mount(el: HTMLElement) {
       const r = state.remotes[i];
       [r.fw, r.ds] = set[i]; r.on = true; box.classList.remove('off');
       box.querySelector<HTMLInputElement>('[data-k=on]')!.checked = true;
-      box.querySelector<HTMLSelectElement>('[data-k=fw]')!.value = r.fw;
-      box.querySelector<HTMLSelectElement>('[data-k=ds]')!.value = r.ds;
+      box.querySelector<HTMLInputElement>(`[data-k=fw][value="${r.fw}"]`)!.checked = true;
+      box.querySelector<HTMLInputElement>(`[data-k=ds][value="${r.ds}"]`)!.checked = true;
     });
     render();
   });

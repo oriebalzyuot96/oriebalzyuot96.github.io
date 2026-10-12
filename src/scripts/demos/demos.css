@@ -146,3 +146,8 @@ html.blog-vt::view-transition-old(root),html.blog-vt::view-transition-new(root){
 .mf-by{color:var(--ink2);font-size:13px}
 .mf-risks li{padding:6px 8px 6px 10px;border-inline-start:3px solid #e0405e;border-radius:0 8px 8px 0;background:color-mix(in srgb,#e0405e 9%,transparent)}
 .mf-risks li.ok{border-color:#2fd17a;background:color-mix(in srgb,#2fd17a 12%,transparent)}
+
+.mf-field{display:grid;gap:6px;margin-top:8px}
+.mf-lbl{font-size:.85rem;font-weight:700;opacity:.8}
+.mf-seg{flex-wrap:wrap}
+.mf-seg label{flex:1 1 auto}
