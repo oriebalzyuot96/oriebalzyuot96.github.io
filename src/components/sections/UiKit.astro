@@ -1,0 +1,185 @@
+---
+/* "Custom UI library" showcase: a live, self-contained demo of a hand-built component kit
+   (no Material, no Bootstrap) with palettes, light/dark and accessibility modes. Illustration only. */
+const ar = Astro.currentLocale === 'ar';
+const L = (en: string, a: string) => (ar ? a : en);
+const palettes = [
+  ['lavender', '#6d4aff', L('Lavender', 'لافندر')], ['ocean', '#1f6fd6', L('Ocean', 'محيط')],
+  ['emerald', '#0f8a63', L('Emerald', 'زمرّدي')], ['sunset', '#d4542b', L('Sunset', 'غروب')], ['mono', '#3a3a46', L('Graphite', 'جرافيت')],
+];
+const a11y = [
+  ['contrast', L('High contrast', 'تباين عالٍ')], ['large', L('Larger text', 'نص أكبر')],
+  ['gray', L('Grayscale', 'تدرّج رمادي')], ['readable', L('Readable font', 'خط مقروء')], ['calm', L('Reduce motion', 'تقليل الحركة')],
+];
+---
+<section class="sec" id="uikit" aria-labelledby="uikitT">
+  <div class="wrap">
+    <div class="sec-title reveal">
+      <span class="kicker">{L('design systems', 'أنظمة التصميم')}</span>
+      <h2 id="uikitT">{L('I build my own UI libraries', 'أبني مكتبات واجهات خاصة بي')}</h2>
+      <p>{L('No Material, no Bootstrap. I design custom component kits on design tokens, with multiple themes, dark mode, accessibility modes and Arabic RTL built in from day one. Try it below.',
+            'بدون Material وبدون Bootstrap. أصمّم مكتبات مكوّنات خاصة مبنية على رموز التصميم، فيها عدة ثيمات ووضع داكن وأوضاع لسهولة الوصول ودعم العربية من اليوم الأول. جرّبها هنا.')}</p>
+    </div>
+
+    <div class="kit card reveal" data-kit data-pal="lavender" data-mode="light">
+      <aside class="kit-ctl" aria-label={L('Theme controls', 'إعدادات الثيم')}>
+        <h3>{L('Palette', 'الألوان')}</h3>
+        <div class="kit-sw" role="radiogroup" aria-label={L('Palette', 'الألوان')}>
+          {palettes.map(([v, c, n], i) => <button type="button" role="radio" aria-checked={i === 0 ? 'true' : 'false'} data-pal-btn={v} style={`--c:${c}`} title={n}><span class="sr">{n}</span></button>)}
+        </div>
+        <h3>{L('Mode', 'الوضع')}</h3>
+        <div class="kit-seg" role="radiogroup" aria-label={L('Mode', 'الوضع')}>
+          <button type="button" role="radio" aria-checked="true" data-mode-btn="light">☀️ {L('Light', 'فاتح')}</button>
+          <button type="button" role="radio" aria-checked="false" data-mode-btn="dark">🌙 {L('Dark', 'داكن')}</button>
+        </div>
+        <h3>{L('Accessibility', 'سهولة الوصول')}</h3>
+        <div class="kit-a11y">
+          {a11y.map(([v, n]) => <label><input type="checkbox" data-a11y={v} /><span class="kit-tg" aria-hidden="true"></span>{n}</label>)}
+        </div>
+        <ul class="kit-facts">
+          <li>🎨 {L('Design tokens: one source for web & mobile', 'رموز تصميم: مصدر واحد للويب والموبايل')}</li>
+          <li>🧩 {L('40+ components: forms, tables, dialogs, toasts', '+40 مكوّنًا: نماذج وجداول ونوافذ وتنبيهات')}</li>
+          <li>♿ {L('WCAG AA contrast in every theme', 'تباين WCAG AA في كل ثيم')}</li>
+          <li>🌍 {L('RTL-ready, Angular & React', 'جاهزة للعربية، Angular و React')}</li>
+        </ul>
+      </aside>
+
+      <div class="kit-stage" aria-label={L('Component preview (illustration)', 'معاينة المكوّنات (رسم توضيحي)')}>
+        <span class="kit-note">{L('Illustration', 'رسم توضيحي')}</span>
+        <div class="kit-app">
+          <header class="k-bar"><span class="k-logo">◆ Kit</span><nav><span class="on">{L('Overview', 'نظرة عامة')}</span><span>{L('Orders', 'الطلبات')}</span><span>{L('Team', 'الفريق')}</span></nav><span class="k-av">OA</span></header>
+          <div class="k-grid">
+            <div class="k-card"><small>{L('Revenue', 'الإيرادات')}</small><b>24.8k</b><span class="k-up">▲ 12%</span><div class="k-prog"><i style="width:72%"></i></div></div>
+            <div class="k-card"><small>{L('Active users', 'المستخدمون النشطون')}</small><b>3,214</b><span class="k-up">▲ 4%</span><div class="k-prog"><i style="width:48%"></i></div></div>
+            <div class="k-card"><small>{L('Tickets', 'التذاكر')}</small><b>18</b><span class="k-dn">▼ 2</span><div class="k-prog"><i style="width:30%"></i></div></div>
+          </div>
+          <div class="k-row">
+            <form class="k-form" onsubmit="return false">
+              <h4>{L('New request', 'طلب جديد')}</h4>
+              <label>{L('Full name', 'الاسم الكامل')}<span class="k-in">Orieb Alzyuot</span></label>
+              <label>{L('Category', 'الفئة')}<span class="k-in k-sel">{L('Design system', 'نظام تصميم')} ▾</span></label>
+              <label class="k-err">{L('Email', 'البريد الإلكتروني')}<span class="k-in">orieb@</span><em>{L('Enter a valid email', 'أدخل بريدًا صحيحًا')}</em></label>
+              <div class="k-btns"><span class="k-btn">{L('Submit', 'إرسال')}</span><span class="k-btn k-ghost">{L('Cancel', 'إلغاء')}</span></div>
+            </form>
+            <div class="k-side">
+              <div class="k-tabs"><span class="on">{L('All', 'الكل')}</span><span>{L('Open', 'مفتوحة')}</span><span>{L('Done', 'منجزة')}</span></div>
+              <ul class="k-list">
+                <li><span class="k-dot"></span>{L('Token audit', 'مراجعة الرموز')}<span class="k-badge">{L('New', 'جديد')}</span></li>
+                <li><span class="k-dot ok"></span>{L('RTL review', 'مراجعة RTL')}<span class="k-badge ok">{L('Done', 'تم')}</span></li>
+                <li><span class="k-dot warn"></span>{L('Dark theme QA', 'فحص الوضع الداكن')}<span class="k-badge warn">{L('Review', 'مراجعة')}</span></li>
+              </ul>
+              <div class="k-toast">✓ {L('Saved. Your theme is applied everywhere.', 'تم الحفظ. طُبّق الثيم في كل مكان.')}</div>
+            </div>
+          </div>
+        </div>
+        <div class="kit-phone" aria-hidden="true">
+          <div class="p-notch"></div>
+          <div class="p-head"><b>{L('Hello, Orieb', 'مرحبًا عريب')}</b><span class="k-av">OA</span></div>
+          <div class="k-card p-hero"><small>{L('Balance', 'الرصيد')}</small><b>12,500</b></div>
+          <div class="p-chips"><span class="on">{L('Send', 'إرسال')}</span><span>{L('Pay', 'دفع')}</span><span>{L('Top up', 'شحن')}</span></div>
+          <ul class="k-list"><li><span class="k-dot ok"></span>{L('Order #1042', 'طلب #1042')}</li><li><span class="k-dot"></span>{L('Order #1041', 'طلب #1041')}</li></ul>
+          <span class="k-btn p-cta">{L('Continue', 'متابعة')}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .kit{display:grid;grid-template-columns:270px minmax(0,1fr);gap:26px;padding:24px;align-items:start}
+  .kit-ctl h3{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin:18px 0 10px}
+  .kit-ctl h3:first-child{margin-top:4px}
+  .kit-sw{display:flex;gap:10px;flex-wrap:wrap}
+  .kit-sw button{width:34px;height:34px;border-radius:50%;background:var(--c);border:3px solid var(--surface);box-shadow:0 0 0 2px var(--line-2);cursor:pointer}
+  .kit-sw button[aria-checked="true"]{box-shadow:0 0 0 3px var(--accent)}
+  .kit-seg{display:flex;background:var(--bg-2);border-radius:999px;padding:4px}
+  .kit-seg button{flex:1;border:0;background:none;border-radius:999px;padding:8px;font:inherit;font-weight:700;color:var(--ink-2);cursor:pointer}
+  .kit-seg button[aria-checked="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+  .kit-a11y{display:grid;gap:9px}
+  .kit-a11y label{display:flex;align-items:center;gap:10px;font-weight:600;cursor:pointer}
+  .kit-a11y input{position:absolute;opacity:0;width:1px;height:1px}
+  .kit-tg{width:38px;height:22px;border-radius:999px;background:var(--line-2);position:relative;flex:none;transition:background .2s}
+  .kit-tg::after{content:"";position:absolute;inset-inline-start:3px;top:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:inset-inline-start .2s}
+  .kit-a11y input:checked+.kit-tg{background:var(--accent)}
+  .kit-a11y input:checked+.kit-tg::after{inset-inline-start:19px}
+  .kit-a11y input:focus-visible+.kit-tg{outline:3px solid var(--accent);outline-offset:2px}
+  .kit-facts{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:8px;font-size:.9rem;color:var(--ink-2)}
+
+  /* the demo has its own tokens so it never touches the site theme */
+  .kit-stage{--k:#6d4aff;--k-soft:#efe9ff;--k-bg:#f7f6fb;--k-sur:#fff;--k-ink:#1d1a2b;--k-ink2:#6b6680;--k-line:#e6e3ef;--k-r:14px;--k-fs:1;--k-font:inherit;
+    position:relative;display:grid;grid-template-columns:minmax(0,1fr) 210px;gap:20px;align-items:end;background:var(--k-bg);border-radius:20px;padding:22px;color:var(--k-ink);font-size:calc(14px * var(--k-fs));font-family:var(--k-font);transition:background .3s,color .3s}
+  .kit[data-pal="ocean"] .kit-stage{--k:#1f6fd6;--k-soft:#e6f0ff}
+  .kit[data-pal="emerald"] .kit-stage{--k:#0f8a63;--k-soft:#e2f6ee}
+  .kit[data-pal="sunset"] .kit-stage{--k:#c84a22;--k-soft:#ffece4}
+  .kit[data-pal="mono"] .kit-stage{--k:#33333f;--k-soft:#ececf1}
+  .kit[data-mode="dark"] .kit-stage{--k-bg:#13111c;--k-sur:#1f1b2c;--k-ink:#f3f0ff;--k-ink2:#a9a3c4;--k-line:#332d47;--k-soft:#2a2440}
+  .kit[data-mode="dark"][data-pal="lavender"] .kit-stage{--k:#b39dff}
+  .kit[data-mode="dark"][data-pal="ocean"] .kit-stage{--k:#7fb2ff}
+  .kit[data-mode="dark"][data-pal="emerald"] .kit-stage{--k:#5fd6a8}
+  .kit[data-mode="dark"][data-pal="sunset"] .kit-stage{--k:#ff9a72}
+  .kit[data-mode="dark"][data-pal="mono"] .kit-stage{--k:#d6d6e2}
+  .kit[data-contrast] .kit-stage{--k-ink2:var(--k-ink);--k-line:var(--k-ink)}
+  .kit[data-contrast][data-mode="light"] .kit-stage{--k-bg:#fff;--k-ink:#000}
+  .kit[data-contrast][data-mode="dark"] .kit-stage{--k-bg:#000;--k-sur:#000;--k-ink:#fff;--k:#ffe14d}
+  .kit[data-large] .kit-stage{--k-fs:1.18}
+  .kit[data-gray] .kit-stage{filter:grayscale(1)}
+  .kit[data-readable] .kit-stage{--k-font:"Atkinson Hyperlegible",Verdana,sans-serif;letter-spacing:.02em}
+  .kit[data-calm] .kit-stage *{animation:none!important;transition:none!important}
+
+  .kit-note{position:absolute;top:10px;inset-inline-end:14px;font:600 .7rem/1 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase;color:var(--k-ink2);background:var(--k-sur);border:1px solid var(--k-line);padding:5px 9px;border-radius:999px}
+  .kit-app{background:var(--k-sur);border:1px solid var(--k-line);border-radius:var(--k-r);overflow:hidden;margin-top:22px}
+  .k-bar{display:flex;align-items:center;gap:16px;padding:12px 16px;border-bottom:1px solid var(--k-line)}
+  .k-logo{font-weight:800;color:var(--k)}
+  .k-bar nav{display:flex;gap:14px;flex:1;color:var(--k-ink2);font-weight:600;flex-wrap:wrap}
+  .k-bar nav .on{color:var(--k-ink);box-shadow:inset 0 -2px 0 var(--k)}
+  .k-av{width:30px;height:30px;border-radius:50%;background:var(--k);color:var(--k-sur);display:grid;place-items:center;font-size:.75em;font-weight:800;flex:none}
+  .k-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:16px}
+  .k-card{background:var(--k-sur);border:1px solid var(--k-line);border-radius:var(--k-r);padding:12px 14px;display:grid;gap:4px}
+  .k-card small{color:var(--k-ink2)}
+  .k-card b{font-size:1.5em;letter-spacing:-.02em}
+  .k-up{color:#16a34a;font-weight:700;font-size:.85em}.k-dn{color:#dc2626;font-weight:700;font-size:.85em}
+  .k-prog{height:6px;border-radius:999px;background:var(--k-soft);overflow:hidden}
+  .k-prog i{display:block;height:100%;background:var(--k);border-radius:inherit;animation:kgrow 1.6s ease-out both}
+  @keyframes kgrow{from{width:0}}
+  .k-row{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:14px;padding:0 16px 16px}
+  .k-form{display:grid;gap:10px;border:1px solid var(--k-line);border-radius:var(--k-r);padding:14px}
+  .k-form h4,.kit-phone b{margin:0}
+  .k-form label{display:grid;gap:5px;font-weight:600;font-size:.9em}
+  .k-in{display:block;border:1.5px solid var(--k-line);border-radius:10px;padding:8px 10px;font-weight:500;color:var(--k-ink)}
+  .k-sel{color:var(--k-ink2)}
+  .k-err .k-in{border-color:#dc2626}.k-err em{color:#dc2626;font-style:normal;font-size:.85em}
+  .k-btns{display:flex;gap:8px;flex-wrap:wrap}
+  .k-btn{display:inline-flex;justify-content:center;background:var(--k);color:var(--k-sur);font-weight:700;border-radius:10px;padding:8px 16px}
+  .k-ghost{background:transparent;color:var(--k);box-shadow:inset 0 0 0 1.5px var(--k)}
+  .k-side{display:grid;gap:10px;align-content:start}
+  .k-tabs{display:flex;gap:4px;background:var(--k-soft);border-radius:999px;padding:4px}
+  .k-tabs span{flex:1;text-align:center;padding:5px;border-radius:999px;font-weight:600;color:var(--k-ink2)}
+  .k-tabs .on{background:var(--k-sur);color:var(--k-ink)}
+  .k-list{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+  .k-list li{display:flex;align-items:center;gap:8px;border:1px solid var(--k-line);border-radius:10px;padding:8px 10px;font-weight:600}
+  .k-dot{width:8px;height:8px;border-radius:50%;background:var(--k);flex:none}.k-dot.ok{background:#16a34a}.k-dot.warn{background:#f59e0b}
+  .k-badge{margin-inline-start:auto;font-size:.75em;font-weight:800;padding:3px 8px;border-radius:999px;background:var(--k-soft);color:var(--k)}
+  .k-badge.ok{background:#dcfce7;color:#166534}.k-badge.warn{background:#fef3c7;color:#92400e}
+  .k-toast{background:var(--k-ink);color:var(--k-sur);border-radius:12px;padding:10px 12px;font-weight:600;font-size:.88em;animation:kpop .5s .6s both}
+  @keyframes kpop{from{opacity:0;transform:translateY(8px)}}
+  .kit-phone{background:var(--k-sur);border:8px solid #15121f;border-radius:30px;padding:28px 12px 14px;display:grid;gap:10px;position:relative;box-shadow:0 30px 60px -30px rgba(40,20,100,.5)}
+  .p-notch{position:absolute;top:8px;left:50%;translate:-50% 0;width:60px;height:8px;border-radius:999px;background:#15121f}
+  .p-head{display:flex;justify-content:space-between;align-items:center}
+  .p-hero{background:var(--k);color:var(--k-sur);border:0}.p-hero small{color:inherit;opacity:.8}
+  .p-chips{display:flex;gap:6px}.p-chips span{flex:1;text-align:center;padding:6px 4px;border-radius:999px;background:var(--k-soft);color:var(--k);font-weight:700;font-size:.85em}
+  .p-chips .on{background:var(--k);color:var(--k-sur)}
+  .p-cta{margin-top:4px}
+  @media (max-width:1020px){.kit{grid-template-columns:1fr}.kit-stage{grid-template-columns:1fr}.kit-phone{max-width:240px;justify-self:center}}
+  @media (max-width:620px){.kit{padding:16px}.kit-stage{padding:14px}.k-grid{grid-template-columns:1fr}.k-row{grid-template-columns:1fr}.k-bar nav{display:none}}
+</style>
+
+<script is:inline>
+(function(){
+  document.querySelectorAll('[data-kit]').forEach(function(kit){
+    function pick(group, attr, btn){ kit.querySelectorAll(group).forEach(function(b){ b.setAttribute('aria-checked', b === btn ? 'true' : 'false'); }); kit.setAttribute(attr, btn.getAttribute(group.slice(1, -1))); }
+    kit.querySelectorAll('[data-pal-btn]').forEach(function(b){ b.addEventListener('click', function(){ pick('[data-pal-btn]', 'data-pal', b); }); });
+    kit.querySelectorAll('[data-mode-btn]').forEach(function(b){ b.addEventListener('click', function(){ pick('[data-mode-btn]', 'data-mode', b); }); });
+    kit.querySelectorAll('[data-a11y]').forEach(function(c){ c.addEventListener('change', function(){ kit.toggleAttribute('data-' + c.getAttribute('data-a11y'), c.checked); }); });
+  });
+})();
+</script>
