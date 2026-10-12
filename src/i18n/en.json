@@ -431,5 +431,13 @@
  "pj.co.p": "Government, fintech and enterprise products I delivered at Saudi Azm, Shepherd, Tahaluf and PenguinIN. Most flows sit behind national sign-in (Nafath), so private products are shown as labelled illustrations.",
  "pj.own.t": "My own work · UI/UX design & build",
  "pj.own.p": "Products, client sites and design samples I designed and built myself: UX, visual design, design systems, motion and code. Live demos where possible.",
- "f.own": "Products & clients"
+ "f.own": "Products & clients",
+ "fm.org": "Personal product · 2026",
+ "fm.float": "Fish → whale · Three.js",
+ "fm.t": "5min · Start tiny, ship daily",
+ "fm.alt": "5min habit app: a smiling 3D whale swimming in a stylised ocean beside a running 5-minute start timer.",
+ "fm.p": "My own habit and focus app for developers and makers. Press start for five honest minutes and keep going if the flow finds you. Log what you shipped, keep your streak, and watch a little 3D fish grow into a whale.",
+ "fm.h1": "5-minute start timer that invites you to keep going and tracks the extra flow minutes, plus a tagged daily ship log",
+ "fm.h2": "Streaks with a GitHub-style heatmap, stats for minutes started vs flowed, and a Three.js ocean where the fish levels up",
+ "fm.h3": "100% custom UI kit (accessible combobox, switch, tabs, dialog, toasts), 4 palettes, light/dark, a11y panel, EN + AR RTL, local-first with JSON export"
 }

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>5min · start tiny, ship daily</title>
+    <meta name="description" content="A local-first habit and focus app for developers and makers: a 5-minute start timer, a daily ship log, streaks, and a fish that grows into a whale." />
+    <meta name="theme-color" content="#0b3b5c" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;700;800&family=Fredoka:wght@500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" />
+    <script>
+      (function () {
+        var d = document.documentElement, s = {};
+        try { s = JSON.parse(localStorage.getItem('5min:settings') || '{}') || {}; } catch (e) {}
+        var q = new URLSearchParams(location.search).get('lang');
+        var lang = q === 'ar' || q === 'en' ? q : s.lang || ((navigator.language || '').slice(0, 2) === 'ar' ? 'ar' : 'en');
+        var dark = s.theme === 'dark' || (s.theme !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches);
+        d.lang = lang; d.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        d.dataset.theme = dark ? 'dark' : 'light';
+        d.dataset.palette = s.palette || 'ocean';
+        d.dataset.contrast = s.contrast ? 'more' : 'normal';
+        d.dataset.text = s.textSize || 'md';
+        d.dataset.motion = s.motion === 'reduce' || (s.motion !== 'full' && matchMedia('(prefers-reduced-motion: reduce)').matches) ? 'reduce' : 'full';
+      })();
+    </script>
+    <link href="./_app/immutable/entry/start.D8S2sxpp.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/DUwwYFUR.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/CGeo2RmA.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/GFRCf6Qm.js" rel="modulepreload">
+		<link href="./_app/immutable/entry/app.wn0dKINH.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/Y5em4Nqg.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/BbpzTWvN.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/3h12HjVw.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/ISmgt0V4.js" rel="modulepreload">
+		<link href="./_app/immutable/nodes/0.CJUvyiBj.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/_hRaER1D.js" rel="modulepreload">
+		<link href="./_app/immutable/nodes/2.DpxY4h3W.js" rel="modulepreload">
+		
+		<link href="./_app/immutable/assets/0.BYyggiu2.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/2.BGcZUDKg.css" rel="stylesheet">
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">
+			<script>
+				{
+					__sveltekit_n5jneb = {
+						base: new URL(".", location).pathname.slice(0, -1),
+						assets: "/samples/5min"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("./_app/immutable/entry/start.D8S2sxpp.js"),
+						import("./_app/immutable/entry/app.wn0dKINH.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element);
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>
