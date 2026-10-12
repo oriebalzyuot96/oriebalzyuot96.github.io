@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>5min Refresh · 100 dev puzzles</title>
+    <meta name="description" content="Refresh your dev brain in 5 minutes: 100 playful puzzles in 10 worlds (code order, bugs, Flexbox, Grid, selectors, regex, git, async, TypeScript, Big-O)." />
+    <meta name="theme-color" content="#0b3b5c" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;700;800&family=Fredoka:wght@500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" />
+    <script>
+      (function () {
+        var d = document.documentElement, s = {};
+        try { s = JSON.parse(localStorage.getItem('5min-refresh:settings') || '{}') || {}; } catch (e) {}
+        var q = new URLSearchParams(location.search).get('lang');
+        var lang = q === 'ar' || q === 'en' ? q : s.lang || ((navigator.language || '').slice(0, 2) === 'ar' ? 'ar' : 'en');
+        var dark = s.theme === 'dark' || (s.theme !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches);
+        d.lang = lang; d.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        d.dataset.theme = dark ? 'dark' : 'light';
+        d.dataset.palette = s.palette || 'ocean';
+        d.dataset.contrast = s.contrast ? 'more' : 'normal';
+        d.dataset.text = s.textSize || 'md';
+        d.dataset.motion = s.motion === 'reduce' || (s.motion !== 'full' && matchMedia('(prefers-reduced-motion: reduce)').matches) ? 'reduce' : 'full';
+      })();
+    </script>
+    <style>
+      /* splash loader: inline so it paints before any bundle arrives */
+      #loader {
+        --l-bg1: #eef6fb; --l-bg2: #f8f4ff; --l-ink: #0c2235; --l-ink2: #48607a; --l-w1: #1784bd; --l-w2: #b7a6f4;
+        position: fixed; inset: 0; z-index: 3000; display: grid; place-content: center; justify-items: center; gap: 0.7rem; text-align: center;
+        background: radial-gradient(640px 420px at 50% 44%, rgb(23 132 189 / 0.13), transparent 70%), linear-gradient(180deg, var(--l-bg1), var(--l-bg2));
+        color: var(--l-ink); font-family: 'Fredoka', 'Baloo Bhaijaan 2', ui-rounded, system-ui, sans-serif; transition: opacity 0.55s ease, visibility 0.55s;
+      }
+      :root[data-theme='dark'] #loader { --l-bg1: #061423; --l-bg2: #0f1030; --l-ink: #e7f2fb; --l-ink2: #a2b8cc; --l-w1: #48bfec; --l-w2: #a597ff; }
+      #loader.out { opacity: 0; visibility: hidden; }
+      #loader .l-art { position: relative; inline-size: 210px; block-size: 178px; }
+      #loader .l-whale { position: absolute; left: 27px; top: 16px; inline-size: 156px; block-size: 156px; animation: l-bob 2.6s ease-in-out infinite; transform-origin: 50% 72%; }
+      #loader .l-spout { transform-box: fill-box; transform-origin: 50% 100%; animation: l-spout 2.6s ease-out infinite; }
+      #loader .l-waves {
+        position: absolute; left: 0; right: 0; bottom: 0; block-size: 62px; overflow: hidden;
+        -webkit-mask: linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent); mask: linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent);
+      }
+      #loader .l-waves svg { position: absolute; left: 0; bottom: 0; inline-size: 420px; block-size: 62px; }
+      #loader .l-w1 { animation: l-drift 3.4s linear infinite; }
+      #loader .l-w2 { animation: l-drift 5.2s linear infinite reverse; }
+      #loader .l-name { font-weight: 700; font-size: 2.1rem; line-height: 1; letter-spacing: -0.01em; margin-block-start: 0.2rem; }
+      #loader .l-msg { margin: 0; font-family: 'Inter', 'IBM Plex Sans Arabic', system-ui, sans-serif; font-size: 0.95rem; color: var(--l-ink2); }
+      #loader .l-msg [lang] { display: none; }
+      :root:lang(en) #loader .l-msg [lang='en'], :root:lang(ar) #loader .l-msg [lang='ar'] { display: inline; }
+      :root:lang(ar) #loader .l-msg { font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif; }
+      #loader .l-dots i { display: inline-block; inline-size: 0.3em; block-size: 0.3em; margin-inline: 0.1em; border-radius: 50%; background: currentColor; opacity: 0.3; animation: l-dot 1.2s infinite; }
+      #loader .l-dots i:nth-child(2) { animation-delay: 0.2s; }
+      #loader .l-dots i:nth-child(3) { animation-delay: 0.4s; }
+      @keyframes l-bob { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(10px) rotate(2.5deg); } }
+      @keyframes l-spout { 0%, 30% { transform: scale(0.15); opacity: 0; } 48% { transform: scale(1.1); opacity: 1; } 72% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.12) translateY(-3px); opacity: 0; } }
+      @keyframes l-drift { to { transform: translateX(-140px); } }
+      @keyframes l-dot { 40% { opacity: 1; } }
+      :root[data-motion='reduce'] #loader, :root[data-motion='reduce'] #loader * { animation: none !important; transition: none !important; }
+      :root[data-motion='reduce'] #loader .l-spout { opacity: 1; transform: none; }
+    </style>
+    <noscript><style>#loader { display: none !important; }</style></noscript>
+    <link href="./_app/immutable/entry/start.DOWKAkmr.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/Bh7yNwEn.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/f1pxEI-H.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/DLXQWhok.js" rel="modulepreload">
+		<link href="./_app/immutable/entry/app.a96hfvZm.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/wsoaUrRh.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/L3Kqahad.js" rel="modulepreload">
+		<link href="./_app/immutable/nodes/0.D3JiIs0F.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/DuAfJXKt.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/Cz5dOvxU.js" rel="modulepreload">
+		<link href="./_app/immutable/nodes/2.Bn4Ta9Tg.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/YpuogToO.js" rel="modulepreload">
+		
+		<link href="./_app/immutable/assets/0.B_FJD_Xk.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/Stars.BqOXiZMC.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/2.BQIQf94k.css" rel="stylesheet">
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div id="loader" role="status" aria-live="polite">
+      <div class="l-art" aria-hidden="true">
+        <svg class="l-whale" viewBox="0 0 64 64">
+          <defs><linearGradient id="lwb" x1="0.2" y1="0" x2="0.5" y2="1"><stop offset="0" stop-color="#43b8ea" /><stop offset="1" stop-color="#1769ab" /></linearGradient></defs>
+          <g class="l-spout">
+            <g fill="none" stroke="#7cc6e8" stroke-width="2.4" stroke-linecap="round"><path d="M37.5 17.5c0-3.8-1.5-6.3-4.4-7.7" /><path d="M37.5 17.5c0-3.8 1.5-6.3 4.4-7.7" /><path d="M37.5 17V9" /></g>
+            <circle cx="31.6" cy="8.6" r="1.8" fill="#7cc6e8" /><circle cx="43.4" cy="8.6" r="1.8" fill="#7cc6e8" /><circle cx="37.5" cy="6.4" r="1.8" fill="#7cc6e8" />
+          </g>
+          <path d="M13.4 27.6C10.4 25.8 7.4 25.6 4.6 22.6c3-1.6 6.4-1.2 8.6.8.1-3.2 2-6 4.8-7.1.5 4-.4 8.1-3.2 11.2z" fill="url(#lwb)" />
+          <path d="M56.5 37c0-10.5-9-17.5-20-17.5-9.5 0-15.5 5.5-18.9 12.1-1-1.6-2-3.2-3-5l-3 2c1.4 4.4 3.2 8.9 6.4 12.9 3.5 6 10 9.5 19.5 9.5 11.5 0 19-5.5 19-14z" fill="url(#lwb)" />
+          <path d="M19.2 42.2c6.4 4.4 15 5.6 22.8 5 7-.6 12.6-3.3 14.3-7.7-1.2 7-8.2 11-18.8 11-8.2 0-14-2.8-18.3-8.3z" fill="#f1ecff" />
+          <circle cx="46" cy="33.4" r="2.5" fill="#0b2235" /><circle cx="46.8" cy="32.5" r=".85" fill="#fff" />
+          <ellipse cx="51.6" cy="38" rx="2.4" ry="1.5" fill="#ff7f6e" opacity=".8" />
+          <path d="M41.4 39.4q3 2.6 6.2.4" fill="none" stroke="#0b2235" stroke-width="1.8" stroke-linecap="round" />
+        </svg>
+        <div class="l-waves">
+          <svg class="l-w2" viewBox="0 0 420 62" preserveAspectRatio="none"><path d="M0 24 q35 -10 70 0 t70 0 t70 0 t70 0 t70 0 t70 0 V62 H0 Z" fill="var(--l-w2)" opacity="0.38" /></svg>
+          <svg class="l-w1" viewBox="0 0 420 62" preserveAspectRatio="none"><path d="M0 32 q35 -11 70 0 t70 0 t70 0 t70 0 t70 0 t70 0 V62 H0 Z" fill="var(--l-w1)" opacity="0.6" /></svg>
+        </div>
+      </div>
+      <div class="l-name">5min</div>
+      <p class="l-msg"><span lang="en">Filling the ocean</span><span lang="ar">نملأ المحيط</span><span class="l-dots" aria-hidden="true"> <i></i><i></i><i></i></span></p>
+    </div>
+    <script>
+      (function () {
+        var el = document.getElementById('loader'), done = false;
+        // the app calls this once the 3D scene and fonts are ready: never before 600 ms, and a 4 s cap regardless
+        window.__hideLoader = function () {
+          if (done || !el) return;
+          done = true;
+          setTimeout(function () {
+            el.classList.add('out');
+            el.setAttribute('aria-hidden', 'true');
+            setTimeout(function () { el.remove(); }, 650);
+          }, Math.max(0, 600 - performance.now()));
+        };
+        setTimeout(window.__hideLoader, 4000);
+      })();
+    </script>
+    <div style="display: contents">
+			<script>
+				{
+					__sveltekit_1830vqu = {
+						base: new URL(".", location).pathname.slice(0, -1),
+						assets: "/samples/5min-refresh"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("./_app/immutable/entry/start.DOWKAkmr.js"),
+						import("./_app/immutable/entry/app.a96hfvZm.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element);
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>
