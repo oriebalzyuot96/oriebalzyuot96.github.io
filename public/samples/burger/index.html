@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>JAMRA Smash House: smashed hot, stacked high</title>
+<meta name="description" content="JAMRA Smash House, a fictional burger restaurant. A design sample with a procedural Three.js burger that comes apart and stacks back together as you scroll. Design and build by Orieb Alzyuot.">
+<meta name="theme-color" content="#141110">
+<meta name="robots" content="noindex">
+<link rel="alternate" hreflang="en" href="https://oriebalzyuot96.github.io/samples/burger/">
+<link rel="alternate" hreflang="ar" href="https://oriebalzyuot96.github.io/samples/burger/ar/">
+<meta property="og:title" content="JAMRA Smash House: 3D scroll burger">
+<meta property="og:description" content="A 3D burger that comes apart layer by layer as you scroll. Design sample by Orieb Alzyuot.">
+<meta property="og:image" content="https://oriebalzyuot96.github.io/assets/burger.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M8 30C8 16 19 8 32 8s24 8 24 22z' fill='%23e08a35'/%3E%3Crect x='6' y='33' width='52' height='6' rx='3' fill='%2370b83a'/%3E%3Crect x='7' y='41' width='50' height='7' rx='3.5' fill='%233d1f10'/%3E%3Cpath d='M8 50h48c0 5-4 7-8 7H16c-4 0-8-2-8-7z' fill='%23e3a253'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&display=swap">
+<link rel="stylesheet" href="./burger.css">
+<script>
+  (function () {
+    var d = document.documentElement;
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('rm');
+    setTimeout(function () { d.classList.add('loaded'); }, 7000);
+  })();
+</script>
+<script type="importmap">
+  { "imports": { "three": "./vendor/three.module.js", "three/addons/": "./vendor/addons/" } }
+</script>
+<script type="module" src="./burger.js"></script>
+</head>
+<body data-cur="SAR" data-added="Added" data-add="Add" data-cart-label="Order: {n} items, SAR {t}" data-cart-msg="{name} added. {n} items in your order." data-rtl="0">
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="loader" role="status" aria-live="polite">
+  <div class="loader-in">
+    <div class="lb" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <p>Firing up the grill</p>
+    <div class="bar" aria-hidden="true"><span></span></div>
+  </div>
+</div>
+
+<div class="bg-glow" aria-hidden="true"></div>
+<canvas id="gl" aria-hidden="true"></canvas>
+<div class="cursor-glow" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="top">
+  <a class="brand" href="#hero" aria-label="JAMRA Smash House, back to top">
+    <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 4c4 8 14 12 14 24a14 14 0 0 1-28 0c0-6 3-9 5-12 1 5 3 7 6 7-1-8 0-14 3-19z" fill="#ff5a1f"/><path d="M32 22c2 4 7 7 7 12a7 7 0 0 1-14 0c0-4 4-6 7-12z" fill="#ffb81c"/><rect x="8" y="46" width="48" height="6" rx="3" fill="#fff1d6"/><rect x="12" y="55" width="40" height="5" rx="2.5" fill="#fff1d6" opacity=".6"/></svg>
+    <span><b>JAMRA</b><small>Smash House</small></span>
+  </a>
+  <nav class="nav" aria-label="Main">
+    <a href="#anatomy">Anatomy</a>
+    <a href="#menu">Menu</a>
+    <a href="#story">Story</a>
+    <a href="#visit">Visit</a>
+  </nav>
+  <div class="tools">
+    <a class="chip-btn lang" href="./ar/" hreflang="ar" lang="ar" aria-label="عرض الصفحة بالعربية">عربي</a>
+    <a class="chip-btn cart" href="#menu" aria-label="Order: 0 items, SAR 0">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h14l-1.5 12.5a2 2 0 0 1-2 1.5h-7a2 2 0 0 1-2-1.5z"/><path d="M9 7V5.5a3 3 0 0 1 6 0V7"/></svg>
+      <span class="lbl">Order</span><span class="n" aria-hidden="true">0</span>
+    </a>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero wrap" id="hero" aria-labelledby="hero-h">
+    <div class="hero-copy">
+      <p class="eyebrow">Riyadh · Smash house since 2019</p>
+      <h1 id="hero-h"><span>Smashed</span><span class="o">hot.</span><span class="s">Stacked</span><span>high.</span></h1>
+      <p class="lead">Charcoal-seared smash burgers on 24-hour brioche. Built layer by layer, gone in seconds.</p>
+      <div class="cta">
+        <a class="btn primary" href="#menu">Order now <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn ghost" href="#anatomy">See what's inside</a>
+      </div>
+      <div class="hero-meta">
+        <div><b>180g</b><span>fresh-ground beef</span></div>
+        <div><b>280°C</b><span>steel griddle</span></div>
+        <div><b>4.9★</b><span>12k reviews</span></div>
+      </div>
+    </div>
+    <div class="sticker" aria-hidden="true"><span>Smash<br>of the year<small>Riyadh eats '26</small></span></div>
+    <div class="css-burger" role="img" aria-label="Illustration of the JAMRA Classic burger: sesame brioche, lettuce, tomato, cheddar and a smash patty"><i class="tb"></i><i class="le"></i><i class="to"></i><i class="ch"></i><i class="pa"></i><i class="bb"></i></div>
+    <p class="sr-only">A 3D JAMRA Classic burger turns slowly beside the headline. It is made of a sesame brioche bun, fresh lettuce, vine tomato, aged cheddar and a smash patty.</p>
+    <div class="scroll-hint" aria-hidden="true"><i></i>Scroll to unstack</div>
+  </section>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="track">
+      <span>Fresh <i>•</i> Smashed <i>•</i> Stacked <i>•</i> Fresh <i>•</i> Smashed <i>•</i> Stacked <i>•</i></span>
+      <span>Fresh <i>•</i> Smashed <i>•</i> Stacked <i>•</i> Fresh <i>•</i> Smashed <i>•</i> Stacked <i>•</i></span>
+    </div>
+  </div>
+
+  <section class="scrolly" id="anatomy" style="--len:4" aria-labelledby="anat-h">
+    <div class="pin">
+      <div class="pin-head">
+        <p class="eyebrow">Anatomy of a smash</p>
+        <h2 class="h2" id="anat-h">Six layers.<br><em>Zero</em> shortcuts.</h2>
+        <p>Keep scrolling. The JAMRA Classic comes apart one layer at a time.</p>
+      </div>
+      <ol class="layers">
+        <li class="lcard" data-layer="0"><span class="k">Layer 01 · Crown</span><h3>Brioche bun</h3><p>Butter-glazed, sesame-crowned, toasted to order.</p></li>
+        <li class="lcard" data-layer="1"><span class="k">Layer 02 · Crunch</span><h3>Fresh lettuce</h3><p>Crisp iceberg, washed and torn every morning.</p></li>
+        <li class="lcard" data-layer="2"><span class="k">Layer 03 · Juice</span><h3>Vine tomato</h3><p>Sun-ripened, sliced thick, lightly salted.</p></li>
+        <li class="lcard" data-layer="3"><span class="k">Layer 04 · Melt</span><h3>Aged cheddar</h3><p>12-month cheddar that drapes over the edge.</p></li>
+        <li class="lcard" data-layer="4"><span class="k">Layer 05 · Heart</span><h3>Smash patty · 100% beef</h3><p>Smashed on 280°C steel for a lacy crust.</p></li>
+        <li class="lcard" data-layer="5"><span class="k">Layer 06 · Base</span><h3>Toasted heel</h3><p>Brushed with our smoky JAMRA sauce.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="scrolly" id="focus" style="--len:6" aria-labelledby="focus-h">
+    <h2 class="sr-only" id="focus-h">Ingredient close-ups</h2>
+    <div class="pin">
+      <div class="fpanel">
+        <article class="fstep on" data-i="0"><p class="k">01 / 05 · The crown</p><h3>Brioche bun</h3><p class="stat"><b>24h</b><span>slow-proofed dough, baked at dawn</span></p><p class="copy">Milk, butter and free-range eggs, proofed overnight so the crumb stays soft while the glaze turns mahogany on the griddle.</p></article>
+        <article class="fstep" data-i="1"><p class="k">02 / 05 · The crunch</p><h3>Fresh lettuce</h3><p class="stat"><b>6am</b><span>delivered, washed and torn daily</span></p><p class="copy">Ice-cold iceberg adds the snap that cuts through the richness. Never shredded, never sitting around.</p></article>
+        <article class="fstep" data-i="2"><p class="k">03 / 05 · The juice</p><h3>Vine tomato</h3><p class="stat"><b>48h</b><span>from the vine to your bun</span></p><p class="copy">Sliced a centimetre thick and seasoned with flaky salt, so every bite gets a bright, sweet pop.</p></article>
+        <article class="fstep" data-i="3"><p class="k">04 / 05 · The melt</p><h3>Aged cheddar</h3><p class="stat"><b>12mo</b><span>aged for a sharp, nutty finish</span></p><p class="copy">Laid on the patty the second it flips, then steamed under a dome until it slumps over every edge.</p></article>
+        <article class="fstep" data-i="4"><p class="k">05 / 05 · The heart</p><h3>Smash patty</h3><p class="stat"><b>180g</b><span>100% beef, ground fresh every morning</span></p><p class="copy">Pressed hard onto 280°C steel for ten seconds. That's where the lacy, caramelised crust comes from.</p></article>
+      </div>
+      <ol class="fdots" aria-hidden="true"><li class="on"></li><li></li><li></li><li></li><li></li></ol>
+    </div>
+  </section>
+
+  <section class="scrolly" id="assemble" style="--len:3" aria-labelledby="asm-h">
+    <div class="pin">
+      <div class="pin-head">
+        <p class="eyebrow">Back together</p>
+        <h2 class="h2" id="asm-h">Stacked <em>high.</em><br>Built to order.</h2>
+      </div>
+      <div class="price-tag">
+        <span class="k">Signature · Single</span>
+        <h3>The JAMRA Classic</h3>
+        <p class="price">38<small>SAR</small></p>
+        <button class="btn primary add-main" type="button" data-name="The JAMRA Classic" data-price="38">Add to order</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker alt" aria-hidden="true">
+    <div class="track">
+      <span>Hot off the steel <i>✺</i> Built to order <i>✺</i> No shortcuts <i>✺</i> Hot off the steel <i>✺</i> Built to order <i>✺</i> No shortcuts <i>✺</i></span>
+      <span>Hot off the steel <i>✺</i> Built to order <i>✺</i> No shortcuts <i>✺</i> Hot off the steel <i>✺</i> Built to order <i>✺</i> No shortcuts <i>✺</i></span>
+    </div>
+  </div>
+
+  <section class="menu" id="menu" aria-labelledby="menu-h">
+    <div class="wrap">
+      <div class="menu-head rv">
+        <div>
+          <p class="eyebrow">The menu</p>
+          <h2 class="h2" id="menu-h">Pick your <em>stack.</em></h2>
+        </div>
+        <p>Every burger comes on toasted brioche with house pickles on the side. Prices include VAT.</p>
+      </div>
+      <ul class="grid">
+        <li class="item rv"><div class="art" data-art="classic"></div><h3>JAMRA Classic</h3><p>Smash patty, aged cheddar, lettuce, tomato, JAMRA sauce.</p><div class="row"><span class="pr">38<small>SAR</small></span><button class="add" type="button" data-name="JAMRA Classic" data-price="38">Add</button></div></li>
+        <li class="item rv"><span class="badge">Best seller</span><div class="art" data-art="double"></div><h3>Double Ember</h3><p>Two patties, double cheddar, grilled onions, pickles.</p><div class="row"><span class="pr">49<small>SAR</small></span><button class="add" type="button" data-name="Double Ember" data-price="49">Add</button></div></li>
+        <li class="item rv"><div class="art" data-art="bbq"></div><h3>Smoky Ring</h3><p>Smash patty, crispy onion rings, beef bacon, smoked BBQ.</p><div class="row"><span class="pr">45<small>SAR</small></span><button class="add" type="button" data-name="Smoky Ring" data-price="45">Add</button></div></li>
+        <li class="item rv"><div class="art" data-art="truffle"></div><h3>Truffle Melt</h3><p>Swiss cheese, roasted mushrooms, truffle mayo.</p><div class="row"><span class="pr">54<small>SAR</small></span><button class="add" type="button" data-name="Truffle Melt" data-price="54">Add</button></div></li>
+        <li class="item rv"><span class="badge">Spicy</span><div class="art" data-art="chicken"></div><h3>Hot Honey Chick</h3><p>Buttermilk fried chicken, hot honey, lime slaw.</p><div class="row"><span class="pr">42<small>SAR</small></span><button class="add" type="button" data-name="Hot Honey Chick" data-price="42">Add</button></div></li>
+        <li class="item rv"><span class="badge">Plant-based</span><div class="art" data-art="garden"></div><h3>Garden Smash</h3><p>Plant patty, avocado, tomato, lettuce, herb sauce.</p><div class="row"><span class="pr">44<small>SAR</small></span><button class="add" type="button" data-name="Garden Smash" data-price="44">Add</button></div></li>
+        <li class="item rv"><div class="art" data-art="fries"></div><h3>Lace Fries</h3><p>Double-cooked, sea salt, JAMRA dust.</p><div class="row"><span class="pr">16<small>SAR</small></span><button class="add" type="button" data-name="Lace Fries" data-price="16">Add</button></div></li>
+        <li class="item rv"><div class="art" data-art="drink"></div><h3>Saffron Lemonade</h3><p>Fresh lemon, saffron and mint over crushed ice.</p><div class="row"><span class="pr">14<small>SAR</small></span><button class="add" type="button" data-name="Saffron Lemonade" data-price="14">Add</button></div></li>
+      </ul>
+      <p class="sr-only" id="cart-live" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="story" id="story" aria-labelledby="story-h">
+    <div class="wrap story-grid">
+      <div class="rv">
+        <p class="eyebrow">Our story</p>
+        <h2 class="h2" id="story-h">One griddle. <em>One</em> obsession.</h2>
+        <p class="big">JAMRA means “ember” in Arabic. We started in 2019 with a single steel griddle, a borrowed food truck and a stubborn idea: the best burger is the simplest one, done perfectly.</p>
+        <p class="small">We still grind our beef every morning, bake our own brioche and smash every patty by hand. No freezers and no heat lamps. Burgers go out the moment they're stacked.</p>
+        <div class="nums">
+          <div><b>2019</b><span>first smash</span></div>
+          <div><b>3</b><span>kitchens in Riyadh</span></div>
+          <div><b>1.2M</b><span>burgers served</span></div>
+        </div>
+      </div>
+      <figure class="griddle rv" aria-label="Illustration of a smash patty sizzling on a griddle">
+        <svg viewBox="0 0 400 400" aria-hidden="true">
+          <defs><radialGradient id="pt" cx=".45" cy=".4" r=".7"><stop offset="0" stop-color="#7a4424"/><stop offset=".6" stop-color="#4a2512"/><stop offset="1" stop-color="#2a1309"/></radialGradient><radialGradient id="hot" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ff5a1f" stop-opacity=".55"/><stop offset="1" stop-color="#ff5a1f" stop-opacity="0"/></radialGradient></defs>
+          <circle cx="200" cy="210" r="190" fill="url(#hot)"/>
+          <ellipse cx="200" cy="230" rx="170" ry="70" fill="#2b2420" stroke="#3d342e" stroke-width="3"/>
+          <path d="M70 222c20-28 70-44 130-44s112 16 130 44c-8 30-62 52-130 52S78 252 70 222z" fill="url(#pt)"/>
+          <g fill="#2a1309" opacity=".7"><circle cx="150" cy="215" r="5"/><circle cx="220" cy="200" r="4"/><circle cx="260" cy="232" r="6"/><circle cx="180" cy="245" r="4"/><circle cx="120" cy="236" r="3"/><circle cx="290" cy="212" r="3"/></g>
+          <path d="M120 200c40-12 120-14 168 4l-12 18c-20 14-40 4-58 18-14-14-44-2-58-12-16 2-34-8-40-28z" fill="#ffb81c" opacity=".95"/>
+          <g fill="none" stroke="#fff1d6" stroke-linecap="round" stroke-width="5" opacity=".35"><path d="M140 160c-14-20 12-30 0-52"><animate attributeName="opacity" values=".1;.6;.1" dur="2.4s" repeatCount="indefinite"/></path><path d="M200 150c-14-22 14-34 0-60"><animate attributeName="opacity" values=".6;.1;.6" dur="2.1s" repeatCount="indefinite"/></path><path d="M260 160c-14-20 12-30 0-52"><animate attributeName="opacity" values=".2;.5;.2" dur="2.8s" repeatCount="indefinite"/></path></g>
+        </svg>
+        <blockquote>“Smash it hard, flip it once, never press twice.”<cite>House rule nº1, on the wall of every kitchen</cite></blockquote>
+      </figure>
+    </div>
+  </section>
+
+  <section class="visit" id="visit" aria-labelledby="visit-h">
+    <div class="wrap">
+      <div class="rv">
+        <p class="eyebrow">Visit us</p>
+        <h2 class="h2" id="visit-h">Come <em>hungry.</em></h2>
+      </div>
+      <div class="visit-grid">
+        <div class="vcard rv">
+          <h3>Opening hours</h3>
+          <table class="hours">
+            <caption class="sr-only">Opening hours by day</caption>
+            <tbody>
+              <tr data-d="0"><th scope="row">Sunday</th><td>12:00 – 01:00</td></tr>
+              <tr data-d="1"><th scope="row">Monday</th><td>12:00 – 01:00</td></tr>
+              <tr data-d="2"><th scope="row">Tuesday</th><td>12:00 – 01:00</td></tr>
+              <tr data-d="3"><th scope="row">Wednesday</th><td>12:00 – 01:00</td></tr>
+              <tr data-d="4"><th scope="row">Thursday</th><td>12:00 – 03:00</td></tr>
+              <tr data-d="5"><th scope="row">Friday</th><td>13:30 – 03:00</td></tr>
+              <tr data-d="6"><th scope="row">Saturday</th><td>12:00 – 03:00</td></tr>
+            </tbody>
+          </table>
+          <p class="open-now">Open daily · Late-night griddle on weekends</p>
+        </div>
+        <div class="vcard rv">
+          <h3>Find the flame</h3>
+          <div class="map" role="img" aria-label="Stylised map showing JAMRA near Olaya Street">
+            <svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="320" height="180" fill="#251e1a"/>
+              <g stroke="#3a302a" stroke-width="10" fill="none"><path d="M-10 60h340M-10 130h340M80-10v200M210-10v200"/></g>
+              <g stroke="#4a3d35" stroke-width="16" fill="none"><path d="M-10 95c80-10 140 20 340-10"/></g>
+              <g fill="#2f2722"><rect x="96" y="20" width="98" height="30" rx="4"/><rect x="226" y="20" width="80" height="30" rx="4"/><rect x="14" y="142" width="56" height="30" rx="4"/><rect x="226" y="142" width="80" height="30" rx="4"/><rect x="96" y="142" width="98" height="30" rx="4"/></g>
+              <circle cx="150" cy="96" r="30" fill="#ff5a1f" opacity=".18"><animate attributeName="r" values="18;34;18" dur="2.4s" repeatCount="indefinite"/></circle>
+              <path d="M150 66c10 0 18 8 18 18 0 14-18 30-18 30s-18-16-18-30c0-10 8-18 18-18z" fill="#ff5a1f"/><circle cx="150" cy="84" r="6" fill="#fff1d6"/>
+            </svg>
+          </div>
+          <p class="addr">Olaya Street, Al Olaya<span>Riyadh, Saudi Arabia · Drive-thru &amp; dine-in</span></p>
+          <a class="btn primary" href="https://www.google.com/maps/search/?api=1&amp;query=Olaya+Street+Riyadh" target="_blank" rel="noopener">Get directions <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p class="foot-big" aria-hidden="true">JAMRA · JAMRA</p>
+    <div class="foot-row">
+      <span>© 2026 JAMRA Smash House. A fictional restaurant made as a design sample.</span>
+      <nav aria-label="Footer"><a href="#menu">Menu</a><a href="#visit">Visit</a><a href="./ar/" hreflang="ar" lang="ar">العربية</a></nav>
+      <span>Design &amp; build: <a href="https://oriebalzyuot96.github.io/">Orieb Alzyuot</a></span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

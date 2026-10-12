@@ -385,5 +385,13 @@
  "yb.h1": "Custom Angular UI kit on design tokens, with light and dark themes and four colour palettes",
  "yb.h2": "Accessibility panel for contrast, text size and reduced motion; keyboard-friendly tabs and dialogs",
  "yb.h3": "Regions, activities, events and services, in English and Arabic with full RTL",
- "lbl.company": "🏢 Company project"
+ "lbl.company": "🏢 Company project",
+ "bg.org": "Design sample · 2026",
+ "bg.float": "3D scroll · Three.js",
+ "bg.t": "JAMRA Smash House · 3D Scroll Burger",
+ "bg.alt": "JAMRA Smash House landing page: a glossy 3D sesame burger beside the headline “Smashed hot. Stacked high.”",
+ "bg.p": "A scroll-driven website for an invented burger restaurant. A procedural Three.js burger comes apart layer by layer as you scroll, the camera visits each ingredient, then the burger stacks back together with its price.",
+ "bg.h1": "Burger built entirely in code (bun, sesame, lettuce, tomato, cheddar, patty) with soft studio light and shadows",
+ "bg.h2": "Pinned scroll story: exploded layers with labels, ingredient close-ups with stats, re-assembly, menu with a live cart counter",
+ "bg.h3": "English + Arabic RTL, lighter scene on mobile, reduced-motion and no-WebGL fallbacks"
 }
