@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>نوكتيلوكا: استوديو للأعماق</title>
+<meta name="description" content="نوكتيلوكا، استوديو تصميم خيالي. تجربة نزول تفاعلية مبنية بـ Three.js: كائن مضيء يستجيب لمؤشرك، والمشهد ينزل معك عبر خمس طبقات من المحيط كلما مرّرت. تصميم وتطوير عريب الزيوت.">
+<meta name="theme-color" content="#04121f">
+<meta name="robots" content="noindex">
+<link rel="alternate" hreflang="en" href="https://oriebalzyuot96.github.io/samples/descent/">
+<link rel="alternate" hreflang="ar" href="https://oriebalzyuot96.github.io/samples/descent/ar/">
+<meta property="og:title" content="نوكتيلوكا: النزول، موقع استوديو تفاعلي ثلاثي الأبعاد">
+<meta property="og:description" content="حرّك المؤشر، وسيجيبك شيء ما. مرّر، والمشهد ينزل معك. عيّنة تصميم من عريب الزيوت.">
+<meta property="og:image" content="https://oriebalzyuot96.github.io/assets/descent.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2304121f'/%3E%3Cpath d='M14 34c0-11 8-20 18-20s18 9 18 20c-3-2-5-2-6 0-2-2-4-2-6 0-2-2-4-2-6 0-2-2-4-2-6 0-2-2-4-2-6 0-2-2-4-2-6 0z' fill='%237ff3ff'/%3E%3Cpath d='M22 38c-2 6 2 10 0 16M32 38c-2 6 2 10 0 16M42 38c-2 6 2 10 0 16' stroke='%237ff3ff' stroke-width='2.5' fill='none' stroke-linecap='round' opacity='.7'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Reem+Kufi:wght@500;600&display=swap">
+<link rel="stylesheet" href="../descent.css">
+<script>
+  (function () {
+    var d = document.documentElement;
+    d.classList.add('js');
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('rm');
+    setTimeout(function () { d.classList.add('loaded'); }, 8000);
+  })();
+</script>
+<script type="importmap">
+  { "imports": { "three": "../vendor/three.module.js" } }
+</script>
+<script type="module" src="../descent.js"></script>
+<script type="application/json" id="i18n">
+{
+  "unit": "م",
+  "zones": ["السطح", "الشفق", "منتصف الليل", "اللُّجّة", "النواة"],
+  "soundOn": "الصوت يعمل",
+  "soundOff": "الصوت متوقف",
+  "soundOnAria": "أوقف الصوت المحيط",
+  "soundOffAria": "شغّل الصوت المحيط",
+  "meterAria": "العمق {d} متر، طبقة {z}",
+  "pressure": "ضغط جوي",
+  "pick": "اختر واحدًا",
+  "sent": "شكرًا يا {name}. هذه عيّنة تصميم فلم تُرسَل رسالتك فعلًا، لكن الكائن رآها.",
+  "needName": "اكتب اسمك من فضلك.",
+  "needEmail": "أدخل بريدًا إلكترونيًا صحيحًا.",
+  "friend": "صديقنا"
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">انتقل إلى المحتوى</a>
+
+<div class="loader" role="status" aria-live="polite">
+  <div class="loader-in">
+    <div class="loader-orb" aria-hidden="true"><i></i><i></i><i></i></div>
+    <p class="loader-t">نعادل الضغط</p>
+    <p class="loader-n" aria-hidden="true" dir="ltr"><span>0</span> m</p>
+    <div class="bar" aria-hidden="true"><span></span></div>
+  </div>
+</div>
+
+<div class="sea" aria-hidden="true"></div>
+<canvas id="gl" aria-hidden="true"></canvas>
+<div class="scrim" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true"><span class="c-ring"></span><span class="c-dot"></span></div>
+
+<svg class="css-jelly" viewBox="0 0 200 320" aria-hidden="true">
+  <defs>
+    <radialGradient id="jg" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#e6fdff"/><stop offset=".45" stop-color="#7ff3ff" stop-opacity=".7"/><stop offset="1" stop-color="#2bb7d6" stop-opacity=".05"/></radialGradient>
+    <filter id="jb" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+  </defs>
+  <ellipse cx="100" cy="90" rx="92" ry="80" fill="#7ff3ff" opacity=".18" filter="url(#jb)"/>
+  <path d="M20 112C20 52 56 22 100 22s80 30 80 90c-8-6-14-6-20 0-7-6-13-6-20 0-7-6-13-6-20 0-7-6-13-6-20 0-7-6-13-6-20 0-7-6-13-6-20 0-7-6-13-6-20 0-6-6-12-6-20 0z" fill="url(#jg)"/>
+  <g fill="none" stroke="#9ff6ff" stroke-linecap="round" opacity=".75">
+    <path d="M40 112c-8 40 10 70-2 110s8 60 0 90" stroke-width="2"/>
+    <path d="M70 114c-6 44 12 66 0 108s10 50 2 80" stroke-width="2"/>
+    <path d="M100 114c-4 50 14 70 2 112s6 40 0 70" stroke-width="5" opacity=".6"/>
+    <path d="M130 114c6 44-10 66 2 108s-10 50-2 80" stroke-width="2"/>
+    <path d="M160 112c8 40-10 70 2 110s-8 60 0 90" stroke-width="2"/>
+  </g>
+</svg>
+
+<header class="top">
+  <a class="brand" href="#surface" aria-label="نوكتيلوكا، العودة إلى السطح">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M7 21C7 12.7 12.8 6 20 6s13 6.7 13 15c-2-1.4-3.6-1.4-5 0-1.6-1.4-3.4-1.4-5 0-1.6-1.4-3.4-1.4-5 0-1.6-1.4-3.4-1.4-5 0-1.4-1.4-3-1.4-6 0z" fill="currentColor"/><path d="M13 25c-1 4 1.5 6 0 10M20 25c-1 4 1.5 6 0 10M27 25c-1 4 1.5 6 0 10" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" opacity=".6"/></svg>
+    <span>نوكتيلوكا</span>
+  </a>
+  <nav class="nav" aria-label="الطبقات">
+    <a href="#services">الخدمات</a>
+    <a href="#work">الأعمال</a>
+    <a href="#process">المنهج</a>
+    <a href="#contact">تواصل</a>
+  </nav>
+  <div class="tools">
+    <button class="chip sound" type="button" aria-pressed="false" aria-label="شغّل الصوت المحيط">
+      <span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="lbl">الصوت متوقف</span>
+    </button>
+    <a class="chip lang" href="../" hreflang="en" lang="en" aria-label="View this page in English">EN</a>
+  </div>
+</header>
+
+<aside class="meter" aria-label="العمق">
+  <div class="m-read" role="status" aria-live="off">
+    <span class="m-depth"><b>0</b><small>م</small></span>
+    <span class="m-zone">السطح</span>
+    <span class="m-extra"><span class="m-temp">24°C</span> · <span class="m-atm">1 atm</span></span>
+  </div>
+  <ol class="m-rail">
+    <li><a href="#surface" data-z="0"><span>السطح</span><em>0 م</em></a></li>
+    <li><a href="#services" data-z="1"><span>الشفق</span><em>200 م</em></a></li>
+    <li><a href="#work" data-z="2"><span>منتصف الليل</span><em>1,000 م</em></a></li>
+    <li><a href="#process" data-z="3"><span>اللُّجّة</span><em>4,000 م</em></a></li>
+    <li><a href="#contact" data-z="4"><span>النواة</span><em>10,994 م</em></a></li>
+  </ol>
+  <div class="m-track" aria-hidden="true"><span class="m-fill"></span></div>
+</aside>
+
+<main id="main">
+  <section class="zone z0" id="surface" data-zone="0" aria-labelledby="h-surface">
+    <div class="panel">
+      <p class="kicker rv">نوكتيلوكا · استوديو تصميم وتقنية</p>
+      <h1 id="h-surface" class="rv"><span>نصنع أشياء</span> <em>تتوهّج</em> <span>في العتمة.</span></h1>
+      <p class="lead rv">حرّك المؤشر، وسيجيبك شيء ما. مرّر للأسفل، والمشهد ينزل معك: خمس طبقات، أحد عشر كيلومترًا، استوديو واحد.</p>
+      <div class="cta rv">
+        <a class="btn primary" href="#services">ابدأ النزول <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+        <button class="btn ghost" type="button" data-open-contact>ابدأ مشروعًا</button>
+      </div>
+    </div>
+    <p class="hint" aria-hidden="true"><span class="hint-line"></span>مرّر لتغوص</p>
+  </section>
+
+  <section class="zone z1" id="services" data-zone="1" aria-labelledby="h-services">
+    <div class="panel">
+      <p class="kicker rv"><span class="zn">02</span> طبقة الشفق · ‎−200 م</p>
+      <h2 id="h-services" class="rv">حيث يبدأ الضوء <em>بالانحناء</em>.</h2>
+      <p class="lead rv">أربعة تخصصات وفريق واحد. نعمل حيث تلتقي الهوية والواجهة والكود، ونبقى معك طوال الغوص.</p>
+      <ul class="svc">
+        <li class="rv"><span class="n">01</span><div><h3>عوالم الهوية</h3><p>هويات تتصرّف: شعارات تتحرك، وخطوط لها صوت، وأنظمة تكبر معك.</p></div></li>
+        <li class="rv"><span class="n">02</span><div><h3>الويب التفاعلي</h3><p>مشاهد ثلاثية الأبعاد حيّة وHTML سريع وصادق. مصنوع ليُحَسّ، ومقيس ليُحمَّل بسرعة.</p></div></li>
+        <li class="rv"><span class="n">03</span><div><h3>تصميم المنتجات</h3><p>تجربة مستخدم مبنية على البحث للتطبيقات ولوحات التحكم، ونجرّبها حتى تصبح بديهية.</p></div></li>
+        <li class="rv"><span class="n">04</span><div><h3>الحركة والأبعاد الثلاثة</h3><p>مشاهد حيّة وأفلام منتجات وانتقالات صغيرة يتذكّرها الناس.</p></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="zone z2" id="work" data-zone="2" aria-labelledby="h-work">
+    <div class="panel wide">
+      <p class="kicker rv"><span class="zn">03</span> طبقة منتصف الليل · ‎−1,000 م</p>
+      <h2 id="h-work" class="rv">أضواء <em>تركناها</em> خلفنا.</h2>
+      <div class="work">
+        <article class="case rv" style="--a:#7ff3ff;--b:#4d6bff">
+          <div class="case-art" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="case-meta"><span>موقع متحف</span><span>WebGL</span></div>
+          <h3>أرشيف المدّ</h3>
+          <p>أربعون ألف قطعة تسبح في بحر واحد قابل للتصفح. بقي الزوار مدة أطول بـ 2.2 مرة.</p>
+        </article>
+        <article class="case rv" style="--a:#c49bff;--b:#ff5fa2">
+          <div class="case-art" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="case-meta"><span>تطبيق مالي</span><span>تصميم منتج</span></div>
+          <h3>هالسيون باي</h3>
+          <p>اختصرنا التسجيل من تسع شاشات إلى ثلاث، فتضاعفت نسبة الإكمال ثلاث مرات في الشهر الأول.</p>
+        </article>
+        <article class="case rv" style="--a:#7affc8;--b:#2bb7d6">
+          <div class="case-art" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="case-meta"><span>شركة تسجيلات</span><span>هوية · ويب</span></div>
+          <h3>تسجيلات الزجاج المالح</h3>
+          <p>هوية تتموّج مع كل إصدار، تتولّد من الموجة الصوتية لكل أسطوانة.</p>
+        </article>
+      </div>
+      <p class="note rv">مشاريع تخيّلية لاستوديو خيالي.</p>
+    </div>
+  </section>
+
+  <section class="zone z3" id="process" data-zone="3" aria-labelledby="h-process">
+    <div class="panel">
+      <p class="kicker rv"><span class="zn">04</span> طبقة اللُّجّة · ‎−4,000 م</p>
+      <h2 id="h-process" class="rv">كيف نصل إلى <em>العمق</em>.</h2>
+      <ol class="steps">
+        <li class="rv"><span class="n">01</span><div><h3>الإصغاء</h3><p>نستمع أولًا: مقابلات وبيانات وأسبوع كامل في مكان مستخدميك.</p></div></li>
+        <li class="rv"><span class="n">02</span><div><h3>الخريطة</h3><p>استراتيجية وبنية ونموذج أولي تضغط عليه في اليوم العاشر.</p></div></li>
+        <li class="rv"><span class="n">03</span><div><h3>البناء</h3><p>التصميم والكود في حلقة واحدة، ونسلّم كل أسبوع.</p></div></li>
+        <li class="rv"><span class="n">04</span><div><h3>الصعود</h3><p>نطلق ونقيس ونضبط، ونبقى حتى تتوهّج الأرقام.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="zone z4" id="contact" data-zone="4" aria-labelledby="h-contact">
+    <div class="panel">
+      <p class="kicker rv"><span class="zn">05</span> النواة · ‎−10,994 م</p>
+      <h2 id="h-contact" class="rv">وصلتَ إلى <em>النواة</em>.</h2>
+      <p class="lead rv">أحضر لنا أصعب مشكلة لديك. نرد على كل رسالة خلال يومَي عمل.</p>
+      <div class="cta rv">
+        <button class="btn primary big" type="button" data-open-contact>ابدأ مشروعًا <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <a class="btn ghost" href="#surface">العودة إلى السطح <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>نوكتيلوكا استوديو خيالي، صُمّم كعيّنة تصميم.</span>
+  <span>تصميم وتطوير: <a href="https://oriebalzyuot96.github.io">عريب الزيوت</a> <span lang="en" dir="ltr">(Design &amp; build: Orieb Alzyuot)</span></span>
+</footer>
+
+<dialog class="modal" id="contact-dialog" aria-labelledby="dlg-h">
+  <form class="dlg" method="dialog" novalidate>
+    <div class="dlg-head">
+      <h2 id="dlg-h">ابدأ مشروعًا</h2>
+      <button class="x" type="button" data-close aria-label="إغلاق"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="dlg-body">
+      <div class="field"><label for="f-name">اسمك</label><input id="f-name" name="name" autocomplete="name" required></div>
+      <div class="field"><label for="f-email">البريد الإلكتروني</label><input id="f-email" name="email" type="email" autocomplete="email" dir="ltr" required></div>
+      <div class="field">
+        <span class="lab" id="l-type">ماذا تحتاج؟</span>
+        <div class="lb" data-name="type">
+          <button class="lb-btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="l-type lb-type-v" id="lb-type-b"><span id="lb-type-v">اختر واحدًا</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <ul class="lb-list" role="listbox" tabindex="-1" aria-labelledby="l-type" hidden>
+            <li role="option" id="o-t1" aria-selected="false">عالم هوية</li>
+            <li role="option" id="o-t2" aria-selected="false">موقع تفاعلي</li>
+            <li role="option" id="o-t3" aria-selected="false">تصميم منتج</li>
+            <li role="option" id="o-t4" aria-selected="false">حركة وأبعاد ثلاثة</li>
+          </ul>
+        </div>
+      </div>
+      <div class="field">
+        <span class="lab" id="l-budget">الميزانية</span>
+        <div class="lb" data-name="budget">
+          <button class="lb-btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="l-budget lb-budget-v" id="lb-budget-b"><span id="lb-budget-v">اختر واحدًا</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <ul class="lb-list" role="listbox" tabindex="-1" aria-labelledby="l-budget" hidden>
+            <li role="option" id="o-b1" aria-selected="false">أقل من 10 آلاف دولار</li>
+            <li role="option" id="o-b2" aria-selected="false">10 – 40 ألف دولار</li>
+            <li role="option" id="o-b3" aria-selected="false">40 – 100 ألف دولار</li>
+            <li role="option" id="o-b4" aria-selected="false">العمق الكامل (أكثر من 100 ألف)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="field"><label for="f-msg">حدّثنا عنه</label><textarea id="f-msg" name="msg" rows="3"></textarea></div>
+      <p class="err" role="alert"></p>
+      <div class="dlg-foot"><button class="btn primary" type="submit" data-submit>أرسلها إلى الأعماق</button></div>
+    </div>
+    <div class="dlg-done" hidden>
+      <p class="done-t" tabindex="-1"></p>
+      <button class="btn ghost" type="button" data-close>إغلاق</button>
+    </div>
+  </form>
+</dialog>
+</body>
+</html>
