@@ -1,0 +1,51 @@
+---
+/* Articles written by Orieb (hosted on the portfolio, imported to Medium). */
+const ar = Astro.currentLocale === 'ar';
+const L = (en: string, a: string) => (ar ? a : en);
+const posts = [
+  { href: '/blog/ai-engineering-cursor-claude/', icon: '🤖', time: L('10 min read', 'قراءة 10 دقائق'),
+    t: 'Rules, Skills and Guardrails: How I Engineer with Cursor and Claude Code',
+    p: L('The AI-assisted engineering system behind my production apps: 176 scoped rules, Claude skills, sync scripts and checks that turn rules into build failures.',
+         'نظام الهندسة بمساعدة الذكاء الاصطناعي في تطبيقاتي: 176 قاعدة، ومهارات Claude، وسكربتات مزامنة، وفحوصات تحوّل القواعد إلى أخطاء بناء.'),
+    tags: ['AI', 'Cursor', 'Claude Code'] },
+  { href: '/blog/angular-to-react-native/', icon: '📱', time: L('12 min read', 'قراءة 12 دقيقة'),
+    t: 'From Angular to React Native Without a Rewrite: A Senior Playbook',
+    p: L('How to port a production Angular app to React Native (Expo): a tiny DI and signals layer, mirrored structure, synced i18n and tokens, and Arabic RTL done right.',
+         'كيف تنقل تطبيق Angular إلى React Native دون إعادة كتابة: طبقة صغيرة للحقن و Signals، وبنية متطابقة، ومزامنة الترجمات والرموز، ودعم العربية بشكل صحيح.'),
+    tags: ['Angular', 'React Native', 'Expo'] },
+];
+---
+<section class="sec" id="writing" aria-labelledby="writingT">
+  <div class="wrap">
+    <div class="sec-title reveal">
+      <span class="kicker">{L('writing', 'مقالات')}</span>
+      <h2 id="writingT">{L('Articles', 'مقالاتي')}</h2>
+      <p>{L('What I learn on real projects, written down so other engineers can use it.', 'ما أتعلّمه في المشاريع الحقيقية، مكتوبًا ليستفيد منه المطوّرون.')}</p>
+    </div>
+    <div class="wr-grid">
+      {posts.map(x => (
+        <a class="card wr spot reveal" href={x.href} lang="en">
+          <span class="wr-ico" aria-hidden="true">{x.icon}</span>
+          <span class="wr-meta">{x.time}</span>
+          <h3 dir="ltr">{x.t}</h3>
+          <p lang={ar ? 'ar' : 'en'}>{x.p}</p>
+          <span class="wr-tags">{x.tags.map(g => <span class="tag">{g}</span>)}</span>
+          <span class="wr-go">{L('Read the article →', 'اقرأ المقالة ←')}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+<style>
+  .wr-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+  .wr{display:flex;flex-direction:column;gap:10px;padding:26px;text-decoration:none;color:inherit}
+  .wr-ico{font-size:30px}
+  .wr-meta{font-size:.85rem;color:var(--ink-3);font-weight:600}
+  .wr h3{margin:0;font-size:1.3rem;line-height:1.3;letter-spacing:-.01em}
+  [dir="rtl"] .wr h3{text-align:right}
+  .wr p{margin:0;color:var(--ink-2)}
+  .wr-tags{display:flex;flex-wrap:wrap;gap:6px}
+  .wr-go{margin-top:auto;font-weight:800;color:var(--accent)}
+  .wr:hover .wr-go{text-decoration:underline}
+  @media (max-width:760px){.wr-grid{grid-template-columns:1fr}}
+</style>
