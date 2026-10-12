@@ -384,5 +384,6 @@
  "yb.p": "A bilingual tourism portal for Yanbu’s three regions: the sea, the industrial city and the palm valley. Rebuilt with a hand-made design system, full Arabic RTL and accessibility settings.",
  "yb.h1": "Custom Angular UI kit on design tokens, with light and dark themes and four colour palettes",
  "yb.h2": "Accessibility panel for contrast, text size and reduced motion; keyboard-friendly tabs and dialogs",
- "yb.h3": "Regions, activities, events and services, in English and Arabic with full RTL"
+ "yb.h3": "Regions, activities, events and services, in English and Arabic with full RTL",
+ "lbl.company": "🏢 Company project"
 }

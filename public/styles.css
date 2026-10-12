@@ -686,3 +686,5 @@ footer.site-footer .wrap{display:block}
 :root[data-contrast="yellow"] .totop{background:#000;color:#ff0;border:2px solid #ff0}
 @media print{.totop{display:none!important}}
 #contact{padding-bottom:24px}
+
+.co-tag{display:inline-block;font-size:.72em;font-weight:800;letter-spacing:.02em;padding:2px 8px;border-radius:999px;background:var(--soft);color:var(--accent);margin-inline-end:6px;vertical-align:1px;white-space:nowrap}
