@@ -235,6 +235,23 @@ const t = useT(Astro.currentLocale);
         </div>
       </article>
 
+      <!-- Yanbu -->
+      <article class="card proj spot reveal" data-c="gov" id="p-yanbu">
+        <div class="media">
+          <figure class="frame tilt" data-full="/assets/yanbu.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>yanbu · tourism portal</span></div><img src="/assets/yanbu.jpg" alt={t('yb.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
+          <span class="float">🌊 <span><Fragment set:html={t('yb.float')} /></span></span>
+        </div>
+        <div class="p-body">
+          <div class="org"><span><Fragment set:html={t('yb.org')} /></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('st.done')} /></span></span></div>
+          <h3><Fragment set:html={t('yb.t')} /></h3>
+          <div class="alt-name ar-text">ينبع تشوقك</div>
+          <p><Fragment set:html={t('yb.p')} /></p>
+          <ul class="hl"><li><Fragment set:html={t('yb.h1')} /></li><li><Fragment set:html={t('yb.h2')} /></li><li><Fragment set:html={t('yb.h3')} /></li></ul>
+          <div class="tags"><span class="tag">Angular 22</span><span class="tag">Signals</span><span class="tag">SCSS design system</span><span class="tag">i18n · RTL</span><span class="tag">a11y</span></div>
+          <div class="p-actions"><button class="btn primary" type="button" onclick="this.closest('.proj').querySelector('[data-full]').click()"><Fragment set:html={t('btn.shots')} /></button></div>
+        </div>
+      </article>
+
       <!-- Al Taqadum Al Mustamer -->
       <article class="card proj spot reveal" data-c="saas" id="p-taqadum">
         <div class="media">
