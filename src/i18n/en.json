@@ -473,5 +473,14 @@
  "bn.p": "My own Arabic-first learning app for the whole family. Kids grow a 3D garden as they learn Arabic letters, short surahs, maths and first words in English, Turkish and German. Adults get a calmer track with grammar, mental maths, streaks and stats.",
  "bn.h1": "Letter tracing on canvas with stroke guidance, positional letter forms, harakat drag-and-drop blending, adaptive maths with a speed mode, and flashcards with spaced repetition",
  "bn.h2": "Quran text bundled verbatim from Tanzil and checked byte-for-byte against Quran.com, with hide-and-recall memorisation, Alafasy recitation and simplified meanings that are clearly labelled",
- "bn.h3": "100% custom accessible UI kit (combobox, switch, tabs, dialog, toasts), Arabic RTL + English UI, kid and adult profiles, parents' corner with a hold-to-open gate, all local with no AI"
+ "bn.h3": "100% custom accessible UI kit (combobox, switch, tabs, dialog, toasts), Arabic RTL + English UI, kid and adult profiles, parents' corner with a hold-to-open gate, all local with no AI",
+ "ng.org": "Open-source security library · 2026",
+ "ng.float": "reCAPTCHA alternative",
+ "ng.t": "Nawa Guard · Self-hosted, accessible CAPTCHA",
+ "ng.alt": "Nawa Guard website: \"the self-hosted, accessible puzzle CAPTCHA\", an open-source reCAPTCHA, hCaptcha and Turnstile alternative.",
+ "ng.p": "An open-source puzzle CAPTCHA that runs on your own server: no third-party tracking and no data leaving your app. Widgets for React, Vue, Svelte, Angular and plain HTML, with verification on Node.js or ASP.NET Core.",
+ "ng.h1": "The client is never trusted: puzzles render on the server and the answer is sealed with AES-256-GCM",
+ "ng.h2": "Short-lived, single-use, HMAC-signed pass tokens verified on your own backend, like siteverify without the third party",
+ "ng.h3": "Everyone can pass it: mouse, touch, full keyboard and a screen-reader alternative, in Arabic and English with RTL",
+ "ng.site": "Open website ↗"
 }
