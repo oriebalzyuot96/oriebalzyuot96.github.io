@@ -27,7 +27,7 @@ const t = useT(Astro.currentLocale);
           <p><Fragment set:html={t('s3.p')} /></p>
           <ul class="hl"><li><Fragment set:html={t('s3.h1')} /></li><li><Fragment set:html={t('s3.h2')} /></li><li><Fragment set:html={t('s3.h3')} /></li></ul>
           <div class="tags"><span class="tag">Astro</span><span class="tag">Three.js</span><span class="tag">WebGL</span><span class="tag">i18n · RTL</span><span class="tag">a11y</span></div>
-          <div class="p-actions"><a class="btn primary" href={Astro.currentLocale === 'ar' ? 'https://oriebalzyuot96.github.io/sample-3/ar/' : 'https://oriebalzyuot96.github.io/sample-3/'} target="_blank" rel="noopener"><Fragment set:html={t('btn.live')} /></a><a class="btn" href="https://github.com/oriebalzyuot96/sample-3" target="_blank" rel="noopener"><Fragment set:html={t('btn.code')} /></a></div>
+          <div class="p-actions"><a class="btn primary" href={Astro.currentLocale === 'ar' ? 'https://oriebalzyuot96.github.io/sample-3/ar/' : 'https://oriebalzyuot96.github.io/sample-3/'} target="_blank" rel="noopener"><Fragment set:html={t('btn.live')} /></a></div>
         </div>
       </article>
 
@@ -242,28 +242,29 @@ const t = useT(Astro.currentLocale);
           <span class="float">🧭 <span><Fragment set:html={t('tq.float')} /></span></span>
         </div>
         <div class="p-body">
-          <div class="org"><span><Fragment set:html={t('tq.org')} /></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('tq.status')} /></span></span></div>
+          <div class="org"><span><Fragment set:html={t('tq.org')} /></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('st.done')} /></span></span></div>
           <h3><Fragment set:html={t('tq.t')} /></h3>
           <div class="alt-name ar-text">التقدّم المستمر</div>
           <p><Fragment set:html={t('tq.p')} /></p>
           <ul class="hl"><li><Fragment set:html={t('tq.h1')} /></li><li><Fragment set:html={t('tq.h2')} /></li><li><Fragment set:html={t('tq.h3')} /></li></ul>
           <div class="tags"><span class="tag">Angular 22</span><span class="tag">Figma → code</span><span class="tag">i18n · RTL</span><span class="tag">Forms</span><span class="tag">a11y</span></div>
+          <div class="p-actions"><button class="btn primary" type="button" onclick="this.closest('.proj').querySelector('[data-full]').click()"><Fragment set:html={t('btn.shots')} /></button></div>
         </div>
       </article>
 
       <!-- Asset conversion -->
       <article class="card proj spot reveal" data-c="oss" id="p-convert">
         <div class="media">
-          <figure class="frame tilt" data-full="/assets/asset-conversion.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>github.com/oriebalzyuot96/asset-conversion</span></div><img src="/assets/asset-conversion.jpg" alt={t('cv.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
+          <figure class="frame tilt" data-full="/assets/asset-conversion.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>convert · react native app</span></div><img src="/assets/asset-conversion.jpg" alt={t('cv.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
           <span class="float">📱 <span><Fragment set:html={t('cv.float')} /></span></span>
         </div>
         <div class="p-body">
-          <div class="org"><span><Fragment set:html={t('cv.org')} /></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('st.public2')} /></span></span></div>
+          <div class="org"><span><Fragment set:html={t('cv.org')} /></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('st.done')} /></span></span></div>
           <h3><Fragment set:html={t('cv.t')} /></h3>
           <p><Fragment set:html={t('cv.p')} /></p>
           <ul class="hl"><li><Fragment set:html={t('cv.h1')} /></li><li><Fragment set:html={t('cv.h2')} /></li><li><Fragment set:html={t('cv.h3')} /></li></ul>
           <div class="tags"><span class="tag">React Native</span><span class="tag">TypeScript</span><span class="tag">Jest</span><span class="tag">Maestro</span><span class="tag">a11y</span></div>
-          <div class="p-actions"><a class="btn" href="https://github.com/oriebalzyuot96/asset-conversion" target="_blank" rel="noopener"><Fragment set:html={t('btn.code')} /></a><a class="btn" href="https://github.com/oriebalzyuot96/asset-conversion/blob/main/demo/video/convert-demo.mp4" target="_blank" rel="noopener"><Fragment set:html={t('cv.video')} /></a></div>
+          <div class="p-actions"><button class="btn primary" type="button" onclick="this.closest('.proj').querySelector('[data-full]').click()"><Fragment set:html={t('btn.shots')} /></button><a class="btn" href="https://github.com/oriebalzyuot96/asset-conversion/blob/main/demo/video/convert-demo.mp4" target="_blank" rel="noopener"><Fragment set:html={t('cv.video')} /></a></div>
         </div>
       </article>
 
@@ -274,13 +275,13 @@ const t = useT(Astro.currentLocale);
           <span class="float">💎 <span><Fragment set:html={t('bq.float')} /></span></span>
         </div>
         <div class="p-body">
-          <div class="org"><span><Fragment set:html={t('bq.org')} /></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('st.public2')} /></span></span></div>
+          <div class="org"><span><Fragment set:html={t('bq.org')} /></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('st.done')} /></span></span></div>
           <h3><Fragment set:html={t('bq.t')} /></h3>
           <div class="alt-name ar-text">بريق العقيق</div>
           <p><Fragment set:html={t('bq.p')} /></p>
           <ul class="hl"><li><Fragment set:html={t('bq.h1')} /></li><li><Fragment set:html={t('bq.h2')} /></li><li><Fragment set:html={t('bq.h3')} /></li></ul>
           <div class="tags"><span class="tag">Angular 21</span><span class="tag">Signals</span><span class="tag">React Native · Expo</span><span class="tag">Design tokens</span><span class="tag">i18n · RTL</span></div>
-          <div class="p-actions"><a class="btn" href="https://github.com/oriebalzyuot96/angular" target="_blank" rel="noopener"><Fragment set:html={t('btn.code')} /></a></div>
+          <div class="p-actions"><button class="btn primary" type="button" onclick="this.closest('.proj').querySelector('[data-full]').click()"><Fragment set:html={t('btn.shots')} /></button></div>
         </div>
       </article>
     </div>
