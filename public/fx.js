@@ -155,7 +155,7 @@
     else import(HERO_URL).then(() => signal3D('ready'), () => signal3D('fail'));
   }
   const kick3D = () => { if (document.readyState === 'complete') start3D(); else addEventListener('load', start3D, { once: true }); };
-  if (root.dataset.boot === 'splash' && !window.__oaBootLeft) document.addEventListener('oa:boot-leave', () => setTimeout(kick3D, 1300), { once: true });
+  if (root.dataset.boot === 'splash' && !window.__oaBootLeft) document.addEventListener('oa:boot-leave', () => setTimeout(kick3D, 1600), { once: true });
   else kick3D();
 
   // follow preference changes: colours, theme, motion
