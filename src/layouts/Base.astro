@@ -103,7 +103,7 @@ html[data-boot="bar"] .boot-tick{display:block}
   background:radial-gradient(52% 40% at 50% 44%,color-mix(in srgb,var(--bt-a) 16%,transparent),transparent 72%),
     radial-gradient(40% 36% at 80% 90%,color-mix(in srgb,var(--bt-p) 22%,transparent),transparent 70%),
     linear-gradient(180deg,color-mix(in srgb,var(--bt-a) 7%,var(--bt-bg)),var(--bt-bg) 62%);
-  animation:boot-failsafe .4s ease 5s forwards}
+  animation:boot-failsafe .4s ease 3.7s forwards}
 .boot::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;
   background-image:radial-gradient(color-mix(in srgb,var(--bt-a) 34%,transparent) 1px,transparent 1.6px);background-size:24px 24px;
   -webkit-mask-image:radial-gradient(circle at 50% 44%,#000 0,transparent 46%);mask-image:radial-gradient(circle at 50% 44%,#000 0,transparent 46%);
@@ -218,7 +218,7 @@ html[data-motion="reduced"] .boot-tick i{animation:none;transform:scaleX(.8)}
 <noscript><style>.boot,.boot-tick{display:none!important}</style></noscript>
 <script is:inline>
 /* boot controller. Progress follows real milestones: DOM ready → fonts → hero image → 3D hero module (when it will load).
-   At least ~700 ms on screen, gone by ~3.5 s after navigation start (leave starts at 3.3 s); CSS hides the splash at 5 s even if this script dies. */
+   At least ~700 ms on screen, leaves at 3.3 s at the latest. A CSS fade (3.7 s, compositor-driven) is the true cap: it still runs when the main thread is busy or this script dies. */
 (function(){
 var r=document.documentElement,boot=document.getElementById('boot'),tick=document.querySelector('.boot-tick'),mode=r.getAttribute('data-boot');
 if(mode==='bar'){if(boot)boot.remove();var fin=function(){if(!tick.isConnected)return;tick.classList.add('done');setTimeout(function(){tick.remove()},700)};
@@ -244,8 +244,10 @@ function leave(){if(left)return;left=true;fill.style.transform='scaleX(1)';
   if(tg&&!reduced){var a=em.getBoundingClientRect(),b=tg.getBoundingClientRect();if(b.width&&b.bottom>0&&b.top<innerHeight){x=b.left+b.width/2;y=b.top+b.height/2;
     em.style.setProperty('--tx',(x-a.left-a.width/2).toFixed(1)+'px');em.style.setProperty('--ty',(y-a.top-a.height/2).toFixed(1)+'px');em.style.setProperty('--ts',(b.width/a.width).toFixed(3))}}
   boot.style.setProperty('--bx',x.toFixed(1)+'px');boot.style.setProperty('--by',y.toFixed(1)+'px');
-  setTimeout(function(){/* end the entrance animations first, or Chrome skips the exit transitions */boot.querySelectorAll('.boot-emblem,.boot-name,.boot-label,.boot-bar').forEach(function(e){e.style.animation='none'});boot.offsetWidth;boot.classList.add('is-leaving');window.__oaBootLeft=true;document.dispatchEvent(new CustomEvent('oa:boot-leave'));
-    setTimeout(function(){boot.remove();r.setAttribute('data-boot','done')},reduced?300:1250)},reduced?0:180)}
+  var fire=function(){window.__oaBootLeft=true;document.dispatchEvent(new CustomEvent('oa:boot-leave'))},fin=function(){boot.remove();r.setAttribute('data-boot','done')};
+  setTimeout(function(){if(performance.now()>3650){fire();setTimeout(fin,Math.max(0,4150-performance.now()));return}/* too late for the choreography: the CSS cap is already fading it */
+    /* end the entrance animations first, or Chrome skips the exit transitions */boot.querySelectorAll('.boot-emblem,.boot-name,.boot-label,.boot-bar').forEach(function(e){e.style.animation='none'});boot.offsetWidth;boot.classList.add('is-leaving');fire();
+    setTimeout(fin,reduced?300:1250)},reduced?0:180)}
 })();
 </script>
 <Chrome />
