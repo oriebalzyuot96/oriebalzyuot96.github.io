@@ -1,0 +1,8 @@
+{
+  "name": "three-vendored",
+  "private": true,
+  "version": "0.186.1",
+  "description": "three.js r186 build files, copied verbatim (MIT, see LICENSE). Bundled + tree-shaken into public/hero3d.js by tools/build-hero3d.mjs.",
+  "type": "module",
+  "sideEffects": false
+}
