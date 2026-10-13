@@ -1,22 +1,31 @@
 WEBVTT
 
-00:00.500 --> 00:05.800
-Hello world. I'm Orieb Alzyuot.
+00:00.500 --> 00:05.200
+Hello world. I'm Orieb Alzyuot, Senior Front-End and UI/UX Engineer.
 
-00:06.200 --> 00:11.800
-Senior Front-End and Full-Stack Engineer: 6+ years, 10 platforms, every Angular era from AngularJS to 21.
+00:05.700 --> 00:10.200
+6+ years in production, every Angular era from AngularJS to v22, on web and mobile.
 
-00:12.200 --> 00:18.800
-Trusted with Saudi government and fintech: Wasl, the Saudi Bar Association, the Ministry of Justice, Engineering Arbitration and Contracts.
+00:10.700 --> 00:13.400
+Company work for Saudi government, fintech and enterprise:
 
-00:19.200 --> 00:25.800
-Real products, real users, Arabic-first.
+00:13.400 --> 00:16.200
+Wasl, Saudi Bar Association, Engineering Arbitration, Contracts, Meerath, Shepherd HR, Tahaluf and PenguinIN.
 
-00:26.200 --> 00:31.800
-The stack I ship with: Angular, React Native, .NET, Node, Azure and Docker, accessible and RTL by default.
+00:16.700 --> 00:19.400
+My own libraries: Orca UI, a multi-framework component library with charts, and Orca Space, its page builder.
 
-00:32.200 --> 00:36.300
-How I work: architecture first, modernise safely, human-first.
+00:19.400 --> 00:22.200
+And Nawa Captcha, a self-hosted, accessible CAPTCHA with an audio challenge.
+
+00:22.700 --> 00:28.700
+Showcase: Burger 3D, Descent, 5min, 5min Refresh, Bustan, Yanbu and my RBK bootcamp rebuilds.
+
+00:29.200 --> 00:32.700
+Backend: the 5min API on Node.js, Fastify and PostgreSQL, live on Render.
+
+00:33.200 --> 00:36.200
+7 articles published.
 
 00:36.700 --> 00:40.000
-Let's build something people trust. Open to senior roles and freelance.
+Human-first, accessible, Arabic-first. oriebalzyuot96.github.io

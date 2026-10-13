@@ -78,7 +78,8 @@
     return (lang === 'ar' ? '/ar' + (p === '/' ? '/' : p) : p) + location.hash;
   }
   function goLang(lang) { location.href = altPath(lang); }
-  { const v = $('#introVideo'); if (v && v.textTracks) [...v.textTracks].forEach(tr => { tr.mode = tr.language === PAGE_LANG ? 'showing' : 'disabled'; }); }
+  // captions stay off by default (they covered the reel); viewers turn them on from the player's captions menu
+  { const v = $('#introVideo'); if (v && v.textTracks) { const off = () => [...v.textTracks].forEach(tr => { tr.mode = 'disabled'; }); off(); v.textTracks.addEventListener?.('addtrack', off, { once: true }); } }
 
   /* ───────── controls ───────── */
   $$('[data-pref]').forEach(g => {
@@ -459,15 +460,11 @@
 
   /* ───────── boot ───────── */
   applyPrefs(); onScroll();
-  let splashShown = false;
-  try { splashShown = sessionStorage.getItem('oa-splash') === '1'; sessionStorage.setItem('oa-splash', '1'); } catch (e) {}
-  const splash = $('#splash');
-  const startHero = () => { root.classList.add('ready'); setTimeout(typeCode, reducedMotion() ? 0 : 900); setTimeout(() => $$('[data-count-to]').forEach(countUp), reducedMotion() ? 0 : 900); stars(); };
-  if (!splashShown && !reducedMotion() && !location.hash) {
-    splash.classList.add('run'); root.style.setProperty('--d0', '1500ms');
-    setTimeout(() => splash.remove(), 2300);
-  } else splash.remove();
-  startHero();
+  // the hero entrance starts as the boot splash (inline in Base.astro) opens, so it plays in view instead of behind the splash
+  let heroStarted = false;
+  const startHero = () => { if (heroStarted) return; heroStarted = true; root.classList.add('ready'); setTimeout(typeCode, reducedMotion() ? 0 : 900); setTimeout(() => $$('[data-count-to]').forEach(countUp), reducedMotion() ? 0 : 900); stars(); };
+  if (root.dataset.boot === 'splash' && !window.__oaBootLeft) { document.addEventListener('oa:boot-leave', startHero, { once: true }); setTimeout(startHero, 4000); }
+  else startHero();
   darkMQ.addEventListener?.('change', applyPrefs);
   reduceMQ.addEventListener?.('change', applyPrefs);
   /* small API for fx.js (motion system + 3D hero) */

@@ -1,23 +1,7 @@
 /* ==========================================================================
-   Motion layer: splash, hero entrance, bento pop-in, video tile, player.
+   Motion layer: hero entrance, bento pop-in, video tile, player.
    Everything here is switched off by "Reduced motion" (system or in-page setting).
    ========================================================================== */
-
-/* splash: shown once per session */
-.splash{position:fixed;inset:0;z-index:400;display:none;place-items:center;background:var(--bg)}
-.splash.run{display:grid;animation:splashOut .6s cubic-bezier(.7,0,.3,1) 1.5s forwards}
-.splash-in{display:grid;justify-items:center;gap:18px}
-.splash-logo{display:flex;gap:4px}
-.splash-logo span{display:grid;place-items:center;width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;font:800 1.8rem var(--font);animation:logoIn .7s cubic-bezier(.2,1.4,.4,1) both}
-.splash-logo span+span{animation-delay:.12s;background:linear-gradient(135deg,var(--accent-2),var(--pink))}
-.splash-name{display:grid;justify-items:center;gap:2px;font-weight:800;font-size:1.3rem;letter-spacing:-.02em;animation:fadeUp .6s .35s both}
-.splash-name .ar-text{font-size:1rem;color:var(--ink-3);font-weight:600}
-.splash-bar{width:160px;height:4px;border-radius:4px;background:var(--line);overflow:hidden}
-.splash-bar i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--accent),var(--pink));transform-origin:0 50%;animation:load 1.3s .2s cubic-bezier(.6,0,.2,1) both}
-@keyframes logoIn{from{opacity:0;transform:translateY(20px) scale(.6) rotate(-12deg)}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}}
-@keyframes load{from{transform:scaleX(0)}}
-@keyframes splashOut{to{clip-path:inset(0 0 100% 0);visibility:hidden}}
 
 /* hero entrance */
 .stagger{display:inline-block;opacity:0;transform:translateY(26px);filter:blur(6px)}
@@ -77,12 +61,10 @@
 /* reduced motion: show everything immediately */
 :root[data-motion="reduced"] .stagger,:root[data-motion="reduced"] .pop{opacity:1;transform:none;filter:none}
 :root[data-motion="reduced"] .spark{stroke-dashoffset:0}
-:root[data-motion="reduced"] .splash{display:none!important}
 :root[data-motion="reduced"] .stars{display:none}
 @media (prefers-reduced-motion:reduce){
   :root:not([data-motion="full"]) .stagger,:root:not([data-motion="full"]) .pop{opacity:1;transform:none;filter:none}
   :root:not([data-motion="full"]) .spark{stroke-dashoffset:0}
-  :root:not([data-motion="full"]) .splash{display:none!important}
   :root:not([data-motion="full"]) .stars{display:none}
 }
 .no-js .stagger,.no-js .pop{opacity:1;transform:none;filter:none}

@@ -1,6 +1,6 @@
 // Original 40 s soundtrack for the intro reel. Pure synthesis: no samples, no licensed audio.
 // Dreamy lo-fi in D major at 96 BPM; drums enter with scene 2, hats with scene 3, and a soft
-// riser marks each scene change (6, 12, 19, 26, 32, 36.5 s). Writes music.wav (44.1 kHz, 16-bit stereo).
+// riser marks each scene change (5.5, 10.5, 16.5, 22.5, 29, 33, 36.5 s; keep in sync with intro.html). Writes music.wav (44.1 kHz, 16-bit stereo).
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -77,13 +77,13 @@ for (let bar = 0; bar * BAR < DUR; bar++) {
     const m = ch[[1, 2, 3, 4, 3, 2, 4, 1][s]] + 12;
     add(t + s * BEAT / 2, pluck(m), s % 2 ? 0.35 : -0.35, t >= 36.5 ? 0.6 : 1);
   }
-  if (t >= 6 && t < 36) for (let b = 0; b < 4; b++) {
+  if (t >= 5 && t < 35) for (let b = 0; b < 4; b++) {
     if (b % 2 === 0) add(t + b * BEAT, kick());
-    if (t >= 19 && b % 2 === 1) add(t + b * BEAT, clap(), 0.1);
-    if (t >= 12) { add(t + b * BEAT + BEAT / 2, hat(), 0.3); if (t >= 26) add(t + b * BEAT + BEAT * 0.75, hat(0.03, 0.03), -0.3); }
+    if (t >= 17.5 && b % 2 === 1) add(t + b * BEAT, clap(), 0.1);
+    if (t >= 10) { add(t + b * BEAT + BEAT / 2, hat(), 0.3); if (t >= 27.5) add(t + b * BEAT + BEAT * 0.75, hat(0.03, 0.03), -0.3); }
   }
 }
-for (const s of [6, 12, 19, 26, 32, 36.5]) add(s - 1.1, riser(), 0, 0.9);
+for (const s of [5.5, 10.5, 16.5, 22.5, 29, 33, 36.5]) add(s - 1.1, riser(), 0, 0.9);
 sparkle(0.4); sparkle(36.6);
 
 // stereo echo (dotted eighth) for space

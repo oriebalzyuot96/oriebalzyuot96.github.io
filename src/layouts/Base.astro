@@ -33,6 +33,10 @@ const person = {
 };
 const graph = { '@context': 'https://schema.org', '@graph': [person, ...schema] };
 const runtime = runtimeDict(Astro.currentLocale);
+const isAr = lang === 'ar';
+const bootWords = isAr
+  ? ['نُجهّز الاستوديو…', 'نصمّم الواجهات…', 'نُطلق بعناية 💜']
+  : ['Loading the studio…', 'Designing interfaces…', 'Shipping with care 💜'];
 ---
 <!doctype html>
 <html lang={lang} dir={lang === 'ar' ? 'rtl' : 'ltr'} class="no-js">
@@ -83,14 +87,167 @@ if(p.theme&&p.theme!=='system')r.setAttribute('data-theme',p.theme);
 ['accent','font','contrast','motion'].forEach(function(k){var v=p[k];if(v&&v!=='lavender'&&v!=='m'&&v!=='none'&&v!=='system')r.setAttribute('data-'+k,v)});
 ['readable','links','spacing','cursor'].forEach(function(k){if(p[k])r.setAttribute('data-'+k,'on')});
 var dk=p.theme==='dark'||(p.theme!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches),m=document.querySelector('meta[name="theme-color"]');
-if(m)m.content=BG[p.skin]||(dk?'#0f0d16':'#6d4aff');}catch(e){}})();
+if(m)m.content=BG[p.skin]||(dk?'#0f0d16':'#6d4aff');}catch(e){}
+/* boot: the full splash once per session (first page view without a #hash); later navigations only get a thin top bar */
+try{var ss=sessionStorage,seen=ss.getItem('oa-splash')==='1';ss.setItem('oa-splash','1');r.setAttribute('data-boot',seen||location.hash?'bar':'splash')}catch(e){r.setAttribute('data-boot','bar')}})();
 </script>
+<style is:inline>
+/* ───────── boot splash: inline so it paints with the first frame, using the site tokens (theme, skin, accent) ─────────
+   Shown once per session; later navigations only get .boot-tick, a thin top bar. Without JS neither shows. */
+@property --bt-r{syntax:'<length>';inherits:false;initial-value:0px}
+.boot,.boot-tick{display:none}
+html[data-boot="splash"] .boot{display:grid}
+html[data-boot="bar"] .boot-tick{display:block}
+.boot{--bt-a:var(--accent,#6d4aff);--bt-b:var(--accent-3,#8f73ff);--bt-p:var(--pink,#ffb8d6);--bt-bg:var(--bg,#f8f6ff);
+  position:fixed;top:0;left:0;width:100%;height:100vh;height:100dvh;z-index:250;place-items:center;overflow:hidden;color:var(--ink,#1f1b2e);
+  background:radial-gradient(52% 40% at 50% 44%,color-mix(in srgb,var(--bt-a) 16%,transparent),transparent 72%),
+    radial-gradient(40% 36% at 80% 90%,color-mix(in srgb,var(--bt-p) 22%,transparent),transparent 70%),
+    linear-gradient(180deg,color-mix(in srgb,var(--bt-a) 7%,var(--bt-bg)),var(--bt-bg) 62%);
+  animation:boot-failsafe .4s ease 5s forwards}
+.boot::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;
+  background-image:radial-gradient(color-mix(in srgb,var(--bt-a) 34%,transparent) 1px,transparent 1.6px);background-size:24px 24px;
+  -webkit-mask-image:radial-gradient(circle at 50% 44%,#000 0,transparent 46%);mask-image:radial-gradient(circle at 50% 44%,#000 0,transparent 46%);
+  animation:boot-fade 1.2s ease .15s both}
+.boot-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.boot-in{position:relative;display:grid;justify-items:center;text-align:center}
+.boot-emblem{position:relative;display:grid;place-items:center;width:136px;height:136px;margin-bottom:18px;animation:boot-pop .7s cubic-bezier(.34,1.4,.64,1) both}
+.boot-emblem svg{position:relative;width:100%;height:100%;overflow:visible;animation:boot-float 3.2s ease-in-out .8s infinite}
+.boot-halo{position:absolute;inset:14px;border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,var(--bt-a) 34%,transparent),transparent 72%);animation:boot-breathe 2.6s ease-in-out infinite}
+.boot-st1{stop-color:var(--bt-a)}.boot-st2{stop-color:var(--bt-b)}.boot-st3{stop-color:color-mix(in srgb,var(--bt-p) 60%,var(--bt-a))}
+.boot-track{fill:none;stroke:color-mix(in srgb,var(--bt-a) 16%,transparent);stroke-width:2}
+.boot-orbit{transform-box:view-box;transform-origin:60px 60px;animation:boot-spin 1.6s linear infinite}
+.boot-trail{fill:none;stroke:url(#bootGrad);stroke-width:3;stroke-linecap:round;stroke-dasharray:20 80;stroke-dashoffset:-55;opacity:.85}
+.boot-dot{fill:var(--bt-p);filter:drop-shadow(0 0 5px var(--bt-p))}
+.boot-glyph{fill:none;stroke:url(#bootGrad);stroke-width:8;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;
+  filter:drop-shadow(0 0 7px color-mix(in srgb,var(--bt-a) 55%,transparent));animation:boot-draw .95s cubic-bezier(.65,0,.35,1) .15s forwards}
+.boot-g{animation-delay:.4s}
+.boot-name{margin:0;min-height:1.2em;font:800 1.45rem/1.2 "Pretendard",system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:-.02em;animation:boot-up .6s cubic-bezier(.2,.8,.2,1) .35s both}
+html[lang="ar"] .boot-name{font-family:"IBM Plex Sans Arabic","Plex Arabic Fallback","Segoe UI",system-ui,sans-serif;font-weight:700;letter-spacing:0}
+.boot-label{display:grid;margin:8px 0 0;height:1.5em;font:600 .9rem/1.5 "Pretendard",system-ui,sans-serif;color:var(--ink-2,#4f4a68);animation:boot-fade .6s ease .5s both}
+html[lang="ar"] .boot-label{font-family:"IBM Plex Sans Arabic","Plex Arabic Fallback","Segoe UI",system-ui,sans-serif}
+.boot-label span{grid-area:1/1;opacity:0;white-space:nowrap;animation:boot-word 2.7s ease infinite}
+.boot-label span:nth-child(2){animation-delay:.9s}.boot-label span:nth-child(3){animation-delay:1.8s}
+.boot-bar{width:min(200px,56vw);height:4px;margin-top:16px;border-radius:4px;overflow:hidden;background:color-mix(in srgb,var(--bt-a) 15%,transparent);animation:boot-fade .6s ease .55s both}
+.boot-bar i{position:relative;display:block;height:100%;border-radius:inherit;overflow:hidden;transform:scaleX(.04);transform-origin:0 50%;
+  background:linear-gradient(90deg,var(--bt-a),var(--bt-b),var(--bt-p));box-shadow:0 0 10px color-mix(in srgb,var(--bt-a) 50%,transparent)}
+html[dir="rtl"] .boot-bar i{transform-origin:100% 50%;background:linear-gradient(270deg,var(--bt-a),var(--bt-b),var(--bt-p))}
+.boot-bar i::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgb(255 255 255 / .5),transparent);animation:boot-shimmer 1.2s ease-in-out infinite}
+/* exit: the emblem flies into the header logo while a soft circle (same shape as the theme View Transition) opens the page from there */
+.boot.is-leaving{pointer-events:none;animation:boot-hole .95s cubic-bezier(.65,0,.2,1) .2s both;
+  -webkit-mask-image:radial-gradient(circle at var(--bx,50%) var(--by,0%),transparent calc(var(--bt-r) - 90px),#000 var(--bt-r));
+  mask-image:radial-gradient(circle at var(--bx,50%) var(--by,0%),transparent calc(var(--bt-r) - 90px),#000 var(--bt-r))}
+.boot.is-leaving .boot-emblem{animation:none;transition:transform .6s cubic-bezier(.7,0,.2,1),opacity .3s ease .4s;transform:translate(var(--tx,0),var(--ty,0)) scale(var(--ts,.3));opacity:0}
+.boot.is-leaving .boot-name,.boot.is-leaving .boot-label,.boot.is-leaving .boot-bar{animation:none;transition:opacity .25s ease,transform .3s ease;opacity:0;transform:translateY(8px)}
+@keyframes boot-hole{from{--bt-r:0px}to{--bt-r:170vmax;visibility:hidden}}
+@keyframes boot-failsafe{to{opacity:0;visibility:hidden;pointer-events:none}}
+@keyframes boot-fade{from{opacity:0}}
+@keyframes boot-up{from{opacity:0;transform:translateY(10px)}}
+@keyframes boot-pop{from{opacity:0;transform:scale(.6)}}
+@keyframes boot-float{50%{transform:translateY(-4px)}}
+@keyframes boot-breathe{0%,100%{opacity:.6;transform:scale(.9)}50%{opacity:1;transform:scale(1.08)}}
+@keyframes boot-spin{to{transform:rotate(360deg)}}
+@keyframes boot-draw{to{stroke-dashoffset:0}}
+@keyframes boot-word{0%{opacity:0;transform:translateY(6px)}10%,30%{opacity:1;transform:none}40%,100%{opacity:0;transform:translateY(-6px)}}
+@keyframes boot-shimmer{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+/* later navigations: a thin top bar only */
+.boot-tick{position:fixed;inset-inline:0;top:0;height:3px;z-index:260;pointer-events:none;animation:boot-failsafe .3s ease 4s forwards}
+.boot-tick i{display:block;height:100%;transform-origin:0 50%;background:linear-gradient(90deg,var(--accent,#6d4aff),var(--pink,#ffb8d6),var(--accent-2,#b9a7ff));animation:boot-tick 1.4s cubic-bezier(.1,.7,.2,1) both}
+html[dir="rtl"] .boot-tick i{transform-origin:100% 50%}
+.boot-tick.done{opacity:0;transition:opacity .35s ease .25s}
+.boot-tick.done i{animation:none;transform:scaleX(1);transition:transform .25s ease}
+@keyframes boot-tick{from{transform:scaleX(0)}to{transform:scaleX(.8)}}
+/* high contrast (yellow on black) and forced colors: flat, no glow */
+html[data-contrast="yellow"] .boot{background:#000;color:#ff0}
+html[data-contrast="yellow"] .boot::before,html[data-contrast="yellow"] .boot-halo,html[data-contrast="yellow"] .boot-bar i::after{display:none}
+html[data-contrast="yellow"] .boot-glyph,html[data-contrast="yellow"] .boot-trail{stroke:#ff0;filter:none}
+html[data-contrast="yellow"] .boot-track{stroke:#ff0;opacity:.4}
+html[data-contrast="yellow"] .boot-dot{fill:#ff0;filter:none}
+html[data-contrast="yellow"] .boot-label{color:#ff0}
+html[data-contrast="yellow"] .boot-bar{background:#000;outline:1px solid #ff0}
+html[data-contrast="yellow"] .boot-bar i,html[data-contrast="yellow"] .boot-tick i{background:#ff0;box-shadow:none}
+@media (forced-colors:active){
+  .boot{background:Canvas;color:CanvasText;forced-color-adjust:none}
+  .boot::before,.boot-halo,.boot-bar i::after{display:none}
+  .boot-glyph,.boot-trail{stroke:CanvasText;filter:none}.boot-track{stroke:GrayText}.boot-dot{fill:Highlight;filter:none}
+  .boot-label{color:CanvasText}.boot-bar{background:Canvas;outline:1px solid CanvasText}.boot-bar i,.boot-tick i{background:Highlight;box-shadow:none}
+}
+/* reduced motion: a static emblem and a quick fade */
+html[data-motion="reduced"] .boot *,html[data-motion="reduced"] .boot::before{animation:none!important}
+html[data-motion="reduced"] .boot-glyph{stroke-dashoffset:0}
+html[data-motion="reduced"] .boot-label span:not(:first-child),html[data-motion="reduced"] .boot-bar i::after{display:none}
+html[data-motion="reduced"] .boot-label span:first-child{opacity:1}
+html[data-motion="reduced"] .boot.is-leaving{animation:none;-webkit-mask-image:none;mask-image:none;opacity:0;transition:opacity .2s ease}
+html[data-motion="reduced"] .boot.is-leaving .boot-emblem{transform:none;transition:none}
+html[data-motion="reduced"] .boot-tick i{animation:none;transform:scaleX(.8)}
+@media (prefers-reduced-motion:reduce){
+  html:not([data-motion="full"]) .boot *,html:not([data-motion="full"]) .boot::before{animation:none!important}
+  html:not([data-motion="full"]) .boot-glyph{stroke-dashoffset:0}
+  html:not([data-motion="full"]) .boot-label span:not(:first-child),html:not([data-motion="full"]) .boot-bar i::after{display:none}
+  html:not([data-motion="full"]) .boot-label span:first-child{opacity:1}
+  html:not([data-motion="full"]) .boot.is-leaving{animation:none;-webkit-mask-image:none;mask-image:none;opacity:0;transition:opacity .2s ease}
+  html:not([data-motion="full"]) .boot.is-leaving .boot-emblem{transform:none;transition:none}
+  html:not([data-motion="full"]) .boot-tick i{animation:none;transform:scaleX(.8)}
+}
+</style>
 <link rel="stylesheet" href="/styles.css?v=4">
-<link rel="stylesheet" href="/motion.css?v=4">
+<link rel="stylesheet" href="/motion.css?v=5">
 <link rel="stylesheet" href="/fx.css?v=4">
 <script type="application/ld+json" set:html={JSON.stringify(graph)} />
 </head>
 <body>
+<!-- boot splash: inline so it is in the first paint. role=status announces "Loading"; nothing inside is focusable, so focus is never trapped -->
+<div id="boot" class="boot" role="status" aria-live="polite" aria-label={isAr ? 'جارٍ التحميل' : 'Loading'}>
+  <span class="boot-sr">{isAr ? 'جارٍ التحميل' : 'Loading'}</span>
+  <div class="boot-in" aria-hidden="true">
+    <div class="boot-emblem">
+      <span class="boot-halo"></span>
+      <svg viewBox="0 0 120 120" focusable="false">
+        <defs><linearGradient id="bootGrad" gradientUnits="userSpaceOnUse" x1="18" y1="30" x2="104" y2="92"><stop offset="0" class="boot-st1"></stop><stop offset=".55" class="boot-st2"></stop><stop offset="1" class="boot-st3"></stop></linearGradient></defs>
+        <circle class="boot-track" cx="60" cy="60" r="54"></circle>
+        <g class="boot-orbit"><circle class="boot-trail" cx="60" cy="60" r="54" pathLength="100"></circle><circle class="boot-dot" cx="60" cy="6" r="4.5"></circle></g>
+        <path class="boot-glyph boot-o" pathLength="1" d="M40 42A18 18 0 1 0 40 78A18 18 0 1 0 40 42"></path>
+        <path class="boot-glyph boot-g" pathLength="1" d="M92.73 47.27A18 18 0 1 0 98 60H84"></path>
+      </svg>
+    </div>
+    <p class="boot-name">{isAr ? 'عريب الزيوت' : 'Orieb Alzyuot'}</p>
+    <p class="boot-label">{bootWords.map(w => <span>{w}</span>)}</p>
+    <div class="boot-bar"><i id="bootFill"></i></div>
+  </div>
+</div>
+<div class="boot-tick" aria-hidden="true"><i></i></div>
+<noscript><style>.boot,.boot-tick{display:none!important}</style></noscript>
+<script is:inline>
+/* boot controller. Progress follows real milestones: DOM ready → fonts → hero image → 3D hero module (when it will load).
+   At least ~700 ms on screen, gone by ~3.5 s after navigation start (leave starts at 3.3 s); CSS hides the splash at 5 s even if this script dies. */
+(function(){
+var r=document.documentElement,boot=document.getElementById('boot'),tick=document.querySelector('.boot-tick'),mode=r.getAttribute('data-boot');
+if(mode==='bar'){if(boot)boot.remove();var fin=function(){if(!tick.isConnected)return;tick.classList.add('done');setTimeout(function(){tick.remove()},700)};
+  if(document.readyState==='complete')fin();else{addEventListener('load',fin,{once:true});setTimeout(fin,3500)}return}
+if(tick)tick.remove();
+if(mode!=='splash'||!boot){if(boot)boot.remove();return}
+var dm=r.getAttribute('data-motion'),reduced=dm==='reduced'||(dm!=='full'&&matchMedia('(prefers-reduced-motion: reduce)').matches);
+var t0=performance.now(),MIN=reduced?500:700,MAX=3300,fill=document.getElementById('bootFill'),W={dom:.2,fonts:.25,img:.25,gl:.3},got={},target=0,shown=.04,lastMark=t0,left=false;
+function mark(k){if(got[k]||left)return;got[k]=1;target=0;for(var x in got)target+=W[x];lastMark=performance.now();if(target>.999)setTimeout(leave,Math.max(160,MIN-(lastMark-t0)))}
+function frame(){if(left)return;var g=Math.min(.97,target+Math.min(.12,(performance.now()-lastMark)/5000));shown+=(g-shown)*.12;fill.style.transform='scaleX('+shown.toFixed(3)+')';requestAnimationFrame(frame)}
+requestAnimationFrame(frame);
+setTimeout(leave,Math.max(MIN,MAX-performance.now()));
+document.addEventListener('oa:hero3d',function(){mark('gl')});
+function onDom(){mark('dom');
+  var fs=document.fonts;if(fs&&fs.load){var ld=[fs.load('800 16px Pretendard'),fs.load('400 16px Pretendard')];if(r.lang==='ar')ld.push(fs.load('700 16px "IBM Plex Sans Arabic"','ع'));Promise.all(ld).then(function(){return fs.ready}).then(function(){mark('fonts')},function(){mark('fonts')})}else mark('fonts');
+  setTimeout(function(){mark('fonts')},2200);
+  var im=null,l=document.querySelectorAll('#home img');for(var i=0;i<l.length;i++)if(l[i].getClientRects().length){im=l[i];break}
+  if(!im||(im.complete&&im.naturalWidth))mark('img');else{var ok=function(){mark('img')};im.addEventListener('load',ok,{once:true});im.addEventListener('error',ok,{once:true});setTimeout(ok,2500)}
+  if(!document.getElementById('hero3d'))mark('gl')}
+if(document.readyState!=='loading')onDom();else document.addEventListener('DOMContentLoaded',onDom,{once:true});
+function leave(){if(left)return;left=true;fill.style.transform='scaleX(1)';
+  var em=boot.querySelector('.boot-emblem'),tg=document.querySelector('header .brand img'),x=innerWidth/2,y=innerHeight*.44;
+  if(tg&&!reduced){var a=em.getBoundingClientRect(),b=tg.getBoundingClientRect();if(b.width&&b.bottom>0&&b.top<innerHeight){x=b.left+b.width/2;y=b.top+b.height/2;
+    em.style.setProperty('--tx',(x-a.left-a.width/2).toFixed(1)+'px');em.style.setProperty('--ty',(y-a.top-a.height/2).toFixed(1)+'px');em.style.setProperty('--ts',(b.width/a.width).toFixed(3))}}
+  boot.style.setProperty('--bx',x.toFixed(1)+'px');boot.style.setProperty('--by',y.toFixed(1)+'px');
+  setTimeout(function(){/* end the entrance animations first, or Chrome skips the exit transitions */boot.querySelectorAll('.boot-emblem,.boot-name,.boot-label,.boot-bar').forEach(function(e){e.style.animation='none'});boot.offsetWidth;boot.classList.add('is-leaving');window.__oaBootLeft=true;document.dispatchEvent(new CustomEvent('oa:boot-leave'));
+    setTimeout(function(){boot.remove();r.setAttribute('data-boot','done')},reduced?300:1250)},reduced?0:180)}
+})();
+</script>
 <Chrome />
 <Header />
 <main id="main" tabindex="-1">
@@ -100,7 +257,7 @@ if(m)m.content=BG[p.skin]||(dk?'#0f0d16':'#6d4aff');}catch(e){}})();
 <Overlays />
 <script is:inline set:html={`window.I18N=${JSON.stringify(runtime)};`} />
 <script is:inline src="/sound.js?v=4" defer></script>
-<script is:inline src="/app.js?v=4" defer></script>
-<script is:inline src="/fx.js?v=4" defer></script>
+<script is:inline src="/app.js?v=5" defer></script>
+<script is:inline src="/fx.js?v=5" defer></script>
 </body>
 </html>

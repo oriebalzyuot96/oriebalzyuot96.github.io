@@ -133,10 +133,13 @@
     try { const c = document.createElement('canvas'); return !!(window.WebGLRenderingContext && (c.getContext('webgl2') || c.getContext('webgl'))); } catch (e) { return false; }
   }
   const canRun = () => host && !OA.reducedMotion() && !matchMedia('(forced-colors: active)').matches && root.getAttribute('data-contrast') !== 'yellow' && (navigator.connection?.saveData !== true);
+  // tells the boot splash (Base.astro) whether the 3D hero is coming: 'ready', 'skip' or 'fail'
+  const HERO_URL = '/hero3d.js?v=5';
+  const signal3D = state => document.dispatchEvent(new CustomEvent('oa:hero3d', { detail: state }));
   function boot3D() {
     if (hero || loading || !canRun() || !webglOK()) return;
     loading = true;
-    import('/hero3d.js?v=5').then(m => {
+    import(HERO_URL).then(m => {
       loading = false;
       if (!canRun()) return;
       hero = m.mount(host); window.__hero3d = hero;
@@ -145,7 +148,15 @@
   }
   const later = cb => ('requestIdleCallback' in window ? requestIdleCallback(cb, { timeout: 1800 }) : setTimeout(cb, 600));
   const start3D = () => later(boot3D);
-  if (document.readyState === 'complete') start3D(); else addEventListener('load', start3D, { once: true });
+  // during the first-visit splash the module is fetched and evaluated straight away (its progress milestone);
+  // mounting (shader compile) still waits for load + idle so it never holds the splash or the main thread
+  if (root.dataset.boot === 'splash') {
+    if (!canRun() || !webglOK()) signal3D('skip');
+    else import(HERO_URL).then(() => signal3D('ready'), () => signal3D('fail'));
+  }
+  const kick3D = () => { if (document.readyState === 'complete') start3D(); else addEventListener('load', start3D, { once: true }); };
+  if (root.dataset.boot === 'splash' && !window.__oaBootLeft) document.addEventListener('oa:boot-leave', () => setTimeout(kick3D, 1300), { once: true });
+  else kick3D();
 
   // follow preference changes: colours, theme, motion
   document.addEventListener('oa:prefs', () => {
