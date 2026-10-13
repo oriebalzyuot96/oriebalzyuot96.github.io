@@ -492,5 +492,7 @@
  "na.h1": "Cookie sessions done right: argon2id, HttpOnly + Partitioned cookies, session rotation, CSRF tokens and strict CORS",
  "na.h2": "Offline-first sync that merges conflict-free (max stars, best time) and never awards XP twice, with ETags and anti-cheat checks",
  "na.h3": "Zod schemas drive validation and OpenAPI 3.1, with 89 tests at 94% coverage and a real Postgres run in CI",
- "na.btn": "View API design"
+ "na.btn": "View API design",
+ "na.live": "Live API",
+ "na.docs": "Open live API docs ↗"
 }

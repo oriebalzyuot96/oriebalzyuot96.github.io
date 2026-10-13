@@ -331,12 +331,12 @@ const t = useT(Astro.currentLocale);
             <span class="float">🔐 <span><Fragment set:html={t('na.float')} /></span></span>
           </div>
           <div class="p-body">
-            <div class="org"><span><Fragment set:html={t('na.org')} /></span><span class="pill soon"><span class="d"></span><span><Fragment set:html={t('st.api')} /></span></span></div>
+            <div class="org"><span><Fragment set:html={t('na.org')} /></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('na.live')} /></span></span></div>
             <h3><Fragment set:html={t('na.t')} /></h3>
             <p><Fragment set:html={t('na.p')} /></p>
             <ul class="hl"><li><Fragment set:html={t('na.h1')} /></li><li><Fragment set:html={t('na.h2')} /></li><li><Fragment set:html={t('na.h3')} /></li></ul>
             <div class="tags"><span class="tag">Node.js 22</span><span class="tag">Fastify</span><span class="tag">PostgreSQL</span><span class="tag">OpenAPI</span><span class="tag">Security</span></div>
-            <div class="p-actions"><button class="btn primary" type="button" onclick="this.closest('.proj').querySelector('[data-full]').click()"><Fragment set:html={t('na.btn')} /></button></div>
+            <div class="p-actions"><a class="btn primary" href="https://fivemin-api-v45t.onrender.com/docs" target="_blank" rel="noopener"><Fragment set:html={t('na.docs')} /></a><button class="btn" type="button" onclick="this.closest('.proj').querySelector('[data-full]').click()"><Fragment set:html={t('na.btn')} /></button></div>
           </div>
         </article>
 
