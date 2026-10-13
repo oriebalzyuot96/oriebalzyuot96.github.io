@@ -225,7 +225,7 @@ main:focus{outline:none}
 .hero3d canvas{position:absolute;inset:0;width:100%!important;height:100%!important;opacity:0;transition:opacity 1.4s var(--ease-out)}
 .hero3d.on canvas{opacity:1}
 /* static fallback orb: always present, fades out once WebGL is running */
-.hero-orb{position:absolute;top:clamp(60px,9vw,120px);inset-inline-start:50%;translate:-50% 0;width:min(620px,86vw);aspect-ratio:1;border-radius:50%;
+.hero-orb{position:absolute;z-index:-1;pointer-events:none;top:clamp(60px,9vw,120px);inset-inline-start:50%;translate:-50% 0;width:min(620px,86vw);aspect-ratio:1;border-radius:50%;
   background:radial-gradient(circle at 32% 28%,rgb(255 255 255 / .75),transparent 22%),
     radial-gradient(circle at 70% 75%,color-mix(in srgb,var(--orb-3) 70%,transparent),transparent 45%),
     conic-gradient(from 210deg,var(--orb-1),var(--orb-2),var(--orb-3),var(--orb-1));
@@ -360,8 +360,9 @@ main:focus{outline:none}
 /* ───────── 7 · view transitions ───────── */
 /* cross-document (EN ↔ AR, blog, hire pages): header + brand stay put, content cross-fades and lifts */
 @media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto}}
-header.top{view-transition-name:site-header}
-.brand img{view-transition-name:brand-face}
+/* named only for page navigations: in-page theme switches (html[data-vt]) reveal the header with the rest of the page */
+html:not([data-vt]) header.top{view-transition-name:site-header}
+html:not([data-vt]) .brand img{view-transition-name:brand-face}
 ::view-transition-old(site-header),::view-transition-new(site-header){animation-duration:.3s}
 html:not([data-vt])::view-transition-old(root){animation:vtOut .32s var(--ease-out) both}
 html:not([data-vt])::view-transition-new(root){animation:vtIn .5s var(--ease-out) both}
