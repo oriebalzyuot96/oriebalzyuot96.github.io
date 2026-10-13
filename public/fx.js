@@ -136,7 +136,7 @@
   function boot3D() {
     if (hero || loading || !canRun() || !webglOK()) return;
     loading = true;
-    import('/hero3d.js?v=4').then(m => {
+    import('/hero3d.js?v=5').then(m => {
       loading = false;
       if (!canRun()) return;
       hero = m.mount(host); window.__hero3d = hero;

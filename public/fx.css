@@ -221,9 +221,26 @@ main:focus{outline:none}
 .chip .c{font-variant-numeric:tabular-nums;min-width:2.2ch;text-align:center}
 
 /* ───────── 5 · 3D hero ───────── */
-.hero3d{position:absolute;inset:-40px 0 auto;height:min(920px,108vh);z-index:-1;pointer-events:none;contain:strict}
-.hero3d canvas{position:absolute;inset:0;width:100%!important;height:100%!important;opacity:0;transition:opacity 1.4s var(--ease-out)}
+/* the studio desk stage sits between the CTA row and the bento: fixed height (no CLS), never over the copy */
+.studio{position:relative;height:clamp(320px,40vw,540px);margin:30px 0 -14px}
+@media (min-width:1280px){.studio{margin-inline:-48px}}
+.hero3d{position:absolute;inset:0;contain:strict;pointer-events:none}
+.hero3d.on{pointer-events:auto}
+.hero3d canvas{position:absolute;inset:0;width:100%!important;height:100%!important;opacity:0;transition:opacity 1.2s var(--ease-out)}
 .hero3d.on canvas{opacity:1}
+.studio-still{position:absolute;inset:0;display:block;transition:opacity 1.2s var(--ease-out)}
+.studio-still img{width:100%;height:100%;object-fit:contain}
+.hero3d.on .studio-still{opacity:0}
+.studio-still.dk{display:none}
+:root[data-theme="dark"] .studio-still.lt{display:none}:root[data-theme="dark"] .studio-still.dk{display:block}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .studio-still.lt{display:none}:root:not([data-theme="light"]) .studio-still.dk{display:block}}
+/* keyboard / AT equivalent of clicking the laptop: visually hidden until focused */
+.studio-link{position:absolute;inset-inline-start:50%;bottom:10px;translate:-50% 0;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;
+  display:inline-flex;align-items:center;padding:10px 18px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:700;text-decoration:none;box-shadow:var(--shadow-lg);z-index:2}
+:root[dir="rtl"] .studio-link{translate:50% 0}
+.studio-link:focus-visible,.studio-link:focus{width:auto;height:auto;overflow:visible;clip-path:none}
+@media (max-width:900px){.studio{height:clamp(340px,58vw,480px)}}
+@media (max-width:640px){.studio{height:340px;margin:22px 0 -10px}}
 /* static fallback orb: always present, fades out once WebGL is running */
 .hero-orb{position:absolute;z-index:-1;pointer-events:none;top:clamp(60px,9vw,120px);inset-inline-start:50%;translate:-50% 0;width:min(620px,86vw);aspect-ratio:1;border-radius:50%;
   background:radial-gradient(circle at 32% 28%,rgb(255 255 255 / .75),transparent 22%),
@@ -375,14 +392,14 @@ html:not([data-vt])::view-transition-new(root){animation:vtIn .5s var(--ease-out
 
 /* ───────── 8 · reduced motion · forced colours · print ───────── */
 :root[data-motion="reduced"] .sw-w{opacity:1;transform:none;filter:none}
-:root[data-motion="reduced"] .hero3d{display:none}
+:root[data-motion="reduced"] .hero3d canvas{display:none}
 :root[data-motion="reduced"] .sec-title h2::after,:root[data-motion="reduced"] .sec-title .kicker::after{transform:none}
 :root[data-motion="reduced"] .sec-title.reveal{filter:none}
 :root[data-motion="reduced"] .reveal{translate:none;scale:none;filter:none}
 :root[data-motion="reduced"] .fx-toggle{display:none}
 @media (prefers-reduced-motion:reduce){
   :root:not([data-motion="full"]) .sw-w{opacity:1;transform:none;filter:none}
-  :root:not([data-motion="full"]) .hero3d{display:none}
+  :root:not([data-motion="full"]) .hero3d canvas{display:none}
   :root:not([data-motion="full"]) .sec-title h2::after,:root:not([data-motion="full"]) .sec-title .kicker::after{transform:none}
   :root:not([data-motion="full"]) .reveal{translate:none;scale:none;filter:none}
   :root:not([data-motion="full"]) .fx-toggle{display:none}
@@ -390,7 +407,7 @@ html:not([data-vt])::view-transition-new(root){animation:vtIn .5s var(--ease-out
 .no-js .sw-w{opacity:1;transform:none;filter:none}
 
 @media (forced-colors:active){
-  .hero3d,.hero-orb,.aurora,.grid-dots,.stars,.spot::before,.spot::after,.frame::after,.contact::before,.ft-card::before,.t-years::after,.orbit::before,.progress{display:none!important}
+  .hero3d canvas,.hero-orb,.aurora,.grid-dots,.stars,.spot::before,.spot::after,.frame::after,.contact::before,.ft-card::before,.t-years::after,.orbit::before,.progress{display:none!important}
   .card,.btn,.chip,.ibtn,.look,.preset,.tile,.c-card,.fx-toggle,.tag,.pill,.lv{border:1px solid CanvasText!important;forced-color-adjust:auto}
   .card.featured{border:2px solid Highlight!important}
   .btn.primary,.chip[aria-pressed="true"],.seg button[aria-checked="true"],.look[aria-checked="true"],.preset[aria-pressed="true"],.menu a.active{border:2px solid Highlight!important;outline:2px solid Highlight}
@@ -399,4 +416,4 @@ html:not([data-vt])::view-transition-new(root){animation:vtIn .5s var(--ease-out
   .switch{border:1px solid CanvasText}.toggle[aria-checked="true"] .switch::after{background:Highlight}
   .lk-prev{forced-color-adjust:none}
 }
-@media print{.hero3d,.hero-orb,.fx-toggle,.look-pop,.skips{display:none!important}.sw-w{opacity:1!important;transform:none!important;filter:none!important}}
+@media print{.hero3d canvas,.hero-orb,.fx-toggle,.look-pop,.skips{display:none!important}.sw-w{opacity:1!important;transform:none!important;filter:none!important}}

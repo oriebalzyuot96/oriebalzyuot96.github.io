@@ -5,6 +5,9 @@
    ========================================================================== */
 
 /* ───────── tokens ───────── */
+/* metric-matched local stand-ins for IBM Plex Sans Arabic, so Arabic copy wraps the same before and after the web font swaps in (no layout shift) */
+@font-face{font-family:"Plex Arabic Fallback";src:local("Segoe UI");size-adjust:92.8%;unicode-range:U+0600-06FF,U+0750-077F,U+08A0-08FF,U+FB50-FDFF,U+FE70-FEFF}
+@font-face{font-family:"Plex Arabic Fallback 2";src:local("Arial");size-adjust:109%;unicode-range:U+0600-06FF,U+0750-077F,U+08A0-08FF,U+FB50-FDFF,U+FE70-FEFF}
 :root{
   --bg:#f8f6ff; --bg-2:#f1edff; --surface:#ffffff; --surface-2:#faf9ff; --glass:rgb(255 255 255 / .72);
   --ink:#1f1b2e; --ink-2:#4f4a68; --ink-3:#7a7495; --line:#e6e0f7; --line-2:#d9d0f5;
@@ -16,7 +19,7 @@
   --radius:26px; --radius-sm:16px;
   --fs:1; --ls:normal; --lh:1.65; --ws:normal;
   --font:"Pretendard","IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --font-ar:"IBM Plex Sans Arabic","Pretendard",system-ui,sans-serif;
+  --font-ar:"IBM Plex Sans Arabic","Plex Arabic Fallback","Plex Arabic Fallback 2","Pretendard",system-ui,sans-serif;
   --hand:"Gaegu","Pretendard",cursive;
   --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
   color-scheme:light;
