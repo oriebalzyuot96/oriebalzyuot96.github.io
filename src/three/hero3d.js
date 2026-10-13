@@ -74,15 +74,13 @@ void main(){
   vec3 L1=normalize(vec3(-.5,.8,.6)); vec3 L2=normalize(vec3(.7,-.2,.5));
   float s1=pow(max(dot(reflect(-L1,N),V),0.),38.); float s2=pow(max(dot(reflect(-L2,N),V),0.),12.)*.35;
   float diff=max(dot(N,L1),0.)*.35+.65;
-  vec3 col=iri*diff;
-  col=mix(col,uD,fres*.35);
-  col+=vec3(1.)*(s1*.9+s2);
-  // glass: the middle stays clear so the headline on top keeps its contrast
-  float a=mix(.07+.07*(1.-uDark),.82,fres)+s1*.6+s2*.4;
+  // dark themes: deep film that glows; light themes: pastel film, lit (never darkened) by the key light
+  vec3 colD=mix(iri*diff,uD,fres*.35)*1.15+.04;
+  vec3 colL=mix(iri,vec3(1.),.18)*(.92+.08*diff);
+  vec3 col=mix(colL,colD,uDark)+vec3(1.)*(s1*.9+s2);
+  // glass: the middle stays (nearly) clear so the headline and copy on top keep their contrast
+  float a=mix(mix(.025,.07,uDark),mix(.62,.82,uDark),fres)+s1*.6+s2*.4;
   a*=uAlpha;
-  // light themes: richer, more saturated film so the glass never reads as grey on a pale page
-  vec3 g=vec3(dot(col,vec3(.299,.587,.114)));
-  col=mix(mix(g,col,1.45),col*1.15+.04,uDark);
   gl_FragColor=vec4(col,clamp(a,0.,1.));
 }`;
 
@@ -138,7 +136,9 @@ export function mount(host, opts = {}) {
   function setColors() {
     const root = document.documentElement;
     const dark = root.getAttribute('data-theme') === 'dark' || (root.getAttribute('data-theme') !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches);
-    const A = cssColor('--accent-2', '#b9a7ff'), B = cssColor('--pink', '#ffb8d6'), C = cssColor('--accent', '#6440f5'), D = cssColor('--sky', '#bfe0ff');
+    const A = cssColor('--accent-2', '#b9a7ff'), B = cssColor('--pink', '#ffb8d6'), D = cssColor('--sky', '#bfe0ff');
+    // deep accent only on dark grounds; on light ones a lighter tint of it keeps the glass pastel
+    const C = dark ? cssColor('--accent', '#6440f5') : cssColor('--accent', '#6440f5').lerp(new Color('#ffffff'), .45);
     for (const m of all) { const u = m.material.uniforms; u.uA.value.copy(A); u.uB.value.copy(B); u.uC.value.copy(C); u.uD.value.copy(D); u.uDark.value = dark ? 1 : 0; }
   }
   setColors();

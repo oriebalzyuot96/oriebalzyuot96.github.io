@@ -278,6 +278,7 @@ main:focus{outline:none}
 .orbit-ring .oi{position:absolute;top:50%;left:50%;width:44px;height:44px;margin:-22px;border-radius:14px;display:grid;place-items:center;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);
   transform:rotate(var(--a)) translate(var(--rad)) rotate(calc(-1 * var(--a)));}
 .orbit-ring .oi img{width:22px;height:22px;animation:orbitCounter 38s linear infinite}
+@media (max-width:560px){.orbit-ring .oi{width:34px;height:34px;margin:-17px;border-radius:11px}.orbit-ring .oi img{width:17px;height:17px}.orbit-ring.r3 .oi:nth-child(even){display:none}}
 .orbit-ring.r2 .oi img{animation-duration:56s;animation-direction:reverse}
 .orbit-ring.r3 .oi img{animation-duration:80s}
 @keyframes orbit{to{rotate:360deg}}
