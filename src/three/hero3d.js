@@ -15,7 +15,7 @@ import {
 } from '../vendor/three/three.module.js';
 
 const SCREENS = [
-  ['orca-ui', 'Orca UI', 'Accessible component library'],
+  ['pelagic-ui', 'Pelagic UI', 'Accessible component library'],
   ['nawa-captcha', 'Nawa Captcha', 'Self-hosted puzzle CAPTCHA'],
   ['yanbu', 'Visit Yanbu', 'Tourism site · EN / AR'],
   ['burger', 'Jamra', 'Restaurant landing'],
