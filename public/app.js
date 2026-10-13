@@ -12,17 +12,23 @@
   const darkMQ = matchMedia('(prefers-color-scheme: dark)');
 
   /* ───────── preferences ───────── */
-  const DEF = { theme: 'system', accent: 'lavender', font: 'm', contrast: 'none', motion: 'system', lang: 'en',
+  const DEF = { theme: 'system', skin: 'none', accent: 'lavender', font: 'm', contrast: 'none', motion: 'system', lang: 'en',
     readable: false, links: false, spacing: false, cursor: false };
   let prefs = { ...DEF };
   try { Object.assign(prefs, JSON.parse(localStorage.getItem('oa-prefs') || '{}')); } catch (e) { /* storage blocked */ }
   prefs.lang = PAGE_LANG; // the URL decides the language; prefs only remember the visitor's last choice
   const save = () => { try { localStorage.setItem('oa-prefs', JSON.stringify(prefs)); } catch (e) {} };
   const reducedMotion = () => prefs.motion === 'reduced' || (prefs.motion === 'system' && reduceMQ.matches);
+  /* premium themes ("skins") are full token sets with their own light/dark base */
+  const SKINS = { aurora: 'dark', sakura: 'light', mochi: 'light' };
+  const SKIN_BG = { aurora: '#070b1a', sakura: '#fff6f8', mochi: '#f3fbf7' };
+  if (!SKINS[prefs.skin]) prefs.skin = 'none'; else prefs.theme = SKINS[prefs.skin];
+  const look = () => (prefs.skin !== 'none' ? prefs.skin : prefs.theme);
   const isDark = () => prefs.theme === 'dark' || (prefs.theme === 'system' && darkMQ.matches);
 
   function applyPrefs() {
     prefs.theme === 'system' ? root.removeAttribute('data-theme') : root.setAttribute('data-theme', prefs.theme);
+    prefs.skin !== 'none' ? root.setAttribute('data-skin', prefs.skin) : root.removeAttribute('data-skin');
     for (const k of ['accent', 'font', 'contrast', 'motion']) {
       prefs[k] === DEF[k] ? root.removeAttribute('data-' + k) : root.setAttribute('data-' + k, prefs[k]);
     }
@@ -32,12 +38,15 @@
     $$('[data-pref]').forEach(g => {
       const k = g.dataset.pref;
       if (g.getAttribute('role') === 'switch') { g.setAttribute('aria-checked', String(!!prefs[k])); return; }
-      $$('[data-v]', g).forEach(b => { const on = b.dataset.v === String(prefs[k]); b.setAttribute('aria-checked', String(on)); b.tabIndex = on ? 0 : -1; });
+      const cur = k === 'look' ? look() : prefs[k];
+      $$('[data-v]', g).forEach(b => { const on = b.dataset.v === String(cur); b.setAttribute('aria-checked', String(on)); b.tabIndex = on ? 0 : -1; });
     });
     const n = ['font', 'contrast', 'motion', 'readable', 'links', 'spacing', 'cursor'].filter(k => prefs[k] !== DEF[k]).length;
     $$('[data-count]').forEach(c => { c.textContent = n; c.classList.toggle('show', n > 0); });
-    const meta = $('meta[name="theme-color"]'); if (meta) meta.content = isDark() ? '#0f0d16' : '#6d4aff';
+    const meta = $('meta[name="theme-color"]'); if (meta) meta.content = SKIN_BG[prefs.skin] || (isDark() ? '#0f0d16' : '#6d4aff');
+    $$('[data-preset]').forEach(b => b.setAttribute('aria-pressed', String(presetOn(b.dataset.preset))));
     save();
+    document.dispatchEvent(new CustomEvent('oa:prefs', { detail: { ...prefs, look: look(), dark: isDark(), reduced: reducedMotion() } }));
   }
   /* View Transitions, ported from mashroo3hub: theme = circular reveal from the click point; other prefs fade */
   function runVT(apply, kind = 'fade', to) {
@@ -51,6 +60,10 @@
   const VISUAL = new Set(['theme', 'accent', 'contrast', 'font', 'readable', 'spacing']);
 
   function setPref(k, v) {
+    if (k === 'look') {
+      if (SKINS[v]) { prefs.skin = v; prefs.theme = SKINS[v]; } else { prefs.skin = 'none'; prefs.theme = v; }
+      runVT(applyPrefs, 'reveal', isDark() ? 'dark' : 'light'); return;
+    }
     prefs[k] = v;
     if (k === 'lang' && v !== PAGE_LANG) { prefs.lang = v; save(); goLang(v); return; }
     if (k === 'theme') { runVT(applyPrefs, 'reveal', isDark() ? 'dark' : 'light'); return; }
@@ -75,15 +88,47 @@
     g.addEventListener('keydown', e => {
       if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) return;
       e.preventDefault();
-      const bs = $$('[data-v]', g), i = bs.findIndex(b => b.dataset.v === String(prefs[k]));
+      const cur = k === 'look' ? look() : prefs[k];
+      const bs = $$('[data-v]', g), i = bs.findIndex(b => b.dataset.v === String(cur));
       let d = (e.key === 'ArrowRight' || e.key === 'ArrowDown') ? 1 : -1;
       if (root.dir === 'rtl' && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) d = -d;
       const nb = bs[(i + d + bs.length) % bs.length]; setPref(k, nb.dataset.v); nb.focus();
     });
   });
-  const toggleTheme = () => { setPref('theme', isDark() ? 'light' : 'dark'); sfx('pop'); };
+  const toggleTheme = () => { setPref('look', isDark() ? 'light' : 'dark'); sfx('pop'); };
   const toggleLang = () => { sfx('step'); setPref('lang', PAGE_LANG === 'ar' ? 'en' : 'ar'); };
-  $('#themeBtn').addEventListener('click', toggleTheme);
+  /* theme picker popover (header): previews of every theme, radio semantics, Esc / outside click / Tab-out closes */
+  const lookPop = $('#lookPop'), themeBtn = $('#themeBtn');
+  function setLookPop(open, focusBack) {
+    if (!lookPop) return;
+    lookPop.hidden = !open; themeBtn.setAttribute('aria-expanded', String(open));
+    if (open) { sfx('pop'); setTimeout(() => ($('[aria-checked="true"]', lookPop) || $('[role=radio]', lookPop)).focus(), 20); }
+    else if (focusBack) themeBtn.focus();
+  }
+  themeBtn.addEventListener('click', () => setLookPop(lookPop ? lookPop.hidden : false));
+  if (lookPop) {
+    lookPop.addEventListener('keydown', e => { if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); setLookPop(false, true); } });
+    lookPop.addEventListener('focusout', e => { if (!lookPop.hidden && e.relatedTarget && !lookPop.contains(e.relatedTarget) && e.relatedTarget !== themeBtn) setLookPop(false); });
+    document.addEventListener('pointerdown', e => { if (!lookPop.hidden && !lookPop.contains(e.target) && !themeBtn.contains(e.target)) setLookPop(false); });
+    $('[data-close-look]', lookPop)?.addEventListener('click', () => setLookPop(false, true));
+  }
+
+  /* accessibility presets: each one is a bundle of settings; pressing an active preset undoes it */
+  const PRESETS = {
+    lowvision: { font: 'xl', readable: true, links: true },
+    dyslexia: { readable: true, spacing: true },
+    motion: { motion: 'reduced' },
+    contrast: { contrast: 'yellow', links: true },
+  };
+  function presetOn(name) { const p = PRESETS[name]; return !!p && Object.keys(p).every(k => prefs[k] === p[k]); }
+  $$('[data-preset]').forEach(b => b.addEventListener('click', () => {
+    const p = PRESETS[b.dataset.preset]; if (!p) return;
+    const on = presetOn(b.dataset.preset);
+    for (const k of Object.keys(p)) prefs[k] = on ? DEF[k] : p[k];
+    sfx(on ? 'step' : 'success');
+    runVT(applyPrefs, 'fade');
+    toast((on ? t('pre.off', 'Preset off') : t('pre.on', 'Preset on')) + ': ' + b.querySelector('b').textContent);
+  }));
   $('#reset').addEventListener('click', () => { const lang = prefs.lang; prefs = { ...DEF, lang }; applyPrefs(); window.UiSound && window.UiSound.reset(); syncSound(); sfx('pop'); toast(t('toast.reset', 'Settings reset')); });
 
   /* sound toggle (header button, drawer switch, Alt+S, palette) */
@@ -213,6 +258,15 @@
     { e: '📄', l: L('Contracts e-signature', 'عقود · التوقيع الإلكتروني'), g: L('Project', 'مشروع'), run: () => { closeOverlay(true); openCase('p-contracts'); } },
     { e: '👥', l: L('HR solution (Shepherd)', 'نظام الموارد البشرية (Shepherd)'), g: L('Project', 'مشروع'), run: () => { closeOverlay(true); openCase('p-hr'); } },
     { e: '🌗', l: L('Toggle dark mode', 'تبديل الوضع الداكن'), g: L('Action', 'إجراء'), run: () => { closeOverlay(true); toggleTheme(); } },
+    { e: '🌌', l: L('Theme: Midnight Aurora', 'السمة: شفق منتصف الليل'), g: L('Theme', 'سمة'), run: () => { closeOverlay(true); setPref('look', 'aurora'); } },
+    { e: '🌸', l: L('Theme: Sakura', 'السمة: ساكورا'), g: L('Theme', 'سمة'), run: () => { closeOverlay(true); setPref('look', 'sakura'); } },
+    { e: '🍡', l: L('Theme: Mint Mochi', 'السمة: موتشي النعناع'), g: L('Theme', 'سمة'), run: () => { closeOverlay(true); setPref('look', 'mochi'); } },
+    { e: '☀️', l: L('Theme: Light', 'السمة: فاتح'), g: L('Theme', 'سمة'), run: () => { closeOverlay(true); setPref('look', 'light'); } },
+    { e: '🌙', l: L('Theme: Dark', 'السمة: داكن'), g: L('Theme', 'سمة'), run: () => { closeOverlay(true); setPref('look', 'dark'); } },
+    { e: '🎨', l: L('Choose a theme…', 'اختيار السمة…'), g: L('Theme', 'سمة'), run: () => { closeOverlay(true); setLookPop(true); } },
+    { e: '👓', l: L('Preset: Low vision', 'إعداد جاهز: ضعف البصر'), g: L('Accessibility', 'الوصول'), run: () => { closeOverlay(true); $('[data-preset="lowvision"]').click(); } },
+    { e: '📖', l: L('Preset: Dyslexia-friendly', 'إعداد جاهز: عسر القراءة'), g: L('Accessibility', 'الوصول'), run: () => { closeOverlay(true); $('[data-preset="dyslexia"]').click(); } },
+    { e: '⏸', l: L('Preset: Motion-sensitive', 'إعداد جاهز: حساسية الحركة'), g: L('Accessibility', 'الوصول'), run: () => { closeOverlay(true); $('[data-preset="motion"]').click(); } },
     { e: '🌐', l: L('العربية / English', 'English / العربية'), g: L('Action', 'إجراء'), run: () => { closeOverlay(true); toggleLang(); } },
     { e: '🔊', l: L('Sound on / off', 'تشغيل / إيقاف الأصوات'), g: L('Action', 'إجراء'), run: () => { closeOverlay(true); toggleSound(); } },
     { e: '♿', l: L('Accessibility settings', 'إعدادات الوصول'), g: L('Action', 'إجراء'), run: () => { closeOverlay(true); openSettings(); } },
@@ -269,9 +323,30 @@
   $$('.pj-part').forEach(part => {
     const projs = $$('.proj', part), chips = $$('.chip', part);
     $$('[data-n]', part).forEach(c => { const f = c.dataset.n; c.textContent = f === 'all' ? projs.length : projs.filter(p => p.dataset.c === f).length; });
+    const live = $('[data-pj-live]', part);
+    let anims = [];
     chips.forEach(c => c.addEventListener('click', () => {
+      if (c.getAttribute('aria-pressed') === 'true') return;
       chips.forEach(x => x.setAttribute('aria-pressed', String(x === c)));
-      const f = c.dataset.f; projs.forEach(p => { p.hidden = f !== 'all' && p.dataset.c !== f; });
+      const f = c.dataset.f, show = p => f === 'all' || p.dataset.c === f;
+      anims.forEach(a => a.cancel()); anims = [];
+      // FLIP: First (old boxes) → apply filter → Last → Invert → Play. Transform/opacity only.
+      const first = new Map(projs.filter(p => !p.hidden).map(p => [p, p.getBoundingClientRect()]));
+      projs.forEach(p => { p.hidden = !show(p); p.classList.add('in'); });
+      const n = projs.filter(show).length;
+      if (live) live.textContent = t('pj.showing', 'Showing {n} of {t} projects').replace('{n}', n).replace('{t}', projs.length);
+      sfx('step');
+      if (reducedMotion() || !Element.prototype.animate) return;
+      const ease = 'cubic-bezier(.2,.8,.2,1)';
+      projs.filter(p => !p.hidden).forEach((p, i) => {
+        const a = first.get(p), b = p.getBoundingClientRect();
+        if (a) {
+          const dy = a.top - b.top, dx = a.left - b.left;
+          if (Math.abs(dy) > 1 || Math.abs(dx) > 1) anims.push(p.animate([{ transform: `translate(${dx}px,${Math.max(-600, Math.min(600, dy))}px)` }, { transform: 'none' }], { duration: 620, easing: ease }));
+        } else {
+          anims.push(p.animate([{ opacity: 0, transform: 'translateY(36px) scale(.96)' }, { opacity: 1, transform: 'none' }], { duration: 560, delay: Math.min(i, 6) * 70, easing: ease, fill: 'backwards' }));
+        }
+      });
     }));
   });
 
@@ -281,7 +356,8 @@
     if (reducedMotion() || document.hidden) return;
     const w = $('#rot .w'); if (!w || words.length < 2) return;
     wi = (wi + 1) % words.length;
-    const n = w.cloneNode(); n.textContent = words[wi]; w.replaceWith(n);
+    // reuse the same node (restart the CSS animation) so the swap never creates a new LCP candidate
+    w.textContent = words[wi]; w.style.animation = 'none'; void w.offsetWidth; w.style.animation = '';
   }, 2600);
 
   // typed code tile
@@ -325,6 +401,7 @@
     const resize = () => { const r = c.getBoundingClientRect(); w = c.width = r.width * devicePixelRatio; h = c.height = r.height * devicePixelRatio;
       pts = Array.from({ length: Math.min(90, Math.floor(r.width / 14)) }, () => ({ x: Math.random() * w, y: Math.random() * h, r: (Math.random() * 1.4 + .4) * devicePixelRatio, s: Math.random() * .25 + .05, p: Math.random() * 6.28 })); };
     const draw = t => {
+      if (document.hidden) { raf = requestAnimationFrame(draw); return; }
       ctx.clearRect(0, 0, w, h);
       const col = getComputedStyle(root).getPropertyValue('--accent').trim() || '#6d4aff';
       for (const p of pts) { p.y -= p.s; if (p.y < 0) { p.y = h; p.x = Math.random() * w; }
@@ -365,7 +442,8 @@
     const ring = $('#topRing'); if (ring) ring.style.strokeDashoffset = String(100 - pct);
     const pl = $('#topPct'); if (pl) pl.textContent = pct + '%';
     const r = tl ? tl.getBoundingClientRect() : { top: 0, height: 1 }; const p = Math.min(1, Math.max(0, (innerHeight * .6 - r.top) / r.height));
-    if (rail) rail.style.height = (p * 100).toFixed(1) + '%';
+    // transform-only (scaleY + translateY) so drawing the line never counts as a layout shift
+    if (rail) { rail.style.transform = `scaleY(${p.toFixed(4)})`; const hd = rail.nextElementSibling; if (hd) hd.style.transform = `translateY(${(p * rail.parentElement.clientHeight).toFixed(1)}px)`; }
   }
   addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
   top.addEventListener('click', () => scrollTo({ top: 0, behavior: reducedMotion() ? 'auto' : 'smooth' }));
@@ -373,7 +451,11 @@
   const so = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id)); }), { rootMargin: '-45% 0px -50% 0px' });
   ['about', 'intro', 'skills', 'projects', 'oss', 'career', 'archiving', 'contact'].forEach(id => { const el = document.getElementById(id); if (el) so.observe(el); });
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0, rootMargin: '0px 0px -40px 0px' });
-  $$('.reveal').forEach(el => io.observe(el));
+  // stagger: siblings revealed together cascade in (index per parent, capped so long lists never wait)
+  const groups = new Map();
+  $$('.reveal').forEach(el => { const k = el.parentElement; const i = groups.get(k) || 0; groups.set(k, i + 1); el.style.setProperty('--ri', String(Math.min(i, 6))); io.observe(el); });
+  // safety net: anything already scrolled past (fast scroll, anchors, find-in-page) is shown
+  let sweepT; addEventListener('scroll', () => { clearTimeout(sweepT); sweepT = setTimeout(() => $$('.reveal:not(.in)').forEach(el => { if (el.getBoundingClientRect().top < innerHeight) el.classList.add('in'); }), 140); }, { passive: true });
 
   /* ───────── boot ───────── */
   applyPrefs(); onScroll();
@@ -387,4 +469,8 @@
   } else splash.remove();
   startHero();
   darkMQ.addEventListener?.('change', applyPrefs);
+  reduceMQ.addEventListener?.('change', applyPrefs);
+  /* small API for fx.js (motion system + 3D hero) */
+  window.OA = { prefs: () => ({ ...prefs, look: look(), dark: isDark() }), reducedMotion, isDark, setPref, toast, t, sfx, openLookPicker: () => setLookPop(true) };
+  document.dispatchEvent(new CustomEvent('oa:ready'));
 })();

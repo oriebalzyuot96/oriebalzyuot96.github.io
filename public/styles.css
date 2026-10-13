@@ -208,7 +208,7 @@ header.top .wrap{display:flex;align-items:center;justify-content:space-between;h
 :root[lang="ar"] .logos p{letter-spacing:0}
 .logos .track{display:flex;gap:44px;width:max-content;animation:marq 38s linear infinite;align-items:center}
 :root[dir="rtl"] .logos .track{animation-name:marqR}
-.logos .track span{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.05rem;color:var(--ink-2);white-space:nowrap;opacity:.85}
+.logos .track span{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.05rem;color:var(--ink-2);white-space:nowrap}
 .logos .track span i{font-style:normal;font-size:1.3rem}
 .logos-mask{mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
 
@@ -477,9 +477,9 @@ kbd{font:700 .74rem var(--mono);background:var(--soft-2);border:1px solid var(--
 @media (max-width:760px){.cs-grid{grid-template-columns:1fr}.modal .content{padding:22px}}
 
 /* reveal */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
-.reveal.in{opacity:1;transform:none}
-.no-js .reveal{opacity:1;transform:none}
+.reveal{opacity:0;translate:0 28px;transition:opacity .8s cubic-bezier(.2,.8,.2,1),translate .8s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;translate:none}
+.no-js .reveal{opacity:1;translate:none;scale:none;filter:none}
 
 /* ───────── accessibility modes (same attribute contract as mashroo3hub) ───────── */
 :root[data-font="s"]{--fs:.9} :root[data-font="l"]{--fs:1.12} :root[data-font="xl"]{--fs:1.25}
@@ -501,16 +501,16 @@ kbd{font:700 .74rem var(--mono);background:var(--soft-2);border:1px solid var(--
 :root[data-contrast="yellow"] .pill,:root[data-contrast="yellow"] .tag,:root[data-contrast="yellow"] .lv{background:#000!important;color:#ff0!important;border:1px solid #ff0}
 :root[data-contrast="yellow"] .rot::after,:root[data-contrast="yellow"] .mock .ln.a,:root[data-contrast="yellow"] .mock .bar-p i{background:#ff0}
 :root[data-motion="reduced"] *,:root[data-motion="reduced"] *::before,:root[data-motion="reduced"] *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-:root[data-motion="reduced"] .reveal{opacity:1;transform:none}
+:root[data-motion="reduced"] .reveal{opacity:1;translate:none}
 :root[data-motion="reduced"] .frame{transform:none!important}
 @media (prefers-reduced-motion:reduce){
   :root:not([data-motion="full"]) *,:root:not([data-motion="full"]) *::before,:root:not([data-motion="full"]) *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-  :root:not([data-motion="full"]) .reveal{opacity:1;transform:none}
+  :root:not([data-motion="full"]) .reveal{opacity:1;translate:none}
 }
 
 @media print{
   header.top,.fab,.drawer,.scrim,.palette,.modal,.progress,.aurora,.toast{display:none!important}
-  .reveal{opacity:1;transform:none}
+  .reveal{opacity:1;translate:none;scale:none;filter:none}
   body{background:#fff;color:#000}
 }
 

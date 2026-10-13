@@ -1,0 +1,400 @@
+/* ==========================================================================
+   fx.css · v2 presentation layer
+   1 tokens + premium themes   2 accessibility   3 theme picker + presets
+   4 motion system             5 3D hero          6 section polish
+   7 view transitions          8 reduced motion / forced colours / print
+   Loaded after styles.css + motion.css. Everything animated is transform/opacity
+   and is switched off by prefers-reduced-motion AND the in-page motion setting.
+   ========================================================================== */
+
+/* ───────── 1 · tokens ───────── */
+@property --fx-angle{syntax:'<angle>';inherits:false;initial-value:0deg}
+@property --fx-a{syntax:'<percentage>';inherits:false;initial-value:0%}
+:root{
+  /* light base: deeper lavender + darker muted ink so every pair clears WCAG AA (see tools/contrast.mjs) */
+  --ink-3:#68628a; --accent:#6440f5; --accent-3:#7454f7;
+  --focus:var(--accent); --focus-ring:color-mix(in srgb,var(--accent) 30%,transparent);
+  --orb-1:#b9a7ff; --orb-2:#ffb8d6; --orb-3:#bfe0ff;
+  --mesh:radial-gradient(60% 60% at 20% 20%,color-mix(in srgb,var(--accent-2) 55%,transparent),transparent 70%),
+         radial-gradient(50% 60% at 85% 30%,color-mix(in srgb,var(--pink) 55%,transparent),transparent 70%),
+         radial-gradient(60% 60% at 50% 100%,color-mix(in srgb,var(--sky) 50%,transparent),transparent 70%);
+  --border-grad:conic-gradient(from var(--fx-angle),var(--accent),var(--pink),var(--accent-2),var(--sky),var(--accent));
+  --glass-hi:rgb(255 255 255 / .55);
+  --ease-out:cubic-bezier(.16,1,.3,1); --ease-spring:cubic-bezier(.2,1.5,.4,1);
+}
+:root[data-accent="lilac"]{--accent-3:#8a3fd6}
+:root[data-accent="rose"]{--accent:#bf2869;--accent-3:#c4306f}
+:root[data-accent="ocean"]{--accent-3:#2f63e0}
+:root[data-accent="mint"]{--accent:#0b7559;--accent-3:#0b7a63}
+:root[data-accent="amber"]{--accent-3:#b0500a}
+/* dark base keeps its own values (already AA); re-assert the ones the light overrides above would leak into */
+:root[data-theme="dark"]{--ink-3:#938cae;--accent:#b8a4ff;--accent-3:#9d86ff;--glass-hi:rgb(255 255 255 / .08);--orb-1:#7c5cff;--orb-2:#d4589e;--orb-3:#3d6fd1}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink-3:#938cae;--accent:#b8a4ff;--accent-3:#9d86ff;--glass-hi:rgb(255 255 255 / .08);--orb-1:#7c5cff;--orb-2:#d4589e;--orb-3:#3d6fd1}}
+:root[data-theme="dark"][data-accent="lilac"]{--accent:#d8a8ff;--accent-3:#c48cf5}
+:root[data-theme="dark"][data-accent="rose"]{--accent:#ff92c1;--accent-3:#f477ad}
+:root[data-theme="dark"][data-accent="ocean"]{--accent:#90b6ff;--accent-3:#78a2f5}
+:root[data-theme="dark"][data-accent="mint"]{--accent:#72e2bf;--accent-3:#4fd0a8}
+:root[data-theme="dark"][data-accent="amber"]{--accent:#ffc46b;--accent-3:#f5ae45}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"])[data-accent="lilac"]{--accent:#d8a8ff;--accent-3:#c48cf5}
+  :root:not([data-theme="light"])[data-accent="rose"]{--accent:#ff92c1;--accent-3:#f477ad}
+  :root:not([data-theme="light"])[data-accent="ocean"]{--accent:#90b6ff;--accent-3:#78a2f5}
+  :root:not([data-theme="light"])[data-accent="mint"]{--accent:#72e2bf;--accent-3:#4fd0a8}
+  :root:not([data-theme="light"])[data-accent="amber"]{--accent:#ffc46b;--accent-3:#f5ae45}
+}
+
+/* premium themes: full token sets (surfaces, glass, gradients, shadows). The skin's own accent applies
+   only when no accent palette is chosen, so palettes still layer on top. */
+:root[data-skin="aurora"]{
+  --bg:#070b1a; --bg-2:#0a1024; --surface:#0f1630; --surface-2:#131b38; --glass:rgb(15 22 48 / .66); --glass-hi:rgb(140 200 255 / .08);
+  --ink:#eef1ff; --ink-2:#bcc3e6; --ink-3:#929cc8; --line:#1f2a4f; --line-2:#2c3a68;
+  --soft:#132447; --soft-2:#0d1430; --pink:#f08bd0; --mint:#5eead4; --butter:#ffd98a; --sky:#7cc4ff; --ok:#6ff0c8; --warn:#ffd27a;
+  --orb-1:#2dd4bf; --orb-2:#8b5cf6; --orb-3:#ec4899;
+  --shadow:0 18px 40px -24px rgb(0 0 0 / .85),0 0 0 1px rgb(110 240 208 / .03); --shadow-lg:0 34px 80px -30px rgb(0 0 0 / .9),0 0 60px -30px rgb(110 240 208 / .25);
+  --mesh:radial-gradient(60% 60% at 15% 10%,rgb(45 212 191 / .30),transparent 70%),radial-gradient(55% 60% at 85% 25%,rgb(139 92 246 / .34),transparent 70%),radial-gradient(60% 60% at 50% 105%,rgb(236 72 153 / .24),transparent 70%);
+  color-scheme:dark;
+}
+:root[data-skin="aurora"]:where(:not([data-accent])){--accent:#6ef0d0;--accent-ink:#04121a;--accent-2:#8b7bff;--accent-3:#5ad1ff}
+:root[data-skin="sakura"]{
+  --bg:#fff6f8; --bg-2:#ffedf2; --surface:#ffffff; --surface-2:#fffafb; --glass:rgb(255 250 252 / .74);
+  --ink:#2a1520; --ink-2:#5c3a49; --ink-3:#7f5868; --line:#f6dbe4; --line-2:#efc6d4;
+  --soft:#ffe3ec; --soft-2:#fff1f5; --pink:#ffb3cc; --mint:#c9f0e0; --butter:#ffe7b3; --sky:#d9e4ff; --ok:#096a50; --warn:#8a5a00;
+  --orb-1:#ffb3cc; --orb-2:#f7c6ff; --orb-3:#ffd9c2;
+  --shadow:0 18px 40px -24px rgb(184 35 90 / .28); --shadow-lg:0 34px 80px -34px rgb(184 35 90 / .38);
+  color-scheme:light;
+}
+:root[data-skin="sakura"]:where(:not([data-accent])){--accent:#b8235a;--accent-ink:#ffffff;--accent-2:#ffa3c4;--accent-3:#c8346b}
+:root[data-skin="mochi"]{
+  --bg:#f3fbf7; --bg-2:#e7f6ee; --surface:#ffffff; --surface-2:#f7fdfa; --glass:rgb(250 255 252 / .74);
+  --ink:#11241d; --ink-2:#3a5549; --ink-3:#4f6c5f; --line:#d5ece1; --line-2:#bfe1d1;
+  --soft:#d9f3e7; --soft-2:#eefaf4; --pink:#ffd1dc; --mint:#a8ecd6; --butter:#fff0b8; --sky:#cdeaff; --ok:#0b6e52; --warn:#7d5200;
+  --orb-1:#9fe3c9; --orb-2:#ffd1dc; --orb-3:#cdeaff;
+  --shadow:0 18px 40px -24px rgb(10 113 85 / .28); --shadow-lg:0 34px 80px -34px rgb(10 113 85 / .38);
+  color-scheme:light;
+}
+:root[data-skin="mochi"]:where(:not([data-accent])){--accent:#0a7155;--accent-ink:#ffffff;--accent-2:#8fdcbf;--accent-3:#0d7f60}
+:root[data-skin="sakura"] .pill.soon,:root[data-skin="mochi"] .pill.soon{color:#1d4f8f}
+:root[data-skin="aurora"] .sk li img{filter:invert(1)}
+/* high contrast always wins over any theme */
+:root[data-contrast="yellow"][data-contrast]{--bg:#000;--bg-2:#000;--surface:#000;--surface-2:#000;--glass:#000;--ink:#ff0;--ink-2:#ff0;--ink-3:#ff0;--line:#ff0;--line-2:#ff0;--accent:#ff0;--accent-ink:#000;--accent-2:#ff0;--accent-3:#ff0;--soft:#000;--soft-2:#000;--ok:#ff0;--warn:#ff0;--shadow:none;--shadow-lg:none;--focus:#fff;--focus-ring:#fff;--mesh:none;color-scheme:dark}
+
+/* ───────── 2 · accessibility ───────── */
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;box-shadow:0 0 0 7px var(--focus-ring);border-radius:10px}
+.btn:focus-visible,.chip:focus-visible,.ibtn:focus-visible,.fab:focus-visible,.totop:focus-visible{border-radius:999px}
+main:focus{outline:none}
+.skips{position:fixed;top:0;inset-inline-start:0;z-index:300;display:flex;gap:8px;padding:12px;pointer-events:none}
+.skips .skip{position:static;transform:translateY(-140%);opacity:0;pointer-events:auto;transition:transform .25s var(--ease-out),opacity .2s}
+.skips .skip:focus{transform:none;opacity:1;top:auto}
+.copy{min-height:28px;min-width:44px}
+.ibtn.sm{min-width:34px;height:34px;padding-inline:8px;font-size:.8rem}
+.tag{line-height:1.3}
+:root[data-skin] .t-code .bar span,.t-code .bar span{color:#a49cc4}
+.c-c{color:#9188b0}
+/* the about card + filter chips: keep tap targets ≥ 24px even at small text */
+.chip,.filters .chip{min-height:40px}
+.sw{min-width:42px}
+
+/* ───────── 3 · theme picker + presets ───────── */
+.hdr-r{position:relative}
+.look-pop{position:absolute;top:calc(100% + 12px);inset-inline-end:0;z-index:95;width:min(440px,calc(100vw - 24px));padding:16px;border-radius:24px;
+  background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(22px) saturate(1.5);-webkit-backdrop-filter:blur(22px) saturate(1.5);
+  border:1px solid var(--line);box-shadow:var(--shadow-lg);transform-origin:calc(100% - 60px) 0;animation:lpIn .32s var(--ease-out)}
+:root[dir="rtl"] .look-pop{transform-origin:60px 0}
+.look-pop[hidden]{display:none}
+@keyframes lpIn{from{opacity:0;transform:translateY(-8px) scale(.96)}}
+.lp-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.lp-head h2{font-size:1rem;font-weight:800}
+.lp-hint{margin-top:12px;font-size:.78rem;color:var(--ink-3);display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.looks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.look{display:grid;gap:8px;padding:7px 7px 10px;border-radius:18px;border:1.5px solid var(--line);background:var(--surface-2);text-align:start;color:var(--ink);transition:transform .25s var(--ease-out),border-color .2s,box-shadow .25s}
+.look:hover{transform:translateY(-2px);border-color:var(--accent-2)}
+.look[aria-checked="true"]{border-color:var(--accent);box-shadow:0 0 0 3px var(--focus-ring)}
+.lk-name{display:grid;padding-inline:4px;line-height:1.25}
+.lk-name b{font-size:.8rem}
+.lk-name small{font-size:.68rem;color:var(--ink-3)}
+.lk-prev{--p-bg:#f8f6ff;--p-sf:#fff;--p-ac:#6440f5;--p-a2:#b9a7ff;--p-pk:#ffb8d6;--p-ln:#e6e0f7;--p-tx:#1f1b2e;
+  position:relative;display:block;aspect-ratio:16/10;border-radius:12px;overflow:hidden;background:var(--p-bg);border:1px solid var(--p-ln)}
+.lk-prev[data-look="dark"]{--p-bg:#0f0d16;--p-sf:#1b1826;--p-ac:#b8a4ff;--p-a2:#7c5cff;--p-pk:#d4589e;--p-ln:#2d2841;--p-tx:#f3f0fc}
+.lk-prev[data-look="system"]{background:linear-gradient(135deg,#f8f6ff 50%,#0f0d16 50%)}
+.lk-prev[data-look="aurora"]{--p-bg:#070b1a;--p-sf:#0f1630;--p-ac:#6ef0d0;--p-a2:#8b7bff;--p-pk:#ec4899;--p-ln:#1f2a4f;--p-tx:#eef1ff}
+.lk-prev[data-look="sakura"]{--p-bg:#fff6f8;--p-sf:#fff;--p-ac:#b8235a;--p-a2:#ffa3c4;--p-pk:#f7c6ff;--p-ln:#f6dbe4;--p-tx:#2a1520}
+.lk-prev[data-look="mochi"]{--p-bg:#f3fbf7;--p-sf:#fff;--p-ac:#0a7155;--p-a2:#8fdcbf;--p-pk:#ffd1dc;--p-ln:#d5ece1;--p-tx:#11241d}
+.lk-prev i{position:absolute;display:block}
+.lk-nav{inset-inline:8%;top:8%;height:10%;border-radius:99px;background:var(--p-sf);border:1px solid var(--p-ln)}
+.lk-orb{width:46%;aspect-ratio:1;inset-inline-end:-8%;top:18%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff8,transparent 40%),conic-gradient(from 200deg,var(--p-a2),var(--p-pk),var(--p-ac),var(--p-a2));filter:blur(.5px);opacity:.9}
+.lk-card{inset-inline-start:8%;bottom:10%;width:52%;height:46%;border-radius:8px;background:var(--p-sf);border:1px solid var(--p-ln)}
+.lk-line{inset-inline-start:14%;bottom:42%;width:34%;height:6%;border-radius:4px;background:var(--p-tx);opacity:.75}
+.lk-line.s{bottom:32%;width:24%;opacity:.35}
+.lk-btn{inset-inline-start:14%;bottom:17%;width:20%;height:9%;border-radius:99px;background:var(--p-ac)}
+.lk-prev[data-look="system"] i{--p-sf:#fff;--p-ln:#e6e0f7}
+.look:hover .lk-orb{animation:lkSpin 3s linear infinite}
+@keyframes lkSpin{to{rotate:360deg}}
+.drawer .looks{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:420px){.looks{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.presets{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.preset{display:flex;gap:10px;align-items:flex-start;text-align:start;padding:12px;border-radius:16px;border:1.5px solid var(--line);background:var(--surface-2);color:var(--ink);transition:border-color .2s,background-color .2s,transform .2s}
+.preset:hover{border-color:var(--accent-2);transform:translateY(-1px)}
+.preset .pi{flex:none;width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:var(--soft);font-size:1.05rem}
+.preset b{display:block;font-size:.86rem;line-height:1.3}
+.preset small{display:block;font-size:.72rem;color:var(--ink-3);line-height:1.35;margin-top:2px}
+.preset[aria-pressed="true"]{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface))}
+.preset[aria-pressed="true"] .pi{background:var(--accent);color:var(--accent-ink)}
+.drawer{background:color-mix(in srgb,var(--surface) 96%,transparent)}
+.tabs button[aria-selected="true"]{box-shadow:0 6px 18px -10px var(--accent)}
+
+/* ───────── 4 · motion system ───────── */
+/* staggered reveals (index set per parent by app.js) */
+/* reveal uses the individual translate/scale properties so hover transforms on the same cards still work,
+   and per-property delays so the stagger never delays a hover */
+.reveal.reveal{--rd:calc(var(--ri,0) * 80ms);transition:opacity .8s var(--ease-out) var(--rd),translate .9s var(--ease-out) var(--rd),scale .9s var(--ease-out) var(--rd),filter .8s var(--ease-out) var(--rd),
+  transform .45s var(--ease-out),box-shadow .45s,border-color .3s,background-color .3s,color .3s}
+.card.reveal{translate:0 34px;scale:.985}
+.card.reveal.in{translate:none;scale:none}
+.sec-title.reveal{translate:0 18px;filter:blur(6px)}
+.sec-title.reveal.in{translate:none;filter:none}
+
+/* section headings: animated underline + hand-drawn marker under the kicker */
+.sec-title h2::after{transform:scaleX(0);transform-origin:50% 50%;transition:transform .9s var(--ease-out) .25s;width:84px;background:linear-gradient(90deg,var(--accent),var(--pink),var(--accent-2));background-size:200% 100%;animation:fxShine 4s linear infinite}
+.sec-title.in h2::after,.no-js .sec-title h2::after{transform:scaleX(1)}
+@keyframes fxShine{to{background-position:-200% 0}}
+.sec-title .kicker{position:relative;display:block;width:fit-content;margin-inline:auto;isolation:isolate}
+.sec-title .kicker::after{content:"";position:absolute;inset-inline:-6px;bottom:2px;height:.45em;border-radius:6px;background:color-mix(in srgb,var(--accent-2) 40%,transparent);z-index:-1;transform:scaleX(0);transform-origin:0 50%;transition:transform .7s var(--ease-out) .1s}
+:root[dir="rtl"] .sec-title .kicker::after{transform-origin:100% 50%}
+.sec-title.in .kicker::after{transform:scaleX(1)}
+
+/* split-text headline: words rise with blur (spans added by fx.js; text stays one accessible string) */
+.split .sw-w{display:inline-block;opacity:0;transform:translateY(.55em) rotate(2deg);filter:blur(8px);white-space:pre}
+.split-go .sw-w{animation:swIn .9s var(--ease-out) forwards;animation-delay:calc(var(--wi) * 55ms + var(--d0,0ms) + 120ms)}
+@keyframes swIn{to{opacity:1;transform:none;filter:none}}
+.hero h1.split .line.stagger{opacity:1;transform:none;filter:none;animation:none}
+/* one line per row: the rotating word can change width without re-wrapping the headline (no layout shift below) */
+.hero h1 .line,.hero h1 .line.stagger{display:block}
+.hero h1 .rot{transition:color .4s}
+.hero h1 .rot,.hero h1 .rot .w{text-shadow:none}
+.hero h1 .rot .w{background:linear-gradient(100deg,var(--accent),var(--accent-3) 40%,color-mix(in srgb,var(--pink) 70%,var(--accent)) 70%,var(--accent));background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:rotIn .55s cubic-bezier(.2,.8,.2,1),fxShine 6s linear infinite}
+:root[data-contrast="yellow"] .hero h1 .rot .w{background:none;color:#ff0}
+
+/* magnetic buttons: transform is driven by fx.js with spring easing back */
+.magnet{will-change:transform}
+.btn.primary{position:relative;overflow:hidden;isolation:isolate}
+.btn.primary::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 20%,rgb(255 255 255 / .35) 45%,transparent 60%);transform:translateX(-120%);transition:transform .8s var(--ease-out)}
+.btn.primary:hover::after{transform:translateX(120%)}
+:root[data-theme="dark"] .btn.primary::after,:root[data-skin="aurora"] .btn.primary::after{background:linear-gradient(110deg,transparent 20%,rgb(255 255 255 / .5) 45%,transparent 60%)}
+
+/* cursor spotlight on cards: soft fill + a lit border that follows the pointer */
+.spot:not(.t-video)::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;pointer-events:none;opacity:0;transition:opacity .35s;
+  background:radial-gradient(260px circle at var(--mx) var(--my),var(--accent),color-mix(in srgb,var(--pink) 70%,transparent) 35%,transparent 70%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+.spot:not(.t-video):hover::after{opacity:.9}
+.t-photo.spot::after{z-index:3}
+
+/* 3D tilt + glare on project frames */
+.frame{transition:transform .5s var(--ease-out),box-shadow .5s}
+.frame.tilting{transition:transform .08s linear}
+.frame::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;opacity:0;transition:opacity .4s;
+  background:radial-gradient(420px circle at var(--gx,50%) var(--gy,0%),rgb(255 255 255 / .38),transparent 55%);mix-blend-mode:soft-light}
+.frame.tilting::after{opacity:1}
+.proj:hover .frame{box-shadow:0 40px 90px -40px color-mix(in srgb,var(--accent) 55%,transparent)}
+
+/* animated gradient border on featured cards */
+.card.featured{border-color:transparent;background:linear-gradient(var(--surface),var(--surface)) padding-box,conic-gradient(from var(--fx-angle),var(--accent),var(--pink),var(--accent-2),var(--sky),var(--accent)) border-box;border:1.5px solid transparent;animation:fxSpin 8s linear infinite}
+.card.featured::before{z-index:0}
+@keyframes fxSpin{to{--fx-angle:360deg}}
+.card.featured .p-body h3::after{content:"★";font-size:.5em;vertical-align:super;margin-inline-start:8px;color:var(--accent)}
+:root[data-contrast="yellow"] .card.featured{background:#000;border:2px solid #ff0;animation:none}
+
+/* scroll progress: gradient bar with a glowing head */
+.progress{height:3px;background:linear-gradient(90deg,var(--accent),var(--pink),var(--accent-2),var(--accent));background-size:200% 100%;animation:fxShine 6s linear infinite;box-shadow:0 0 14px color-mix(in srgb,var(--accent) 60%,transparent)}
+
+/* parallax layers move via transform only (set by fx.js); the aurora is anchored in px so font
+   loading / hero height changes never move its layout box (CLS) */
+.aurora{inset:-90px 0 0}
+[data-parallax]{will-change:transform}
+
+/* marquee: pause on hover / focus / the global pause button */
+.logos-mask:hover .track,.t-stack:hover .mini-marq,.tech-marq:hover .tm-track,:root.fx-paused .track,:root.fx-paused .mini-marq,:root.fx-paused .tm-track,:root.fx-paused .orbit-ring,:root.fx-paused .orbit-ring .oi{animation-play-state:paused}
+:root.fx-paused *{animation-play-state:paused!important}
+
+/* counters keep their width while counting (no layout shift) */
+[data-count-to]{font-variant-numeric:tabular-nums}
+.chip .c{font-variant-numeric:tabular-nums;min-width:2.2ch;text-align:center}
+
+/* ───────── 5 · 3D hero ───────── */
+.hero3d{position:absolute;inset:-40px 0 auto;height:min(920px,108vh);z-index:-1;pointer-events:none;contain:strict}
+.hero3d canvas{position:absolute;inset:0;width:100%!important;height:100%!important;opacity:0;transition:opacity 1.4s var(--ease-out)}
+.hero3d.on canvas{opacity:1}
+/* static fallback orb: always present, fades out once WebGL is running */
+.hero-orb{position:absolute;top:clamp(60px,9vw,120px);inset-inline-start:50%;translate:-50% 0;width:min(620px,86vw);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle at 32% 28%,rgb(255 255 255 / .75),transparent 22%),
+    radial-gradient(circle at 70% 75%,color-mix(in srgb,var(--orb-3) 70%,transparent),transparent 45%),
+    conic-gradient(from 210deg,var(--orb-1),var(--orb-2),var(--orb-3),var(--orb-1));
+  filter:blur(36px) saturate(1.1);opacity:.42;transition:opacity 1.2s}
+:root[dir="rtl"] .hero-orb{translate:50% 0}
+.hero3d.on~.hero-orb,.hero3d.on+.hero-orb{opacity:0}
+:root[data-theme="dark"] .hero-orb,:root[data-skin="aurora"] .hero-orb{opacity:.3}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hero-orb{opacity:.3}}
+.fx-toggle{position:absolute;top:14px;inset-inline-end:20px;z-index:3;display:inline-flex;align-items:center;gap:8px;height:36px;padding-inline:12px 14px;border-radius:999px;
+  border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);font-weight:700;font-size:.78rem;color:var(--ink-2);transition:color .2s,border-color .2s}
+.fx-toggle:hover{color:var(--accent);border-color:var(--accent-2)}
+.fx-toggle svg{width:14px;height:14px}
+.fx-toggle .i-play{display:none}
+.fx-toggle[aria-pressed="true"] .i-play{display:block}.fx-toggle[aria-pressed="true"] .i-pause{display:none}
+@media (max-width:640px){.fx-toggle{top:6px;inset-inline-end:12px;height:32px;font-size:.72rem}.fx-toggle span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}}
+.hero h1,.hero .lede{text-shadow:0 1px 18px color-mix(in srgb,var(--bg) 70%,transparent)}
+.hero .hello.stagger{display:inline-flex}
+
+/* ───────── 6 · section polish ───────── */
+/* hero bento: glass tiles, animated mesh in the years tile, shimmering a11y tile */
+.tile{transition:transform .5s var(--ease-out),box-shadow .5s,border-color .3s}
+.tile:hover{transform:translateY(-6px) scale(1.01)}
+.t-years{background:linear-gradient(150deg,var(--accent),var(--accent-3));overflow:hidden}
+.t-years::after{content:"";position:absolute;inset:-40%;background:conic-gradient(from var(--fx-angle),transparent,rgb(255 255 255 / .18),transparent 30%,rgb(255 255 255 / .1),transparent 60%);animation:fxSpin 9s linear infinite;pointer-events:none}
+.t-years>*{position:relative;z-index:1}
+.t-now h2{font-size:1.3rem;letter-spacing:-.02em;line-height:1.35}
+.t-now li{transition:transform .3s var(--ease-spring),border-color .2s}
+.t-now li:hover{transform:translateY(-2px);border-color:var(--accent-2)}
+.ready .t-now li{animation:fxPop .6s var(--ease-spring) both;animation-delay:calc(900ms + var(--li,0) * 70ms + var(--d0,0ms))}
+@keyframes fxPop{from{opacity:0;transform:translateY(10px) scale(.9)}}
+.t-a11y{background:linear-gradient(150deg,var(--soft),var(--surface)) padding-box,var(--border-grad) border-box;border:1.5px dashed transparent}
+.t-a11y .go{display:inline-flex;gap:6px;align-items:center}
+.t-a11y:hover .go{text-decoration:underline;text-underline-offset:4px}
+.t-clock .time{background:linear-gradient(90deg,var(--ink),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+:root[data-contrast="yellow"] .t-clock .time{background:none;color:#ff0}
+.t-photo img{transition:transform 1.2s var(--ease-out)}
+.t-photo:hover img{transform:scale(1.04)}
+
+/* tech marquee + skills orbit */
+.sk-stage{overflow:hidden;padding-block:34px 8px;display:grid;grid-template-columns:minmax(0,1fr);gap:28px;margin-bottom:40px}
+.orbit{--ow:min(420px,70vw);position:relative;width:var(--ow);aspect-ratio:1;margin-inline:auto}
+.orbit-core{position:absolute;inset:36%;border-radius:50%;display:grid;place-items:center;text-align:center;background:radial-gradient(circle at 35% 30%,var(--surface),var(--soft));box-shadow:var(--shadow-lg),inset 0 0 0 1px var(--line);font-weight:800;font-size:.9rem;color:var(--accent);z-index:2}
+.orbit-core{overflow:hidden;border:4px solid var(--surface)}
+.orbit-core img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
+.orbit-core b{display:block;font-size:1.6rem;line-height:1;color:var(--ink);letter-spacing:-.03em}
+.orbit-ring{position:absolute;border-radius:50%;border:1.5px dashed var(--line-2);animation:orbit 38s linear infinite}
+.orbit-ring.r1{inset:22%}
+.orbit-ring.r2{inset:8%;animation-duration:56s;animation-direction:reverse}
+.orbit-ring.r3{inset:-4%;animation-duration:80s;border-style:dotted;opacity:.8}
+.orbit-ring .oi{position:absolute;top:50%;left:50%;width:44px;height:44px;margin:-22px;border-radius:14px;display:grid;place-items:center;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);
+  transform:rotate(var(--a)) translate(var(--rad)) rotate(calc(-1 * var(--a)));}
+.orbit-ring .oi img{width:22px;height:22px;animation:orbitCounter 38s linear infinite}
+.orbit-ring.r2 .oi img{animation-duration:56s;animation-direction:reverse}
+.orbit-ring.r3 .oi img{animation-duration:80s}
+@keyframes orbit{to{rotate:360deg}}
+@keyframes orbitCounter{to{rotate:-360deg}}
+.orbit::before{content:"";position:absolute;inset:18%;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent-2) 45%,transparent),transparent 65%);filter:blur(20px)}
+:root[data-theme="dark"] .orbit-ring .oi img,:root[data-skin="aurora"] .orbit-ring .oi img,:root[data-theme="dark"] .tm-track img,:root[data-skin="aurora"] .tm-track img{filter:invert(1)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .orbit-ring .oi img,:root:not([data-theme="light"]) .tm-track img{filter:invert(1)}}
+.tech-marq{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.tm-track{display:flex;gap:14px;width:max-content;animation:marq 46s linear infinite}
+:root[dir="rtl"] .tm-track{animation-name:marqR}
+.tm-track span{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:14px;background:var(--surface);border:1px solid var(--line);font-weight:700;font-size:.9rem;white-space:nowrap;box-shadow:var(--shadow)}
+.tm-track img{width:20px;height:20px}
+.sk{transition:transform .5s var(--ease-out),box-shadow .5s}
+.sk:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.sk li{transition:transform .25s var(--ease-out),border-color .2s,background-color .2s}
+.sk li:hover{transform:translateX(4px);border-color:var(--accent-2)}
+:root[dir="rtl"] .sk li:hover{transform:translateX(-4px)}
+.sk.in li{animation:fxPop .55s var(--ease-out) both;animation-delay:calc(var(--li,0) * 45ms + var(--ri,0) * 80ms + 200ms)}
+
+/* projects: richer cards + hover reveals */
+.proj{transition:transform .6s var(--ease-out),box-shadow .6s,border-color .3s}
+.proj:hover{box-shadow:var(--shadow-lg)}
+.proj .media .float{transition:transform .5s var(--ease-spring)}
+.proj:hover .media .float{transform:translateY(-6px) rotate(-2deg)}
+.frame>img{transition:transform 1.2s var(--ease-out)}
+.proj:hover .frame>img{transform:scale(1.035)}
+.frame .zoom{transform:translateY(8px);transition:opacity .3s,transform .4s var(--ease-out)}
+.frame:hover .zoom,.frame:focus-visible .zoom{transform:none}
+.p-body ul.hl li::before{transition:transform .4s var(--ease-spring)}
+.proj:hover .p-body ul.hl li::before{transform:rotate(90deg) scale(1.2)}
+.tags .tag{transition:transform .25s var(--ease-spring),background-color .2s}
+.proj:hover .tags .tag{transform:translateY(-2px)}
+.proj:hover .tags .tag:nth-child(2){transition-delay:30ms}.proj:hover .tags .tag:nth-child(3){transition-delay:60ms}.proj:hover .tags .tag:nth-child(4){transition-delay:90ms}.proj:hover .tags .tag:nth-child(5){transition-delay:120ms}
+.chip{transition:background-color .25s,color .25s,border-color .25s,transform .25s var(--ease-spring),box-shadow .25s}
+.chip:hover{transform:translateY(-2px);border-color:var(--accent-2)}
+.chip[aria-pressed="true"]{box-shadow:0 10px 24px -12px var(--ink)}
+.pj-num{background:linear-gradient(135deg,var(--accent),color-mix(in srgb,var(--accent) 55%,var(--pink)));-webkit-background-clip:text;background-clip:text;color:transparent;opacity:1}
+:root[data-contrast="yellow"] .pj-num{background:none;color:#ff0}
+
+/* career: timeline line draws with scroll, dots light up when reached */
+.timeline .rail i{height:100%!important;transform:scaleY(0);transform-origin:50% 0;transition:none;background:linear-gradient(var(--accent),var(--pink),var(--accent-2));box-shadow:0 0 16px color-mix(in srgb,var(--accent) 50%,transparent)}
+.timeline .rail .rail-head{position:absolute;top:-6px;left:50%;width:13px;height:13px;margin-left:-6.5px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px var(--focus-ring),0 0 22px var(--accent);will-change:transform}
+:root[data-motion="reduced"] .timeline .rail i{transform:none!important}:root[data-motion="reduced"] .timeline .rail .rail-head{display:none}
+.job .dot{transition:transform .5s var(--ease-spring),background-color .4s,color .4s,border-color .4s,box-shadow .4s}
+.job.reached .dot{background:linear-gradient(135deg,var(--accent),var(--accent-3));color:var(--accent-ink);border-color:transparent;transform:scale(1.06);box-shadow:0 10px 30px -10px var(--accent)}
+.job .card{transition:transform .5s var(--ease-out),box-shadow .5s}
+.job .card:hover{transform:translateX(6px)}
+:root[dir="rtl"] .job .card:hover{transform:translateX(-6px)}
+
+/* contact: slow animated mesh gradient */
+.contact{isolation:isolate;background:var(--surface)}
+.contact::before{content:"";position:absolute;inset:-30%;z-index:-1;background:var(--mesh);animation:fxMesh 16s ease-in-out infinite alternate;opacity:.9}
+@keyframes fxMesh{0%{transform:translate(-4%,-2%) rotate(0deg) scale(1)}50%{transform:translate(3%,4%) rotate(8deg) scale(1.08)}100%{transform:translate(-2%,3%) rotate(-6deg) scale(1.02)}}
+.contact .avatars img{animation:fxFloat 6s ease-in-out infinite;box-shadow:0 0 0 6px color-mix(in srgb,var(--accent-2) 35%,transparent),var(--shadow-lg)}
+@keyframes fxFloat{50%{transform:translateY(-8px)}}
+.c-card{background:color-mix(in srgb,var(--surface) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:transform .35s var(--ease-spring),border-color .25s,box-shadow .35s}
+.c-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+:root[data-contrast="yellow"] .contact::before{display:none}
+
+/* footer */
+.ft-card{overflow:hidden;isolation:isolate}
+.ft-card::before{content:"";position:absolute;inset:-40%;z-index:-1;background:var(--mesh);opacity:.5;animation:fxMesh 22s ease-in-out infinite alternate}
+.ft-sign{background:linear-gradient(100deg,color-mix(in srgb,var(--accent-2) 70%,transparent),color-mix(in srgb,var(--pink) 60%,transparent),color-mix(in srgb,var(--accent) 50%,transparent),color-mix(in srgb,var(--accent-2) 70%,transparent));background-size:250% 100%;-webkit-background-clip:text;background-clip:text;animation:fxShine 10s linear infinite;
+  -webkit-mask-image:linear-gradient(180deg,#000 40%,transparent 96%);mask-image:linear-gradient(180deg,#000 40%,transparent 96%)}
+.ft-cols a{background:linear-gradient(currentColor,currentColor) 0 100%/0 2px no-repeat;transition:color .2s,background-size .35s var(--ease-out)}
+:root[dir="rtl"] .ft-cols a{background-position:100% 100%}
+.ft-cols a:hover{background-size:100% 2px}
+
+/* cards everywhere: a touch of glass on hover-capable devices */
+.issue,.svc,.arch a,.wr,.principle,.info .item{transition:transform .45s var(--ease-out),box-shadow .45s,border-color .3s}
+.issue:hover,.svc:hover,.arch a:hover,.principle:hover{box-shadow:var(--shadow-lg)}
+
+/* aurora theme: stars + glow feel */
+:root[data-skin="aurora"] .aurora i{opacity:.4}
+:root[data-skin="aurora"] .grid-dots{opacity:.35}
+:root[data-skin="aurora"] .sec.alt{background:linear-gradient(180deg,var(--bg-2),color-mix(in srgb,var(--bg-2) 70%,#0b1636))}
+:root[data-skin="sakura"] .grid-dots,:root[data-skin="mochi"] .grid-dots{opacity:.45}
+
+/* ───────── 7 · view transitions ───────── */
+/* cross-document (EN ↔ AR, blog, hire pages): header + brand stay put, content cross-fades and lifts */
+@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto}}
+header.top{view-transition-name:site-header}
+.brand img{view-transition-name:brand-face}
+::view-transition-old(site-header),::view-transition-new(site-header){animation-duration:.3s}
+html:not([data-vt])::view-transition-old(root){animation:vtOut .32s var(--ease-out) both}
+html:not([data-vt])::view-transition-new(root){animation:vtIn .5s var(--ease-out) both}
+@keyframes vtOut{to{opacity:0;transform:translateY(-12px)}}
+@keyframes vtIn{from{opacity:0;transform:translateY(18px)}}
+:root[data-motion="reduced"]::view-transition-group(*),:root[data-motion="reduced"]::view-transition-old(*),:root[data-motion="reduced"]::view-transition-new(*){animation:none!important}
+/* in-page section jumps (palette, nav, Alt+1…7) get a soft flash on the destination heading */
+.fx-land{animation:fxLand 1.2s var(--ease-out)}
+@keyframes fxLand{0%{box-shadow:0 0 0 0 var(--focus-ring)}30%{box-shadow:0 0 0 14px var(--focus-ring)}100%{box-shadow:0 0 0 0 transparent}}
+
+/* ───────── 8 · reduced motion · forced colours · print ───────── */
+:root[data-motion="reduced"] .sw-w{opacity:1;transform:none;filter:none}
+:root[data-motion="reduced"] .hero3d{display:none}
+:root[data-motion="reduced"] .sec-title h2::after,:root[data-motion="reduced"] .sec-title .kicker::after{transform:none}
+:root[data-motion="reduced"] .sec-title.reveal{filter:none}
+:root[data-motion="reduced"] .reveal{translate:none;scale:none;filter:none}
+:root[data-motion="reduced"] .fx-toggle{display:none}
+@media (prefers-reduced-motion:reduce){
+  :root:not([data-motion="full"]) .sw-w{opacity:1;transform:none;filter:none}
+  :root:not([data-motion="full"]) .hero3d{display:none}
+  :root:not([data-motion="full"]) .sec-title h2::after,:root:not([data-motion="full"]) .sec-title .kicker::after{transform:none}
+  :root:not([data-motion="full"]) .reveal{translate:none;scale:none;filter:none}
+  :root:not([data-motion="full"]) .fx-toggle{display:none}
+}
+.no-js .sw-w{opacity:1;transform:none;filter:none}
+
+@media (forced-colors:active){
+  .hero3d,.hero-orb,.aurora,.grid-dots,.stars,.spot::before,.spot::after,.frame::after,.contact::before,.ft-card::before,.t-years::after,.orbit::before,.progress{display:none!important}
+  .card,.btn,.chip,.ibtn,.look,.preset,.tile,.c-card,.fx-toggle,.tag,.pill,.lv{border:1px solid CanvasText!important;forced-color-adjust:auto}
+  .card.featured{border:2px solid Highlight!important}
+  .btn.primary,.chip[aria-pressed="true"],.seg button[aria-checked="true"],.look[aria-checked="true"],.preset[aria-pressed="true"],.menu a.active{border:2px solid Highlight!important;outline:2px solid Highlight}
+  :focus-visible{outline:3px solid Highlight!important;box-shadow:none!important}
+  .rot .w,.t-clock .time,.pj-num,.ft-sign,.hero h1 .rot .w{background:none!important;color:CanvasText!important;-webkit-text-fill-color:CanvasText!important}
+  .switch{border:1px solid CanvasText}.toggle[aria-checked="true"] .switch::after{background:Highlight}
+  .lk-prev{forced-color-adjust:none}
+}
+@media print{.hero3d,.hero-orb,.fx-toggle,.look-pop,.skips{display:none!important}.sw-w{opacity:1!important;transform:none!important;filter:none!important}}

@@ -3,9 +3,16 @@ import { useT } from '../../i18n';
 const t = useT(Astro.currentLocale);
 ---
 <section class="hero" id="home" aria-labelledby="heroTitle">
-  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
-  <div class="grid-dots" aria-hidden="true"></div>
+  <div class="aurora" aria-hidden="true" data-parallax="0.18"><i></i><i></i><i></i></div>
+  <div class="grid-dots" aria-hidden="true" data-parallax="0.08"></div>
   <canvas class="stars" id="stars" aria-hidden="true"></canvas>
+  <div class="hero3d" id="hero3d" aria-hidden="true"></div>
+  <div class="hero-orb" aria-hidden="true" data-parallax="0.3"></div>
+  <button class="fx-toggle" id="fxToggle" type="button" aria-pressed="false" title={t('fx.pause')}>
+    <svg class="i-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.2"></rect><rect x="14" y="5" width="4" height="14" rx="1.2"></rect></svg>
+    <svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"></path></svg>
+    <span data-pause-label={t('fx.pause')} data-play-label={t('fx.play')}><Fragment set:html={t('fx.pause')} /></span>
+  </button>
   <div class="wrap">
     <div class="hero-head">
       <span class="hello stagger" style="--i:0"><img src="/assets/orieb-face.jpg" alt="" width="30" height="30"><span><Fragment set:html={t('hero.hello')} /></span> · <span class="live"><Fragment set:html={t('hero.open')} /></span></span>
@@ -33,13 +40,13 @@ const t = useT(Astro.currentLocale);
       </div>
       <div class="card tile t-now spot pop" style="--i:2">
         <span class="k"><Fragment set:html={t('bento.nowk')} /></span>
-        <h3><Fragment set:html={t('bento.now')} /></h3>
+        <h2 class="t-now-h"><Fragment set:html={t('bento.now')} /></h2>
         <ul>
-          <li><i>💸</i><span><Fragment set:html={t('b.wasl')} /></span></li>
-          <li><i>🏛️</i><span><Fragment set:html={t('b.sba')} /></span></li>
-          <li><i>⚖️</i><span><Fragment set:html={t('b.moj')} /></span></li>
-          <li><i>🏗️</i><span><Fragment set:html={t('b.seac')} /></span></li>
-          <li><i>📄</i><span><Fragment set:html={t('b.contracts')} /></span></li>
+          <li style="--li:0"><i aria-hidden="true">💸</i><span><Fragment set:html={t('b.wasl')} /></span></li>
+          <li style="--li:1"><i aria-hidden="true">🏛️</i><span><Fragment set:html={t('b.sba')} /></span></li>
+          <li style="--li:2"><i aria-hidden="true">⚖️</i><span><Fragment set:html={t('b.moj')} /></span></li>
+          <li style="--li:3"><i aria-hidden="true">🏗️</i><span><Fragment set:html={t('b.seac')} /></span></li>
+          <li style="--li:4"><i aria-hidden="true">📄</i><span><Fragment set:html={t('b.contracts')} /></span></li>
         </ul>
       </div>
       <button class="card tile t-video spot pop" style="--i:3" data-play-intro aria-label={t('bento.videoAria')}>

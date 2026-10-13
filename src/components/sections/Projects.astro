@@ -13,8 +13,9 @@ const t = useT(Astro.currentLocale);
         <button class="chip" aria-pressed="false" data-f="fin">💸 <span><Fragment set:html={t('f.fin')} /></span> <span class="c" data-n="fin"></span></button>
         <button class="chip" aria-pressed="false" data-f="saas">🏢 <span><Fragment set:html={t('f.saas')} /></span> <span class="c" data-n="saas"></span></button>
       </div>
+      <p class="sr" data-pj-live aria-live="polite" aria-atomic="true"></p>
       <div class="projects">
-  <article class="card proj spot reveal" data-c="fin" id="p-wasl">
+  <article class="card proj spot reveal featured" data-c="fin" id="p-wasl">
           <div class="media">
             <div class="frame tilt"><div class="bar"><i></i><i></i><i></i><span>wasl · financing brokerage</span></div>
               <div class="mock" aria-hidden="true">
@@ -218,8 +219,9 @@ const t = useT(Astro.currentLocale);
         <button class="chip" aria-pressed="false" data-f="oss">📱 <span><Fragment set:html={t('f.own')} /></span> <span class="c" data-n="oss"></span></button>
         <button class="chip" aria-pressed="false" data-f="rbk">🎓 <span><Fragment set:html={t('f.rbk')} /></span> <span class="c" data-n="rbk"></span></button>
       </div>
+      <p class="sr" data-pj-live aria-live="polite" aria-atomic="true"></p>
       <div class="projects">
-  <article class="card proj spot reveal" data-c="oss" id="p-nawa">
+  <article class="card proj spot reveal featured" data-c="oss" id="p-nawa">
           <div class="media">
             <figure class="frame tilt" data-full="/assets/orca-ui.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>oriebalzyuot96.github.io/orca-ui</span></div><img src="/assets/orca-ui.jpg" alt={t('nw.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
             <span class="float">🧩 <span><Fragment set:html={t('nw.float')} /></span></span>

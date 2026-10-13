@@ -1,5 +1,6 @@
 ---
 import { useT } from '../../i18n';
+import LookGrid from '../LookGrid.astro';
 const t = useT(Astro.currentLocale);
 ---
 
@@ -21,28 +22,27 @@ const t = useT(Astro.currentLocale);
 <!-- settings drawer -->
 <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dTitle" inert>
   <div class="dh">
-    <h2 id="dTitle"><span class="ico">♿</span><span><Fragment set:html={t('d.t')} /></span></h2>
+    <h2 id="dTitle"><span class="ico" aria-hidden="true">♿</span><span><Fragment set:html={t('d.t')} /></span></h2>
     <button class="ibtn" id="dClose" aria-label={t('close')}>✕</button>
   </div>
   <div class="tabs" role="tablist">
-    <button role="tab" aria-selected="true" aria-controls="t-look" id="tb-look">🎨<span><Fragment set:html={t('d.look')} /></span></button>
-    <button role="tab" aria-selected="false" aria-controls="t-access" id="tb-access" tabindex="-1">♿<span><Fragment set:html={t('d.access')} /></span></button>
-    <button role="tab" aria-selected="false" aria-controls="t-general" id="tb-general" tabindex="-1">🌐<span><Fragment set:html={t('d.general')} /></span></button>
-    <button role="tab" aria-selected="false" aria-controls="t-keys" id="tb-keys" tabindex="-1">⌨️<span><Fragment set:html={t('d.keys')} /></span></button>
+    <button role="tab" aria-selected="true" aria-controls="t-look" id="tb-look"><span aria-hidden="true">🎨</span><span><Fragment set:html={t('d.look')} /></span></button>
+    <button role="tab" aria-selected="false" aria-controls="t-access" id="tb-access" tabindex="-1"><span aria-hidden="true">♿</span><span><Fragment set:html={t('d.access')} /></span></button>
+    <button role="tab" aria-selected="false" aria-controls="t-general" id="tb-general" tabindex="-1"><span aria-hidden="true">🌐</span><span><Fragment set:html={t('d.general')} /></span></button>
+    <button role="tab" aria-selected="false" aria-controls="t-keys" id="tb-keys" tabindex="-1"><span aria-hidden="true">⌨️</span><span><Fragment set:html={t('d.keys')} /></span></button>
   </div>
   <div class="db">
     <div role="tabpanel" id="t-look" aria-labelledby="tb-look">
       <div class="grp"><span class="lbl" id="l-theme"><Fragment set:html={t('d.theme')} /></span>
-        <div class="seg" role="radiogroup" aria-labelledby="l-theme" data-pref="theme">
-          <button role="radio" data-v="light">☀️<span><Fragment set:html={t('d.light')} /></span></button><button role="radio" data-v="dark">🌙<span><Fragment set:html={t('d.dark')} /></span></button><button role="radio" data-v="system">🖥<span><Fragment set:html={t('d.system')} /></span></button>
-        </div></div>
+        <LookGrid labelledby="l-theme" />
+        <p class="hint" style="margin-top:10px"><Fragment set:html={t('look.hint')} /></p></div>
       <div class="grp"><span class="lbl" id="l-accent"><Fragment set:html={t('d.accent')} /></span>
         <div class="swatches" role="radiogroup" aria-labelledby="l-accent" data-pref="accent">
-          <button class="sw" role="radio" data-v="lavender" aria-label="Lavender" style="background:#6d4aff"></button>
+          <button class="sw" role="radio" data-v="lavender" aria-label="Lavender" style="background:#6440f5"></button>
           <button class="sw" role="radio" data-v="lilac" aria-label="Lilac" style="background:#9340c4"></button>
-          <button class="sw" role="radio" data-v="rose" aria-label="Rose" style="background:#cf2f71"></button>
+          <button class="sw" role="radio" data-v="rose" aria-label="Rose" style="background:#bf2869"></button>
           <button class="sw" role="radio" data-v="ocean" aria-label="Ocean" style="background:#2058d8"></button>
-          <button class="sw" role="radio" data-v="mint" aria-label="Mint" style="background:#0c7c5f"></button>
+          <button class="sw" role="radio" data-v="mint" aria-label="Mint" style="background:#0b7559"></button>
           <button class="sw" role="radio" data-v="amber" aria-label="Amber" style="background:#a64b07"></button>
         </div></div>
       <div class="grp"><span class="lbl" id="l-font"><Fragment set:html={t('d.size')} /></span>
@@ -51,6 +51,13 @@ const t = useT(Astro.currentLocale);
         </div></div>
     </div>
     <div role="tabpanel" id="t-access" aria-labelledby="tb-access" hidden>
+      <div class="grp"><span class="lbl" id="l-pre"><Fragment set:html={t('pre.t')} /></span><p class="hint"><Fragment set:html={t('pre.h')} /></p>
+        <div class="presets" role="group" aria-labelledby="l-pre">
+          <button type="button" class="preset" data-preset="lowvision" aria-pressed="false"><span class="pi" aria-hidden="true">👓</span><span><b><Fragment set:html={t('pre.low')} /></b><small><Fragment set:html={t('pre.lowH')} /></small></span></button>
+          <button type="button" class="preset" data-preset="dyslexia" aria-pressed="false"><span class="pi" aria-hidden="true">📖</span><span><b><Fragment set:html={t('pre.dys')} /></b><small><Fragment set:html={t('pre.dysH')} /></small></span></button>
+          <button type="button" class="preset" data-preset="motion" aria-pressed="false"><span class="pi" aria-hidden="true">⏸</span><span><b><Fragment set:html={t('pre.mot')} /></b><small><Fragment set:html={t('pre.motH')} /></small></span></button>
+          <button type="button" class="preset" data-preset="contrast" aria-pressed="false"><span class="pi" aria-hidden="true">◐</span><span><b><Fragment set:html={t('pre.hc')} /></b><small><Fragment set:html={t('pre.hcH')} /></small></span></button>
+        </div></div>
       <div class="grp"><span class="lbl" id="l-contrast"><Fragment set:html={t('d.contrast')} /></span><p class="hint"><Fragment set:html={t('d.contrastH')} /></p>
         <div class="seg" role="radiogroup" aria-labelledby="l-contrast" data-pref="contrast">
           <button role="radio" data-v="none">◐<span><Fragment set:html={t('d.normal')} /></span></button><button role="radio" data-v="yellow">🟨<span><Fragment set:html={t('d.yellow')} /></span></button><button role="radio" data-v="grayscale">⬛<span><Fragment set:html={t('d.gray')} /></span></button><button role="radio" data-v="invert">🔄<span><Fragment set:html={t('d.invert')} /></span></button>

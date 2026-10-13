@@ -6,7 +6,7 @@ const t = useT(Astro.currentLocale);
   <div class="wrap">
     <div class="sec-title reveal"><span class="kicker"><Fragment set:html={t('cr.k')} /></span><h2 id="careerT"><Fragment set:html={t('cr.t')} /></h2></div>
     <div class="timeline" id="timeline">
-      <div class="rail" aria-hidden="true"><i></i></div>
+      <div class="rail" aria-hidden="true"><i></i><b class="rail-head"></b></div>
       <div class="job reveal"><span class="dot">AZM</span><div class="card spot">
         <div class="when"><span><Fragment set:html={t('j1.when')} /></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('j1.now')} /></span></span></div>
         <h3>Saudi Azm <span><Fragment set:html={t('j1.role')} /></span></h3>

@@ -1,0 +1,17 @@
+---
+/* Theme picker with live previews. Used in the header popover and in the settings drawer.
+   Radio semantics (arrow keys move + select); app.js keeps aria-checked in sync via data-pref="look". */
+import { useT } from '../i18n';
+interface Props { labelledby: string }
+const { labelledby } = Astro.props;
+const t = useT(Astro.currentLocale);
+const looks = ['light', 'dark', 'system', 'aurora', 'sakura', 'mochi'];
+---
+<div class="looks" role="radiogroup" aria-labelledby={labelledby} data-pref="look">
+  {looks.map(v => (
+    <button type="button" class="look" role="radio" aria-checked="false" data-v={v}>
+      <span class="lk-prev" data-look={v} aria-hidden="true"><i class="lk-nav"></i><i class="lk-orb"></i><i class="lk-card"></i><i class="lk-line"></i><i class="lk-line s"></i><i class="lk-btn"></i></span>
+      <span class="lk-name"><b><Fragment set:html={t('look.' + v)} /></b><small><Fragment set:html={t('look.' + v + 'S')} /></small></span>
+    </button>
+  ))}
+</div>

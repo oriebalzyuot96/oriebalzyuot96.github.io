@@ -1,8 +1,9 @@
 ---
 import { useT } from '../../i18n';
 const t = useT(Astro.currentLocale);
+const isHome = ['/', '/ar/', '/ar'].includes(Astro.url.pathname);
 ---
-<a class="skip" href="#main"><Fragment set:html={t('skip')} /></a>
+<nav class="skips" aria-label={t('skip.nav')}><a class="skip" href="#main"><Fragment set:html={t('skip')} /></a>{isHome && <><a class="skip" href="#projects"><Fragment set:html={t('skip.projects')} /></a><a class="skip" href="#contact"><Fragment set:html={t('skip.contact')} /></a></>}</nav>
 <div class="progress" id="progress" aria-hidden="true"></div>
 
 <!-- intro splash (once per session, skipped for reduced motion) -->

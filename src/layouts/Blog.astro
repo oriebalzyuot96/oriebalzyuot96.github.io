@@ -65,10 +65,12 @@ const ld = {
 </head>
 <body>
 <header class="bh"><a href="/">← Orieb Alzyuot</a><a href="/#contact">Hire me</a></header>
+<main id="main">
 <article>
   <div class="meta">By Orieb Alzyuot · {new Date(frontmatter.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })} · {frontmatter.readTime}</div>
   <slot />
 </article>
+</main>
 <footer class="bf"><span>© 2026 Orieb Alzyuot</span><a href="/">oriebalzyuot96.github.io</a></footer>
 <script>
   import { enhance } from '../scripts/blog-enhance';

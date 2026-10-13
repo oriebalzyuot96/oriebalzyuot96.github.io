@@ -84,7 +84,7 @@ html.blog-vt::view-transition-old(root),html.blog-vt::view-transition-new(root){
 .am-sample{--am-scale:1;background:#fbfaff;color:#2b2740;border:1px solid #e3def3;border-radius:14px;padding:16px;font-size:calc(15px * var(--am-scale));line-height:1.5;transition:filter .2s}
 .am-sample h5{margin:0 0 6px;font-size:1.2em;color:#2b2740}
 .am-sample p{margin:0 0 10px;color:#6b6683}
-.am-sample a{color:#7b61ff;text-decoration:none;font-weight:600}
+.am-sample a{color:#5b3ff0;text-decoration:none;font-weight:600}
 .am-photo{height:72px;border-radius:10px;background:linear-gradient(120deg,#ff9a8b,#ffd36e 40%,#6ee7c8 70%,#7b61ff);margin-bottom:10px;position:relative;overflow:hidden}
 .am-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:translateX(-100%);animation:am-shine 2.4s infinite}
 @keyframes am-shine{to{transform:translateX(100%)}}

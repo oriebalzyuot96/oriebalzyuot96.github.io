@@ -59,8 +59,20 @@ function mountDemos() {
   });
 }
 
+/** Wide code blocks scroll sideways: make them keyboard-focusable so they can be scrolled without a mouse (WCAG 2.1.1). */
+function focusableScrollers() {
+  document.querySelectorAll<HTMLElement>('article pre, article table').forEach(el => {
+    if (el.scrollWidth > el.clientWidth + 1 && !el.hasAttribute('tabindex')) {
+      el.tabIndex = 0;
+      if (el.tagName === 'PRE') { el.setAttribute('role', 'region'); el.setAttribute('aria-label', 'Code sample (scrollable)'); }
+    }
+  });
+}
+
 export function enhance() {
   highlightAll();
+  focusableScrollers();
+  addEventListener('resize', focusableScrollers, { passive: true });
   swapGifs();
   mountDemos();
 }

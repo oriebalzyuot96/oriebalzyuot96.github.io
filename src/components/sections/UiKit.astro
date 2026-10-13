@@ -4,8 +4,8 @@
 const ar = Astro.currentLocale === 'ar';
 const L = (en: string, a: string) => (ar ? a : en);
 const palettes = [
-  ['lavender', '#6d4aff', L('Lavender', 'لافندر')], ['ocean', '#1f6fd6', L('Ocean', 'محيط')],
-  ['emerald', '#0f8a63', L('Emerald', 'زمرّدي')], ['sunset', '#d4542b', L('Sunset', 'غروب')], ['mono', '#3a3a46', L('Graphite', 'جرافيت')],
+  ['lavender', '#6440f5', L('Lavender', 'لافندر')], ['ocean', '#1b63c4', L('Ocean', 'محيط')],
+  ['emerald', '#0b7556', L('Emerald', 'زمرّدي')], ['sunset', '#b23f1b', L('Sunset', 'غروب')], ['mono', '#3a3a46', L('Graphite', 'جرافيت')],
 ];
 const a11y = [
   ['contrast', L('High contrast', 'تباين عالٍ')], ['large', L('Larger text', 'نص أكبر')],
@@ -22,7 +22,7 @@ const a11y = [
     </div>
 
     <div class="kit card reveal" data-kit data-pal="lavender" data-mode="light">
-      <aside class="kit-ctl" aria-label={L('Theme controls', 'إعدادات الثيم')}>
+      <div class="kit-ctl" role="group" aria-label={L('Theme controls', 'إعدادات الثيم')}>
         <h3>{L('Palette', 'الألوان')}</h3>
         <div class="kit-sw" role="radiogroup" aria-label={L('Palette', 'الألوان')}>
           {palettes.map(([v, c, n], i) => <button type="button" role="radio" aria-checked={i === 0 ? 'true' : 'false'} data-pal-btn={v} style={`--c:${c}`} title={n}><span class="sr">{n}</span></button>)}
@@ -42,7 +42,7 @@ const a11y = [
           <li>♿ {L('WCAG AA contrast in every theme', 'تباين WCAG AA في كل ثيم')}</li>
           <li>🌍 {L('RTL-ready, Angular & React', 'جاهزة للعربية، Angular و React')}</li>
         </ul>
-      </aside>
+      </div>
 
       <div class="kit-stage" aria-label={L('Component preview (illustration)', 'معاينة المكوّنات (رسم توضيحي)')}>
         <span class="kit-note">{L('Illustration', 'رسم توضيحي')}</span>
@@ -106,11 +106,11 @@ const a11y = [
   .kit-facts{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:8px;font-size:.9rem;color:var(--ink-2)}
 
   /* the demo has its own tokens so it never touches the site theme */
-  .kit-stage{--k:#6d4aff;--k-soft:#efe9ff;--k-bg:#f7f6fb;--k-sur:#fff;--k-ink:#1d1a2b;--k-ink2:#6b6680;--k-line:#e6e3ef;--k-r:14px;--k-fs:1;--k-font:inherit;
+  .kit-stage{--k:#6440f5;--k-soft:#efe9ff;--k-bg:#f7f6fb;--k-sur:#fff;--k-ink:#1d1a2b;--k-ink2:#6b6680;--k-line:#e6e3ef;--k-r:14px;--k-fs:1;--k-font:inherit;
     position:relative;display:grid;grid-template-columns:minmax(0,1fr) 210px;gap:20px;align-items:end;background:var(--k-bg);border-radius:20px;padding:22px;color:var(--k-ink);font-size:calc(14px * var(--k-fs));font-family:var(--k-font);transition:background .3s,color .3s}
-  .kit[data-pal="ocean"] .kit-stage{--k:#1f6fd6;--k-soft:#e6f0ff}
-  .kit[data-pal="emerald"] .kit-stage{--k:#0f8a63;--k-soft:#e2f6ee}
-  .kit[data-pal="sunset"] .kit-stage{--k:#c84a22;--k-soft:#ffece4}
+  .kit[data-pal="ocean"] .kit-stage{--k:#1b63c4;--k-soft:#e6f0ff}
+  .kit[data-pal="emerald"] .kit-stage{--k:#0b7556;--k-soft:#e2f6ee}
+  .kit[data-pal="sunset"] .kit-stage{--k:#b23f1b;--k-soft:#ffece4}
   .kit[data-pal="mono"] .kit-stage{--k:#33333f;--k-soft:#ececf1}
   .kit[data-mode="dark"] .kit-stage{--k-bg:#13111c;--k-sur:#1f1b2c;--k-ink:#f3f0ff;--k-ink2:#a9a3c4;--k-line:#332d47;--k-soft:#2a2440}
   .kit[data-mode="dark"][data-pal="lavender"] .kit-stage{--k:#b39dff}
@@ -137,7 +137,7 @@ const a11y = [
   .k-card{background:var(--k-sur);border:1px solid var(--k-line);border-radius:var(--k-r);padding:12px 14px;display:grid;gap:4px}
   .k-card small{color:var(--k-ink2)}
   .k-card b{font-size:1.5em;letter-spacing:-.02em}
-  .k-up{color:#16a34a;font-weight:700;font-size:.85em}.k-dn{color:#dc2626;font-weight:700;font-size:.85em}
+  .k-up{color:#15803d;font-weight:700;font-size:.85em}.k-dn{color:#c81e1e;font-weight:700;font-size:.85em}
   .k-prog{height:6px;border-radius:999px;background:var(--k-soft);overflow:hidden}
   .k-prog i{display:block;height:100%;background:var(--k);border-radius:inherit;animation:kgrow 1.6s ease-out both}
   @keyframes kgrow{from{width:0}}
@@ -165,7 +165,9 @@ const a11y = [
   .kit-phone{background:var(--k-sur);border:8px solid #15121f;border-radius:30px;padding:28px 12px 14px;display:grid;gap:10px;position:relative;box-shadow:0 30px 60px -30px rgba(40,20,100,.5)}
   .p-notch{position:absolute;top:8px;left:50%;translate:-50% 0;width:60px;height:8px;border-radius:999px;background:#15121f}
   .p-head{display:flex;justify-content:space-between;align-items:center}
-  .p-hero{background:var(--k);color:var(--k-sur);border:0}.p-hero small{color:inherit;opacity:.8}
+  .p-hero{background:var(--k);color:var(--k-sur);border:0}.p-hero small{color:inherit;opacity:1}
+  .kit[data-mode="dark"] .k-up{color:#4ade80}.kit[data-mode="dark"] .k-dn{color:#f87171}
+  .kit[data-mode="dark"] .k-badge.ok{background:#14532d;color:#bbf7d0}.kit[data-mode="dark"] .k-badge.warn{background:#713f12;color:#fde68a}
   .p-chips{display:flex;gap:6px}.p-chips span{flex:1;text-align:center;padding:6px 4px;border-radius:999px;background:var(--k-soft);color:var(--k);font-weight:700;font-size:.85em}
   .p-chips .on{background:var(--k);color:var(--k-sur)}
   .p-cta{margin-top:4px}
