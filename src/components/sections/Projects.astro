@@ -5,8 +5,8 @@ const t = useT(Astro.currentLocale);
 <section class="sec alt" id="projects" aria-labelledby="projT">
   <div class="wrap">
     <div class="sec-title reveal"><span class="kicker"><Fragment set:html={t('pj.k')} /></span><h2 id="projT"><Fragment set:html={t('pj.t')} /></h2><p><Fragment set:html={t('pj.p')} /></p></div>
-    <div class="pj-part reveal" data-part="company">
-      <div class="pj-head"><span class="pj-num">01</span><div><h3><Fragment set:html={t('pj.co.t')} /></h3><p><Fragment set:html={t('pj.co.p')} /></p></div></div>
+    <div class="pj-part" data-part="company">
+      <div class="pj-head reveal"><span class="pj-num">01</span><div><h3><Fragment set:html={t('pj.co.t')} /></h3><p><Fragment set:html={t('pj.co.p')} /></p></div></div>
       <div class="filters" role="group" aria-label={t('pj.filter')}>
         <button class="chip" aria-pressed="true" data-f="all"><span><Fragment set:html={t('f.all')} /></span> <span class="c" data-n="all"></span></button>
         <button class="chip" aria-pressed="false" data-f="gov">🏛 <span><Fragment set:html={t('f.gov')} /></span> <span class="c" data-n="gov"></span></button>
@@ -210,8 +210,8 @@ const t = useT(Astro.currentLocale);
       </div>
     </div>
 
-    <div class="pj-part reveal" data-part="own">
-      <div class="pj-head"><span class="pj-num">02</span><div><h3><Fragment set:html={t('pj.own.t')} /></h3><p><Fragment set:html={t('pj.own.p')} /></p></div></div>
+    <div class="pj-part" data-part="own">
+      <div class="pj-head reveal"><span class="pj-num">02</span><div><h3><Fragment set:html={t('pj.own.t')} /></h3><p><Fragment set:html={t('pj.own.p')} /></p></div></div>
       <div class="filters" role="group" aria-label={t('pj.filter')}>
         <button class="chip" aria-pressed="true" data-f="all"><span><Fragment set:html={t('f.all')} /></span> <span class="c" data-n="all"></span></button>
         <button class="chip" aria-pressed="false" data-f="sample">✨ <span><Fragment set:html={t('f.sample')} /></span> <span class="c" data-n="sample"></span></button>
