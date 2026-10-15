@@ -540,5 +540,6 @@
  "osp.h1": "Drag blocks (navbar, hero, pricing, login, KPIs, tables, FAQ…) onto a live canvas and edit their properties",
  "osp.h2": "\"Describe it\": type a page in English or Arabic, review the suggested blocks, then generate",
  "osp.h3": "Export clean React, Vue, Angular or HTML, or share the page as a link or JSON",
- "osp.open": "Open Pelagic Space ↗"
+ "osp.open": "Open Pelagic Space ↗",
+ "lbl.fe": "Front-end only"
 }
