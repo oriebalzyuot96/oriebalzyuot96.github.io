@@ -215,15 +215,15 @@ const t = useT(Astro.currentLocale);
       <div class="pj-head reveal"><span class="pj-num">02</span><div><h3><Fragment set:html={t('pj.own.t')} /></h3><p><Fragment set:html={t('pj.own.p')} /></p></div></div>
       <div class="filters" role="group" aria-label={t('pj.filter')}>
         <button class="chip" aria-pressed="true" data-f="all"><span><Fragment set:html={t('f.all')} /></span> <span class="c" data-n="all"></span></button>
-        <button class="chip" aria-pressed="false" data-f="sample">✨ <span><Fragment set:html={t('f.sample')} /></span> <span class="c" data-n="sample"></span></button>
-        <button class="chip" aria-pressed="false" data-f="oss">📱 <span><Fragment set:html={t('f.own')} /></span> <span class="c" data-n="oss"></span></button>
-        <button class="chip" aria-pressed="false" data-f="rbk">🎓 <span><Fragment set:html={t('f.rbk')} /></span> <span class="c" data-n="rbk"></span></button>
+        <button class="chip" aria-pressed="false" data-f="lib">📦 <span><Fragment set:html={t('f.lib')} /></span> <span class="c" data-n="lib"></span></button>
+        <button class="chip" aria-pressed="false" data-f="theme">🎨 <span><Fragment set:html={t('f.theme')} /></span> <span class="c" data-n="theme"></span></button>
+        <button class="chip" aria-pressed="false" data-f="app">📱 <span><Fragment set:html={t('f.app')} /></span> <span class="c" data-n="app"></span></button>
       </div>
       <p class="sr" data-pj-live aria-live="polite" aria-atomic="true"></p>
       <div class="projects">
-  <article class="card proj spot reveal featured" data-c="oss" id="p-nawa">
+  <article class="card proj spot reveal featured" data-c="lib" id="p-nawa">
           <div class="media">
-            <figure class="frame tilt" data-full="/assets/pelagic-ui.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>oriebalzyuot96.github.io/pelagic-ui</span></div><img src="/assets/pelagic-ui.jpg" alt={t('nw.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
+            <figure class="frame tilt" data-full="/assets/pelagic-ui.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>npm i pelagic</span></div><img src="/assets/pelagic-ui.jpg" alt={t('nw.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
             <span class="float">🧩 <span><Fragment set:html={t('nw.float')} /></span></span>
           </div>
           <div class="p-body">
@@ -232,12 +232,12 @@ const t = useT(Astro.currentLocale);
             <p><Fragment set:html={t('nw.p')} /></p>
             <ul class="hl"><li><Fragment set:html={t('nw.h1')} /></li><li><Fragment set:html={t('nw.h2')} /></li><li><Fragment set:html={t('nw.h3')} /></li></ul>
             <div class="tags"><span class="tag">React</span><span class="tag">Vue</span><span class="tag">Svelte</span><span class="tag">Angular</span><span class="tag">React Native</span><span class="tag">Charts</span><span class="tag">WCAG 2.2</span></div>
-            <div class="p-actions"><a class="btn primary" href={Astro.currentLocale === 'ar' ? 'https://oriebalzyuot96.github.io/pelagic-ui/ar/' : 'https://oriebalzyuot96.github.io/pelagic-ui/'} target="_blank" rel="noopener"><Fragment set:html={t('nw.docs')} /></a><a class="btn" href="https://github.com/oriebalzyuot96/pelagic-ui" target="_blank" rel="noopener"><Fragment set:html={t('nw.gh')} /></a><a class="btn" href="https://oriebalzyuot96.github.io/pelagic-ui/space/" target="_blank" rel="noopener"><Fragment set:html={t('nw.space')} /></a><a class="btn" href="https://www.npmjs.com/package/pelagic" target="_blank" rel="noopener">npm ↗</a></div>
+            <div class="p-actions"><a class="btn primary" href="https://www.npmjs.com/package/pelagic" target="_blank" rel="noopener">npm ↗</a><a class="btn" href="https://github.com/oriebalzyuot96/pelagic-ui" target="_blank" rel="noopener"><Fragment set:html={t('nw.gh')} /></a></div>
           </div>
         </article>
-      <article class="card proj spot reveal" data-c="oss" id="p-pelagic-space">
+      <article class="card proj spot reveal" data-c="lib" id="p-pelagic-space">
         <div class="media">
-          <figure class="frame tilt" data-full="/assets/pelagic-space.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>oriebalzyuot96.github.io/pelagic-ui/space</span></div><img src="/assets/pelagic-space.jpg" alt={t('osp.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
+          <figure class="frame tilt" data-full="/assets/pelagic-space.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>pelagic space · page builder</span></div><img src="/assets/pelagic-space.jpg" alt={t('osp.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
           <span class="float">🧱 <span><Fragment set:html={t('osp.float')} /></span></span>
         </div>
         <div class="p-body">
@@ -246,11 +246,10 @@ const t = useT(Astro.currentLocale);
           <p><Fragment set:html={t('osp.p')} /></p>
           <ul class="hl"><li><Fragment set:html={t('osp.h1')} /></li><li><Fragment set:html={t('osp.h2')} /></li><li><Fragment set:html={t('osp.h3')} /></li></ul>
           <div class="tags"><span class="tag">Drag &amp; drop</span><span class="tag">AI-style "describe it"</span><span class="tag">Code export</span><span class="tag">React</span><span class="tag">Vue</span><span class="tag">Angular</span></div>
-          <div class="p-actions"><a class="btn primary" href="https://oriebalzyuot96.github.io/pelagic-ui/space/" target="_blank" rel="noopener"><Fragment set:html={t('osp.open')} /></a></div>
         </div>
       </article>
 
-      <article class="card proj spot reveal" data-c="oss" id="p-flowshot">
+      <article class="card proj spot reveal" data-c="lib" id="p-flowshot">
         <div class="media">
           <figure class="frame tilt" data-full="/assets/flowshot-overview.svg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>github.com/oriebalzyuot96/flowshot</span></div><img src="/assets/flowshot-overview.svg" alt={t('fs.alt')} loading="lazy" width="960" height="420"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
           <span class="float"><span><Fragment set:html={t('fs.float')} /></span></span>
@@ -265,9 +264,9 @@ const t = useT(Astro.currentLocale);
         </div>
       </article>
 
-      <article class="card proj spot reveal" data-c="oss" id="p-nawa-guard">
+      <article class="card proj spot reveal" data-c="lib" id="p-nawa-guard">
         <div class="media">
-          <figure class="frame tilt" data-full="/assets/nawa-captcha.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>oriebalzyuot96.github.io/nawa-captcha</span></div><img src="/assets/nawa-captcha.jpg" alt={t('ng.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
+          <figure class="frame tilt" data-full="/assets/nawa-captcha.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>npm i nawa-captcha</span></div><img src="/assets/nawa-captcha.jpg" alt={t('ng.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
           <span class="float">🛡️ <span><Fragment set:html={t('ng.float')} /></span></span>
         </div>
         <div class="p-body">
@@ -277,11 +276,11 @@ const t = useT(Astro.currentLocale);
           <p><Fragment set:html={t('ng.p')} /></p>
           <ul class="hl"><li><Fragment set:html={t('ng.h1')} /></li><li><Fragment set:html={t('ng.h2')} /></li><li><Fragment set:html={t('ng.h3')} /></li><li><Fragment set:html={t('ng.h4')} /></li></ul>
           <div class="tags"><span class="tag">Node.js</span><span class="tag">ASP.NET Core</span><span class="tag">React · Vue · Svelte · Angular</span><span class="tag">AES-256-GCM</span><span class="tag">Audio challenge</span><span class="tag">6 themes</span><span class="tag">WCAG</span></div>
-          <div class="p-actions"><a class="btn primary" href="https://oriebalzyuot96.github.io/nawa-captcha/" target="_blank" rel="noopener"><Fragment set:html={t('ng.site')} /></a><a class="btn" href="https://github.com/oriebalzyuot96/nawa-captcha" target="_blank" rel="noopener">GitHub ↗</a><a class="btn" href="https://www.npmjs.com/package/nawa-captcha" target="_blank" rel="noopener">npm ↗</a></div>
+          <div class="p-actions"><a class="btn primary" href="https://www.npmjs.com/package/nawa-captcha" target="_blank" rel="noopener">npm ↗</a><a class="btn" href="https://github.com/oriebalzyuot96/nawa-captcha" target="_blank" rel="noopener">GitHub ↗</a></div>
         </div>
       </article>
 
-  <article class="card proj spot reveal" data-c="sample" id="p-sample3">
+  <article class="card proj spot reveal" data-c="theme" id="p-sample3">
           <div class="media">
             <figure class="frame tilt" data-full="/assets/sample3.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>oriebalzyuot96.github.io/sample-3</span></div><img src="/assets/sample3.jpg" alt={t('s3.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
             <span class="float">✨ <span><Fragment set:html={t('s3.float')} /></span></span>
@@ -296,7 +295,7 @@ const t = useT(Astro.currentLocale);
           </div>
         </article>
 
-  <article class="card proj spot reveal" data-c="sample" id="p-burger">
+  <article class="card proj spot reveal" data-c="theme" id="p-burger">
           <div class="media">
             <figure class="frame tilt" data-full="/assets/burger.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>oriebalzyuot96.github.io/samples/burger</span></div><img src="/assets/burger.jpg" alt={t('bg.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
             <span class="float">🍔 <span><Fragment set:html={t('bg.float')} /></span></span>
@@ -311,7 +310,7 @@ const t = useT(Astro.currentLocale);
           </div>
         </article>
 
-  <article class="card proj spot reveal" data-c="sample" id="p-descent">
+  <article class="card proj spot reveal" data-c="theme" id="p-descent">
           <div class="media">
             <figure class="frame tilt" data-full="/assets/descent.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>oriebalzyuot96.github.io/samples/descent</span></div><img src="/assets/descent.jpg" alt={t('ds.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
             <span class="float">🪼 <span><Fragment set:html={t('ds.float')} /></span></span>
@@ -326,7 +325,7 @@ const t = useT(Astro.currentLocale);
           </div>
         </article>
 
-  <article class="card proj spot reveal" data-c="oss" id="p-5min">
+  <article class="card proj spot reveal" data-c="app" id="p-5min">
           <div class="media">
             <figure class="frame tilt" data-full="/assets/5min.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>oriebalzyuot96.github.io/samples/5min</span></div><img src="/assets/5min.jpg" alt={t('fm.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
             <span class="float">🐋 <span><Fragment set:html={t('fm.float')} /></span></span>
@@ -341,7 +340,7 @@ const t = useT(Astro.currentLocale);
           </div>
         </article>
 
-  <article class="card proj spot reveal" data-c="oss" id="p-5min-refresh">
+  <article class="card proj spot reveal" data-c="app" id="p-5min-refresh">
           <div class="media">
             <figure class="frame tilt" data-full="/assets/5min-refresh.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>oriebalzyuot96.github.io/samples/5min-refresh</span></div><img src="/assets/5min-refresh.jpg" alt={t('rf.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
             <span class="float">🧩 <span><Fragment set:html={t('rf.float')} /></span></span>
@@ -356,7 +355,7 @@ const t = useT(Astro.currentLocale);
           </div>
         </article>
 
-  <article class="card proj spot reveal" data-c="oss" id="p-5min-api">
+  <article class="card proj spot reveal" data-c="app" id="p-5min-api">
           <div class="media">
             <figure class="frame tilt" data-full="/assets/5min-api.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>5min-api · /docs</span></div><img src="/assets/5min-api.jpg" alt={t('na.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
             <span class="float">🔐 <span><Fragment set:html={t('na.float')} /></span></span>
@@ -371,7 +370,7 @@ const t = useT(Astro.currentLocale);
           </div>
         </article>
 
-  <article class="card proj spot reveal" data-c="oss" id="p-bustan">
+  <article class="card proj spot reveal" data-c="app" id="p-bustan">
           <div class="media">
             <figure class="frame tilt" data-full="/assets/bustan.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>oriebalzyuot96.github.io/samples/bustan</span></div><img src="/assets/bustan.jpg" alt={t('bn.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
             <span class="float">🐦 <span><Fragment set:html={t('bn.float')} /></span></span>
@@ -389,7 +388,7 @@ const t = useT(Astro.currentLocale);
 
 
 
-  <article class="card proj spot reveal" data-c="oss" id="p-yanbu">
+  <article class="card proj spot reveal" data-c="app" id="p-yanbu">
           <div class="media">
             <figure class="frame tilt" data-full="/assets/yanbu.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>yanbu · tourism portal</span></div><img src="/assets/yanbu.jpg" alt={t('yb.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
             <span class="float">🌊 <span><Fragment set:html={t('yb.float')} /></span></span>
@@ -405,7 +404,7 @@ const t = useT(Astro.currentLocale);
           </div>
         </article>
 
-  <article class="card proj spot reveal" data-c="oss" id="p-taqadum">
+  <article class="card proj spot reveal" data-c="app" id="p-taqadum">
           <div class="media">
             <figure class="frame tilt" data-full="/assets/altaqadum.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>altaqadum · website</span></div><img src="/assets/altaqadum.jpg" alt={t('tq.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
             <span class="float">🧭 <span><Fragment set:html={t('tq.float')} /></span></span>
@@ -421,7 +420,7 @@ const t = useT(Astro.currentLocale);
           </div>
         </article>
 
-  <article class="card proj spot reveal" data-c="oss" id="p-bareeq">
+  <article class="card proj spot reveal" data-c="app" id="p-bareeq">
           <div class="media">
             <figure class="frame tilt" data-full="/assets/bareeq.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>bareeq-al-aeeq · web</span></div><img src="/assets/bareeq.jpg" alt={t('bq.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
             <span class="float">💎 <span><Fragment set:html={t('bq.float')} /></span></span>
@@ -437,7 +436,7 @@ const t = useT(Astro.currentLocale);
           </div>
         </article>
 
-  <article class="card proj spot reveal" data-c="oss" id="p-convert">
+  <article class="card proj spot reveal" data-c="app" id="p-convert">
           <div class="media">
             <figure class="frame tilt" data-full="/assets/asset-conversion.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>convert · react native app</span></div><img src="/assets/asset-conversion.jpg" alt={t('cv.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
             <span class="float">📱 <span><Fragment set:html={t('cv.float')} /></span></span>
@@ -452,7 +451,7 @@ const t = useT(Astro.currentLocale);
           </div>
         </article>
 
-  <article class="card proj spot reveal" data-c="rbk" id="p-bakery">
+  <article class="card proj spot reveal" data-c="theme" id="p-bakery">
           <div class="media">
             <figure class="frame tilt" data-full="/assets/bakery.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>goodday · bakery shop</span></div><img src="/assets/bakery.jpg" alt={t('bk.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
             <span class="float">🥐 <span><Fragment set:html={t('bk.float')} /></span></span>
@@ -468,7 +467,7 @@ const t = useT(Astro.currentLocale);
           </div>
         </article>
 
-  <article class="card proj spot reveal" data-c="rbk" id="p-bta3klo">
+  <article class="card proj spot reveal" data-c="theme" id="p-bta3klo">
           <div class="media">
             <figure class="frame tilt" data-full="/assets/bta3klo.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>bta3 kolo · home services</span></div><img src="/assets/bta3klo.jpg" alt={t('b3.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
             <span class="float">🧰 <span><Fragment set:html={t('b3.float')} /></span></span>
@@ -484,7 +483,7 @@ const t = useT(Astro.currentLocale);
           </div>
         </article>
 
-  <article class="card proj spot reveal" data-c="rbk" id="p-travelnji">
+  <article class="card proj spot reveal" data-c="theme" id="p-travelnji">
           <div class="media">
             <figure class="frame tilt" data-full="/assets/travelnji.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>travelnji · eco travel</span></div><img src="/assets/travelnji.jpg" alt={t('tv.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
             <span class="float">🗺️ <span><Fragment set:html={t('tv.float')} /></span></span>
@@ -500,7 +499,7 @@ const t = useT(Astro.currentLocale);
           </div>
         </article>
 
-  <article class="card proj spot reveal" data-c="rbk" id="p-greenfield">
+  <article class="card proj spot reveal" data-c="theme" id="p-greenfield">
           <div class="media">
             <figure class="frame tilt" data-full="/assets/greenfield.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>book a teacher · tutors</span></div><img src="/assets/greenfield.jpg" alt={t('gf.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
             <span class="float">🎓 <span><Fragment set:html={t('gf.float')} /></span></span>

@@ -556,5 +556,8 @@
  "fs.h3": "Tests pass, MIT licence, public repository",
  "fs.float": "🎞️ HAR → component",
  "fs.alt": "Flowshot overview: a HAR export goes in, Flowshot keeps the API calls and removes secrets, then writes evidence files and a typed component.",
- "fs.open": "Open the repo ↗"
+ "fs.open": "Open the repo ↗",
+ "f.lib": "Libraries",
+ "f.theme": "Themes",
+ "f.app": "Apps & products"
 }
