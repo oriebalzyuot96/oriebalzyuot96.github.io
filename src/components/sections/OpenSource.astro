@@ -11,47 +11,5 @@ const t = useT(Astro.currentLocale);
       <a class="card issue spot reveal" href="https://github.com/primefaces/primeng/issues/13479" target="_blank" rel="noopener"><span class="lib">🎨</span><div><h3><span>PrimeNG</span><span class="ltr" style="color:var(--accent)">#13479</span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('os.res')} /></span></span></h3><p><Fragment set:html={t('os.3')} /></p></div></a>
       <a class="card issue spot reveal" href="https://github.com/primefaces/primeng/issues/13506" target="_blank" rel="noopener"><span class="lib">🎨</span><div><h3><span>PrimeNG</span><span class="ltr" style="color:var(--accent)">#13506</span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('os.closed')} /></span></span></h3><p><Fragment set:html={t('os.4')} /></p></div></a>
     </div>
-    <div class="repos reveal">
-      <h3 class="repos-h"><Fragment set:html={t('os.libs')} /></h3>
-      <p class="repos-p"><Fragment set:html={t('os.libsSub')} /></p>
-      <ul class="repo-list">
-        <li><a class="repo" href="https://github.com/oriebalzyuot96/pelagic-ui" target="_blank" rel="noopener"><span class="repo-n">pelagic</span><span class="repo-d">Accessible, themeable UI components for React, Vue, Angular, Svelte, Astro, React Native and Flutter.</span><code class="npm">npm i pelagic</code></a></li>
-        <li><a class="repo" href="https://github.com/oriebalzyuot96/nawa-captcha" target="_blank" rel="noopener"><span class="repo-n">nawa-captcha</span><span class="repo-d">Self-hosted, accessible puzzle CAPTCHA with audio challenge and 3D themes.</span><code class="npm">npm i nawa-captcha</code></a></li>
-      </ul>
-    </div>
-    <div class="repos reveal">
-      <h3 class="repos-h"><Fragment set:html={t('os.tpl')} /></h3>
-      <p class="repos-p"><Fragment set:html={t('os.tplSub')} /></p>
-      <ul class="repo-list">
-        <li><a class="repo" href="https://github.com/oriebalzyuot96/flowshot" target="_blank" rel="noopener"><span class="repo-n">flowshot</span><span class="repo-d">Turn one HAR capture into a typed component plus the evidence behind it. React, Angular, Svelte and Astro.</span></a></li>
-        <li><a class="repo" href="https://github.com/oriebalzyuot96/orcanix-site" target="_blank" rel="noopener"><span class="repo-n">orcanix-site</span><span class="repo-d">Orcanix: accessible admin and SaaS template. Live demo and product page.</span></a></li>
-      </ul>
-    </div>
-    <div class="repos reveal">
-      <h3 class="repos-h"><Fragment set:html={t('os.repos')} /></h3>
-      <p class="repos-p"><Fragment set:html={t('os.reposSub')} /></p>
-      <ul class="repo-list">
-        <li><a class="repo" href="https://github.com/oriebalzyuot96/oriebalzyuot96" target="_blank" rel="noopener"><span class="repo-n">oriebalzyuot96</span><span class="repo-d">GitHub profile: senior front-end and full-stack developer. Portfolio and CV.</span></a></li>
-        <li><a class="repo" href="https://github.com/oriebalzyuot96/asset-conversion" target="_blank" rel="noopener"><span class="repo-n">asset-conversion</span><span class="repo-d">AED/USDT asset conversion app: React Native + TypeScript, exact decimal maths, themes, accessibility.</span></a></li>
-        <li><a class="repo" href="https://github.com/oriebalzyuot96/sample-3" target="_blank" rel="noopener"><span class="repo-n">sample-3</span><span class="repo-d">3D bilingual landing page (Astro + Three.js).</span></a></li>
-        <li><a class="repo" href="https://github.com/oriebalzyuot96/ahmad" target="_blank" rel="noopener"><span class="repo-n">ahmad</span><span class="repo-d">Portfolio, CV and intro video.</span></a></li>
-        <li><a class="repo" href="https://github.com/oriebalzyuot96/esraa" target="_blank" rel="noopener"><span class="repo-n">esraa</span><span class="repo-d">Portfolio, CV and intro video.</span></a></li>
-        <li><a class="repo" href="https://github.com/oriebalzyuot96/abdulsamad" target="_blank" rel="noopener"><span class="repo-n">abdulsamad</span><span class="repo-d">Portfolio, CV and intro video.</span></a></li>
-        <li><a class="repo" href="https://github.com/oriebalzyuot96/saja" target="_blank" rel="noopener"><span class="repo-n">saja</span><span class="repo-d">Portfolio and CV.</span></a></li>
-        <li><a class="repo" href="https://github.com/oriebalzyuot96/mais" target="_blank" rel="noopener"><span class="repo-n">mais</span><span class="repo-d">Portfolio and CV.</span></a></li>
-        <li><a class="repo" href="https://github.com/oriebalzyuot96/bashar" target="_blank" rel="noopener"><span class="repo-n">bashar</span><span class="repo-d">Portfolio.</span></a></li>
-      </ul>
-    </div>
   </div>
-<style>
-  .repos { margin-block-start: 2rem; }
-  .repos-h { font-size: 1.25rem; margin: 0 0 0.3rem; }
-  .repos-p { color: var(--ink-2); margin: 0 0 1rem; }
-  .repo-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); gap: 0.6rem; }
-  .repo { display: grid; gap: 0.2rem; height: 100%; padding: 0.8rem 0.95rem; border-radius: var(--r-md); border: 1px solid var(--line); background: var(--surface); color: var(--ink); text-decoration: none; transition: transform 0.25s ease, border-color 0.25s; }
-  .repo:hover, .repo:focus-visible { transform: translateY(-2px); border-color: var(--accent); outline: none; }
-  .repo-n { font-family: var(--font-display); font-weight: 700; color: var(--accent-ink); overflow-wrap: anywhere; }
-  .repo-d { font-size: 0.86rem; color: var(--ink-2); line-height: 1.45; }
-  .npm { justify-self: start; margin-block-start: 0.35rem; font-size: 0.8rem; padding: 0.15rem 0.5rem; border-radius: 6px; background: var(--surface-2); color: var(--accent-ink); }
-</style>
 </section>
