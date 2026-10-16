@@ -13,7 +13,7 @@ export function useT(locale?: string) {
 }
 
 /** Strings app.js still needs at runtime (toasts, palette empty state, generated skill levels). */
-export const runtimeKeys = ['close', 'cmd.empty', 'toast.copied', 'toast.reset', 'toast.soundOn', 'toast.soundOff', 'lv.x', 'lv.a', 'lv.p', 'pj.showing', 'pre.on', 'pre.off', 'fx.pause', 'fx.play'];
+export const runtimeKeys = ['close', 'cmd.empty', 'toast.copied', 'toast.reset', 'toast.soundOn', 'toast.soundOff', 'lv.x', 'lv.a', 'lv.p', 'pj.showing', 'pre.on', 'pre.off', 'fx.pause', 'fx.play', 'detail.hl', 'detail.links'];
 export const runtimeDict = (locale?: string) => {
   const t = useT(locale);
   return Object.fromEntries(runtimeKeys.map(k => [k, t(k)]));
