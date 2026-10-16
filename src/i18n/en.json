@@ -542,6 +542,10 @@
  "osp.h3": "Export clean React, Vue, Angular or HTML, or share the page as a link or JSON",
  "osp.open": "Open Pelagic Space ↗",
  "lbl.fe": "Front-end only",
- "os.repos": "Public repositories",
- "os.reposSub": "Open code I publish on GitHub: libraries, demos and portfolio builds."
+ "os.repos": "Other public repositories",
+ "os.reposSub": "Portfolios, demos and experiments I publish on GitHub.",
+ "os.libs": "Libraries on npm",
+ "os.libsSub": "Install with npm i. Both are open source.",
+ "os.tpl": "Templates and products",
+ "os.tplSub": "Ready-to-use projects built on the same system."
 }
