@@ -296,7 +296,7 @@ const isAr = Astro.currentLocale === 'ar';
           <p>{L.tagline}</p>
           <ul class="hl">{L.points.map((p) => <li>{p}</li>)}</ul>
           <div class="tags">{app.tags.map((g) => <span class="tag">{g}</span>)}</div>
-          <div class="p-actions"><a class="btn primary" href={`https://github.com/oriebalzyuot96/${app.id}`} target="_blank" rel="noopener">GitHub ↗</a></div>
+          <div class="p-actions">{app.demo && <a class="btn primary" href={isAr ? `${app.demo}?lang=ar` : app.demo} target="_blank" rel="noopener"><Fragment set:html={t('btn.live')} /></a>}<a class={app.demo ? 'btn' : 'btn primary'} href={`https://github.com/oriebalzyuot96/${app.id}`} target="_blank" rel="noopener">GitHub ↗</a></div>
         </div>
       </article>
     );
@@ -345,7 +345,7 @@ const isAr = Astro.currentLocale === 'ar';
           <p>{L.tagline}</p>
           <ul class="hl">{L.points.map((p) => <li>{p}</li>)}</ul>
           <div class="tags">{app.tags.map((g) => <span class="tag">{g}</span>)}</div>
-          <div class="p-actions"><a class="btn primary" href={`https://github.com/oriebalzyuot96/${app.id}`} target="_blank" rel="noopener">GitHub ↗</a></div>
+          <div class="p-actions">{app.demo && <a class="btn primary" href={isAr ? `${app.demo}?lang=ar` : app.demo} target="_blank" rel="noopener"><Fragment set:html={t('btn.live')} /></a>}<a class={app.demo ? 'btn' : 'btn primary'} href={`https://github.com/oriebalzyuot96/${app.id}`} target="_blank" rel="noopener">GitHub ↗</a></div>
         </div>
       </article>
     );

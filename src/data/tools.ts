@@ -71,13 +71,15 @@ export interface VideoApp {
   id: string;
   group: 'app' | 'lib';
   video: string;
+  /** path of a live demo inside this site, if any */
+  demo?: string;
   en: { title: string; tagline: string; points: [string, string, string]; alt: string };
   ar: { title: string; tagline: string; points: [string, string, string]; alt: string };
   tags: string[];
 }
 export const VIDEO_APPS: VideoApp[] = [
   {
-    id: 'calm-plan', group: 'app', video: 'calm-plan-demo',
+    id: 'calm-plan', group: 'app', video: 'calm-plan-demo', demo: '/samples/calm-plan/',
     en: { title: 'Calm Plan: tasks, mood and meditation in one calm place', tagline: 'A full-stack wellbeing companion: a daily to-do list, mood check-ins, guided meditation with music generated in the browser, and a supportive chat. Arabic first, with English, colour themes and accessibility settings.', points: ['Crisis guidance replaces chat replies when needed', 'Meditation sounds are generated live, no audio files', 'Self-help only: not therapy and not a diagnosis'], alt: 'Demo of Calm Plan: adding tasks, saving a mood, changing the theme, a breathing session and the chat.' },
     ar: { title: 'خطة الهدوء: مهام ومزاج وتأمل بمكان هادئ واحد', tagline: 'رفيق عافية كامل بواجهة وخادم: قائمة مهام يومية، وتسجيل للمزاج، وتأمل موجّه بموسيقى تتولد داخل المتصفح، وشات داعم. عربي أولًا مع الإنجليزية وثيمات وإعدادات وصول.', points: ['إرشاد الطوارئ يحل محل ردود الشات عند الحاجة', 'أصوات التأمل تتولد مباشرة بدون ملفات صوت', 'للدعم الذاتي فقط: ليس علاجًا ولا تشخيصًا'], alt: 'عرض لتطبيق خطة الهدوء: إضافة مهام، وحفظ المزاج، وتغيير الثيم، وجلسة تنفس، والشات.' },
     tags: ['Node.js', 'SQLite', 'Web Audio', 'Arabic RTL', 'Accessibility'],
