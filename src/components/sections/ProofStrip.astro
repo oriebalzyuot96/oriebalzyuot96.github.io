@@ -1,0 +1,22 @@
+---
+/* Home: five facts a recruiter can scan in seconds. Numbers come from the data, not from copy. */
+import { useT } from '../../i18n';
+import { TOOLS } from '../../data/tools';
+import Logos from './Logos.astro';
+const t = useT(Astro.currentLocale);
+const items = [
+  [t('proof.yrsN'), t('proof.yrs')],
+  [t('proof.govN'), t('proof.gov')],
+  ['2', t('proof.npm')],
+  [String(TOOLS.length), t('proof.tools')],
+  [t('proof.a11yN'), t('proof.a11y')],
+];
+---
+<section class="proof" aria-label={t('proof.aria')}>
+  <div class="wrap">
+    <ul class="proof-list">
+      {items.map(([n, l]) => <li class="reveal"><b class="proof-n" set:html={n} /><span set:html={l} /></li>)}
+    </ul>
+  </div>
+  <Logos />
+</section>

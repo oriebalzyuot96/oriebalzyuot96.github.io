@@ -1,16 +1,12 @@
 ---
+/* Home: short and scannable. Hero → proof → featured work → libraries & tools → experience → writing → contact.
+   Everything else lives on /work, /about, /lab, /writing and /hire; old home anchors are redirected (Base.astro). */
 import Hero from './sections/Hero.astro';
-import About from './sections/About.astro';
-import Video from './sections/Video.astro';
-import Skills from './sections/Skills.astro';
-import Projects from './sections/Projects.astro';
-import UiKit from './sections/UiKit.astro';
+import ProofStrip from './sections/ProofStrip.astro';
+import FeaturedWork from './sections/FeaturedWork.astro';
+import LibrariesRow from './sections/LibrariesRow.astro';
+import ExperienceSummary from './sections/ExperienceSummary.astro';
 import Writing from './sections/Writing.astro';
-import OpenSource from './sections/OpenSource.astro';
-import Playgrounds from './sections/Playgrounds.astro';
-import Career from './sections/Career.astro';
-import FreelanceServices from './sections/FreelanceServices.astro';
-import Archiving from './sections/Archiving.astro';
 import Contact from './sections/Contact.astro';
 ---
-<Hero /><About /><Video /><Skills /><Projects /><UiKit /><Writing /><OpenSource /><Playgrounds /><Career /><FreelanceServices /><Archiving /><Contact />
+<Hero /><ProofStrip /><FeaturedWork /><LibrariesRow /><ExperienceSummary /><Writing limit={3} /><Contact />

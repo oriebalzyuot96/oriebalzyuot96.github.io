@@ -1,0 +1,27 @@
+---
+/* Home: six featured projects (three company, three own). Same card and overlay as /work; ids are prefixed
+   with "f-" so they never clash with the /work anchors. */
+import { useT, langOf } from '../../i18n';
+import { buildCards } from '../../data/cards';
+import ProjectCard from '../ProjectCard.astro';
+const lang = langOf(Astro.currentLocale);
+const t = useT(Astro.currentLocale);
+const pre = lang === 'ar' ? '/ar' : '';
+const all = buildCards(t, lang === 'ar');
+const order = ['p-wasl', 'p-sba', 'p-seac', 'p-nawa', 'p-calm-plan', 'p-5min-refresh'];
+const featured = order.map(id => all.find(c => c.id === id)!).filter(Boolean);
+---
+<section class="sec" id="featured" aria-labelledby="featT">
+  <div class="wrap">
+    <div class="block-head reveal">
+      <span class="kicker"><Fragment set:html={t('feat.k')} /></span>
+      <h2 id="featT"><Fragment set:html={t('feat.t')} /></h2>
+      <p><Fragment set:html={t('feat.p')} /></p>
+    </div>
+    <h3 class="sub-head"><Fragment set:html={t('feat.co')} /></h3>
+    <div class="projects">{featured.slice(0, 3).map(c => <ProjectCard card={c} idPrefix="f-" />)}</div>
+    <h3 class="sub-head"><Fragment set:html={t('feat.own')} /></h3>
+    <div class="projects">{featured.slice(3).map(c => <ProjectCard card={c} idPrefix="f-" />)}</div>
+    <div class="block-foot reveal"><a class="btn primary" href={`${pre}/work/`}><Fragment set:html={t('feat.all').replace('{n}', String(all.length))} /> <span aria-hidden="true" class="flip-rtl">→</span></a></div>
+  </div>
+</section>

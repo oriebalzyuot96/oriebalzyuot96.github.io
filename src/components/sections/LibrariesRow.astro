@@ -1,0 +1,43 @@
+---
+/* Home: compact row of the two npm libraries and one card for all developer tools. */
+import { useT, langOf } from '../../i18n';
+import { TOOLS } from '../../data/tools';
+const lang = langOf(Astro.currentLocale);
+const t = useT(Astro.currentLocale);
+const pre = lang === 'ar' ? '/ar' : '';
+const libs = [
+  { name: 'Pelagic UI', pkg: 'npm i pelagic', text: t('libs.pelagic'), img: '/assets/pelagic-ui.jpg', npm: 'https://www.npmjs.com/package/pelagic', more: `${pre}/work/#p-nawa` },
+  { name: 'Nawa Captcha', pkg: 'npm i nawa-captcha', text: t('libs.nawa'), img: '/assets/nawa-captcha.jpg', npm: 'https://www.npmjs.com/package/nawa-captcha', more: `${pre}/work/#p-nawa-guard` },
+];
+---
+<section class="sec alt" id="libraries-row" aria-labelledby="libsT">
+  <div class="wrap">
+    <div class="block-head reveal">
+      <span class="kicker"><Fragment set:html={t('libs.k')} /></span>
+      <h2 id="libsT"><Fragment set:html={t('libs.t')} /></h2>
+      <p><Fragment set:html={t('libs.p')} /></p>
+    </div>
+    <div class="lib-row">
+      {libs.map(l => (
+        <article class="card lib-card spot reveal">
+          <img src={l.img} alt="" width="1280" height="800" loading="lazy" />
+          <div class="lib-body">
+            <h3>{l.name}</h3>
+            <code class="ltr" dir="ltr">{l.pkg}</code>
+            <p>{l.text}</p>
+            <div class="lib-links"><a href={l.npm} target="_blank" rel="noopener">npm ↗</a><a href={l.more}><Fragment set:html={t('libs.details')} /> <span aria-hidden="true" class="flip-rtl">→</span></a></div>
+          </div>
+        </article>
+      ))}
+      <a class="card lib-card lib-tools spot reveal" href={`${pre}/work/#tools`}>
+        <span class="lib-count ltr">{TOOLS.length}</span>
+        <div class="lib-body">
+          <h3><Fragment set:html={t('libs.toolsT').replace('{n}', String(TOOLS.length))} /></h3>
+          <p><Fragment set:html={t('libs.toolsP')} /></p>
+          <ul class="lib-tool-list ltr" dir="ltr" aria-hidden="true">{TOOLS.map(x => <li>{x.id}</li>)}</ul>
+          <span class="lib-go"><Fragment set:html={t('libs.toolsGo')} /> <span aria-hidden="true" class="flip-rtl">→</span></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>

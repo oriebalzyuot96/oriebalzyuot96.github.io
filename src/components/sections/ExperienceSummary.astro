@@ -1,0 +1,33 @@
+---
+/* Home: condensed career (role, company, dates, one line). The full timeline lives on /about#career. */
+import { useT } from '../../i18n';
+const t = useT(Astro.currentLocale);
+const pre = Astro.currentLocale === 'ar' ? '/ar' : '';
+const jobs = [
+  { co: 'Saudi Azm', n: 1, now: true },
+  { co: 'Tahaluf Al Emarat', n: 2 },
+  { co: 'Shepherd Technologies', n: 3 },
+  { co: 'PenguinIN', n: 4 },
+];
+---
+<section class="sec" id="experience" aria-labelledby="expT">
+  <div class="wrap">
+    <div class="block-head reveal">
+      <span class="kicker"><Fragment set:html={t('exp.k')} /></span>
+      <h2 id="expT"><Fragment set:html={t('exp.t')} /></h2>
+      <p><Fragment set:html={t('exp.p')} /></p>
+    </div>
+    <ol class="xp">
+      {jobs.map(j => (
+        <li class="xp-row reveal">
+          <span class="xp-when"><Fragment set:html={t(`j${j.n}.when`)} /></span>
+          <div class="xp-main">
+            <h3><span class="xp-co">{j.co}</span> <span class="xp-role"><Fragment set:html={t(`j${j.n}.role`).replace(/^·\s*/, '')} /></span>{j.now && <span class="pill live"><span class="d"></span><span><Fragment set:html={t('j1.now')} /></span></span>}</h3>
+            <p><Fragment set:html={t(`exp.j${j.n}`)} /></p>
+          </div>
+        </li>
+      ))}
+    </ol>
+    <div class="block-foot reveal"><a class="btn" href={`${pre}/about/#career`}><Fragment set:html={t('exp.all')} /> <span aria-hidden="true" class="flip-rtl">→</span></a></div>
+  </div>
+</section>

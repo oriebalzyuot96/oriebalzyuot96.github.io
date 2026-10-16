@@ -1,0 +1,13 @@
+---
+/* Platforms and teams marquee (home, under the proof strip). */
+import { useT } from '../../i18n';
+const t = useT(Astro.currentLocale);
+---
+
+<div class="logos" role="region" aria-labelledby="logosTitle">
+  <p id="logosTitle"><Fragment set:html={t('logos.t')} /></p>
+  <div class="logos-mask"><div class="track">
+    <span><i>💸</i><span><Fragment set:html={t('lg.wasl')} /></span></span><span><i>🏛️</i><span><Fragment set:html={t('lg.sba')} /></span></span><span><i>🏗️</i><span><Fragment set:html={t('lg.sce')} /></span></span><span><i>📄</i><span><Fragment set:html={t('lg.contracts')} /></span></span><span><i>🧭</i><span><Fragment set:html={t('lg.mirafh')} /></span></span><span><i>🧩</i><span><Fragment set:html={t('lg.tahaluf')} /></span></span><span><i>👥</i><span><Fragment set:html={t('lg.shepherd')} /></span></span><span><i>🐧</i><span><Fragment set:html={t('lg.penguin')} /></span></span>
+    <span aria-hidden="true"><i>💸</i><span><Fragment set:html={t('lg.wasl')} /></span></span><span aria-hidden="true"><i>🏛️</i><span><Fragment set:html={t('lg.sba')} /></span></span><span aria-hidden="true"><i>🏗️</i><span><Fragment set:html={t('lg.sce')} /></span></span><span aria-hidden="true"><i>📄</i><span><Fragment set:html={t('lg.contracts')} /></span></span><span aria-hidden="true"><i>🧭</i><span><Fragment set:html={t('lg.mirafh')} /></span></span><span aria-hidden="true"><i>🧩</i><span><Fragment set:html={t('lg.tahaluf')} /></span></span><span aria-hidden="true"><i>👥</i><span><Fragment set:html={t('lg.shepherd')} /></span></span><span aria-hidden="true"><i>🐧</i><span><Fragment set:html={t('lg.penguin')} /></span></span>
+  </div></div>
+</div>

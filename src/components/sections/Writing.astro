@@ -1,6 +1,11 @@
 ---
 /* Articles written by Orieb (hosted on the portfolio, imported to Medium). */
+import { useT } from '../../i18n';
+interface Props { limit?: number; page?: boolean }
+const { limit, page = false } = Astro.props;
+const t = useT(Astro.currentLocale);
 const ar = Astro.currentLocale === 'ar';
+const pre = ar ? '/ar' : '';
 const L = (en: string, a: string) => (ar ? a : en);
 const posts = [
   { href: '/blog/micro-frontends-2026/', icon: '🧩', time: L('16 min read', 'قراءة 16 دقيقة'),
@@ -39,26 +44,31 @@ const posts = [
          'كيف تنقل تطبيق Angular إلى React Native دون إعادة كتابة: طبقة صغيرة للحقن و Signals، وبنية متطابقة، ومزامنة الترجمات والرموز، ودعم العربية بشكل صحيح.'),
     tags: ['Angular', 'React Native', 'Expo'] },
 ];
+const shown = limit ? posts.slice(0, limit) : posts;
 ---
 <section class="sec" id="writing" aria-labelledby="writingT">
   <div class="wrap">
-    <div class="sec-title reveal">
-      <span class="kicker">{L('writing', 'مقالات')}</span>
-      <h2 id="writingT">{L('Articles', 'مقالاتي')}</h2>
-      <p>{L('What I learn on real projects, written down so other engineers can use it.', 'ما أتعلّمه في المشاريع الحقيقية، مكتوبًا ليستفيد منه المطوّرون.')}</p>
-    </div>
+    {!page && (
+      <div class="block-head reveal">
+        <span class="kicker"><Fragment set:html={t('wr.k')} /></span>
+        <h2 id="writingT"><Fragment set:html={t('wr.latest')} /></h2>
+        <p><Fragment set:html={t('wr.p')} /></p>
+      </div>
+    )}
+    {page && <h2 id="writingT" class="sr"><Fragment set:html={t('wr.t')} /></h2>}
     <div class="wr-grid">
-      {posts.map(x => (
+      {shown.map(x => (
         <a class="card wr spot reveal" href={x.href} lang="en">
           <span class="wr-ico" aria-hidden="true">{x.icon}</span>
-          <span class="wr-meta">{x.time}</span>
+          <span class="wr-meta" lang={ar ? 'ar' : 'en'}>{x.time}</span>
           <h3 dir="ltr">{x.t}</h3>
-          <p lang={ar ? 'ar' : 'en'}>{x.p}</p>
+          <p lang={ar ? 'ar' : 'en'} dir={ar ? 'rtl' : 'ltr'}>{x.p}</p>
           <span class="wr-tags">{x.tags.map(g => <span class="tag">{g}</span>)}</span>
-          <span class="wr-go">{L('Read the article →', 'اقرأ المقالة ←')}</span>
+          <span class="wr-go" lang={ar ? 'ar' : 'en'}><Fragment set:html={t('wr.read')} /></span>
         </a>
       ))}
     </div>
+    {!page && <div class="block-foot reveal"><a class="btn" href={`${pre}/writing/`}><Fragment set:html={t('wr.all').replace('{n}', String(posts.length))} /> <span aria-hidden="true" class="flip-rtl">→</span></a></div>}
   </div>
 </section>
 <style>
