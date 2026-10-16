@@ -55,7 +55,7 @@ const shown = limit ? posts.slice(0, limit) : posts;
         <p><Fragment set:html={t('wr.p')} /></p>
       </div>
     )}
-    {page && <h2 id="writingT" class="sr"><Fragment set:html={t('wr.t')} /></h2>}
+    {page && <h2 id="writingT" class="sr"><Fragment set:html={t('wr.all').replace('{n}', String(posts.length))} /></h2>}
     <div class="wr-grid">
       {shown.map(x => (
         <a class="card wr spot reveal" href={x.href} lang="en">

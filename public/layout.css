@@ -183,3 +183,6 @@ html:has([data-ptabs]){scroll-padding-top:calc(var(--hdr-h) + var(--tabs-h) + 12
 .proj .org .co-tag+.co-tag{display:none}
 @media (max-width:640px){.ptab{padding:8px 12px;font-size:.86rem}.ptab-n{display:none}.ptabs{gap:2px}}
 .modal .hero-img .mock{aspect-ratio:21/9;font-size:.8rem}
+/* contrast fixes (axe): live pill on tinted backgrounds, selected-tab count */
+.pill.live{background:color-mix(in srgb,var(--mint) 30%,transparent)}
+.ptab[aria-selected="true"] .ptab-n{background:var(--accent-ink);color:var(--accent)}
