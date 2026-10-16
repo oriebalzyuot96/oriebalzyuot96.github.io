@@ -1,0 +1,20 @@
+---
+/* Accessible page tabs: role=tablist/tab/tabpanel, roving tabindex, arrow keys (mirrored in RTL), Home/End.
+   The selected tab is kept in the URL hash (#id), so it can be linked and survives a reload; a hash that points
+   inside a panel (e.g. /work/#p-wasl, /work/#tools) opens that panel and scrolls to the element.
+   Behaviour lives in public/app.js ("page tabs"). Without JS every panel is shown (styles.css). */
+interface Tab { id: string; label: string; count?: number }
+interface Props { tabs: Tab[]; label: string }
+const { tabs, label } = Astro.props;
+---
+<div class="ptabs-bar" data-ptabs>
+  <div class="wrap">
+    <div class="ptabs" role="tablist" aria-label={label}>
+      {tabs.map((tb, i) => (
+        <button type="button" role="tab" class="ptab" id={`tab-${tb.id}`} aria-controls={tb.id} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? '0' : '-1'} data-tab={tb.id}>
+          <span set:html={tb.label} />{tb.count !== undefined && <span class="ptab-n" aria-hidden="true">{tb.count}</span>}
+        </button>
+      ))}
+    </div>
+  </div>
+</div>

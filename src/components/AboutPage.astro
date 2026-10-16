@@ -1,0 +1,37 @@
+---
+/* /about and /ar/about: story (about, at a glance, intro video), skills, career, archive. */
+import Base from '../layouts/Base.astro';
+import PageHead from './PageHead.astro';
+import Tabs from './Tabs.astro';
+import TabPanel from './TabPanel.astro';
+import About from './sections/About.astro';
+import Bento from './sections/Bento.astro';
+import Video from './sections/Video.astro';
+import Skills from './sections/Skills.astro';
+import Career from './sections/Career.astro';
+import Archiving from './sections/Archiving.astro';
+import { useT, langOf } from '../i18n';
+import { PAGE_META, pageSchema } from '../data/seo';
+const lang = langOf(Astro.currentLocale);
+const t = useT(Astro.currentLocale);
+const meta = PAGE_META.about[lang];
+const tabs = [
+  { id: 'story', label: t('tab.story') },
+  { id: 'skills', label: t('tab.skills') },
+  { id: 'career', label: t('tab.career') },
+  { id: 'archive', label: t('tab.archive') },
+];
+---
+<Base title={meta.title} description={meta.description} schema={pageSchema('about', lang)}>
+  <PageHead kicker={t('aboutPg.k')} title={t('aboutPg.t')} lede={t('aboutPg.p')} crumb={meta.name}>
+    <div class="cta page-cta">
+      <button class="btn primary" type="button" data-play-intro><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"></path></svg><span><Fragment set:html={t('hero.cta2')} /></span></button>
+      <a class="btn" href="/Orieb-Alzyuot-CV.pdf" target="_blank" rel="noopener"><Fragment set:html={t('hero.cta3')} /></a>
+    </div>
+  </PageHead>
+  <Tabs tabs={tabs} label={t('aboutPg.tabs')} />
+  <TabPanel id="story" first><About /><Video /><Bento /></TabPanel>
+  <TabPanel id="skills"><Skills /></TabPanel>
+  <TabPanel id="career"><Career /></TabPanel>
+  <TabPanel id="archive"><Archiving /></TabPanel>
+</Base>

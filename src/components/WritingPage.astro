@@ -1,0 +1,15 @@
+---
+/* /writing and /ar/writing: every article. */
+import Base from '../layouts/Base.astro';
+import PageHead from './PageHead.astro';
+import Writing from './sections/Writing.astro';
+import { useT, langOf } from '../i18n';
+import { PAGE_META, pageSchema } from '../data/seo';
+const lang = langOf(Astro.currentLocale);
+const t = useT(Astro.currentLocale);
+const meta = PAGE_META.writing[lang];
+---
+<Base title={meta.title} description={meta.description} schema={pageSchema('writing', lang)}>
+  <PageHead kicker={t('wr.k')} title={t('wr.t')} lede={t('wrPg.p') + (lang === 'ar' ? ' ' + t('wr.lang') : '')} crumb={meta.name} />
+  <Writing page />
+</Base>

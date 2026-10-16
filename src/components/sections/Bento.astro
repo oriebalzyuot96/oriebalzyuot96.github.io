@@ -1,0 +1,60 @@
+---
+/* "At a glance" bento (moved from the home hero to /about): photo, experience, current work, intro video, local time, code, stack, accessibility. */
+import { useT } from '../../i18n';
+const t = useT(Astro.currentLocale);
+---
+<section class="sec glance" id="glance" aria-labelledby="glanceT">
+  <div class="wrap">
+    <div class="sec-title reveal"><span class="kicker"><Fragment set:html={t('glance.k')} /></span><h2 id="glanceT"><Fragment set:html={t('glance.t')} /></h2></div>
+    
+    <div class="bento">
+      <figure class="card tile t-photo spot pop" style="--i:0">
+        <img src="/assets/orieb.jpg" alt={t('photo.alt')} width="400" height="400">
+        <span class="hand"><Fragment set:html={t('bento.hand')} /></span>
+        <figcaption class="cap"><span><b><Fragment set:html={t('bento.name')} /></b><span><Fragment set:html={t('bento.role')} /></span></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('bento.avail')} /></span></span></figcaption>
+      </figure>
+      <div class="card tile t-years pop" style="--i:1">
+        <span class="k"><Fragment set:html={t('bento.exp')} /></span>
+        <span class="big ltr"><span data-count-to="6">0</span>+</span>
+        <p><Fragment set:html={t('bento.years')} /></p>
+        <svg viewBox="0 0 200 56" preserveAspectRatio="none" aria-hidden="true"><path class="spark" d="M0 50 L25 44 L50 46 L75 34 L100 36 L125 22 L150 24 L175 10 L200 4" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </div>
+      <div class="card tile t-now spot pop" style="--i:2">
+        <span class="k"><Fragment set:html={t('bento.nowk')} /></span>
+        <h3 class="t-now-h"><Fragment set:html={t('bento.now')} /></h3>
+        <ul>
+          <li style="--li:0"><i aria-hidden="true">💸</i><span><Fragment set:html={t('b.wasl')} /></span></li>
+          <li style="--li:1"><i aria-hidden="true">🏛️</i><span><Fragment set:html={t('b.sba')} /></span></li>
+          <li style="--li:2"><i aria-hidden="true">🏗️</i><span><Fragment set:html={t('b.seac')} /></span></li>
+          <li style="--li:3"><i aria-hidden="true">📄</i><span><Fragment set:html={t('b.contracts')} /></span></li>
+        </ul>
+      </div>
+      <button class="card tile t-video spot pop" style="--i:3" data-play-intro aria-label={t('bento.videoAria')}>
+        <img src="/assets/intro-poster.jpg" alt="" loading="lazy">
+        <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"></path></svg></span>
+        <span class="vlabel"><b><Fragment set:html={t('bento.video')} /></b><span><Fragment set:html={t('bento.videoSub')} /></span></span>
+      </button>
+      <div class="card tile t-clock pop" style="--i:4">
+        <span class="k"><Fragment set:html={t('bento.clock')} /></span>
+        <span class="time ltr" id="clock">--:--</span>
+        <span><Fragment set:html={t('bento.tz')} /></span>
+      </div>
+      <div class="card tile t-code pop" style="--i:5" role="img" aria-label={t('bento.codeAria')}>
+        <div class="bar"><i></i><i></i><i></i><span>orieb.component.ts</span></div>
+<pre id="typed" aria-hidden="true"></pre>
+      </div>
+      <div class="card tile t-stack pop" style="--i:6">
+        <span class="k"><Fragment set:html={t('bento.stack')} /></span>
+        <div class="mini-marq ltr" aria-hidden="true"><span>Angular 21</span><span>Signals</span><span>TypeScript</span><span>React</span><span>React Native</span><span>Expo</span><span>Next.js</span><span>Angular 21</span><span>Signals</span><span>TypeScript</span><span>React</span><span>React Native</span><span>Expo</span><span>Next.js</span></div>
+        <div class="mini-marq rev ltr" aria-hidden="true"><span>.NET Core</span><span>Node.js</span><span>PostgreSQL</span><span>Azure</span><span>Docker</span><span>CI/CD</span><span>WCAG</span><span>.NET Core</span><span>Node.js</span><span>PostgreSQL</span><span>Azure</span><span>Docker</span><span>CI/CD</span><span>WCAG</span></div>
+        <p class="sr">Angular 21, Signals, TypeScript, React, React Native, Expo, Next.js, .NET Core, Node.js, PostgreSQL, Azure, Docker, CI/CD, WCAG.</p>
+      </div>
+      <button class="card tile t-a11y pop" style="--i:7" data-open-settings>
+        <span class="k"><Fragment set:html={t('bento.a11yk')} /></span>
+        <b><Fragment set:html={t('bento.a11y')} /></b>
+        <span><Fragment set:html={t('bento.a11ySub')} /></span>
+        <span class="go"><Fragment set:html={t('bento.a11yGo')} /></span>
+      </button>
+    </div>
+  </div>
+</section>

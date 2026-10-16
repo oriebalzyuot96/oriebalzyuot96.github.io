@@ -1,0 +1,76 @@
+---
+/* /work and /ar/work: every project, in four tabs. */
+import Base from '../layouts/Base.astro';
+import PageHead from './PageHead.astro';
+import Tabs from './Tabs.astro';
+import TabPanel from './TabPanel.astro';
+import ProjectCard from './ProjectCard.astro';
+import { useT, langOf } from '../i18n';
+import { buildCards } from '../data/cards';
+import { PAGE_META, pageSchema } from '../data/seo';
+const lang = langOf(Astro.currentLocale);
+const t = useT(Astro.currentLocale);
+const cards = buildCards(t, lang === 'ar');
+const of = (p: string) => cards.filter(c => c.part === p);
+const company = of('company'), libs = of('lib'), tools = of('tool'), apps = of('app'), themes = of('theme');
+const meta = PAGE_META.work[lang];
+const tabs = [
+  { id: 'company', label: t('tab.company'), count: company.length },
+  { id: 'libraries', label: t('tab.libs'), count: libs.length + tools.length },
+  { id: 'projects', label: t('tab.projects'), count: apps.length },
+  { id: 'themes', label: t('tab.themes'), count: themes.length },
+];
+---
+<Base title={meta.title} description={meta.description} schema={pageSchema('work', lang)}>
+  <PageHead kicker={t('work.k')} title={t('work.t')} lede={t('work.p').replace('{n}', String(cards.length))} crumb={t('work.t')} />
+  <Tabs tabs={tabs} label={t('work.tabs')} />
+
+  <TabPanel id="company" first>
+    <section class="sec pj-part" data-part="company" aria-labelledby="coT">
+      <div class="wrap">
+        <div class="block-head"><h2 id="coT"><Fragment set:html={t('pj.co.t')} /></h2><p><Fragment set:html={t('pj.co.p')} /></p></div>
+        <div class="filters" role="group" aria-label={t('pj.filter')}>
+          <button class="chip" aria-pressed="true" data-f="all"><span><Fragment set:html={t('f.all')} /></span> <span class="c" data-n="all"></span></button>
+          <button class="chip" aria-pressed="false" data-f="gov">🏛 <span><Fragment set:html={t('f.gov')} /></span> <span class="c" data-n="gov"></span></button>
+          <button class="chip" aria-pressed="false" data-f="fin">💸 <span><Fragment set:html={t('f.fin')} /></span> <span class="c" data-n="fin"></span></button>
+          <button class="chip" aria-pressed="false" data-f="saas">🏢 <span><Fragment set:html={t('f.saas')} /></span> <span class="c" data-n="saas"></span></button>
+        </div>
+        <p class="sr" data-pj-live aria-live="polite" aria-atomic="true"></p>
+        <div class="projects">{company.map(c => <ProjectCard card={c} />)}</div>
+      </div>
+    </section>
+  </TabPanel>
+
+  <TabPanel id="libraries">
+    <section class="sec pj-part" data-part="lib" aria-labelledby="libT">
+      <div class="wrap">
+        <div class="block-head"><h2 id="libT"><Fragment set:html={t('pj.lib.t')} /></h2><p><Fragment set:html={t('pj.lib.p')} /></p></div>
+        <h3 class="sub-head"><Fragment set:html={t('work.libs')} /></h3>
+        <div class="projects">{libs.map(c => <ProjectCard card={c} />)}</div>
+        <div class="sub-head-wrap" id="tools">
+          <h3 class="sub-head"><Fragment set:html={t('work.toolsT')} /> <span class="sub-n">{tools.length}</span></h3>
+          <p><Fragment set:html={t('work.toolsP')} /></p>
+        </div>
+        <div class="projects">{tools.map(c => <ProjectCard card={c} />)}</div>
+      </div>
+    </section>
+  </TabPanel>
+
+  <TabPanel id="projects">
+    <section class="sec pj-part" data-part="app" aria-labelledby="appT">
+      <div class="wrap">
+        <div class="block-head"><h2 id="appT"><Fragment set:html={t('pj.app.t')} /></h2><p><Fragment set:html={t('pj.app.p')} /></p></div>
+        <div class="projects">{apps.map(c => <ProjectCard card={c} />)}</div>
+      </div>
+    </section>
+  </TabPanel>
+
+  <TabPanel id="themes">
+    <section class="sec pj-part" data-part="theme" aria-labelledby="thT">
+      <div class="wrap">
+        <div class="block-head"><h2 id="thT"><Fragment set:html={t('pj.theme.t')} /></h2><p><Fragment set:html={t('pj.theme.p')} /></p></div>
+        <div class="projects">{themes.map(c => <ProjectCard card={c} />)}</div>
+      </div>
+    </section>
+  </TabPanel>
+</Base>

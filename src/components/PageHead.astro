@@ -1,0 +1,18 @@
+---
+/* Editorial page header for the inner pages (/work, /about, /lab, /writing): breadcrumb, kicker, h1, lede. */
+import { useT } from '../i18n';
+interface Props { kicker: string; title: string; lede: string; crumb: string }
+const { kicker, title, lede, crumb } = Astro.props;
+const t = useT(Astro.currentLocale);
+const home = Astro.currentLocale === 'ar' ? '/ar/' : '/';
+---
+<section class="page-head" aria-labelledby="pageTitle">
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href={home}><Fragment set:html={t('crumb.home')} /></a><span aria-hidden="true">›</span><span aria-current="page" set:html={crumb} /></nav>
+    <span class="kicker" set:html={kicker} />
+    <h1 id="pageTitle" set:html={title} />
+    <p class="lede" set:html={lede} />
+    <slot />
+  </div>
+</section>

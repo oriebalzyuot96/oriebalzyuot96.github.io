@@ -1,0 +1,27 @@
+---
+/* /lab and /ar/lab: the live UI kit, StackBlitz/CodePen playgrounds and open-source issue reports. */
+import Base from '../layouts/Base.astro';
+import PageHead from './PageHead.astro';
+import Tabs from './Tabs.astro';
+import TabPanel from './TabPanel.astro';
+import UiKit from './sections/UiKit.astro';
+import Playgrounds from './sections/Playgrounds.astro';
+import OpenSource from './sections/OpenSource.astro';
+import { useT, langOf } from '../i18n';
+import { PAGE_META, pageSchema } from '../data/seo';
+const lang = langOf(Astro.currentLocale);
+const t = useT(Astro.currentLocale);
+const meta = PAGE_META.lab[lang];
+const tabs = [
+  { id: 'uikit', label: t('tab.uikit') },
+  { id: 'playgrounds', label: t('tab.play'), count: 12 },
+  { id: 'oss', label: t('tab.oss'), count: 4 },
+];
+---
+<Base title={meta.title} description={meta.description} schema={pageSchema('lab', lang)}>
+  <PageHead kicker={t('lab.k')} title={t('lab.t')} lede={t('lab.p')} crumb={meta.name} />
+  <Tabs tabs={tabs} label={t('lab.tabs')} />
+  <TabPanel id="uikit" first><UiKit /></TabPanel>
+  <TabPanel id="playgrounds"><Playgrounds /></TabPanel>
+  <TabPanel id="oss"><OpenSource /></TabPanel>
+</Base>

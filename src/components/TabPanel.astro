@@ -1,0 +1,7 @@
+---
+interface Props { id: string; first?: boolean }
+const { id, first = false } = Astro.props;
+---
+<div class="ptab-panel" role="tabpanel" id={id} aria-labelledby={`tab-${id}`} tabindex="0" hidden={!first}>
+  <slot />
+</div>
