@@ -1,6 +1,8 @@
 ---
 import { useT } from '../../i18n';
+import { TOOLS } from '../../data/tools';
 const t = useT(Astro.currentLocale);
+const isAr = Astro.currentLocale === 'ar';
 ---
 <section class="sec alt" id="projects" aria-labelledby="projT">
   <div class="wrap">
@@ -216,6 +218,7 @@ const t = useT(Astro.currentLocale);
       <div class="filters" role="group" aria-label={t('pj.filter')}>
         <button class="chip" aria-pressed="true" data-f="all"><span><Fragment set:html={t('f.all')} /></span> <span class="c" data-n="all"></span></button>
         <button class="chip" aria-pressed="false" data-f="lib">📦 <span><Fragment set:html={t('f.lib')} /></span> <span class="c" data-n="lib"></span></button>
+        <button class="chip" aria-pressed="false" data-f="tool">🛠️ <span><Fragment set:html={t('f.tool')} /></span> <span class="c" data-n="tool"></span></button>
         <button class="chip" aria-pressed="false" data-f="theme">🎨 <span><Fragment set:html={t('f.theme')} /></span> <span class="c" data-n="theme"></span></button>
         <button class="chip" aria-pressed="false" data-f="app">📱 <span><Fragment set:html={t('f.app')} /></span> <span class="c" data-n="app"></span></button>
       </div>
@@ -279,6 +282,26 @@ const t = useT(Astro.currentLocale);
           <div class="p-actions"><a class="btn primary" href="https://www.npmjs.com/package/nawa-captcha" target="_blank" rel="noopener">npm ↗</a><a class="btn" href="https://github.com/oriebalzyuot96/nawa-captcha" target="_blank" rel="noopener">GitHub ↗</a></div>
         </div>
       </article>
+
+  {TOOLS.map((tool) => {
+    const L = isAr ? tool.ar : tool.en;
+    return (
+      <article class="card proj spot reveal" data-c="tool" id={`p-${tool.id}`}>
+        <div class="media">
+          <figure class="frame tilt" data-full={`/assets/tools/${tool.id}.svg`} tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>{`github.com/oriebalzyuot96/${tool.id}`}</span></div><img src={`/assets/tools/${tool.id}.svg`} alt={`${tool.id}: ${tool.cmd}`} loading="lazy" width="960" height="540" /><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
+          <span class="float"><span><Fragment set:html={t('tool.float')} /></span></span>
+        </div>
+        <div class="p-body">
+          <div class="org"><span><Fragment set:html={t('tool.org')} /></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('tool.pill')} /></span></span></div>
+          <h3 dir="ltr" class="ltr">{tool.id}</h3>
+          <p>{L.tagline}</p>
+          <ul class="hl">{L.points.map((p) => <li>{p}</li>)}</ul>
+          <div class="tags">{tool.tags.map((g) => <span class="tag">{g}</span>)}</div>
+          <div class="p-actions"><a class="btn primary" href={`https://github.com/oriebalzyuot96/${tool.id}`} target="_blank" rel="noopener">GitHub ↗</a></div>
+        </div>
+      </article>
+    );
+  })}
 
   <article class="card proj spot reveal" data-c="theme" id="p-sample3">
           <div class="media">

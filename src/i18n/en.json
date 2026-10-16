@@ -559,5 +559,9 @@
  "fs.open": "Open the repo ↗",
  "f.lib": "Libraries",
  "f.theme": "Themes",
- "f.app": "Apps & products"
+ "f.app": "Apps & products",
+ "f.tool": "Developer tools",
+ "tool.org": "Open source · developer tool",
+ "tool.float": "🛠️ Dev tool",
+ "tool.pill": "MIT licence"
 }
