@@ -1,0 +1,71 @@
+---
+/* Compact project card: thumbnail, label line, title, one-line summary, up to four visible tags, two actions.
+   The full description, highlights, extra links and the case study stay in the card (.p-detail / .case)
+   and open in the shared overlay (app.js → openCase). */
+import { useT } from '../i18n';
+import type { Card } from '../data/cards';
+interface Props { card: Card; idPrefix?: string; headingLevel?: 'h3' | 'h4' }
+const { card, idPrefix = '', headingLevel = 'h3' } = Astro.props;
+const t = useT(Astro.currentLocale);
+const id = idPrefix ? card.id.replace(/^p-/, idPrefix) : card.id;
+const H = headingLevel;
+const m = card.media;
+const firstAction = card.actions[0];
+const detailLabel = card.caseStudy ? t('btn.case') : t('btn.details');
+---
+<article class="card proj spot reveal" data-c={card.c} id={id}>
+  <div class="media">
+    {m.kind === 'img' && (
+      <figure class="frame tilt" data-full={m.src} tabindex="0" role="button" aria-label={t('zoom.aria')}>
+        <div class="bar"><i></i><i></i><i></i><span>{m.bar}</span></div>
+        <img src={m.src} alt={card.mediaAlt} loading="lazy" width={m.w} height={m.h} style={m.pos ? `object-position:${m.pos}` : undefined} />
+        <span class="zoom"><Fragment set:html={t('zoom')} /></span>
+      </figure>
+    )}
+    {m.kind === 'mock' && (
+      <div class="frame tilt"><div class="bar"><i></i><i></i><i></i><span>{m.bar}</span></div>
+        <div class="mock" aria-hidden="true" set:html={m.html}></div>
+        <span class="illus-note"><Fragment set:html={t('illus')} /></span>
+      </div>
+    )}
+    {m.kind === 'video' && (
+      <div class="frame"><div class="bar"><i></i><i></i><i></i><span>{m.bar}</span></div>
+        <video controls playsinline preload="metadata" poster={m.poster} width="1280" height="720" aria-label={m.alt}>
+          <source src={`/assets/videos/${m.video}.webm`} type="video/webm" />
+          <source src={`/assets/videos/${m.video}.mp4`} type="video/mp4" />
+        </video>
+      </div>
+    )}
+  </div>
+  <div class="p-body">
+    <div class="org">
+      <span>{card.company ? <><span class="co-tag"><Fragment set:html={t('lbl.company')} /></span>{card.company.fe && <span class="co-tag"><Fragment set:html={t('lbl.fe')} /></span>} <bdi>{card.company.org}</bdi></> : <Fragment set:html={card.org} />}</span>
+      <span class={`pill ${card.pill[0]}`}><span class="d"></span><span><Fragment set:html={card.pill[1]} /></span></span>
+    </div>
+    <H class={card.titleLtr ? 'p-title ltr' : 'p-title'} dir={card.titleLtr ? 'ltr' : undefined}><Fragment set:html={card.title} /></H>
+    <p class="p-sum"><Fragment set:html={card.summary} /></p>
+    <div class="tags">{card.tags.map(g => <span class="tag" dir="auto">{g}</span>)}</div>
+    <div class="p-actions">
+      <button type="button" class={card.caseStudy ? 'btn primary' : 'btn ghost'} data-case={id} aria-haspopup="dialog"><Fragment set:html={detailLabel} /></button>
+      {firstAction && (firstAction.kind === 'shots'
+        ? <button type="button" class="btn" data-shots><Fragment set:html={firstAction.html} /></button>
+        : <a class={card.caseStudy ? 'btn' : 'btn primary'} href={firstAction.href} target="_blank" rel="noopener"><Fragment set:html={firstAction.html} /></a>)}
+    </div>
+    <div class="p-detail" hidden>
+      {card.altName && <div class="alt-name ar-text">{card.altName}</div>}
+      {card.desc && <p class="p-desc"><Fragment set:html={card.desc} /></p>}
+      <ul class="hl">{card.hl.map(h => <li><Fragment set:html={h} /></li>)}</ul>
+      {card.float && <span class="float"><Fragment set:html={card.float} /></span>}
+      <div class="p-links">{card.actions.map(a => a.kind === 'link'
+        ? <a class={a.primary ? 'btn primary' : 'btn'} href={a.href} target="_blank" rel="noopener"><Fragment set:html={a.html} /></a>
+        : <button type="button" class="btn" data-shots><Fragment set:html={a.html} /></button>)}</div>
+    </div>
+    {card.caseStudy && (
+      <div class="case">
+        <section><h4>🎯 <span><Fragment set:html={t('cs.c')} /></span></h4><p><Fragment set:html={card.caseStudy.c} /></p></section>
+        <section><h4>🛠 <span><Fragment set:html={t('cs.a')} /></span></h4><ul>{card.caseStudy.a.map(x => <li><Fragment set:html={x} /></li>)}</ul></section>
+        <section><h4>🌱 <span><Fragment set:html={t('cs.r')} /></span></h4><p><Fragment set:html={card.caseStudy.r} /></p></section>
+      </div>
+    )}
+  </div>
+</article>
