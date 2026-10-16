@@ -21,7 +21,8 @@
         d.lang = lang; d.dir = lang === 'ar' ? 'rtl' : 'ltr';
         d.dataset.theme = dark ? 'dark' : 'light';
         d.dataset.palette = s.palette || 'ocean';
-        d.dataset.contrast = s.contrast ? 'more' : 'normal';
+        var c = s.contrast === true ? 'more' : s.contrast === false || !s.contrast ? 'normal' : s.contrast;
+        d.dataset.contrast = c === 'gray' ? 'grayscale' : c;
         d.dataset.text = s.textSize || 'md';
         d.dataset.motion = s.motion === 'reduce' || (s.motion !== 'full' && matchMedia('(prefers-reduced-motion: reduce)').matches) ? 'reduce' : 'full';
       })();
@@ -105,23 +106,23 @@
       :root[data-motion='reduce'] #loader .l-ring .fg { stroke-dashoffset: 200; }
     </style>
     <noscript><style>#loader { display: none !important; }</style></noscript>
-    <link href="./_app/immutable/entry/start.DGtTcCEc.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/QrjMRmvO.js" rel="modulepreload">
+    <link href="./_app/immutable/entry/start.CZTABDQR.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/SuaoQYTa.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/By6uqZfa.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/CZXKaqec.js" rel="modulepreload">
-		<link href="./_app/immutable/entry/app.BPh6YXt0.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/8j5KXQzU.js" rel="modulepreload">
+		<link href="./_app/immutable/entry/app.Bc20GJVz.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/B3oGo7lW.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/CABGKJDl.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/CdeDI2mr.js" rel="modulepreload">
-		<link href="./_app/immutable/nodes/0.Dvg5PFF_.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/DNmnitok.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/CZCqff5B.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/hvQJtqz1.js" rel="modulepreload">
-		<link href="./_app/immutable/nodes/2.BnR8TlBf.js" rel="modulepreload">
+		<link href="./_app/immutable/nodes/0.-4E-7QeS.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/DP297-uj.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/Ca2WCFDB.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/qN8BSqCi.js" rel="modulepreload">
+		<link href="./_app/immutable/nodes/2.B4PEf1HH.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/DkeUAhrP.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/Cvie4iEH.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/Bkcv6eTb.js" rel="modulepreload">
 		
-		<link href="./_app/immutable/assets/0.D0vVfdNp.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/0.B-FZ9bO1.css" rel="stylesheet">
 		<link href="./_app/immutable/assets/Stars.BqOXiZMC.css" rel="stylesheet">
 		<link href="./_app/immutable/assets/2.BHkmR8l2.css" rel="stylesheet">
   </head>
@@ -191,7 +192,7 @@
     <div style="display: contents">
 			<script>
 				{
-					__sveltekit_vy4rj0 = {
+					__sveltekit_50idjr = {
 						base: new URL(".", location).pathname.slice(0, -1),
 						assets: "/samples/5min-refresh"
 					};
@@ -199,8 +200,8 @@
 					const element = document.currentScript.parentElement;
 
 					Promise.all([
-						import("./_app/immutable/entry/start.DGtTcCEc.js"),
-						import("./_app/immutable/entry/app.BPh6YXt0.js")
+						import("./_app/immutable/entry/start.CZTABDQR.js"),
+						import("./_app/immutable/entry/app.Bc20GJVz.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element);
 					});
