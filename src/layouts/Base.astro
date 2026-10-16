@@ -80,6 +80,8 @@ const bootWords = isAr
 /* Legacy ?lang=ar links → /ar/. Then apply saved preferences before first paint (no flash of the wrong theme).
    Premium themes ("skins") carry their own light/dark base, so the skin decides data-theme too. */
 (function(){var q=new URLSearchParams(location.search).get('lang');if(q==='ar'&&!/^\/ar(\/|$)/.test(location.pathname)){location.replace('/ar'+location.pathname+location.hash);return}
+/* the home page used to hold every section: old deep links (/#projects, /ar/#career, /#p-wasl…) go to their new pages */
+var hp=location.pathname;if(hp==='/'||hp==='/ar/'||hp==='/ar'){var h=location.hash.slice(1),M={about:'about/#about',intro:'about/#intro',skills:'about/#skills',career:'about/#career',archiving:'about/#archiving',projects:'work/','my-projects':'work/#projects',libraries:'work/#libraries',themes:'work/#themes',uikit:'lab/#uikit',playgrounds:'lab/#playgrounds',oss:'lab/#oss',services:'hire/#services'},d=M[h]||(/^p-[\w-]+$/.test(h)?'work/#'+h:'');if(d){location.replace((hp.indexOf('/ar')===0?'/ar/':'/')+d);return}}
 var r=document.documentElement;r.classList.remove('no-js');try{var p=JSON.parse(localStorage.getItem('oa-prefs')||'{}');
 var SK={aurora:'dark',sakura:'light',mochi:'light'},BG={aurora:'#070b1a',sakura:'#fff6f8',mochi:'#f3fbf7'};
 if(p.skin&&SK[p.skin]){r.setAttribute('data-skin',p.skin);p.theme=SK[p.skin]}
@@ -192,6 +194,7 @@ html[data-motion="reduced"] .boot-tick i{animation:none;transform:scaleX(.8)}
 <link rel="stylesheet" href="/styles.css?v=4">
 <link rel="stylesheet" href="/motion.css?v=5">
 <link rel="stylesheet" href="/fx.css?v=4">
+<link rel="stylesheet" href="/layout.css?v=1">
 <script type="application/ld+json" set:html={JSON.stringify(graph)} />
 </head>
 <body>
@@ -259,7 +262,7 @@ function leave(){if(left)return;left=true;fill.style.transform='scaleX(1)';
 <Overlays />
 <script is:inline set:html={`window.I18N=${JSON.stringify(runtime)};`} />
 <script is:inline src="/sound.js?v=4" defer></script>
-<script is:inline src="/app.js?v=5" defer></script>
+<script is:inline src="/app.js?v=6" defer></script>
 <script is:inline src="/fx.js?v=5" defer></script>
 </body>
 </html>

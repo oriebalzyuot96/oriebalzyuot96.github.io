@@ -8,14 +8,23 @@ const home = lang === 'ar' ? '/ar/' : '/';
 const path = Astro.url.pathname.replace(/^\/ar(\/|$)/, '/');
 const altHref = lang === 'ar' ? path : '/ar' + path;
 const altLang = lang === 'ar' ? 'en' : 'ar';
+const pre = lang === 'ar' ? '/ar' : '';
+const LINKS = [['work', t('nav.work')], ['about', t('nav.about')], ['lab', t('nav.lab')], ['writing', t('nav.writing')]];
+const cur = path.split('/')[1] || '';
+const navItems = [
+  ...LINKS.map(([p, label]) => ({ href: `${pre}/${p}/`, label, current: cur === p, cls: '' })),
+  { href: `${pre}/hire/`, label: t('nav.hire'), current: cur === 'hire', cls: 'nav-hire' },
+];
 ---
 <header class="top" id="hdr">
   <div class="wrap">
-    <a href={`${home}#home`} class="brand" aria-label={t('brand.aria')}><img src="/assets/orieb-face.jpg" alt="" width="38" height="38"><span>Orieb<b>.dev</b></span></a>
+    <a href={home} class="brand" aria-label={t('brand.aria')}><img src="/assets/orieb-face.jpg" alt="" width="38" height="38"><span>Orieb<b>.dev</b></span></a>
     <nav class="menu" aria-label={t('nav.aria')}>
-      <a href={`${home}#about`}><Fragment set:html={t('nav.about')} /></a><a href={`${home}#intro`}><Fragment set:html={t('nav.video')} /></a><a href={`${home}#skills`}><Fragment set:html={t('nav.skills')} /></a><a href={`${home}#projects`}><Fragment set:html={t('nav.projects')} /></a><a href={`${home}#career`}><Fragment set:html={t('nav.career')} /></a><a href={`${home}#contact`}><Fragment set:html={t('nav.contact')} /></a><a href={lang === 'ar' ? '/ar/hire/' : '/hire/'} class="nav-hire"><Fragment set:html={t('nav.hire')} /></a>
+      {navItems.map(n => <a href={n.href} class={n.cls || undefined} aria-current={n.current ? 'page' : undefined}><Fragment set:html={n.label} /></a>)}
+      <a href="/Orieb-Alzyuot-CV.pdf" class="nav-cv" target="_blank" rel="noopener" aria-label={t('nav.cvAria')}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 20h14"></path></svg><Fragment set:html={t('nav.cv')} /></a>
     </nav>
     <div class="hdr-r">
+      <button class="ibtn nav-btn" id="navBtn" type="button" aria-expanded="false" aria-controls="mnav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg><span><Fragment set:html={t('nav.menu')} /></span></button>
       <button class="ibtn hide-sm" id="cmdBtn" aria-label={t('cmd.aria')} title="Ctrl + K">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg><kbd>Ctrl K</kbd>
       </button>
@@ -39,4 +48,11 @@ const altLang = lang === 'ar' ? 'en' : 'ar';
       </button>
     </div>
   </div>
+  <nav class="mnav" id="mnav" aria-label={t('nav.menu')} hidden>
+    <div class="wrap">
+      <a href={home} aria-current={cur === '' ? 'page' : undefined}><Fragment set:html={t('nav.home')} /></a>
+      {navItems.map(n => <a href={n.href} aria-current={n.current ? 'page' : undefined}><Fragment set:html={n.label} /></a>)}
+      <a href="/Orieb-Alzyuot-CV.pdf" target="_blank" rel="noopener"><Fragment set:html={t('nav.cvAria')} /></a>
+    </div>
+  </nav>
 </header>

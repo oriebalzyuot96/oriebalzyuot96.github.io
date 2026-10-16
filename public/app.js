@@ -205,21 +205,31 @@
   const closeBtn = () => `<button class="ibtn x" data-close aria-label="${t('close', 'Close')}">✕</button>`;
   sheet.addEventListener('click', e => { if (e.target.closest('[data-close]')) closeOverlay(); });
 
+  /* project overlay: built from the card itself (summary, full description, highlights, case study, every link) */
   function openCase(id) {
     const card = document.getElementById(id); if (!card) return;
-    const img = $('.frame > img', card);
-    const media = img ? `<div class="hero-img"><img src="${img.src}" alt="${img.alt}"></div>` : `<div class="hero-img">${$('.frame', card).outerHTML.replace('frame tilt', 'frame')}</div>`;
+    const img = $('.frame > img', card), vid = $('.frame > video', card);
+    const media = img ? `<div class="hero-img"><img src="${$('.frame', card).dataset.full || img.src}" alt="${img.alt}"></div>`
+      : vid ? `<div class="hero-img">${vid.outerHTML}</div>`
+      : `<div class="hero-img">${$('.frame', card).outerHTML.replace('frame tilt', 'frame')}</div>`;
+    const title = $('.p-title, h3', card), detail = $('.p-detail', card), cs = $('.case', card);
+    const hl = detail && $('ul.hl', detail), links = detail ? $$('.p-links a', detail) : [];
     sheet.innerHTML = `${closeBtn()}${media}<div class="content">
-      <div class="org" style="display:flex;gap:8px;flex-wrap:wrap;font-weight:700;color:var(--ink-3);font-size:.85rem">${$('.org', card).innerHTML}</div>
-      <h2 id="mTitle">${$('h3', card).innerHTML}</h2>
-      ${$('.alt-name', card) ? `<div class="ar-text" style="color:var(--ink-3)">${$('.alt-name', card).innerHTML}</div>` : ''}
-      <p style="color:var(--ink-2);margin-top:12px">${$('.p-body > p', card).innerHTML}</p>
-      <div class="cs-grid">${$('.case', card).innerHTML}</div>
-      <div class="tags" style="margin-top:20px">${$('.tags', card).innerHTML}</div>
-      <div class="p-actions">${$$('.p-actions a', card).map(a => a.outerHTML).join('')}</div></div>`;
+      <div class="org m-org">${$('.org', card).innerHTML}${detail && $('.float', detail) ? `<span class="m-float">${$('.float', detail).innerHTML}</span>` : ''}</div>
+      <h2 id="mTitle"${title.classList.contains('ltr') ? ' dir="ltr" class="ltr"' : ''}>${title.innerHTML}</h2>
+      ${detail && $('.alt-name', detail) ? `<div class="ar-text m-alt">${$('.alt-name', detail).innerHTML}</div>` : ''}
+      <p class="m-sum">${$('.p-sum', card).innerHTML}</p>
+      ${detail && $('.p-desc', detail) ? `<p class="m-desc">${$('.p-desc', detail).innerHTML}</p>` : ''}
+      ${hl && hl.children.length ? `<h3 class="m-h">${t('detail.hl', 'Highlights')}</h3><ul class="hl m-hl">${hl.innerHTML}</ul>` : ''}
+      ${cs ? `<div class="cs-grid">${cs.innerHTML}</div>` : ''}
+      <div class="tags m-tags">${$('.tags', card).innerHTML}</div>
+      ${links.length ? `<div class="p-actions">${links.map(a => a.outerHTML).join('')}</div>` : ''}</div>`;
+    const v = $('video', sheet); if (v) { v.removeAttribute('id'); v.preload = 'metadata'; }
     modal.setAttribute('aria-labelledby', 'mTitle'); modal.removeAttribute('aria-label');
     openOverlay('modal', modal, $('[data-close]', sheet));
   }
+  // "View screenshots" buttons open the card's screenshot
+  document.addEventListener('click', e => { const b = e.target.closest('[data-shots]'); if (!b) return; const f = $('.frame[data-full]', b.closest('.proj')); if (f) openImage(f); });
   function openImage(fig) {
     const img = $('img', fig);
     modal.classList.add('image');
@@ -229,7 +239,8 @@
   }
   function playIntro() {
     const sec = $('#intro'); const v = $('#introVideo');
-    if (!sec || !v) { location.href = (document.documentElement.lang === 'ar' ? '/ar/' : '/') + '#intro'; return; }
+    if (!sec || !v) { location.href = (document.documentElement.lang === 'ar' ? '/ar' : '') + '/about/#intro'; return; }
+    showTarget(sec);
     sec.scrollIntoView({ behavior: reducedMotion() ? 'auto' : 'smooth', block: 'center' });
     setTimeout(() => { v.focus(); const p = v.play(); if (p && p.catch) p.catch(() => {}); }, reducedMotion() ? 0 : 650);
   }
@@ -243,21 +254,58 @@
   /* ───────── command palette ───────── */
   const palette = $('#palette'), pq = $('#pq'), plist = $('#plist');
   const L = (en, ar) => () => (prefs.lang === 'ar' ? ar : en);
-  const go = id => () => { closeOverlay(true); const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: reducedMotion() ? 'auto' : 'smooth' }); else location.href = (document.documentElement.lang === 'ar' ? '/ar/' : '/') + '#' + id; };
+  const PRE = PAGE_LANG === 'ar' ? '/ar' : '';
+  const smooth = () => (reducedMotion() ? 'auto' : 'smooth');
+  /* go to a page (and optionally an anchor on it); on the same page, open the tab that holds the anchor and scroll */
+  const goto = (path, hash = '') => () => {
+    closeOverlay(true);
+    const here = location.pathname === PRE + path || (path === '/' && location.pathname === PRE);
+    const el = hash ? document.getElementById(hash) : null;
+    if (here && (!hash || el)) {
+      if (el) { showTarget(el); history.replaceState(null, '', '#' + hash); el.scrollIntoView({ behavior: smooth() }); } else scrollTo({ top: 0, behavior: smooth() });
+      return;
+    }
+    location.href = PRE + path + (hash ? '#' + hash : '');
+  };
+  /* project commands: open the overlay here when the card is on this page, otherwise on /work */
+  const caseCmd = id => () => {
+    closeOverlay(true);
+    const local = document.getElementById(id) || document.getElementById(id.replace(/^p-/, 'f-'));
+    if (local) { showTarget(local); openCase(local.id); return; }
+    try { sessionStorage.setItem('oa-open-case', id); } catch (e) {}
+    location.href = PRE + '/work/#' + id;
+  };
+  const PAGE = L('Page', 'صفحة'), SEC = L('Section', 'قسم'), PRJ = L('Project', 'مشروع');
   const CMDS = [
-    { e: '🏠', l: L('Home', 'الرئيسية'), g: L('Section', 'قسم'), run: go('home') },
-    { e: '👋', l: L('About me', 'عنّي'), g: L('Section', 'قسم'), run: go('about') },
+    { e: '🏠', l: L('Home', 'الرئيسية'), g: PAGE, run: goto('/') },
+    { e: '🚀', l: L('Work: all projects', 'الأعمال: كل المشاريع'), g: PAGE, run: goto('/work/') },
+    { e: '🏢', l: L('Company projects', 'مشاريع الشركات'), g: SEC, run: goto('/work/', 'company') },
+    { e: '📦', l: L('Libraries & developer tools', 'المكتبات وأدوات المطوّرين'), g: SEC, run: goto('/work/', 'libraries') },
+    { e: '🛠️', l: L('Developer tools', 'أدوات المطوّرين'), g: SEC, run: goto('/work/', 'tools') },
+    { e: '🧪', l: L('My projects', 'مشاريعي'), g: SEC, run: goto('/work/', 'projects') },
+    { e: '🎨', l: L('Themes & design samples', 'الثيمات وعيّنات التصميم'), g: SEC, run: goto('/work/', 'themes') },
+    { e: '👋', l: L('About me', 'عنّي'), g: PAGE, run: goto('/about/') },
     { e: '🎬', l: L('Watch intro video', 'شاهد الفيديو التعريفي'), g: L('Action', 'إجراء'), run: () => { closeOverlay(true); playIntro(); } },
-    { e: '🧰', l: L('Skills', 'المهارات'), g: L('Section', 'قسم'), run: go('skills') },
-    { e: '🚀', l: L('Projects', 'المشاريع'), g: L('Section', 'قسم'), run: go('projects') },
-    { e: '🐛', l: L('Open-source radar', 'المساهمات المفتوحة المصدر'), g: L('Section', 'قسم'), run: go('oss') },
-    { e: '🧭', l: L('Career', 'المسيرة المهنية'), g: L('Section', 'قسم'), run: go('career') },
-    { e: '✉️', l: L('Contact', 'تواصل'), g: L('Section', 'قسم'), run: go('contact') },
-    { e: '💸', l: L('Wasl · financing platform', 'وصل · منصة التمويل'), g: L('Project', 'مشروع'), run: () => { closeOverlay(true); openCase('p-wasl'); } },
-    { e: '🏛️', l: L('Saudi Bar Association', 'الهيئة السعودية للمحامين'), g: L('Project', 'مشروع'), run: () => { closeOverlay(true); openCase('p-sba'); } },
-    { e: '🏗️', l: L('Engineering Arbitration Center', 'مركز التحكيم الهندسي'), g: L('Project', 'مشروع'), run: () => { closeOverlay(true); openCase('p-seac'); } },
-    { e: '📄', l: L('Contracts e-signature', 'عقود · التوقيع الإلكتروني'), g: L('Project', 'مشروع'), run: () => { closeOverlay(true); openCase('p-contracts'); } },
-    { e: '👥', l: L('HR solution (Shepherd)', 'نظام الموارد البشرية (Shepherd)'), g: L('Project', 'مشروع'), run: () => { closeOverlay(true); openCase('p-hr'); } },
+    { e: '🧰', l: L('Skills', 'المهارات'), g: SEC, run: goto('/about/', 'skills') },
+    { e: '🧭', l: L('Career', 'المسيرة المهنية'), g: SEC, run: goto('/about/', 'career') },
+    { e: '🗂️', l: L('Archive: GitHub, LinkedIn, CV', 'الأرشيف: GitHub و LinkedIn والسيرة'), g: SEC, run: goto('/about/', 'archive') },
+    { e: '⚗️', l: L('Lab', 'المختبر'), g: PAGE, run: goto('/lab/') },
+    { e: '🧩', l: L('UI kit demo', 'عرض مكتبة الواجهات'), g: SEC, run: goto('/lab/', 'uikit') },
+    { e: '⚡', l: L('StackBlitz & CodePen playgrounds', 'ساحات StackBlitz و CodePen'), g: SEC, run: goto('/lab/', 'playgrounds') },
+    { e: '🐛', l: L('Open-source radar', 'المساهمات المفتوحة المصدر'), g: SEC, run: goto('/lab/', 'oss') },
+    { e: '✍️', l: L('Writing: articles', 'المقالات'), g: PAGE, run: goto('/writing/') },
+    { e: '💼', l: L('Hire me', 'وظّفني'), g: PAGE, run: goto('/hire/') },
+    { e: '🤝', l: L('Freelance services', 'خدمات العمل الحر'), g: SEC, run: goto('/hire/', 'services') },
+    { e: '✉️', l: L('Contact', 'تواصل'), g: SEC, run: goto('/', 'contact') },
+    { e: '💸', l: L('Wasl · financing platform', 'وصل · منصة التمويل'), g: PRJ, run: caseCmd('p-wasl') },
+    { e: '🏛️', l: L('Saudi Bar Association', 'الهيئة السعودية للمحامين'), g: PRJ, run: caseCmd('p-sba') },
+    { e: '🏗️', l: L('Engineering Arbitration Center', 'مركز التحكيم الهندسي'), g: PRJ, run: caseCmd('p-seac') },
+    { e: '📄', l: L('Contracts e-signature', 'عقود · التوقيع الإلكتروني'), g: PRJ, run: caseCmd('p-contracts') },
+    { e: '👥', l: L('HR solution (Shepherd)', 'نظام الموارد البشرية (Shepherd)'), g: PRJ, run: caseCmd('p-hr') },
+    { e: '🌊', l: L('Pelagic UI · component library', 'Pelagic UI · مكتبة مكوّنات'), g: PRJ, run: caseCmd('p-nawa') },
+    { e: '🛡️', l: L('Nawa Captcha', 'نوى كابتشا'), g: PRJ, run: caseCmd('p-nawa-guard') },
+    { e: '🌿', l: L('Calm Plan', 'خطة الهدوء'), g: PRJ, run: caseCmd('p-calm-plan') },
+    { e: '🐋', l: L('5min Refresh', '5min Refresh'), g: PRJ, run: caseCmd('p-5min-refresh') },
     { e: '🌗', l: L('Toggle dark mode', 'تبديل الوضع الداكن'), g: L('Action', 'إجراء'), run: () => { closeOverlay(true); toggleTheme(); } },
     { e: '🌌', l: L('Theme: Midnight Aurora', 'السمة: شفق منتصف الليل'), g: L('Theme', 'سمة'), run: () => { closeOverlay(true); setPref('look', 'aurora'); } },
     { e: '🌸', l: L('Theme: Sakura', 'السمة: ساكورا'), g: L('Theme', 'سمة'), run: () => { closeOverlay(true); setPref('look', 'sakura'); } },
@@ -298,7 +346,7 @@
   palette.addEventListener('keydown', e => trap(palette, e));
 
   /* ───────── global keyboard ───────── */
-  const SECS = ['home', 'about', 'intro', 'skills', 'projects', 'career', 'contact'];
+  const SECS = [['/'], ['/work/'], ['/about/'], ['/lab/'], ['/writing/'], ['/hire/'], ['/', 'contact']];
   document.addEventListener('keydown', e => {
     const mod = e.ctrlKey || e.metaKey;
     if (mod && (e.key === 'k' || e.key === 'K')) { e.preventDefault(); openLayer === 'palette' ? closeOverlay() : openPalette(); }
@@ -307,7 +355,7 @@
     else if (e.altKey && e.code === 'KeyT') { e.preventDefault(); toggleTheme(); }
     else if (e.altKey && e.code === 'KeyL') { e.preventDefault(); toggleLang(); }
     else if (e.altKey && e.code === 'KeyS') { e.preventDefault(); toggleSound(); }
-    else if (e.altKey && /^Digit[1-7]$/.test(e.code)) { e.preventDefault(); go(SECS[+e.code.slice(5) - 1])(); }
+    else if (e.altKey && /^Digit[1-7]$/.test(e.code)) { e.preventDefault(); goto(...SECS[+e.code.slice(5) - 1])(); }
   });
 
   /* ───────── skills ───────── */
@@ -448,9 +496,59 @@
   }
   addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
   top.addEventListener('click', () => scrollTo({ top: 0, behavior: reducedMotion() ? 'auto' : 'smooth' }));
-  const links = $$('.menu a');
-  const so = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id)); }), { rootMargin: '-45% 0px -50% 0px' });
-  ['about', 'intro', 'skills', 'projects', 'oss', 'career', 'archiving', 'contact'].forEach(id => { const el = document.getElementById(id); if (el) so.observe(el); });
+  /* ───────── page tabs (/work, /about, /lab): APG tabs with automatic activation, hash = selected tab ───────── */
+  const tabBar = $('[data-ptabs]');
+  const ptabs = tabBar ? $$('[role=tab]', tabBar) : [];
+  function selectTab(tab, { focus = false, push = false, scroll = false } = {}) {
+    if (!tab) return;
+    ptabs.forEach(x => {
+      const on = x === tab, panel = document.getElementById(x.getAttribute('aria-controls'));
+      x.setAttribute('aria-selected', String(on)); x.tabIndex = on ? 0 : -1;
+      if (panel) panel.hidden = !on;
+    });
+    if (focus) tab.focus();
+    const id = tab.getAttribute('aria-controls');
+    if (push && location.hash.slice(1) !== id) history.replaceState(null, '', '#' + id);
+    // the bar is sticky: if the reader is already below the top of the panels, bring the start of the new panel into view
+    if (scroll) { const p = document.getElementById(id), top = tabBar.getBoundingClientRect().top; if (p && p.getBoundingClientRect().top < top) p.scrollIntoView({ behavior: 'auto' }); }
+    // newly shown cards: reveal those already on screen
+    requestAnimationFrame(() => $$('.reveal:not(.in)', document.getElementById(id) || document).forEach(el => { if (el.getBoundingClientRect().top < innerHeight) el.classList.add('in'); }));
+    document.dispatchEvent(new CustomEvent('oa:tab', { detail: id }));
+  }
+  /* make an element visible: open the tab panel that contains it */
+  function showTarget(el) {
+    const panel = el && el.closest('[role=tabpanel]');
+    if (panel && panel.hidden) selectTab(document.getElementById(panel.getAttribute('aria-labelledby')));
+  }
+  ptabs.forEach((tb, i) => {
+    tb.addEventListener('click', () => { selectTab(tb, { push: true, scroll: true }); sfx('step'); });
+    tb.addEventListener('keydown', e => {
+      let n = null;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { let d = e.key === 'ArrowRight' ? 1 : -1; if (root.dir === 'rtl') d = -d; n = ptabs[(i + d + ptabs.length) % ptabs.length]; }
+      else if (e.key === 'Home') n = ptabs[0]; else if (e.key === 'End') n = ptabs[ptabs.length - 1];
+      if (n) { e.preventDefault(); selectTab(n, { focus: true, push: true }); }
+    });
+  });
+  function fromHash(onChange) {
+    const id = decodeURIComponent(location.hash.slice(1)); if (!id) return;
+    const el = document.getElementById(id); if (!el) return;
+    const tab = ptabs.find(x => x.getAttribute('aria-controls') === id);
+    if (tab) { selectTab(tab); if (onChange) el.scrollIntoView({ behavior: 'auto' }); return; }
+    showTarget(el); requestAnimationFrame(() => el.scrollIntoView({ behavior: 'auto' }));
+  }
+  if (ptabs.length) { fromHash(false); addEventListener('hashchange', () => fromHash(true)); }
+  // a project command from another page asked for this overlay
+  try { const pend = sessionStorage.getItem('oa-open-case'); if (pend) { sessionStorage.removeItem('oa-open-case'); const c = document.getElementById(pend); if (c) { showTarget(c); setTimeout(() => openCase(pend), 300); } } } catch (e) {}
+
+  /* ───────── mobile navigation (disclosure) ───────── */
+  const navBtn = $('#navBtn'), mnav = $('#mnav');
+  if (navBtn && mnav) {
+    const setNav = (open, back) => { mnav.hidden = !open; navBtn.setAttribute('aria-expanded', String(open)); if (open) $('a', mnav)?.focus(); else if (back) navBtn.focus(); };
+    navBtn.addEventListener('click', () => { setNav(mnav.hidden); sfx('pop'); });
+    mnav.addEventListener('keydown', e => { if (e.key === 'Escape') { e.stopPropagation(); setNav(false, true); } });
+    document.addEventListener('pointerdown', e => { if (!mnav.hidden && !mnav.contains(e.target) && !navBtn.contains(e.target)) setNav(false); });
+    mnav.addEventListener('focusout', e => { if (e.relatedTarget && !mnav.contains(e.relatedTarget) && e.relatedTarget !== navBtn) setNav(false); });
+  }
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0, rootMargin: '0px 0px -40px 0px' });
   // stagger: siblings revealed together cascade in (index per parent, capped so long lists never wait)
   const groups = new Map();

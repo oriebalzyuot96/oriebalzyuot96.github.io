@@ -72,7 +72,7 @@ const others = REGIONS.filter(r => r.slug !== region.slug);
         {region.faq.map(f => <details class="card"><summary>{L(f.q)}</summary><p>{L(f.a)}</p></details>)}
       </div>
       <div class="cta" style="margin-top:36px">
-        <a class="btn primary" href={`${pre}/#projects`}>{L(UI.work)} →</a>
+        <a class="btn primary" href={`${pre}/work/`}>{L(UI.work)} →</a>
         {others.map(o => <a class="btn" href={`${pre}/hire/${o.slug}/`}><span class="code">{o.flag}</span> {L(regionName[o.slug])}</a>)}
       </div>
     </div>

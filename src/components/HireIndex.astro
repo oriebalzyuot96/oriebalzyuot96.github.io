@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { langOf } from '../i18n';
+import FreelanceServices from './sections/FreelanceServices.astro';
 import { REGIONS, HIRE_INDEX, UI, regionName } from '../data/hire';
 const lang = langOf(Astro.currentLocale);
 const L = (o: Record<string, string>) => o[lang];
@@ -28,4 +29,5 @@ const pre = lang === 'ar' ? '/ar' : '';
       </div>
     </div>
   </section>
+  <FreelanceServices />
 </Base>

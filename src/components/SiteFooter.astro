@@ -4,11 +4,11 @@ const lang = langOf(Astro.currentLocale);
 const pre = lang === 'ar' ? '/ar' : '';
 const T = {
   en: { tag: 'Senior Front-End & Full-Stack Engineer · Angular, React, React Native, Astro', avail: 'Open to senior roles & freelance · worldwide', email: 'Email me', cv: 'Download CV',
-        explore: 'Explore', about: 'About', projects: 'Projects', career: 'Career', video: 'Intro video', skills: 'Skills',
+        explore: 'Explore', about: 'About', projects: 'Projects', work: 'Work', lab: 'Lab', writing: 'Writing', career: 'Career', video: 'Intro video', skills: 'Skills',
         hire: 'Hire me', ksa: 'Saudi Arabia', uae: 'UAE', jor: 'Jordan', free: 'Worldwide · remote',
         connect: 'Connect', made: 'Built with Astro · bilingual · accessible', local: 'Amman', rights: 'All rights reserved.', other: 'العربية' },
   ar: { tag: 'خبرة Senior في الواجهات الأمامية والتطوير المتكامل · Angular و React و React Native و Astro', avail: 'أرحّب بأدوار Senior والعمل الحر · حول العالم', email: 'راسلني', cv: 'تحميل السيرة الذاتية',
-        explore: 'استكشف', about: 'عنّي', projects: 'المشاريع', career: 'المسيرة', video: 'الفيديو التعريفي', skills: 'المهارات',
+        explore: 'استكشف', about: 'عنّي', projects: 'المشاريع', work: 'الأعمال', lab: 'المختبر', writing: 'المقالات', career: 'المسيرة', video: 'الفيديو التعريفي', skills: 'المهارات',
         hire: 'وظّفني', ksa: 'السعودية', uae: 'الإمارات', jor: 'الأردن', free: 'حول العالم · عن بُعد',
         connect: 'تواصل', made: 'مبني بـ Astro · ثنائي اللغة · سهل الوصول', local: 'عمّان', rights: 'جميع الحقوق محفوظة.', other: 'English' },
 }[lang];
@@ -29,10 +29,10 @@ const altHref = lang === 'ar' ? Astro.url.pathname.replace(/^\/ar(\/|$)/, '/') :
           <a class="btn" href="/Orieb-Alzyuot-CV.pdf" target="_blank" rel="noopener">⬇ {T.cv}</a>
         </div>
       </div>
-      <nav class="ft-cols" aria-label="Footer">
+      <nav class="ft-cols" aria-label={lang === 'ar' ? 'تذييل الموقع' : 'Footer'}>
         <div><h3>{T.explore}</h3><ul>
-          <li><a href={`${pre}/#about`}>{T.about}</a></li><li><a href={`${pre}/#intro`}>{T.video}</a></li>
-          <li><a href={`${pre}/#skills`}>{T.skills}</a></li><li><a href={`${pre}/#projects`}>{T.projects}</a></li><li><a href={`${pre}/#career`}>{T.career}</a></li></ul></div>
+          <li><a href={pre + '/work/'}>{T.work}</a></li><li><a href={pre + '/about/'}>{T.about}</a></li><li><a href={pre + '/lab/'}>{T.lab}</a></li>
+          <li><a href={pre + '/writing/'}>{T.writing}</a></li><li><a href={pre + '/about/#intro'}>{T.video}</a></li><li><a href={pre + '/about/#skills'}>{T.skills}</a></li><li><a href={pre + '/about/#career'}>{T.career}</a></li></ul></div>
         <div><h3>{T.hire}</h3><ul>
           <li><a href={`${pre}/hire/freelance/`}>{T.free}</a></li><li><a href={`${pre}/hire/saudi-arabia/`}>{T.ksa}</a></li><li><a href={`${pre}/hire/uae/`}>{T.uae}</a></li>
           <li><a href={`${pre}/hire/jordan/`}>{T.jor}</a></li></ul></div>
