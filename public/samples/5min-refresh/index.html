@@ -27,94 +27,163 @@
       })();
     </script>
     <style>
-      /* splash loader: inline so it paints before any bundle arrives */
+      /* splash loader: inline so it paints before any bundle arrives.
+         A whale leaps out of the sea and dives back in, inside a porthole whose ring fills as the app loads. */
       #loader {
-        --l-bg1: #eef6fb; --l-bg2: #f8f4ff; --l-ink: #0c2235; --l-ink2: #48607a; --l-w1: #1784bd; --l-w2: #b7a6f4;
-        position: fixed; inset: 0; z-index: 3000; display: grid; place-content: center; justify-items: center; gap: 0.7rem; text-align: center;
-        background: radial-gradient(640px 420px at 50% 44%, rgb(23 132 189 / 0.13), transparent 70%), linear-gradient(180deg, var(--l-bg1), var(--l-bg2));
-        color: var(--l-ink); font-family: 'Fredoka', 'Baloo Bhaijaan 2', ui-rounded, system-ui, sans-serif; transition: opacity 0.55s ease, visibility 0.55s;
+        --l-bg1: #e9f5fc; --l-bg2: #f6f1ff; --l-ink: #0c2235; --l-ink2: #48607a; --l-sky1: #d9f0ff; --l-sky2: #fdf6ff;
+        --l-sea1: #2a9fd8; --l-sea2: #1460a3; --l-w2: #b7a6f4; --l-ring: #1784bd; --l-ring2: #b7a6f4; --l-glass: rgb(255 255 255 / 0.7);
+        position: fixed; inset: 0; z-index: 3000; display: grid; place-content: center; justify-items: center; gap: 0.9rem; text-align: center; overflow: hidden;
+        background: radial-gradient(700px 480px at 50% 42%, rgb(23 132 189 / 0.16), transparent 70%), linear-gradient(180deg, var(--l-bg1), var(--l-bg2));
+        color: var(--l-ink); font-family: 'Fredoka', 'Baloo Bhaijaan 2', ui-rounded, system-ui, sans-serif;
+        transition: opacity 0.6s ease 0.15s, visibility 0.6s 0.15s, transform 0.75s cubic-bezier(0.7, 0, 0.2, 1) 0.1s;
       }
-      :root[data-theme='dark'] #loader { --l-bg1: #061423; --l-bg2: #0f1030; --l-ink: #e7f2fb; --l-ink2: #a2b8cc; --l-w1: #48bfec; --l-w2: #a597ff; }
-      #loader.out { opacity: 0; visibility: hidden; }
-      #loader .l-art { position: relative; inline-size: 210px; block-size: 178px; }
-      #loader .l-whale { position: absolute; left: 27px; top: 16px; inline-size: 156px; block-size: 156px; animation: l-bob 2.6s ease-in-out infinite; transform-origin: 50% 72%; }
-      #loader .l-spout { transform-box: fill-box; transform-origin: 50% 100%; animation: l-spout 2.6s ease-out infinite; }
-      #loader .l-waves {
-        position: absolute; left: 0; right: 0; bottom: 0; block-size: 62px; overflow: hidden;
-        -webkit-mask: linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent); mask: linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent);
-      }
-      #loader .l-waves svg { position: absolute; left: 0; bottom: 0; inline-size: 420px; block-size: 62px; }
-      #loader .l-w1 { animation: l-drift 3.4s linear infinite; }
-      #loader .l-w2 { animation: l-drift 5.2s linear infinite reverse; }
-      #loader .l-name { font-weight: 700; font-size: 2.1rem; line-height: 1; letter-spacing: -0.01em; margin-block-start: 0.2rem; }
-      #loader .l-msg { margin: 0; font-family: 'Inter', 'IBM Plex Sans Arabic', system-ui, sans-serif; font-size: 0.95rem; color: var(--l-ink2); }
+      :root[data-theme='dark'] #loader { --l-bg1: #051221; --l-bg2: #0e0f2e; --l-ink: #e7f2fb; --l-ink2: #a2b8cc; --l-sky1: #0b2440; --l-sky2: #1a1840; --l-sea1: #1d86c4; --l-sea2: #0a3a6e; --l-w2: #7d6fd6; --l-ring: #48bfec; --l-ring2: #a597ff; --l-glass: rgb(255 255 255 / 0.12); }
+      #loader.out { opacity: 0; visibility: hidden; transform: scale(1.06); }
+      /* the whole screen breathes with slow sea swells at the bottom */
+      #loader .l-sea { position: absolute; inset-inline: 0; bottom: 0; block-size: 26vh; pointer-events: none; }
+      #loader .l-sea svg { position: absolute; bottom: 0; left: 0; inline-size: 200%; block-size: 100%; }
+      #loader .l-s1 { animation: l-swell 11s linear infinite; opacity: 0.18; }
+      #loader .l-s2 { animation: l-swell 16s linear infinite reverse; opacity: 0.12; }
+      /* porthole */
+      #loader .l-port { position: relative; inline-size: 252px; block-size: 252px; display: grid; place-items: center; animation: l-in 0.8s cubic-bezier(0.2, 0.9, 0.3, 1.25) both; }
+      #loader .l-ring { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; transform: rotate(-90deg); filter: drop-shadow(0 6px 18px rgb(23 132 189 / 0.35)); }
+      #loader .l-ring circle { fill: none; stroke-width: 6; stroke-linecap: round; }
+      #loader .l-ring .bg { stroke: var(--l-glass); }
+      #loader .l-ring .fg { stroke: url(#lrg); stroke-dasharray: 754; stroke-dashoffset: 754; animation: l-fill 3.2s cubic-bezier(0.3, 0.6, 0.2, 1) 0.2s forwards; transition: stroke-dashoffset 0.45s ease; }
+      #loader.done .l-ring .fg { stroke-dashoffset: 0; animation: none; }
+      #loader .l-view { position: relative; inline-size: 224px; block-size: 224px; border-radius: 50%; overflow: hidden; isolation: isolate;
+        background: linear-gradient(180deg, var(--l-sky1), var(--l-sky2) 58%); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.5), inset 0 -18px 40px rgb(10 50 100 / 0.18); }
+      #loader .l-view::after { content: ''; position: absolute; inset: 0; border-radius: 50%; pointer-events: none; z-index: 5;
+        background: radial-gradient(circle at 30% 22%, rgb(255 255 255 / 0.55), transparent 32%), radial-gradient(circle at 70% 85%, rgb(255 255 255 / 0.08), transparent 40%); }
+      #loader .l-sun { position: absolute; left: 150px; top: 34px; inline-size: 30px; block-size: 30px; border-radius: 50%; background: radial-gradient(circle, #ffe08a, #ffc94d 60%, transparent 62%); box-shadow: 0 0 30px #ffd36b; opacity: 0.85; }
+      #loader .l-water { position: absolute; inset: 0; }
+      #loader .l-water svg, #loader .l-front-wrap svg { position: absolute; left: 0; inline-size: 448px; block-size: 224px; top: 0; }
+      :root[data-theme='dark'] #loader .l-view::after { background: radial-gradient(circle at 30% 22%, rgb(255 255 255 / 0.16), transparent 30%); }
+      #loader .l-back { animation: l-drift 4.2s linear infinite reverse; }
+      #loader .l-front { animation: l-drift 3s linear infinite; z-index: 3; }
+      #loader .l-front-wrap { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+      /* the whale follows a leap: under water, out over the crest, and back down */
+      #loader .l-whale { position: absolute; left: 0; top: 0; inline-size: 88px; block-size: 88px; z-index: 2; filter: drop-shadow(0 6px 8px rgb(8 40 80 / 0.25));
+        offset-path: path('M -70 196 Q 30 196 74 140 Q 112 22 152 140 Q 190 196 300 196'); offset-rotate: auto; offset-anchor: 50% 58%;
+        animation: l-leap 3.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite; }
+      #loader .l-tail { transform-box: fill-box; transform-origin: 100% 60%; animation: l-flap 0.5s ease-in-out infinite alternate; }
+      /* splashes where the whale breaks the surface, timed with the leap */
+      #loader .l-splash { position: absolute; top: 132px; inline-size: 40px; block-size: 30px; z-index: 4; pointer-events: none; }
+      #loader .l-splash i { position: absolute; bottom: 0; left: 50%; inline-size: 7px; block-size: 7px; border-radius: 50%; background: #bfe9ff; box-shadow: 0 0 6px #fff; opacity: 0; }
+      #loader .l-splash.a { left: 54px; } #loader .l-splash.b { left: 132px; }
+      #loader .l-splash.a i { animation: l-drop 3.2s ease-out infinite; animation-delay: calc(0.82s + var(--d)); }
+      #loader .l-splash.b i { animation: l-drop 3.2s ease-out infinite; animation-delay: calc(1.95s + var(--d)); }
+      #loader .l-splash i:nth-child(1) { --x: -16px; --y: -26px; --d: 0s; } #loader .l-splash i:nth-child(2) { --x: -5px; --y: -36px; --d: 0.03s; }
+      #loader .l-splash i:nth-child(3) { --x: 7px; --y: -32px; --d: 0.05s; } #loader .l-splash i:nth-child(4) { --x: 17px; --y: -22px; --d: 0.02s; }
+      #loader .l-splash i:nth-child(5) { --x: 0px; --y: -18px; --d: 0.06s; inline-size: 5px; block-size: 5px; }
+      #loader .l-bub { position: absolute; bottom: -12px; inline-size: var(--s); block-size: var(--s); border-radius: 50%; z-index: 4;
+        border: 1.5px solid rgb(255 255 255 / 0.75); background: rgb(255 255 255 / 0.15); animation: l-rise var(--t) ease-in infinite; animation-delay: var(--dl); }
+      #loader .l-name { font-weight: 700; font-size: 2.2rem; line-height: 1; letter-spacing: -0.01em; margin-block-start: 0.3rem; animation: l-up 0.7s cubic-bezier(0.2, 0.9, 0.3, 1) 0.2s both; }
+      #loader .l-name b { background: linear-gradient(100deg, var(--l-ring), var(--l-ring2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      #loader .l-msg { margin: 0; font-family: 'Inter', 'IBM Plex Sans Arabic', system-ui, sans-serif; font-size: 0.95rem; color: var(--l-ink2); animation: l-up 0.7s cubic-bezier(0.2, 0.9, 0.3, 1) 0.35s both; }
       #loader .l-msg [lang] { display: none; }
       :root:lang(en) #loader .l-msg [lang='en'], :root:lang(ar) #loader .l-msg [lang='ar'] { display: inline; }
       :root:lang(ar) #loader .l-msg { font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif; }
       #loader .l-dots i { display: inline-block; inline-size: 0.3em; block-size: 0.3em; margin-inline: 0.1em; border-radius: 50%; background: currentColor; opacity: 0.3; animation: l-dot 1.2s infinite; }
       #loader .l-dots i:nth-child(2) { animation-delay: 0.2s; }
       #loader .l-dots i:nth-child(3) { animation-delay: 0.4s; }
-      @keyframes l-bob { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(10px) rotate(2.5deg); } }
-      @keyframes l-spout { 0%, 30% { transform: scale(0.15); opacity: 0; } 48% { transform: scale(1.1); opacity: 1; } 72% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.12) translateY(-3px); opacity: 0; } }
-      @keyframes l-drift { to { transform: translateX(-140px); } }
+      @keyframes l-leap { from { offset-distance: 0%; } to { offset-distance: 100%; } }
+      @keyframes l-flap { from { transform: rotate(-14deg); } to { transform: rotate(16deg); } }
+      @keyframes l-drift { to { transform: translateX(-224px); } }
+      @keyframes l-swell { to { transform: translateX(-50%); } }
+      @keyframes l-fill { to { stroke-dashoffset: 110; } }
+      @keyframes l-drop { 0% { opacity: 0; transform: translate(-50%, 0) scale(0.4); } 6% { opacity: 1; } 22% { opacity: 1; transform: translate(calc(-50% + var(--x)), var(--y)) scale(1); } 34%, 100% { opacity: 0; transform: translate(calc(-50% + var(--x) * 1.3), 4px) scale(0.6); } }
+      @keyframes l-rise { 0% { transform: translateY(0) translateX(0); opacity: 0; } 15% { opacity: 1; } 100% { transform: translateY(-120px) translateX(6px); opacity: 0; } }
+      @keyframes l-in { from { opacity: 0; transform: scale(0.82) rotate(-8deg); } }
+      @keyframes l-up { from { opacity: 0; transform: translateY(10px); } }
       @keyframes l-dot { 40% { opacity: 1; } }
-      :root[data-motion='reduce'] #loader, :root[data-motion='reduce'] #loader * { animation: none !important; transition: none !important; }
-      :root[data-motion='reduce'] #loader .l-spout { opacity: 1; transform: none; }
+      /* browsers without offset-path: the whale bobs in place on the surface */
+      @supports not (offset-path: path('M0 0')) { #loader .l-whale { left: 75px; top: 92px; animation: l-bob 2.6s ease-in-out infinite; } #loader .l-splash { display: none; } }
+      @keyframes l-bob { 50% { transform: translateY(10px) rotate(3deg); } }
+      :root[data-motion='reduce'] #loader, :root[data-motion='reduce'] #loader * { animation: none !important; }
+      :root[data-motion='reduce'] #loader .l-whale { offset-distance: 50%; }
+      :root[data-motion='reduce'] #loader .l-ring .fg { stroke-dashoffset: 200; }
     </style>
     <noscript><style>#loader { display: none !important; }</style></noscript>
-    <link href="./_app/immutable/entry/start.CA3I_gzC.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/DlHrZgcU.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/jHYZxIfV.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/NtzLAcTI.js" rel="modulepreload">
-		<link href="./_app/immutable/entry/app.CqOt4pdb.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/CVorEM50.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/CYnj70Zn.js" rel="modulepreload">
-		<link href="./_app/immutable/nodes/0.DNEgD4sB.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/hAmsNMKq.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/DzqZuBwT.js" rel="modulepreload">
-		<link href="./_app/immutable/nodes/2.Bh7M3MMd.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/B89J4l5A.js" rel="modulepreload">
+    <link href="./_app/immutable/entry/start.DGtTcCEc.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/QrjMRmvO.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/By6uqZfa.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/CZXKaqec.js" rel="modulepreload">
+		<link href="./_app/immutable/entry/app.BPh6YXt0.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/B3oGo7lW.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/CABGKJDl.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/CdeDI2mr.js" rel="modulepreload">
+		<link href="./_app/immutable/nodes/0.Dvg5PFF_.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/DNmnitok.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/CZCqff5B.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/hvQJtqz1.js" rel="modulepreload">
+		<link href="./_app/immutable/nodes/2.BnR8TlBf.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/DkeUAhrP.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/Cvie4iEH.js" rel="modulepreload">
 		
-		<link href="./_app/immutable/assets/0.Cp7BUu2_.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/0.D0vVfdNp.css" rel="stylesheet">
 		<link href="./_app/immutable/assets/Stars.BqOXiZMC.css" rel="stylesheet">
-		<link href="./_app/immutable/assets/2.BQIQf94k.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/2.BHkmR8l2.css" rel="stylesheet">
   </head>
   <body data-sveltekit-preload-data="hover">
     <div id="loader" role="status" aria-live="polite">
-      <div class="l-art" aria-hidden="true">
-        <svg class="l-whale" viewBox="0 0 64 64">
-          <defs><linearGradient id="lwb" x1="0.2" y1="0" x2="0.5" y2="1"><stop offset="0" stop-color="#43b8ea" /><stop offset="1" stop-color="#1769ab" /></linearGradient></defs>
-          <g class="l-spout">
-            <g fill="none" stroke="#7cc6e8" stroke-width="2.4" stroke-linecap="round"><path d="M37.5 17.5c0-3.8-1.5-6.3-4.4-7.7" /><path d="M37.5 17.5c0-3.8 1.5-6.3 4.4-7.7" /><path d="M37.5 17V9" /></g>
-            <circle cx="31.6" cy="8.6" r="1.8" fill="#7cc6e8" /><circle cx="43.4" cy="8.6" r="1.8" fill="#7cc6e8" /><circle cx="37.5" cy="6.4" r="1.8" fill="#7cc6e8" />
-          </g>
-          <path d="M13.4 27.6C10.4 25.8 7.4 25.6 4.6 22.6c3-1.6 6.4-1.2 8.6.8.1-3.2 2-6 4.8-7.1.5 4-.4 8.1-3.2 11.2z" fill="url(#lwb)" />
-          <path d="M56.5 37c0-10.5-9-17.5-20-17.5-9.5 0-15.5 5.5-18.9 12.1-1-1.6-2-3.2-3-5l-3 2c1.4 4.4 3.2 8.9 6.4 12.9 3.5 6 10 9.5 19.5 9.5 11.5 0 19-5.5 19-14z" fill="url(#lwb)" />
-          <path d="M19.2 42.2c6.4 4.4 15 5.6 22.8 5 7-.6 12.6-3.3 14.3-7.7-1.2 7-8.2 11-18.8 11-8.2 0-14-2.8-18.3-8.3z" fill="#f1ecff" />
-          <circle cx="46" cy="33.4" r="2.5" fill="#0b2235" /><circle cx="46.8" cy="32.5" r=".85" fill="#fff" />
-          <ellipse cx="51.6" cy="38" rx="2.4" ry="1.5" fill="#ff7f6e" opacity=".8" />
-          <path d="M41.4 39.4q3 2.6 6.2.4" fill="none" stroke="#0b2235" stroke-width="1.8" stroke-linecap="round" />
+      <div class="l-sea" aria-hidden="true">
+        <svg class="l-s2" viewBox="0 0 1600 200" preserveAspectRatio="none"><path d="M0 70 q100 -40 200 0 t200 0 t200 0 t200 0 t200 0 t200 0 t200 0 t200 0 V200 H0 Z" fill="var(--l-w2)" /></svg>
+        <svg class="l-s1" viewBox="0 0 1600 200" preserveAspectRatio="none"><path d="M0 100 q100 -36 200 0 t200 0 t200 0 t200 0 t200 0 t200 0 t200 0 t200 0 V200 H0 Z" fill="var(--l-sea1)" /></svg>
+      </div>
+      <div class="l-port" aria-hidden="true">
+        <svg class="l-ring" viewBox="0 0 252 252">
+          <defs><linearGradient id="lrg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--l-ring)" /><stop offset="1" stop-color="var(--l-ring2)" /></linearGradient></defs>
+          <circle class="bg" cx="126" cy="126" r="120" /><circle class="fg" cx="126" cy="126" r="120" />
         </svg>
-        <div class="l-waves">
-          <svg class="l-w2" viewBox="0 0 420 62" preserveAspectRatio="none"><path d="M0 24 q35 -10 70 0 t70 0 t70 0 t70 0 t70 0 t70 0 V62 H0 Z" fill="var(--l-w2)" opacity="0.38" /></svg>
-          <svg class="l-w1" viewBox="0 0 420 62" preserveAspectRatio="none"><path d="M0 32 q35 -11 70 0 t70 0 t70 0 t70 0 t70 0 t70 0 V62 H0 Z" fill="var(--l-w1)" opacity="0.6" /></svg>
+        <div class="l-view">
+          <span class="l-sun"></span>
+          <div class="l-water">
+            <svg class="l-back" viewBox="0 0 448 224" preserveAspectRatio="none"><path d="M0 132 q28 -12 56 0 t56 0 t56 0 t56 0 t56 0 t56 0 t56 0 t56 0 V224 H0 Z" fill="var(--l-w2)" opacity="0.55" /></svg>
+          </div>
+          <svg class="l-whale" viewBox="0 0 64 64">
+            <defs><linearGradient id="lwb" x1="0.2" y1="0" x2="0.5" y2="1"><stop offset="0" stop-color="#43b8ea" /><stop offset="1" stop-color="#1769ab" /></linearGradient></defs>
+            <g class="l-tail"><path d="M13.4 27.6C10.4 25.8 7.4 25.6 4.6 22.6c3-1.6 6.4-1.2 8.6.8.1-3.2 2-6 4.8-7.1.5 4-.4 8.1-3.2 11.2z" fill="url(#lwb)" /></g>
+            <path d="M56.5 37c0-10.5-9-17.5-20-17.5-9.5 0-15.5 5.5-18.9 12.1-1-1.6-2-3.2-3-5l-3 2c1.4 4.4 3.2 8.9 6.4 12.9 3.5 6 10 9.5 19.5 9.5 11.5 0 19-5.5 19-14z" fill="url(#lwb)" />
+            <path d="M19.2 42.2c6.4 4.4 15 5.6 22.8 5 7-.6 12.6-3.3 14.3-7.7-1.2 7-8.2 11-18.8 11-8.2 0-14-2.8-18.3-8.3z" fill="#f1ecff" />
+            <path d="M33 40q-3 6-8 7 4-5 4-9z" fill="#1769ab" />
+            <circle cx="46" cy="33.4" r="2.5" fill="#0b2235" /><circle cx="46.8" cy="32.5" r=".85" fill="#fff" />
+            <ellipse cx="51.6" cy="38" rx="2.4" ry="1.5" fill="#ff7f6e" opacity=".8" />
+            <path d="M41.4 39.4q3 2.6 6.2.4" fill="none" stroke="#0b2235" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+          <div class="l-front-wrap">
+            <svg class="l-front" viewBox="0 0 448 224" preserveAspectRatio="none">
+              <defs><linearGradient id="lsea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--l-sea1)" /><stop offset="1" stop-color="var(--l-sea2)" /></linearGradient></defs>
+              <path d="M0 142 q28 -10 56 0 t56 0 t56 0 t56 0 t56 0 t56 0 t56 0 t56 0 V224 H0 Z" fill="url(#lsea)" opacity="0.88" />
+              <path d="M0 142 q28 -10 56 0 t56 0 t56 0 t56 0 t56 0 t56 0 t56 0 t56 0" fill="none" stroke="#fff" stroke-opacity="0.55" stroke-width="2" />
+            </svg>
+          </div>
+          <span class="l-splash a"><i></i><i></i><i></i><i></i><i></i></span>
+          <span class="l-splash b"><i></i><i></i><i></i><i></i><i></i></span>
+          <span class="l-bub" style="left:38px;--s:7px;--t:3.4s;--dl:0s"></span>
+          <span class="l-bub" style="left:96px;--s:5px;--t:2.8s;--dl:1.1s"></span>
+          <span class="l-bub" style="left:150px;--s:9px;--t:3.9s;--dl:0.6s"></span>
+          <span class="l-bub" style="left:184px;--s:5px;--t:3s;--dl:1.8s"></span>
+          <span class="l-bub" style="left:120px;--s:6px;--t:3.6s;--dl:2.4s"></span>
         </div>
       </div>
-      <div class="l-name">5min</div>
+      <div class="l-name"><b>5min</b> Refresh</div>
       <p class="l-msg"><span lang="en">Filling the ocean</span><span lang="ar">نملأ المحيط</span><span class="l-dots" aria-hidden="true"> <i></i><i></i><i></i></span></p>
     </div>
     <script>
       (function () {
         var el = document.getElementById('loader'), done = false;
-        // the app calls this once the 3D scene and fonts are ready: never before 600 ms, and a 4 s cap regardless
+        // the app calls this once the 3D scene and fonts are ready: never before 1.6 s (one full leap), and a 4 s cap regardless
         window.__hideLoader = function () {
           if (done || !el) return;
           done = true;
           setTimeout(function () {
-            el.classList.add('out');
+            // the ring completes first, then the sea opens
+            el.classList.add('done');
+            setTimeout(function () { el.classList.add('out'); }, 320);
             el.setAttribute('aria-hidden', 'true');
-            setTimeout(function () { el.remove(); }, 650);
-          }, Math.max(0, 600 - performance.now()));
+            setTimeout(function () { el.remove(); }, 1100);
+          }, Math.max(0, 1600 - performance.now()));
         };
         setTimeout(window.__hideLoader, 4000);
       })();
@@ -122,7 +191,7 @@
     <div style="display: contents">
 			<script>
 				{
-					__sveltekit_1ethz5h = {
+					__sveltekit_vy4rj0 = {
 						base: new URL(".", location).pathname.slice(0, -1),
 						assets: "/samples/5min-refresh"
 					};
@@ -130,8 +199,8 @@
 					const element = document.currentScript.parentElement;
 
 					Promise.all([
-						import("./_app/immutable/entry/start.CA3I_gzC.js"),
-						import("./_app/immutable/entry/app.CqOt4pdb.js")
+						import("./_app/immutable/entry/start.DGtTcCEc.js"),
+						import("./_app/immutable/entry/app.BPh6YXt0.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element);
 					});
