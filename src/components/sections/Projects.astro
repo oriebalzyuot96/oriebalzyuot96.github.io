@@ -226,7 +226,7 @@ const isAr = Astro.currentLocale === 'ar';
       <div class="projects">
   <article class="card proj spot reveal featured" data-c="lib" id="p-nawa">
           <div class="media">
-            <figure class="frame tilt" data-full="/assets/pelagic-ui.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>npm i pelagic</span></div><img src="/assets/pelagic-ui.jpg" alt={t('nw.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
+            <figure class="frame tilt" data-full="/assets/pelagic-ui.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>oriebalzyuot96.github.io/pelagic-ui</span></div><img src="/assets/pelagic-ui.jpg" alt={t('nw.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
             <span class="float">🧩 <span><Fragment set:html={t('nw.float')} /></span></span>
           </div>
           <div class="p-body">
@@ -235,12 +235,12 @@ const isAr = Astro.currentLocale === 'ar';
             <p><Fragment set:html={t('nw.p')} /></p>
             <ul class="hl"><li><Fragment set:html={t('nw.h1')} /></li><li><Fragment set:html={t('nw.h2')} /></li><li><Fragment set:html={t('nw.h3')} /></li></ul>
             <div class="tags"><span class="tag">React</span><span class="tag">Vue</span><span class="tag">Svelte</span><span class="tag">Angular</span><span class="tag">React Native</span><span class="tag">Charts</span><span class="tag">WCAG 2.2</span></div>
-            <div class="p-actions"><a class="btn primary" href="https://www.npmjs.com/package/pelagic" target="_blank" rel="noopener">npm ↗</a><a class="btn" href="https://github.com/oriebalzyuot96/pelagic-ui" target="_blank" rel="noopener"><Fragment set:html={t('nw.gh')} /></a></div>
+            <div class="p-actions"><a class="btn primary" href={Astro.currentLocale === 'ar' ? 'https://oriebalzyuot96.github.io/pelagic-ui/ar/' : 'https://oriebalzyuot96.github.io/pelagic-ui/'} target="_blank" rel="noopener"><Fragment set:html={t('nw.docs')} /></a><a class="btn" href="https://www.npmjs.com/package/pelagic" target="_blank" rel="noopener">npm ↗</a><a class="btn" href="https://github.com/oriebalzyuot96/pelagic-ui" target="_blank" rel="noopener"><Fragment set:html={t('nw.gh')} /></a><a class="btn" href="https://oriebalzyuot96.github.io/pelagic-ui/space/" target="_blank" rel="noopener"><Fragment set:html={t('nw.space')} /></a></div>
           </div>
         </article>
       <article class="card proj spot reveal" data-c="lib" id="p-pelagic-space">
         <div class="media">
-          <figure class="frame tilt" data-full="/assets/pelagic-space.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>pelagic space · page builder</span></div><img src="/assets/pelagic-space.jpg" alt={t('osp.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
+          <figure class="frame tilt" data-full="/assets/pelagic-space.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>oriebalzyuot96.github.io/pelagic-ui/space</span></div><img src="/assets/pelagic-space.jpg" alt={t('osp.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
           <span class="float">🧱 <span><Fragment set:html={t('osp.float')} /></span></span>
         </div>
         <div class="p-body">
@@ -249,6 +249,7 @@ const isAr = Astro.currentLocale === 'ar';
           <p><Fragment set:html={t('osp.p')} /></p>
           <ul class="hl"><li><Fragment set:html={t('osp.h1')} /></li><li><Fragment set:html={t('osp.h2')} /></li><li><Fragment set:html={t('osp.h3')} /></li></ul>
           <div class="tags"><span class="tag">Drag &amp; drop</span><span class="tag">AI-style "describe it"</span><span class="tag">Code export</span><span class="tag">React</span><span class="tag">Vue</span><span class="tag">Angular</span></div>
+          <div class="p-actions"><a class="btn primary" href="https://oriebalzyuot96.github.io/pelagic-ui/space/" target="_blank" rel="noopener"><Fragment set:html={t('osp.open')} /></a></div>
         </div>
       </article>
 
