@@ -77,7 +77,34 @@
 		
 		<link href="./_app/immutable/assets/0.a2-kr6fw.css" rel="stylesheet">
 		<link href="./_app/immutable/assets/2.BFLiQzJO.css" rel="stylesheet">
-  </head>
+      <!-- theme change: a circle grows from the button you pressed (View Transitions; instant without support or with reduced motion) -->
+    <style>
+      ::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+      :root[data-vt='reveal']::view-transition-new(root) { animation: vt-reveal 0.75s cubic-bezier(0.65, 0, 0.25, 1) both; }
+      :root[data-vt='reveal']::view-transition-old(root) { animation: vt-dim 0.75s ease both; }
+      @keyframes vt-reveal { from { clip-path: circle(0 at var(--vt-x) var(--vt-y)); } to { clip-path: circle(var(--vt-r) at var(--vt-x) var(--vt-y)); } }
+      @keyframes vt-dim { to { filter: brightness(0.85); } }
+    </style>
+    <script>
+      (function () {
+        if (typeof document.startViewTransition !== 'function' || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        var at = { x: innerWidth / 2, y: 0 };
+        document.addEventListener('pointerdown', function (e) { at = { x: e.clientX, y: e.clientY }; }, true);
+        document.addEventListener('click', function (e) {
+          var b = e.target && e.target.closest ? e.target.closest('button') : null;
+          if (!b || !/theme|الوضع|الفاتح|الداكن/i.test(b.getAttribute('aria-label') || '')) return;
+          var r = document.documentElement;
+          r.style.setProperty('--vt-x', at.x + 'px');
+          r.style.setProperty('--vt-y', at.y + 'px');
+          r.style.setProperty('--vt-r', Math.hypot(Math.max(at.x, innerWidth - at.x), Math.max(at.y, innerHeight - at.y)) + 'px');
+          r.dataset.vt = 'reveal';
+          // the click handler changes the theme right after this listener; the new state is captured when the callback resolves
+          var t = document.startViewTransition(function () { return new Promise(function (res) { setTimeout(res, 0); }); });
+          t.finished.then(function () { delete r.dataset.vt; }, function () { delete r.dataset.vt; });
+        }, true);
+      })();
+    </script>
+</head>
   <body data-sveltekit-preload-data="hover">
     <div id="loader" role="status" aria-live="polite">
       <div class="l-art" aria-hidden="true">
