@@ -58,6 +58,12 @@ export const TOOLS: Tool[] = [
     ar: { tagline: 'يبني رسمًا لمسارات ومكوّنات وخدمات تطبيق Angular أو React ويصدّره كصفحة HTML تفاعلية وحدة.', points: ['صفحة مستقلة فيها بحث', 'يكتشف Angular وReact Router', 'تقديري: الـ README يذكر اللي يفوته'] },
     tags: ['Node.js', 'Angular', 'React', 'Graph'],
   },
+  {
+    id: 'portfolio-health', cmd: 'portfolio-health https://oriebalzyuot96.github.io', hue: 190,
+    en: { tagline: 'Crawls a portfolio site and finds broken links, missing metadata, Arabic pages without dir="rtl" and a missing CV before visitors do.', points: ['Reads the sitemap or the home page links', 'Weekly GitHub Actions run with a report artifact', 'Exit code 1 on errors'] },
+    ar: { tagline: 'يزحف على موقع البورتفوليو ويلاقي الروابط المكسورة والبيانات الناقصة والصفحات العربية بدون dir="rtl" وملف السيرة الذاتية الناقص قبل ما يشوفها الزوار.', points: ['يقرأ الـ sitemap أو روابط الصفحة الرئيسية', 'تشغيل أسبوعي على GitHub Actions مع تقرير', 'كود خروج 1 عند وجود أخطاء'] },
+    tags: ['Node.js', 'SEO', 'Accessibility', 'GitHub Actions'],
+  },
 ];
 
 /* Apps and kits shown with a short demo video. */

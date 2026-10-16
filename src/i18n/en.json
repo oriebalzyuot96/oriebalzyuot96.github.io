@@ -565,5 +565,20 @@
  "tool.float": "🛠️ Dev tool",
  "tool.pill": "MIT licence",
  "vid.float": "▶ Demo video",
- "tool.org2": "Open source · full-stack"
+ "tool.org2": "Open source · full-stack",
+ "pj.lib.t": "Libraries & developer tools",
+ "pj.lib.p": "Open-source packages on npm and command-line tools I designed, built and published.",
+ "pj.app.t": "Projects",
+ "pj.app.p": "Products and apps I designed and built end to end, with live demos where possible.",
+ "pj.theme.t": "Themes & design samples",
+ "pj.theme.p": "Templates, visual themes and redesigns, each with its own look, motion and dark mode.",
+ "orx.org": "Product · admin & SaaS template",
+ "orx.float": "🎨 Theme · template",
+ "orx.t": "Orcanix: an accessible, Arabic-first admin template",
+ "orx.p": "Dashboards, apps, sign-in and 3D landing pages in one admin and SaaS template, designed right-to-left from the first line and tested for accessibility.",
+ "orx.h1": "Arabic and right-to-left from the start",
+ "orx.h2": "Theme switch, colour skins and accessibility modes",
+ "orx.h3": "Editions for several front-end frameworks",
+ "orx.alt": "Orcanix landing page: headline \"The admin template everyone can use\" next to a video of the analytics dashboard.",
+ "orx.open": "Open the live demo ↗"
 }

@@ -213,16 +213,8 @@ const isAr = Astro.currentLocale === 'ar';
       </div>
     </div>
 
-    <div class="pj-part" data-part="own">
-      <div class="pj-head reveal"><span class="pj-num">02</span><div><h3><Fragment set:html={t('pj.own.t')} /></h3><p><Fragment set:html={t('pj.own.p')} /></p></div></div>
-      <div class="filters" role="group" aria-label={t('pj.filter')}>
-        <button class="chip" aria-pressed="true" data-f="all"><span><Fragment set:html={t('f.all')} /></span> <span class="c" data-n="all"></span></button>
-        <button class="chip" aria-pressed="false" data-f="lib">📦 <span><Fragment set:html={t('f.lib')} /></span> <span class="c" data-n="lib"></span></button>
-        <button class="chip" aria-pressed="false" data-f="tool">🛠️ <span><Fragment set:html={t('f.tool')} /></span> <span class="c" data-n="tool"></span></button>
-        <button class="chip" aria-pressed="false" data-f="theme">🎨 <span><Fragment set:html={t('f.theme')} /></span> <span class="c" data-n="theme"></span></button>
-        <button class="chip" aria-pressed="false" data-f="app">📱 <span><Fragment set:html={t('f.app')} /></span> <span class="c" data-n="app"></span></button>
-      </div>
-      <p class="sr" data-pj-live aria-live="polite" aria-atomic="true"></p>
+    <div class="pj-part" data-part="lib" id="libraries">
+      <div class="pj-head reveal"><span class="pj-num">02</span><div><h3><Fragment set:html={t('pj.lib.t')} /></h3><p><Fragment set:html={t('pj.lib.p')} /></p></div></div>
       <div class="projects">
   <article class="card proj spot reveal featured" data-c="lib" id="p-nawa">
           <div class="media">
@@ -238,6 +230,7 @@ const isAr = Astro.currentLocale === 'ar';
             <div class="p-actions"><a class="btn primary" href={Astro.currentLocale === 'ar' ? 'https://oriebalzyuot96.github.io/pelagic-ui/ar/' : 'https://oriebalzyuot96.github.io/pelagic-ui/'} target="_blank" rel="noopener"><Fragment set:html={t('nw.docs')} /></a><a class="btn" href="https://www.npmjs.com/package/pelagic" target="_blank" rel="noopener">npm ↗</a><a class="btn" href="https://github.com/oriebalzyuot96/pelagic-ui" target="_blank" rel="noopener"><Fragment set:html={t('nw.gh')} /></a><a class="btn" href="https://oriebalzyuot96.github.io/pelagic-ui/space/" target="_blank" rel="noopener"><Fragment set:html={t('nw.space')} /></a></div>
           </div>
         </article>
+
       <article class="card proj spot reveal" data-c="lib" id="p-pelagic-space">
         <div class="media">
           <figure class="frame tilt" data-full="/assets/pelagic-space.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>oriebalzyuot96.github.io/pelagic-ui/space</span></div><img src="/assets/pelagic-space.jpg" alt={t('osp.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
@@ -284,7 +277,7 @@ const isAr = Astro.currentLocale === 'ar';
         </div>
       </article>
 
-  {VIDEO_APPS.map((app) => {
+  {VIDEO_APPS.filter((app) => app.group === 'lib').map((app) => {
     const L = isAr ? app.ar : app.en;
     return (
       <article class="card proj spot reveal" data-c={app.group} id={`p-${app.id}`}>
@@ -328,51 +321,35 @@ const isAr = Astro.currentLocale === 'ar';
       </article>
     );
   })}
-
-  <article class="card proj spot reveal" data-c="theme" id="p-sample3">
-          <div class="media">
-            <figure class="frame tilt" data-full="/assets/sample3.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>oriebalzyuot96.github.io/sample-3</span></div><img src="/assets/sample3.jpg" alt={t('s3.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
-            <span class="float">✨ <span><Fragment set:html={t('s3.float')} /></span></span>
+      </div>
+    </div>
+    <div class="pj-part" data-part="app" id="my-projects">
+      <div class="pj-head reveal"><span class="pj-num">03</span><div><h3><Fragment set:html={t('pj.app.t')} /></h3><p><Fragment set:html={t('pj.app.p')} /></p></div></div>
+      <div class="projects">
+  {VIDEO_APPS.filter((app) => app.group === 'app').map((app) => {
+    const L = isAr ? app.ar : app.en;
+    return (
+      <article class="card proj spot reveal" data-c={app.group} id={`p-${app.id}`}>
+        <div class="media">
+          <div class="frame"><div class="bar"><i></i><i></i><i></i><span>{`github.com/oriebalzyuot96/${app.id}`}</span></div>
+            <video controls playsinline preload="metadata" poster={`/assets/videos/${app.video.replace('-demo', '')}-poster.jpg`} width="1280" height="720" aria-label={L.alt}>
+              <source src={`/assets/videos/${app.video}.webm`} type="video/webm" />
+              <source src={`/assets/videos/${app.video}.mp4`} type="video/mp4" />
+            </video>
           </div>
-          <div class="p-body">
-            <div class="org"><span><Fragment set:html={t('s3.org')} /></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('st.live')} /></span></span></div>
-            <h3><Fragment set:html={t('s3.t')} /></h3>
-            <p><Fragment set:html={t('s3.p')} /></p>
-            <ul class="hl"><li><Fragment set:html={t('s3.h1')} /></li><li><Fragment set:html={t('s3.h2')} /></li><li><Fragment set:html={t('s3.h3')} /></li></ul>
-            <div class="tags"><span class="tag">Astro</span><span class="tag">Three.js</span><span class="tag">WebGL</span><span class="tag">i18n · RTL</span><span class="tag">a11y</span></div>
-            <div class="p-actions"><a class="btn primary" href={Astro.currentLocale === 'ar' ? 'https://oriebalzyuot96.github.io/sample-3/ar/' : 'https://oriebalzyuot96.github.io/sample-3/'} target="_blank" rel="noopener"><Fragment set:html={t('btn.live')} /></a></div>
-          </div>
-        </article>
-
-  <article class="card proj spot reveal" data-c="theme" id="p-burger">
-          <div class="media">
-            <figure class="frame tilt" data-full="/assets/burger.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>oriebalzyuot96.github.io/samples/burger</span></div><img src="/assets/burger.jpg" alt={t('bg.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
-            <span class="float">🍔 <span><Fragment set:html={t('bg.float')} /></span></span>
-          </div>
-          <div class="p-body">
-            <div class="org"><span><Fragment set:html={t('bg.org')} /></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('st.live')} /></span></span></div>
-            <h3><Fragment set:html={t('bg.t')} /></h3>
-            <p><Fragment set:html={t('bg.p')} /></p>
-            <ul class="hl"><li><Fragment set:html={t('bg.h1')} /></li><li><Fragment set:html={t('bg.h2')} /></li><li><Fragment set:html={t('bg.h3')} /></li></ul>
-            <div class="tags"><span class="tag">Three.js</span><span class="tag">WebGL</span><span class="tag">Scroll animation</span><span class="tag">i18n · RTL</span><span class="tag">a11y</span></div>
-            <div class="p-actions"><a class="btn primary" href={Astro.currentLocale === 'ar' ? '/samples/burger/ar/' : '/samples/burger/'} target="_blank" rel="noopener"><Fragment set:html={t('btn.live')} /></a></div>
-          </div>
-        </article>
-
-  <article class="card proj spot reveal" data-c="theme" id="p-descent">
-          <div class="media">
-            <figure class="frame tilt" data-full="/assets/descent.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>oriebalzyuot96.github.io/samples/descent</span></div><img src="/assets/descent.jpg" alt={t('ds.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
-            <span class="float">🪼 <span><Fragment set:html={t('ds.float')} /></span></span>
-          </div>
-          <div class="p-body">
-            <div class="org"><span><Fragment set:html={t('ds.org')} /></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('st.live')} /></span></span></div>
-            <h3><Fragment set:html={t('ds.t')} /></h3>
-            <p><Fragment set:html={t('ds.p')} /></p>
-            <ul class="hl"><li><Fragment set:html={t('ds.h1')} /></li><li><Fragment set:html={t('ds.h2')} /></li><li><Fragment set:html={t('ds.h3')} /></li></ul>
-            <div class="tags"><span class="tag">Three.js</span><span class="tag">WebGL</span><span class="tag">Cursor-reactive</span><span class="tag">Scroll storytelling</span><span class="tag">a11y</span></div>
-            <div class="p-actions"><a class="btn primary" href={Astro.currentLocale === 'ar' ? '/samples/descent/ar/' : '/samples/descent/'} target="_blank" rel="noopener"><Fragment set:html={t('btn.live')} /></a></div>
-          </div>
-        </article>
+          <span class="float"><span><Fragment set:html={t('vid.float')} /></span></span>
+        </div>
+        <div class="p-body">
+          <div class="org"><span><Fragment set:html={t('tool.org2')} /></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('tool.pill')} /></span></span></div>
+          <h3>{L.title}</h3>
+          <p>{L.tagline}</p>
+          <ul class="hl">{L.points.map((p) => <li>{p}</li>)}</ul>
+          <div class="tags">{app.tags.map((g) => <span class="tag">{g}</span>)}</div>
+          <div class="p-actions"><a class="btn primary" href={`https://github.com/oriebalzyuot96/${app.id}`} target="_blank" rel="noopener">GitHub ↗</a></div>
+        </div>
+      </article>
+    );
+  })}
 
   <article class="card proj spot reveal" data-c="app" id="p-5min">
           <div class="media">
@@ -435,8 +412,6 @@ const isAr = Astro.currentLocale === 'ar';
           </div>
         </article>
 
-
-
   <article class="card proj spot reveal" data-c="app" id="p-yanbu">
           <div class="media">
             <figure class="frame tilt" data-full="/assets/yanbu.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>yanbu · tourism portal</span></div><img src="/assets/yanbu.jpg" alt={t('yb.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
@@ -497,6 +472,70 @@ const isAr = Astro.currentLocale === 'ar';
             <ul class="hl"><li><Fragment set:html={t('cv.h1')} /></li><li><Fragment set:html={t('cv.h2')} /></li><li><Fragment set:html={t('cv.h3')} /></li></ul>
             <div class="tags"><span class="tag">React Native</span><span class="tag">TypeScript</span><span class="tag">Jest</span><span class="tag">Maestro</span><span class="tag">a11y</span></div>
             <div class="p-actions"><button class="btn primary" type="button" onclick="this.closest('.proj').querySelector('[data-full]').click()"><Fragment set:html={t('btn.shots')} /></button><a class="btn" href="https://github.com/oriebalzyuot96/asset-conversion/blob/main/demo/video/convert-demo.mp4" target="_blank" rel="noopener"><Fragment set:html={t('cv.video')} /></a></div>
+          </div>
+        </article>
+      </div>
+    </div>
+    <div class="pj-part" data-part="theme" id="themes">
+      <div class="pj-head reveal"><span class="pj-num">04</span><div><h3><Fragment set:html={t('pj.theme.t')} /></h3><p><Fragment set:html={t('pj.theme.p')} /></p></div></div>
+      <div class="projects">
+  <article class="card proj spot reveal featured" data-c="theme" id="p-orcanix">
+          <div class="media">
+            <figure class="frame tilt" data-full="/assets/orcanix.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>oriebalzyuot96.github.io/orcanix-site</span></div><img src="/assets/orcanix.jpg" alt={t('orx.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
+            <span class="float"><span><Fragment set:html={t('orx.float')} /></span></span>
+          </div>
+          <div class="p-body">
+            <div class="org"><span><Fragment set:html={t('orx.org')} /></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('st.live')} /></span></span></div>
+            <h3><Fragment set:html={t('orx.t')} /></h3>
+            <p><Fragment set:html={t('orx.p')} /></p>
+            <ul class="hl"><li><Fragment set:html={t('orx.h1')} /></li><li><Fragment set:html={t('orx.h2')} /></li><li><Fragment set:html={t('orx.h3')} /></li></ul>
+            <div class="tags"><span class="tag">Admin template</span><span class="tag">SaaS</span><span class="tag">Arabic RTL</span><span class="tag">WCAG 2.2</span><span class="tag">Dark mode</span></div>
+            <div class="p-actions"><a class="btn primary" href="https://oriebalzyuot96.github.io/orcanix-site/" target="_blank" rel="noopener"><Fragment set:html={t('orx.open')} /></a></div>
+          </div>
+        </article>
+
+  <article class="card proj spot reveal" data-c="theme" id="p-sample3">
+          <div class="media">
+            <figure class="frame tilt" data-full="/assets/sample3.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>oriebalzyuot96.github.io/sample-3</span></div><img src="/assets/sample3.jpg" alt={t('s3.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
+            <span class="float">✨ <span><Fragment set:html={t('s3.float')} /></span></span>
+          </div>
+          <div class="p-body">
+            <div class="org"><span><Fragment set:html={t('s3.org')} /></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('st.live')} /></span></span></div>
+            <h3><Fragment set:html={t('s3.t')} /></h3>
+            <p><Fragment set:html={t('s3.p')} /></p>
+            <ul class="hl"><li><Fragment set:html={t('s3.h1')} /></li><li><Fragment set:html={t('s3.h2')} /></li><li><Fragment set:html={t('s3.h3')} /></li></ul>
+            <div class="tags"><span class="tag">Astro</span><span class="tag">Three.js</span><span class="tag">WebGL</span><span class="tag">i18n · RTL</span><span class="tag">a11y</span></div>
+            <div class="p-actions"><a class="btn primary" href={Astro.currentLocale === 'ar' ? 'https://oriebalzyuot96.github.io/sample-3/ar/' : 'https://oriebalzyuot96.github.io/sample-3/'} target="_blank" rel="noopener"><Fragment set:html={t('btn.live')} /></a></div>
+          </div>
+        </article>
+
+  <article class="card proj spot reveal" data-c="theme" id="p-burger">
+          <div class="media">
+            <figure class="frame tilt" data-full="/assets/burger.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>oriebalzyuot96.github.io/samples/burger</span></div><img src="/assets/burger.jpg" alt={t('bg.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
+            <span class="float">🍔 <span><Fragment set:html={t('bg.float')} /></span></span>
+          </div>
+          <div class="p-body">
+            <div class="org"><span><Fragment set:html={t('bg.org')} /></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('st.live')} /></span></span></div>
+            <h3><Fragment set:html={t('bg.t')} /></h3>
+            <p><Fragment set:html={t('bg.p')} /></p>
+            <ul class="hl"><li><Fragment set:html={t('bg.h1')} /></li><li><Fragment set:html={t('bg.h2')} /></li><li><Fragment set:html={t('bg.h3')} /></li></ul>
+            <div class="tags"><span class="tag">Three.js</span><span class="tag">WebGL</span><span class="tag">Scroll animation</span><span class="tag">i18n · RTL</span><span class="tag">a11y</span></div>
+            <div class="p-actions"><a class="btn primary" href={Astro.currentLocale === 'ar' ? '/samples/burger/ar/' : '/samples/burger/'} target="_blank" rel="noopener"><Fragment set:html={t('btn.live')} /></a></div>
+          </div>
+        </article>
+
+  <article class="card proj spot reveal" data-c="theme" id="p-descent">
+          <div class="media">
+            <figure class="frame tilt" data-full="/assets/descent.jpg" tabindex="0" role="button" aria-label={t('zoom.aria')}><div class="bar"><i></i><i></i><i></i><span>oriebalzyuot96.github.io/samples/descent</span></div><img src="/assets/descent.jpg" alt={t('ds.alt')} loading="lazy" width="1280" height="800"><span class="zoom"><Fragment set:html={t('zoom')} /></span></figure>
+            <span class="float">🪼 <span><Fragment set:html={t('ds.float')} /></span></span>
+          </div>
+          <div class="p-body">
+            <div class="org"><span><Fragment set:html={t('ds.org')} /></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('st.live')} /></span></span></div>
+            <h3><Fragment set:html={t('ds.t')} /></h3>
+            <p><Fragment set:html={t('ds.p')} /></p>
+            <ul class="hl"><li><Fragment set:html={t('ds.h1')} /></li><li><Fragment set:html={t('ds.h2')} /></li><li><Fragment set:html={t('ds.h3')} /></li></ul>
+            <div class="tags"><span class="tag">Three.js</span><span class="tag">WebGL</span><span class="tag">Cursor-reactive</span><span class="tag">Scroll storytelling</span><span class="tag">a11y</span></div>
+            <div class="p-actions"><a class="btn primary" href={Astro.currentLocale === 'ar' ? '/samples/descent/ar/' : '/samples/descent/'} target="_blank" rel="noopener"><Fragment set:html={t('btn.live')} /></a></div>
           </div>
         </article>
 
