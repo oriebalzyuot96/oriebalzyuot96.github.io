@@ -1,4 +1,4 @@
-import{C as Fn}from"./index-D9CLxq9l.js";/**
+import{C as Fn}from"./index-B_XUf_-g.js";/**
  * @license
  * Copyright 2010-2025 Three.js Authors
  * SPDX-License-Identifier: MIT

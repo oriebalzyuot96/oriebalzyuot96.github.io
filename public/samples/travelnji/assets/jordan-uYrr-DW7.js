@@ -1,4 +1,4 @@
-import{P as Pr,J as Pc}from"./index-BB6egpPh.js";/**
+import{P as Pr,J as Pc}from"./index-Hc2jlJTe.js";/**
  * @license
  * Copyright 2010-2025 Three.js Authors
  * SPDX-License-Identifier: MIT
