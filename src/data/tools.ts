@@ -59,3 +59,27 @@ export const TOOLS: Tool[] = [
     tags: ['Node.js', 'Angular', 'React', 'Graph'],
   },
 ];
+
+/* Apps and kits shown with a short demo video. */
+export interface VideoApp {
+  id: string;
+  group: 'app' | 'lib';
+  video: string;
+  en: { title: string; tagline: string; points: [string, string, string]; alt: string };
+  ar: { title: string; tagline: string; points: [string, string, string]; alt: string };
+  tags: string[];
+}
+export const VIDEO_APPS: VideoApp[] = [
+  {
+    id: 'calm-plan', group: 'app', video: 'calm-plan-demo',
+    en: { title: 'Calm Plan: tasks, mood and meditation in one calm place', tagline: 'A full-stack wellbeing companion: a daily to-do list, mood check-ins, guided meditation with music generated in the browser, and a supportive chat. Arabic first, with English, colour themes and accessibility settings.', points: ['Crisis guidance replaces chat replies when needed', 'Meditation sounds are generated live, no audio files', 'Self-help only: not therapy and not a diagnosis'], alt: 'Demo of Calm Plan: adding tasks, saving a mood, changing the theme, a breathing session and the chat.' },
+    ar: { title: 'خطة الهدوء: مهام ومزاج وتأمل بمكان هادئ واحد', tagline: 'رفيق عافية كامل بواجهة وخادم: قائمة مهام يومية، وتسجيل للمزاج، وتأمل موجّه بموسيقى تتولد داخل المتصفح، وشات داعم. عربي أولًا مع الإنجليزية وثيمات وإعدادات وصول.', points: ['إرشاد الطوارئ يحل محل ردود الشات عند الحاجة', 'أصوات التأمل تتولد مباشرة بدون ملفات صوت', 'للدعم الذاتي فقط: ليس علاجًا ولا تشخيصًا'], alt: 'عرض لتطبيق خطة الهدوء: إضافة مهام، وحفظ المزاج، وتغيير الثيم، وجلسة تنفس، والشات.' },
+    tags: ['Node.js', 'SQLite', 'Web Audio', 'Arabic RTL', 'Accessibility'],
+  },
+  {
+    id: 'chatbot-kit', group: 'lib', video: 'chatbot-demo',
+    en: { title: 'Chatbot Kit: an embeddable chat with its own back end', tagline: 'A reusable web-component chat widget plus a small Node back end that streams answers from the Claude API, or from local answers when no key is set.', points: ['Streaming answers over server-sent events', 'Rate limit, size limits and an origin allow-list', 'English and Arabic with RTL'], alt: 'Demo of the chat widget answering a question in English and one in Arabic.' },
+    ar: { title: 'Chatbot Kit: شات قابل للتضمين مع خادم خاص', tagline: 'ودجت شات (web component) قابل لإعادة الاستخدام مع خادم Node صغير يبث الإجابات من Claude API، أو من إجابات محلية إذا ما في مفتاح.', points: ['إجابات تتدفق عبر server-sent events', 'حد للطلبات وللحجم وقائمة مصادر مسموحة', 'إنجليزي وعربي مع RTL'], alt: 'عرض للودجت وهو يجاوب عن سؤال بالإنجليزية وآخر بالعربية.' },
+    tags: ['Node.js', 'Web Component', 'SSE', 'Claude API'],
+  },
+];

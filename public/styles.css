@@ -287,6 +287,7 @@ section.sec{padding:110px 0}
 .frame .bar{display:flex;gap:6px;align-items:center;padding:9px 12px;background:var(--surface);border-bottom:1px solid var(--line);direction:ltr}
 .frame .bar i{width:9px;height:9px;border-radius:50%;background:#ff8a80}.frame .bar i:nth-child(2){background:#ffd166}.frame .bar i:nth-child(3){background:#7ee0a1}
 .frame .bar span{flex:1;margin-inline-start:8px;font:500 .74rem var(--mono);color:var(--ink-3);background:var(--surface-2);border-radius:6px;padding:3px 10px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.frame>video{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background:#000}
 .frame>img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top}
 .frame .zoom{position:absolute;inset-inline-end:12px;bottom:12px;background:var(--glass);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:.78rem;font-weight:700;opacity:0;transition:opacity .25s}
 .frame:hover .zoom,.frame:focus-visible .zoom{opacity:1}

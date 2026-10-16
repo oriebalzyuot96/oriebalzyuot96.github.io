@@ -563,5 +563,7 @@
  "f.tool": "Developer tools",
  "tool.org": "Open source · developer tool",
  "tool.float": "🛠️ Dev tool",
- "tool.pill": "MIT licence"
+ "tool.pill": "MIT licence",
+ "vid.float": "▶ Demo video",
+ "tool.org2": "Open source · full-stack"
 }

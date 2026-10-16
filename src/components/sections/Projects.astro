@@ -1,6 +1,6 @@
 ---
 import { useT } from '../../i18n';
-import { TOOLS } from '../../data/tools';
+import { TOOLS, VIDEO_APPS } from '../../data/tools';
 const t = useT(Astro.currentLocale);
 const isAr = Astro.currentLocale === 'ar';
 ---
@@ -282,6 +282,31 @@ const isAr = Astro.currentLocale === 'ar';
           <div class="p-actions"><a class="btn primary" href="https://www.npmjs.com/package/nawa-captcha" target="_blank" rel="noopener">npm ↗</a><a class="btn" href="https://github.com/oriebalzyuot96/nawa-captcha" target="_blank" rel="noopener">GitHub ↗</a></div>
         </div>
       </article>
+
+  {VIDEO_APPS.map((app) => {
+    const L = isAr ? app.ar : app.en;
+    return (
+      <article class="card proj spot reveal" data-c={app.group} id={`p-${app.id}`}>
+        <div class="media">
+          <div class="frame"><div class="bar"><i></i><i></i><i></i><span>{`github.com/oriebalzyuot96/${app.id}`}</span></div>
+            <video controls playsinline preload="metadata" poster={`/assets/videos/${app.video.replace('-demo', '')}-poster.jpg`} width="1280" height="720" aria-label={L.alt}>
+              <source src={`/assets/videos/${app.video}.webm`} type="video/webm" />
+              <source src={`/assets/videos/${app.video}.mp4`} type="video/mp4" />
+            </video>
+          </div>
+          <span class="float"><span><Fragment set:html={t('vid.float')} /></span></span>
+        </div>
+        <div class="p-body">
+          <div class="org"><span><Fragment set:html={t('tool.org2')} /></span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('tool.pill')} /></span></span></div>
+          <h3>{L.title}</h3>
+          <p>{L.tagline}</p>
+          <ul class="hl">{L.points.map((p) => <li>{p}</li>)}</ul>
+          <div class="tags">{app.tags.map((g) => <span class="tag">{g}</span>)}</div>
+          <div class="p-actions"><a class="btn primary" href={`https://github.com/oriebalzyuot96/${app.id}`} target="_blank" rel="noopener">GitHub ↗</a></div>
+        </div>
+      </article>
+    );
+  })}
 
   {TOOLS.map((tool) => {
     const L = isAr ? tool.ar : tool.en;
