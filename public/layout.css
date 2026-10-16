@@ -38,7 +38,7 @@ section.sec{padding:clamp(64px,8vw,104px) 0}
 @media (max-width:420px){.nav-btn span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.hdr-r{gap:6px}}
 .mnav{position:absolute;inset-inline:0;top:100%;background:var(--surface);border-bottom:1px solid var(--line);box-shadow:var(--shadow-lg);padding:10px 0 16px}
 .mnav[hidden]{display:none}
-.mnav .wrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:6px}
+header.top .mnav .wrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;height:auto;align-items:stretch}
 .mnav a{display:block;padding:12px 16px;border-radius:14px;font-weight:700;color:var(--ink)}
 .mnav a:hover{background:var(--soft);color:var(--accent)}
 .mnav a[aria-current="page"]{background:var(--soft);color:var(--accent)}
@@ -186,3 +186,4 @@ html:has([data-ptabs]){scroll-padding-top:calc(var(--hdr-h) + var(--tabs-h) + 12
 /* contrast fixes (axe): live pill on tinted backgrounds, selected-tab count */
 .pill.live{background:color-mix(in srgb,var(--mint) 30%,transparent)}
 .ptab[aria-selected="true"] .ptab-n{background:var(--accent-ink);color:var(--accent)}
+.proj .illus-note{top:5px;bottom:auto;inset-inline-start:auto;inset-inline-end:8px;font-size:.64rem}
