@@ -547,5 +547,14 @@
  "os.libs": "Libraries on npm",
  "os.libsSub": "Install with npm i. Both are open source.",
  "os.tpl": "Templates and products",
- "os.tplSub": "Ready-to-use projects built on the same system."
+ "os.tplSub": "Ready-to-use projects built on the same system.",
+ "fs.org": "Open source · HAR → component",
+ "fs.t": "Flowshot: one HAR capture, one typed component",
+ "fs.p": "Record one action in the browser and get a typed component for React, Angular, Svelte or Astro, plus evidence for every request it makes. Secrets are removed before anything is written.",
+ "fs.h1": "Keeps only the API calls the page really makes",
+ "fs.h2": "Removes cookies, tokens and passwords",
+ "fs.h3": "Tests pass, MIT licence, public repository",
+ "fs.float": "🎞️ HAR → component",
+ "fs.alt": "Flowshot overview: a HAR export goes in, Flowshot keeps the API calls and removes secrets, then writes evidence files and a typed component.",
+ "fs.open": "Open the repo ↗"
 }
