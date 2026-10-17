@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-label="brand-forge command line example">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1220"/><stop offset="1" stop-color="#151b33"/></linearGradient>
+    <linearGradient id="ac" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="hsl(270 80% 62%)"/><stop offset="1" stop-color="hsl(320 75% 55%)"/></linearGradient>
+  </defs>
+  <rect width="960" height="540" fill="url(#bg)"/>
+  <circle cx="820" cy="80" r="170" fill="hsl(270 80% 62%)" opacity="0.10"/>
+  <circle cx="900" cy="470" r="120" fill="hsl(320 75% 55%)" opacity="0.10"/>
+  <rect x="28" y="28" width="904" height="484" rx="20" fill="#0f172a" stroke="#334155"/>
+  <rect x="28" y="28" width="904" height="52" rx="20" fill="#1e293b"/>
+  <rect x="28" y="60" width="904" height="20" fill="#1e293b"/>
+  <circle cx="64" cy="54" r="7" fill="#f87171"/><circle cx="90" cy="54" r="7" fill="#fbbf24"/><circle cx="116" cy="54" r="7" fill="#34d399"/>
+  <text x="480" y="60" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#94a3b8">brand-forge</text>
+  <rect x="48" y="104" width="6" height="40" rx="3" fill="url(#ac)"/>
+  <text x="68" y="132" font-family="Consolas, 'Courier New', monospace" font-size="26" fill="#f8fafc"><tspan fill="hsl(270 80% 62%)">$</tspan> brand-forge brand.json --out dist/brand</text>
+  <text xml:space="preserve" x="64" y="232" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#6ee7b7">✔ logo svgs (3 variants x mark, wordmark, lockup)</text>
+  <text xml:space="preserve" x="64" y="278" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#6ee7b7">✔ png icons 16/32/48/180/192/512 via js</text>
+  <text xml:space="preserve" x="64" y="324" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#fcd34d">! playwright-core unavailable; falling back to built-in rasteriser</text>
+  <text xml:space="preserve" x="64" y="370" font-family="Consolas, 'Courier New', monospace" font-size="24" fill="#e2e8f0">  done  21 files -&gt; dist/brand (109 ms)</text>
+  <text x="64" y="488" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#64748b">Illustrative output</text>
+</svg>

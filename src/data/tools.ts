@@ -7,6 +7,10 @@ export interface Tool {
   en: { tagline: string; points: [string, string, string] };
   ar: { tagline: string; points: [string, string, string] };
   tags: string[];
+  /** private products: shown with a card and description only, no repository link */
+  private?: boolean;
+  /** implementation language shown on private cards, e.g. "Go" */
+  lang?: string;
 }
 
 export const TOOLS: Tool[] = [
@@ -63,6 +67,54 @@ export const TOOLS: Tool[] = [
     en: { tagline: 'Crawls a portfolio site and finds broken links, missing metadata, Arabic pages without dir="rtl" and a missing CV before visitors do.', points: ['Reads the sitemap or the home page links', 'Weekly GitHub Actions run with a report artifact', 'Exit code 1 on errors'] },
     ar: { tagline: 'يزحف على موقع البورتفوليو ويلاقي الروابط المكسورة والبيانات الناقصة والصفحات العربية بدون dir="rtl" وملف السيرة الذاتية الناقص قبل ما يشوفها الزوار.', points: ['يقرأ الـ sitemap أو روابط الصفحة الرئيسية', 'تشغيل أسبوعي على GitHub Actions مع تقرير', 'كود خروج 1 عند وجود أخطاء'] },
     tags: ['Node.js', 'SEO', 'Accessibility', 'GitHub Actions'],
+  },
+  {
+    id: "brand-forge", cmd: "brand-forge brand.json --out dist/brand", hue: 270, private: true, lang: "Node.js",
+    en: { tagline: "Describe a brand once in JSON and generate every logo, favicon, icon, splash and token file from it.", points: ["Zero runtime dependencies: built-in rasteriser, PNG encoder and ICO packer","Colour, mono and inverse variants of mark, wordmark and lockup stay in sync","Typed brand.ts tokens so code and assets never drift apart"] },
+    ar: { tagline: "صِف هويتك مرة واحدة بملف JSON وولّد منه كل الشعارات والأيقونات وشاشة البداية وملف الرموز.", points: ["بدون أي اعتماديات وقت التشغيل: تحويل نقطي وترميز PNG وتجميع ICO مدمجة","نسخ ملونة وأحادية ومعكوسة للعلامة والاسم والتركيبة تبقى متطابقة","ملف brand.ts مُنمّط يضمن ألا تختلف الأصول عن الشيفرة"] },
+    tags: ["cli","branding","svg","icons"],
+  },
+  {
+    id: "mail-forge", cmd: "mail-forge templates/ --out dist/mail --sql seed.sql", hue: 15, private: true, lang: "Node.js",
+    en: { tagline: "One source file per email, rendered into Outlook-safe Arabic and English HTML, plain text and SQL seeds.", points: ["RTL and LTR from the same template, with mirrored layout and correct dir/lang","Table-based inlined HTML plus a plain-text fallback for every language","Optional SQL upsert seed for apps that store templates in a database"] },
+    ar: { tagline: "ملف مصدر واحد لكل رسالة يتحول إلى HTML عربي وإنجليزي متوافق مع Outlook ونص بديل وبذور SQL.", points: ["اتجاه من اليمين لليسار ومن اليسار لليمين من القالب نفسه مع تخطيط معكوس وسمات dir/lang صحيحة","HTML مبني على الجداول بأنماط مضمّنة مع نسخة نصية بديلة لكل لغة","ملف SQL اختياري لإدراج القوالب أو تحديثها في قاعدة البيانات"] },
+    tags: ["email","i18n","rtl","cli"],
+  },
+  {
+    id: "agents-md-gen", cmd: "agents-md-gen . --out AGENTS.md --check", hue: 175, private: true, lang: "Node.js",
+    en: { tagline: "Generates AGENTS.md, CLAUDE.md and Cursor rules from your repo's manifests and configs, and fails CI when they drift.", points: ["Scans package.json, .sln/.csproj, go.mod, pyproject, CI workflows, lint configs and .env.example names","Layered output: one file at the root plus one per workspace, with a marker block so hand-written notes survive","--check exits 1 when the generated section is out of date; zero runtime dependencies, Node 22"] },
+    ar: { tagline: "يولّد ملفات AGENTS.md وCLAUDE.md وقواعد Cursor من ملفات المشروع نفسها، ويُفشل CI عندما تصبح قديمة.", points: ["يفحص package.json وملفات ‎.sln/.csproj وgo.mod وpyproject وسير عمل CI وإعدادات الفحص وأسماء متغيرات ‎.env.example","مخرجات طبقية: ملف في الجذر وملف لكل مساحة عمل، مع علامات تحفظ الملاحظات المكتوبة يدويًا","الخيار ‎--check يُرجع 1 عندما يكون القسم المولَّد قديمًا؛ بلا اعتماديات تشغيل، Node 22"] },
+    tags: ["ai-context","cli","monorepo","ci"],
+  },
+  {
+    id: "skill-scaffold", cmd: "skill-scaffold add add-api-feature --name orders && skill-scaffold lint", hue: 95, private: true, lang: "Node.js",
+    en: { tagline: "Scaffolds and lints AI-assistant skills and editor rules from shared templates so every repo gets the same guardrails.", points: ["Five built-in templates: API feature, frontend client, mobile screen, repo workflow, review checklist","Lint enforces frontmatter, required sections, 200-char descriptions and unique names, failing CI on problems","Zero runtime dependencies on Node 22 with a tiny built-in YAML frontmatter parser"] },
+    ar: { tagline: "ينشئ ويتحقق من مهارات مساعد الذكاء الاصطناعي وقواعد المحرر من قوالب مشتركة ليحصل كل مستودع على الضوابط نفسها.", points: ["خمسة قوالب مدمجة: ميزة API، واجهة أمامية، شاشة موبايل، سير عمل المستودع، قائمة مراجعة","أمر lint يفرض الترويسة والأقسام المطلوبة ووصفاً بحد 200 حرف وأسماء فريدة ويُفشل CI عند وجود مشاكل","بدون أي اعتماديات وقت التشغيل على Node 22 مع محلل YAML صغير مدمج"] },
+    tags: ["cli","ai-skills","scaffolding","linting"],
+  },
+  {
+    id: "api-batch-e2e", cmd: "api-batch-e2e run plan.json --first-run --junit report.xml", hue: 210, private: true, lang: "Node.js",
+    en: { tagline: "Run stateful API end-to-end batches from one plan file, with test accounts, captured tokens, retries and secret redaction.", points: ["Accounts register on --first-run and just log in afterwards; saved tokens and ids flow into later steps as {{vars}}.","Per-step timing, retries with backoff for flaky steps, readable console report plus JUnit and JSON output.","Secrets come only from {{env.NAME}} and are redacted everywhere; zero runtime dependencies and a built-in demo server."] },
+    ar: { tagline: "شغّل دفعات اختبار شاملة لواجهات API من ملف خطة واحد، مع حسابات اختبار ورموز محفوظة وإعادة محاولة وإخفاء للأسرار.", points: ["تُسجَّل الحسابات في التشغيل الأول ثم تكتفي بتسجيل الدخول لاحقًا، وتنتقل الرموز والمعرّفات المحفوظة إلى الخطوات التالية كمتغيرات.","توقيت لكل خطوة، وإعادة محاولة بتراجع تدريجي للخطوات المتقلبة، وتقرير مقروء في الطرفية مع مخرجات JUnit وJSON.","الأسرار تأتي من متغيرات البيئة فقط وتُخفى في كل المخرجات، بدون أي اعتماديات وقت التشغيل ومع خادم تجريبي مدمج."] },
+    tags: ["api-testing","e2e","cli","junit"],
+  },
+  {
+    id: "arch-digest", cmd: "arch-digest . --out docs/architecture --since main", hue: 250, private: true, lang: "Node.js",
+    en: { tagline: "Architecture docs generated from the code itself: modules, public surface, import graph, routes and data models, deterministic and diffable.", points: ["Regex analysers for JS/TS, C# and Go extract exports, controllers, packages and HTTP routes","Mermaid import graph between modules plus external packages per module","--since <ref> turns git diff into a per-module change digest you can commit and review"] },
+    ar: { tagline: "توثيق معماري يُولَّد من الشيفرة نفسها: الوحدات والواجهة العامة ورسم الاستيرادات والمسارات ونماذج البيانات، بنتيجة ثابتة قابلة للمقارنة.", points: ["محلّلات تعتمد على التعابير النمطية لـ JS/TS و C# و Go تستخرج التصديرات والمتحكمات والحزم ومسارات HTTP","رسم Mermaid لاستيرادات الوحدات بينها مع الحزم الخارجية لكل وحدة","الخيار --since يحوّل git diff إلى ملخص تغييرات لكل وحدة يمكن حفظه ومراجعته"] },
+    tags: ["docs","static-analysis","mermaid","cli"],
+  },
+  {
+    id: "style-dups", cmd: "style-dups --root src/styles --json report.json", hue: 330, private: true, lang: "Go",
+    en: { tagline: "A single Go binary that finds repeated SCSS and CSS declarations while ignoring intentional overrides such as media queries, RTL, dark themes and hover states.", points: ["Reports only true duplicates: same selector, property and context.","Ignores intentional overrides in media, RTL, theme, state and mixin blocks.","Standard library only, parallel scans, and CI-friendly exit codes."] },
+    ar: { tagline: "أداة Go واحدة تجد تصريحات SCSS وCSS المكررة وتتجاهل التجاوزات المقصودة مثل استعلامات الوسائط والاتجاه والوضع الداكن.", points: ["تُبلغ عن التكرارات الحقيقية فقط: نفس المحدد والخاصية والسياق.","تتجاهل التجاوزات المقصودة في الوسائط والاتجاه والسمات والحالات.","مكتبة قياسية فقط، ومسح متوازٍ، ورموز خروج مناسبة لـ CI."] },
+    tags: ["Go","SCSS","CLI"],
+  },
+  {
+    id: "i18n-leak", cmd: "i18n-leak --root . --scope src/api,src/app", hue: 140, private: true, lang: "Go",
+    en: { tagline: "Finds human-readable strings hardcoded in server code, so text moves into resource files.", points: ["Single static Go binary, standard library only","Checks C# and TypeScript/JavaScript with a heuristic lexer","JSON report and exit codes make it CI-friendly"] },
+    ar: { tagline: "يكشف النصوص المكتوبة للبشر والمضمّنة في كود الخادم، لنقلها إلى ملفات الموارد.", points: ["ملف تنفيذي واحد بمكتبة Go القياسية فقط","يفحص ملفات C# وTypeScript وJavaScript","تقرير JSON ورموز خروج مناسبة للتكامل المستمر"] },
+    tags: ["Go","i18n","CLI"],
   },
 ];
 

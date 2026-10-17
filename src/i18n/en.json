@@ -567,6 +567,8 @@
  "tool.pill": "MIT licence",
  "vid.float": "▶ Demo video",
  "tool.org2": "Open source · full-stack",
+ "tool.orgPrivate": "Private product · developer tool",
+ "tool.pillPrivate": "Private",
  "pj.lib.t": "Libraries & developer tools",
  "pj.lib.p": "Open-source packages on npm and command-line tools I designed, built and published.",
  "pj.app.t": "Projects",

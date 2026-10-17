@@ -47,10 +47,13 @@ export function buildCards(t: (k: string) => string, isAr: boolean): Card[] {
   const fromTool = (tool: (typeof TOOLS)[number]): Card => {
     const L = isAr ? tool.ar : tool.en;
     return {
-      id: `p-${tool.id}`, part: 'tool', c: 'tool', org: t('tool.org'), pill: ['live', t('tool.pill')],
+      id: `p-${tool.id}`, part: 'tool', c: 'tool',
+      org: tool.private ? t('tool.orgPrivate') : t('tool.org'),
+      pill: tool.private ? ['gated', tool.lang ? `${t('tool.pillPrivate')} · ${tool.lang}` : t('tool.pillPrivate')] : ['live', t('tool.pill')],
       title: tool.id, titleLtr: true, summary: L.tagline, hl: [...L.points], float: t('tool.float'), tags: tool.tags,
-      media: { kind: 'img', bar: `github.com/oriebalzyuot96/${tool.id}`, src: `/assets/tools/${tool.id}.svg`, w: 960, h: 540 }, mediaAlt: `${tool.id}: ${tool.cmd}`,
-      actions: [{ kind: 'link', href: `https://github.com/oriebalzyuot96/${tool.id}`, html: 'GitHub ↗', primary: true }],
+      // private products have no repository to link to: the card shows the command, the art and the description only
+      media: { kind: 'img', bar: tool.private ? `$ ${tool.cmd}` : `github.com/oriebalzyuot96/${tool.id}`, src: `/assets/tools/${tool.id}.svg`, w: 960, h: 540 }, mediaAlt: `${tool.id}: ${tool.cmd}`,
+      actions: tool.private ? [] : [{ kind: 'link', href: `https://github.com/oriebalzyuot96/${tool.id}`, html: 'GitHub ↗', primary: true }],
     };
   };
   const proj = (part: Part) => PROJECTS.filter(p => p.part === part).map(fromProject);
