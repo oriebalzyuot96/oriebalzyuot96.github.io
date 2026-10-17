@@ -135,7 +135,7 @@ export const PROJECTS: Project[] = [
     actions: [{ kind: 'shots', label: 'btn.shots', primary: true }, { kind: 'link', href: 'https://github.com/oriebalzyuot96/asset-conversion/blob/main/demo/video/convert-demo.mp4', label: 'cv.video' }] },
 
   /* ───────── 04 · themes & design samples ───────── */
-  { id: 'p-orcanix', key: 'orx', part: 'theme', c: 'theme', pill: ['live', 'st.live'], hl: 3, float: ['', 'orx.float'],
+  { id: 'p-orcanix', key: 'orx', part: 'theme', c: 'theme', pill: ['gated', 'st.product'], hl: 3, float: ['', 'orx.float'],
     tags: ['Admin template', 'SaaS', 'Arabic RTL', 'WCAG 2.2', 'Dark mode'],
     media: img('oriebalzyuot96.github.io/orcanix-site', '/assets/orcanix.jpg', 'orx.alt'),
     actions: [{ kind: 'link', href: 'https://oriebalzyuot96.github.io/orcanix-site/', label: 'orx.open', primary: true }] },
