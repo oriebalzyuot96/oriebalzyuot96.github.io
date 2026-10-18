@@ -358,6 +358,13 @@ section.sec{padding:110px 0}
 .edu .card{padding:22px}
 .edu b{display:block;margin-bottom:4px}
 .edu span{font-size:.88rem;color:var(--ink-2)}
+.edu .edu-hero{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,200px) 1fr;gap:22px;align-items:center}
+.edu-shot{display:block;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);transition:transform .25s ease}
+.edu-shot:hover,.edu-shot:focus-visible{transform:translateY(-2px)}
+.edu-shot img{display:block;width:100%;height:auto}
+.edu .edu-note{display:block;margin-top:8px}
+@media (max-width:600px){.edu .edu-hero{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.edu-shot{transition:none}.edu-shot:hover,.edu-shot:focus-visible{transform:none}}
 @media (max-width:760px){.edu{grid-template-columns:1fr}.job{padding-inline-start:62px}.job .dot{width:46px;height:46px;font-size:.7rem;border-radius:14px}.timeline .rail{inset-inline-start:22px}.job .card{padding:20px}}
 
 /* archiving */
