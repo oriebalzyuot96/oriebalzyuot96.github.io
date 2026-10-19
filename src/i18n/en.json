@@ -635,6 +635,7 @@
  "sl.h2": "Live alerts and tracking boxes drawn on canvas and SVG",
  "sl.h3": "Two-user chat with presence, typing, read receipts and notifications",
  "sl.h4": "Unit tests plus a two-browser Playwright end-to-end test",
+ "sl.alt": "Sentinel Live control room: six camera tiles with tracking boxes and alert badges, a live alert feed, KPI cards and a notification from a simulated second operator.",
  "nav.work": "Work",
  "nav.lab": "Lab",
  "nav.writing": "Writing",
