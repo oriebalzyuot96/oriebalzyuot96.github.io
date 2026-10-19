@@ -47,6 +47,9 @@ const MOCK_LMS = `<div class="row">
 const MOCK_TAHALUF = `<div class="row" style="align-items:center;justify-content:center;gap:6px"><span class="node on">Form</span><span class="arrow">→</span><span class="node">Approve</span><span class="arrow">→</span><span class="node">Notify</span><span class="arrow">→</span><span class="node on">Done</span></div>
 <div class="row"><div class="box"><b>Fields</b><div class="ln a w60"></div><div class="ln w80"></div><div class="ln w40"></div></div><div class="box"><b>Rules</b><div class="ln w80"></div><div class="ln a w40"></div><div class="ln w60"></div></div><div class="box"><b>Preview</b><div class="ln w60"></div><div class="ln w80"></div></div></div>`;
 
+const MOCK_SENTINEL = `<div class="row"><div class="box"><b>Objects tracked</b><span class="num">1,482</span><div class="bar-p"><i style="width:78%"></i></div></div><div class="box"><b>Alerts / min</b><span class="num">12</span><div class="bar-p"><i style="width:40%"></i></div></div><div class="box"><b>Latency</b><span class="num">38 ms</span><span class="chip-s">Live · WebSocket</span></div></div>
+<div class="row"><div class="box"><b>CAM 01 · Lobby</b><div class="ln a w60"></div><div class="ln w80"></div></div><div class="box"><b>CAM 02 · Gate</b><div class="ln w80"></div><div class="ln a w40"></div></div><div class="box"><b>Operator chat</b><div class="ln w60"></div><div class="ln a w80"></div><span class="chip-s">2 unread</span></div></div>`;
+
 const img = (bar: string, src: string, altKey: string, w = 1280, h = 800, pos?: string): Media => ({ kind: 'img', bar, src, w, h, altKey, pos });
 const live = (en: string, ar: string): Href => ({ en, ar });
 
@@ -104,6 +107,10 @@ export const PROJECTS: Project[] = [
     actions: [{ kind: 'link', href: 'https://www.npmjs.com/package/nawa-captcha', raw: 'npm ↗', primary: true }, { kind: 'link', href: 'https://github.com/oriebalzyuot96/nawa-captcha', raw: 'GitHub ↗' }] },
 
   /* ───────── 03 · projects (calm-plan is prepended from tools.ts) ───────── */
+  { id: 'p-sentinel', key: 'sl', part: 'app', c: 'app', pill: ['soon', 'st.launch'], hl: 4, float: ['📡', 'sl.float'],
+    tags: ['Angular 22', 'RxJS', 'WebSockets', 'Signals', 'Real-time chat', 'Notifications', 'Canvas'],
+    media: { kind: 'mock', bar: 'sentinel-live · control room', html: MOCK_SENTINEL },
+    actions: [{ kind: 'link', href: 'https://github.com/oriebalzyuot96/sentinel-live', label: 'btn.code', primary: true }] },
   { id: 'p-5min', key: 'fm', part: 'app', c: 'app', pill: ['live', 'st.live'], hl: 3, float: ['🐋', 'fm.float'],
     tags: ['SvelteKit', 'Three.js', 'Custom UI kit', 'i18n · RTL', 'a11y'],
     media: img('oriebalzyuot96.github.io/samples/5min', '/assets/5min.jpg', 'fm.alt'),
