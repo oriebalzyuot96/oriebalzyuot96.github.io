@@ -50,6 +50,10 @@ const MOCK_TAHALUF = `<div class="row" style="align-items:center;justify-content
 const MOCK_SENTINEL = `<div class="row"><div class="box"><b>Objects tracked</b><span class="num">1,482</span><div class="bar-p"><i style="width:78%"></i></div></div><div class="box"><b>Alerts / min</b><span class="num">12</span><div class="bar-p"><i style="width:40%"></i></div></div><div class="box"><b>Latency</b><span class="num">38 ms</span><span class="chip-s">Live · WebSocket</span></div></div>
 <div class="row"><div class="box"><b>CAM 01 · Lobby</b><div class="ln a w60"></div><div class="ln w80"></div></div><div class="box"><b>CAM 02 · Gate</b><div class="ln w80"></div><div class="ln a w40"></div></div><div class="box"><b>Operator chat</b><div class="ln w60"></div><div class="ln a w80"></div><span class="chip-s">2 unread</span></div></div>`;
 
+const MOCK_DADA = `<div class="row"><div class="box"><b>Nurseries near you</b><span class="num">Amman</span><div class="bar-p"><i style="width:70%"></i></div></div><div class="box"><b>Babysitters</b><span class="num">by the hour</span><span class="chip-s">No payment on the platform</span></div></div>
+<div class="row"><div class="box"><div class="ln a w80"></div><div class="ln w60"></div></div><div class="box"><div class="ln w80"></div><div class="ln a w40"></div></div></div>`;
+const MOCK_MATJARI = `<div class="row"><div class="box"><b>UI / UX case study</b><div class="ln a w80"></div><div class="ln w60"></div><div class="ln w40"></div></div><div class="box"><b>Screens</b><div class="ln w80"></div><div class="ln a w60"></div></div></div>`;
+
 const img = (bar: string, src: string, altKey: string, w = 1280, h = 800, pos?: string): Media => ({ kind: 'img', bar, src, w, h, altKey, pos });
 const live = (en: string, ar: string): Href => ({ en, ar });
 
@@ -107,6 +111,14 @@ export const PROJECTS: Project[] = [
     actions: [{ kind: 'link', href: 'https://www.npmjs.com/package/nawa-captcha', raw: 'npm ↗', primary: true }, { kind: 'link', href: 'https://github.com/oriebalzyuot96/nawa-captcha', raw: 'GitHub ↗' }] },
 
   /* ───────── 03 · projects (calm-plan is prepended from tools.ts) ───────── */
+  { id: 'p-dada', key: 'dd', part: 'app', c: 'app', pill: ['soon', 'st.launch'], altName: 'دادة', hl: 3, float: ['🧸', 'dd.float'],
+    tags: ['Own business', 'Website + app', 'UI/UX', 'Arabic RTL', 'Map'],
+    media: { kind: 'mock', bar: 'dada · childcare in Jordan', html: MOCK_DADA },
+    actions: [{ kind: 'link', href: 'https://www.behance.net/gallery/257329173/Dada', label: 'btn.visit', primary: true }] },
+  { id: 'p-matjari', key: 'mj', part: 'app', c: 'app', pill: ['live', 'st.done'], hl: 2, float: ['🛍️', 'mj.float'],
+    tags: ['UI/UX', 'Case study', 'Behance'],
+    media: { kind: 'mock', bar: 'behance · matjari', html: MOCK_MATJARI },
+    actions: [{ kind: 'link', href: 'https://www.behance.net/gallery/257330537/Matjari', label: 'btn.visit', primary: true }] },
   { id: 'p-sentinel', key: 'sl', part: 'app', c: 'app', pill: ['soon', 'st.launch'], hl: 4, float: ['📡', 'sl.float'],
     tags: ['Angular 22', 'RxJS', 'WebSockets', 'Signals', 'Real-time chat', 'Notifications', 'Canvas'],
     media: { kind: 'mock', bar: 'sentinel-live · control room', html: MOCK_SENTINEL },
