@@ -52,9 +52,9 @@ export const PAGE_META: Record<PageKey, Record<Lang, { title: string; descriptio
   },
   tutoring: {
     en: { name: 'Tutoring', title: 'Private tutoring · Physics & Chemistry · Orieb Alzyuot',
-      description: 'Private physics and chemistry tutoring for Jordanian students in grade 10, grade 11 and Tawjihi, online or in person, with Orieb G: interactive Arabic lessons, quizzes and short videos.' },
+      description: 'Private physics and chemistry tutoring for Jordanian students in grade 10, grade 11 and Tawjihi, plus university intro courses (Circuits 1, Electronics 1, C++, Physics 1 and 2), online or in person, with Orieb G: interactive Arabic lessons, quizzes and short videos.' },
     ar: { name: 'دروس خصوصية', title: 'دروس خصوصية · فيزياء وكيمياء · عريب الزيوت',
-      description: 'دروس خصوصية في الفيزياء والكيمياء لطلاب الصف العاشر والأول الثانوي والتوجيهي في الأردن، عن بُعد أو حضورياً، مع المعلمة Orieb G: دروس تفاعلية بالعربية واختبارات وفيديوهات قصيرة.' },
+      description: 'دروس خصوصية في الفيزياء والكيمياء لطلاب الصف العاشر والأول الثانوي والتوجيهي في الأردن، ومواد جامعية تمهيدية (دوائر كهربائية 1، إلكترونيات 1، C++، فيزياء 1 و2)، عن بُعد أو حضورياً، مع المعلمة Orieb G.' },
   },
 };
 
