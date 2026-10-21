@@ -9,7 +9,7 @@ const path = Astro.url.pathname.replace(/^\/ar(\/|$)/, '/');
 const altHref = lang === 'ar' ? path : '/ar' + path;
 const altLang = lang === 'ar' ? 'en' : 'ar';
 const pre = lang === 'ar' ? '/ar' : '';
-const LINKS = [['work', t('nav.work')], ['about', t('nav.about')], ['lab', t('nav.lab')], ['writing', t('nav.writing')]];
+const LINKS = [['work', t('nav.work')], ['about', t('nav.about')], ['lab', t('nav.lab')], ['writing', t('nav.writing')], ['tutoring', t('nav.tutoring')]];
 const cur = path.split('/')[1] || '';
 const navItems = [
   ...LINKS.map(([p, label]) => ({ href: `${pre}/${p}/`, label, current: cur === p, cls: '' })),

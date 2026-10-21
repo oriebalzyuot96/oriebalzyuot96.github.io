@@ -24,7 +24,7 @@ export const VIDEO_SCHEMA = { '@type': 'VideoObject', name: 'Orieb Alzyuot · 40
     thumbnailUrl: `${SITE}/assets/intro-poster.jpg`, contentUrl: `${SITE}/assets/orieb-intro.mp4`, uploadDate: '2026-10-08', duration: 'PT40S' };
 
 /* inner pages: /work, /about, /lab, /writing (and /ar/…) */
-type PageKey = 'work' | 'about' | 'lab' | 'writing';
+type PageKey = 'work' | 'about' | 'lab' | 'writing' | 'tutoring';
 export const PAGE_META: Record<PageKey, Record<Lang, { title: string; description: string; name: string }>> = {
   work: {
     en: { name: 'Work', title: 'Work · Orieb Alzyuot · Government, fintech and open-source projects',
@@ -49,6 +49,12 @@ export const PAGE_META: Record<PageKey, Record<Lang, { title: string; descriptio
       description: 'Articles by Orieb Alzyuot on micro-frontends, front-end security, accessibility, theming, SCSS, AI-assisted engineering and moving from Angular to React Native.' },
     ar: { name: 'المقالات', title: 'المقالات · عريب الزيوت · مقالات في هندسة الواجهات الأمامية',
       description: 'مقالات عريب الزيوت عن الواجهات المصغّرة، وأمان الواجهات الأمامية، وسهولة الوصول، والثيمات، و SCSS، والهندسة بمساعدة الذكاء الاصطناعي، والانتقال من Angular إلى React Native.' },
+  },
+  tutoring: {
+    en: { name: 'Tutoring', title: 'Private tutoring · Physics & Chemistry · Orieb Alzyuot',
+      description: 'Private physics and chemistry tutoring for Jordanian students in grade 10, grade 11 and Tawjihi, online or in person, with Orieb G: interactive Arabic lessons, quizzes and short videos.' },
+    ar: { name: 'دروس خصوصية', title: 'دروس خصوصية · فيزياء وكيمياء · عريب الزيوت',
+      description: 'دروس خصوصية في الفيزياء والكيمياء لطلاب الصف العاشر والأول الثانوي والتوجيهي في الأردن، عن بُعد أو حضورياً، مع المعلمة Orieb G: دروس تفاعلية بالعربية واختبارات وفيديوهات قصيرة.' },
   },
 };
 

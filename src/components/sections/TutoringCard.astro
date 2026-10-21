@@ -1,0 +1,31 @@
+---
+/* Home: one card pointing to /tutoring (private physics & chemistry lessons with Orieb G). */
+const ar = Astro.currentLocale === 'ar';
+const L = (en: string, a: string) => (ar ? a : en);
+const pre = ar ? '/ar' : '';
+---
+<section class="sec" id="tutoring" aria-labelledby="tutoringT">
+  <div class="wrap">
+    <a class="card tcard spot reveal" href={`${pre}/tutoring/`}>
+      <img src="/assets/tutoring/orieb-g-pointing.svg" width="480" height="510" alt="" loading="lazy">
+      <span class="tc-body">
+        <span class="kicker">{L('Private tutoring · Physics & Chemistry', 'دروس خصوصية · فيزياء وكيمياء')}</span>
+        <h2 id="tutoringT">{L('Lessons with Orieb G, the cartoon teacher I coded', 'دروس مع المعلمة Orieb G، شخصية كرتونية برمجتها بنفسي')}</h2>
+        <p>{L("Grade 10, grade 11 and Tawjihi, online or in person. Try the free interactive Arabic lessons: Newton's laws and the mole, with quizzes and short videos.",
+              'للصف العاشر والأول الثانوي والتوجيهي، عن بُعد أو حضورياً. جرّب الدروس التفاعلية المجانية: قوانين نيوتن والمول، مع اختبارات وفيديوهات قصيرة.')}</p>
+        <span class="tc-go">{L('See tutoring', 'تفاصيل الدروس')} <span aria-hidden="true" class="flip-rtl">→</span></span>
+      </span>
+    </a>
+  </div>
+</section>
+<style>
+  .tcard{display:grid;grid-template-columns:200px 1fr;gap:28px;align-items:center;color:inherit;overflow:hidden;padding-bottom:0}
+  .tcard img{width:100%;height:auto;align-self:end}
+  .tc-body{display:grid;gap:8px;padding-bottom:22px}
+  .tc-body h2{font-size:clamp(1.3rem,1rem + 1.2vw,1.8rem);margin:0}
+  .tc-body p{color:var(--ink-2)}
+  .tc-go{color:var(--accent);font-weight:700}
+  .tc-body .kicker{display:block;width:fit-content;margin:0 0 4px;font:700 .78rem/1.2 var(--mono);text-transform:uppercase;letter-spacing:.14em;color:var(--accent)}
+  :global(:root[lang="ar"]) .tc-body .kicker{font-family:var(--font-ar);font-size:.9rem;letter-spacing:0;text-transform:none}
+  @media (max-width:640px){.tcard{grid-template-columns:110px 1fr;gap:16px}}
+</style>
