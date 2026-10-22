@@ -1,0 +1,169 @@
+---
+/* /tutoring and /ar/tutoring: private tutoring in physics & chemistry with Orieb G, her illustrated teacher character.
+   Lessons live at /lessons/ (separate static site); the short videos are served from /assets/tutoring/. */
+import Base from '../layouts/Base.astro';
+import PageHead from './PageHead.astro';
+import { langOf } from '../i18n';
+import { PAGE_META, pageSchema } from '../data/seo';
+const lang = langOf(Astro.currentLocale);
+const ar = lang === 'ar';
+const L = (en: string, a: string) => (ar ? a : en);
+const meta = PAGE_META.tutoring[lang];
+const LESSONS = 'https://oriebalzyuot96.github.io/lessons/';
+const lessons = [
+  { href: `${LESSONS}physics/newton-laws/`, ico: 'F = ma', subj: L('Physics', 'الفيزياء'),
+    t: 'قوانين نيوتن في الحركة', en: "Newton's laws of motion",
+    p: L('Inertia, net force, ΣF = m a with units, action–reaction, free-body diagrams, normal force and friction. 4 worked examples, an F = m a sandbox and a 10-question quiz.',
+         'القصور الذاتي، القوة المحصلة، ΣF = m a ووحداته، الفعل وردّ الفعل، مخطط الجسم الحر، القوة العمودية والاحتكاك. 4 أمثلة محلولة ومختبر تفاعلي واختبار من 10 أسئلة.') },
+  { href: `${LESSONS}chemistry/mole/`, ico: 'n = m/M', subj: L('Chemistry', 'الكيمياء'),
+    t: 'المول والحسابات الكيميائية', en: 'The mole and stoichiometry',
+    p: L("Avogadro's number, molar mass, mass ↔ moles ↔ particles, percentage composition and calculations from a balanced equation. Worked examples, a conversion map and a 10-question quiz.",
+         'عدد أفوجادرو، الكتلة المولية، التحويل بين الكتلة والمولات وعدد الجسيمات، النسبة المئوية بالكتلة، والحسابات من المعادلة الموزونة. أمثلة محلولة وخريطة تحويل واختبار من 10 أسئلة.') },
+];
+const uni = [
+  { slug: 'circuits-1', ico: 'V = IR', ar: 'دوائر كهربائية 1', en: 'Circuits 1', p: L("Ohm's law, series and parallel, voltage and current dividers, KCL and KVL with a worked nodal example, and power.", 'قانون أوم، التوالي والتوازي، مقسّما الجهد والتيار، KCL وKVL مع مثال تحليل عقد محلول، والقدرة.') },
+  { slug: 'electronics-1', ico: 'PN', ar: 'إلكترونيات 1', en: 'Electronics 1 · the diode', p: L('PN junction, forward and reverse bias, the I–V curve, ideal and 0.7 V models, half-wave and bridge rectifiers.', 'وصلة PN، الانحياز الأمامي والعكسي، منحنى I–V، النموذج المثالي ونموذج ⁦0.7 V⁩، ومقوّما نصف الموجة والقنطرة.') },
+  { slug: 'cpp-basics', ico: '{ }', ar: '⁦C++⁩ للمبتدئين', en: 'C++ for beginners', p: L('A first program with cout and cin, variables and types, if/else, a for loop and a simple function, on a code board.', 'أول برنامج مع cout وcin، المتغيرات والأنواع، if/else، حلقة for ودالة بسيطة، على لوحة كود.') },
+  { slug: 'physics-1', ico: 'v = v₀ + at', ar: 'فيزياء 1', en: 'University Physics 1', p: L("1D kinematics, Newton's second law on an inclined plane with and without friction, work–energy and energy conservation.", 'الحركة في بعد واحد، القانون الثاني على مستوى مائل مع الاحتكاك وبدونه، الشغل والطاقة وحفظ الطاقة.') },
+  { slug: 'physics-2', ico: 'kq/r²', ar: 'فيزياء 2', en: 'University Physics 2', p: L("Coulomb's law, electric field and superposition, electric potential, capacitance and the energy in a capacitor.", 'قانون كولوم، المجال الكهربائي والتراكب، الجهد الكهربائي، المواسعة والطاقة في المكثف.') },
+];
+const videos = [
+  { id: 'newton-16x9', w: 1920, h: 1080, cap: L("Newton's laws · mini-lesson (88 s)", 'قوانين نيوتن · درس مصغّر (88 ث)') },
+  { id: 'mole-16x9', w: 1920, h: 1080, cap: L('The mole · mini-lesson (88 s)', 'المول · درس مصغّر (88 ث)') },
+  { id: 'newton-9x16', w: 1080, h: 1920, cap: L("Newton's laws · short (37 s)", 'قوانين نيوتن · مقطع قصير (37 ث)') },
+  { id: 'mole-9x16', w: 1080, h: 1920, cap: L('The mole · short (37 s)', 'المول · مقطع قصير (37 ث)') },
+];
+---
+<Base title={meta.title} description={meta.description} schema={pageSchema('tutoring', lang)}>
+  <PageHead kicker={L('Physics · Chemistry · Grades 10, 11 & Tawjihi · University courses', 'فيزياء · كيمياء · العاشر والأول الثانوي والتوجيهي · مواد جامعية')}
+    title={L('Private tutoring · Physics, Chemistry &amp; university courses', 'دروس خصوصية · فيزياء وكيمياء ومواد جامعية')}
+    lede={L('One-to-one lessons for Jordanian secondary students, with <b>Orieb G</b>: my illustrated teacher character, who guides each interactive lesson (which I design and code) scene by scene. Online or in person, to be agreed.',
+            'دروس فردية لطلاب المرحلة الثانوية في الأردن، مع <b>المعلمة Orieb G</b>: شخصيتي المرسومة التي ترافق كل درس تفاعلي (أصمّمه وأبرمجه بنفسي) مشهداً مشهداً. عن بُعد أو حضورياً حسب الاتفاق.')}
+    crumb={meta.name}>
+    <div class="cta page-cta">
+      <a class="btn primary" href="https://wa.me/962775853203" target="_blank" rel="noopener">💬 {L('WhatsApp me', 'راسلني على واتساب')}</a>
+      <a class="btn" href={LESSONS} target="_blank" rel="noopener">{L('Try an interactive lesson', 'جرّب درساً تفاعلياً')} ↗</a>
+    </div>
+  </PageHead>
+
+  <section class="sec" aria-labelledby="tuMeet">
+    <div class="wrap tu-meet">
+      <figure class="card tu-og reveal">
+        <img src="/assets/tutoring/orieb-g-waving.jpg" width="640" height="640" alt={L('Orieb G, an illustrated teacher in a cream hijab with a butterfly brooch and a lavender blazer, waving', 'المعلمة Orieb G، شخصية مرسومة بحجاب كريمي وبروش فراشة وسترة بنفسجية فاتحة، تلوّح بيدها')} loading="lazy">
+      </figure>
+      <div class="reveal">
+        <span class="kicker">{L('Meet Orieb G', 'تعرّف على Orieb G')}</span>
+        <h2 id="tuMeet">{L('Friendly lessons, checked like an exam', 'دروس ودودة بدقّة الامتحان')}</h2>
+        <ul class="tu-list">
+          <li>{L('Private tutor alongside my university studies.', 'درّستُ دروساً خصوصية خلال سنوات دراستي الجامعية.')}</li>
+          <li>{L('B.Sc. Communication & Software Engineering, Al-Balqa Applied University (2014–2018): GPA 3.58/4.00, ranked 2nd in class, top marks in electrical, maths and physics courses.', 'بكالوريوس هندسة الاتصالات والبرمجيات، جامعة البلقاء التطبيقية (2014–2018): معدل 3.58 من 4.00، الثانية على الدفعة، وأعلى العلامات في مواد الكهرباء والرياضيات والفيزياء.')}</li>
+          <li>{L('I use my programming skills to make learning enjoyable: every lesson is interactive, with a sandbox, worked examples and an instant-feedback quiz.', 'أستخدم مهاراتي البرمجية لأجعل التعلّم ممتعاً: كل درس تفاعلي، فيه مختبر وأمثلة محلولة واختبار بتصحيح فوري.')}</li>
+          <li>{L('Subjects: physics and chemistry for grade 10, grade 11 (scientific) and Tawjihi.', 'المواد: الفيزياء والكيمياء للصف العاشر والأول الثانوي العلمي والتوجيهي.')}</li>
+          <li>{L('University courses from my degree: Circuits 1, Electronics 1, C++, Physics 1 and Physics 2.', 'مواد جامعية من تخصصي: دوائر كهربائية 1، وإلكترونيات 1، و⁦C++⁩، وفيزياء 1 و2.')}</li>
+          <li>{L('Sessions online or in person; times and details agreed directly.', 'الحصص عن بُعد أو حضورياً، والمواعيد والتفاصيل يُتفق عليها مباشرة.')}</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec alt" aria-labelledby="tuLessons">
+    <div class="wrap">
+      <div class="sec-title reveal"><span class="kicker">{L('Free interactive lessons · in Arabic', 'دروس تفاعلية مجانية · بالعربية')}</span><h2 id="tuLessons">{L('Start with a lesson', 'ابدأ بدرس')}</h2>
+        <p>{L('Both follow grade-11 (الأول الثانوي العلمي) topics of the Jordanian curriculum; check them against the current textbook. Independent material, not endorsed by the Ministry of Education.', 'يتبع الدرسان موضوعات الصف الأول الثانوي العلمي في المنهاج الأردني؛ طابِقهما مع الكتاب المدرسي الحالي. محتوى مستقل، وليس معتمداً من وزارة التربية والتعليم.')}</p></div>
+      <div class="tu-grid">
+        {lessons.map(x => (
+          <a class="card tu-card spot reveal" href={x.href} target="_blank" rel="noopener">
+            <span class="tu-ico" aria-hidden="true" dir="ltr">{x.ico}</span>
+            <span class="tu-body">
+              <span class="tu-meta">{x.subj} · {L('Grade 11', 'الأول الثانوي')}</span>
+              <h3 lang="ar" dir="rtl">{x.t}</h3>
+              {!ar && <span class="tu-en">{x.en}</span>}
+              <p>{x.p}</p>
+              <span class="tu-go">{L('Open the lesson ↗', 'افتح الدرس ↗')}</span>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="university" aria-labelledby="tuUni">
+    <div class="wrap">
+      <div class="sec-title reveal"><span class="kicker">{L('University courses · Arabic with English terms', 'مواد جامعية · بالعربية مع المصطلحات الإنجليزية')}</span><h2 id="tuUni">{L('University intro courses', 'مواد جامعية تمهيدية')}</h2>
+        <p>{L('Short interactive summaries from my B.Sc. in Communication & Software Engineering, each with worked examples, a quiz and a short video. Check them against your course syllabus.', 'ملخصات تفاعلية قصيرة من مواد تخصصي في هندسة الاتصالات والبرمجيات، لكل منها أمثلة محلولة واختبار قصير وفيديو. طابِقها مع مخطط مساقك.')}</p></div>
+      <div class="tu-uni">
+        {uni.map(x => (
+          <a class="card tu-card spot reveal" href={`${LESSONS}university/${x.slug}/`} target="_blank" rel="noopener">
+            <span class="tu-ico" aria-hidden="true" dir="ltr">{x.ico}</span>
+            <span class="tu-body">
+              <span class="tu-meta" dir="ltr">{x.en}</span>
+              <h3 lang="ar" dir="rtl">{x.ar}</h3>
+              <p>{x.p}</p>
+              <span class="tu-go">{L('Open the summary ↗', 'افتح الملخص ↗')}</span>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="tuVideos">
+    <div class="wrap">
+      <div class="sec-title reveal"><span class="kicker">{L('No voice-over · Arabic on-screen text and captions', 'بلا تعليق صوتي · نص عربي على الشاشة وترجمة')}</span><h2 id="tuVideos">{L('Short videos with Orieb G', 'فيديوهات قصيرة مع Orieb G')}</h2></div>
+      <div class="tu-vids">
+        {videos.map(v => (
+          <figure class={`tu-vid reveal${v.h > v.w ? ' tall' : ''}`}>
+            <video controls playsinline preload="none" poster={`/assets/tutoring/${v.id}-poster.jpg`} width={v.w} height={v.h}>
+              <source src={`/assets/tutoring/${v.id}.mp4`} type="video/mp4">
+              <track kind="captions" src={`/assets/tutoring/${v.id}.vtt`} srclang="ar" label="العربية" default>
+            </video>
+            <figcaption>{v.cap}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec alt" id="tutoring-contact" aria-labelledby="tuContact">
+    <div class="wrap">
+      <div class="card tu-cta reveal">
+        <div><span class="kicker">{L('Book a session', 'احجز حصة')}</span><h2 id="tuContact">{L('School or university, online or in person', 'للمدرسة أو الجامعة، عن بُعد أو حضورياً')}</h2>
+          <p>{L('Tell me the grade or course, the subject and the topic. We agree on times and details directly.', 'أخبرني بالصف أو المساق والمادة والموضوع، ونتفق على المواعيد والتفاصيل مباشرة.')}</p></div>
+        <div class="tu-ways">
+          <a class="btn primary" href="https://wa.me/962775853203" target="_blank" rel="noopener">💬 WhatsApp <span class="ltr">+962 77585 3203</span></a>
+          <a class="btn" href="mailto:alzuotorieb9999@gmail.com?subject=Private%20tutoring">✉️ <span class="ltr">alzuotorieb9999@gmail.com</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+<style>
+  .tu-meet{display:grid;grid-template-columns:minmax(0,340px) 1fr;gap:36px;align-items:center}
+  .tu-og{margin:0;padding:10px;overflow:hidden}
+  .tu-og img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:calc(var(--radius) - 8px);background:#b6a3d8;display:block}
+  .tu-list{list-style:none;display:grid;gap:12px;margin-top:14px}
+  .tu-meet .kicker,.tu-cta .kicker{display:block;width:fit-content;margin:0 0 4px;font:700 .78rem/1.2 var(--mono);text-transform:uppercase;letter-spacing:.14em;color:var(--accent)}
+  :global(:root[lang="ar"]) .tu-meet .kicker,:global(:root[lang="ar"]) .tu-cta .kicker{font-family:var(--font-ar);font-size:.9rem;letter-spacing:0;text-transform:none}
+  .tu-list li{display:flex;gap:12px;color:var(--ink-2)}
+  .tu-list li::before{content:"";flex:0 0 10px;height:10px;margin-top:.65em;border-radius:50%;background:var(--accent-2)}
+  .tu-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+  .tu-uni{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:18px}
+  .tu-card{display:grid;grid-template-columns:110px 1fr;gap:18px;align-items:start;color:inherit;padding:18px}
+  .tu-ico{aspect-ratio:1;border-radius:20px;background:#1f3b36;color:#f4f1e8;display:grid;place-items:center;font-weight:700;font-size:1.15rem;text-align:center}
+  .tu-body{display:grid;gap:6px}
+  .tu-meta{font-size:.85rem;color:var(--accent);font-weight:600}
+  .tu-body h3{font-family:var(--font-ar);font-size:1.3rem;margin:0}
+  .tu-en{color:var(--ink-3);font-size:.92rem}
+  .tu-body p{color:var(--ink-2);font-size:.95rem}
+  .tu-go{color:var(--accent);font-weight:700;font-size:.92rem}
+  .tu-vids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr)) repeat(2,minmax(0,.42fr));gap:18px;align-items:start}
+  .tu-vid{margin:0}
+  .tu-vid video{width:100%;height:auto;aspect-ratio:16/9;border-radius:var(--radius-sm);background:#000;display:block}
+  .tu-vid.tall video{aspect-ratio:9/16}
+  .tu-vid figcaption{font-size:.88rem;color:var(--ink-2);margin-top:8px}
+  .tu-cta{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:30px}
+  .tu-ways{display:flex;flex-wrap:wrap;gap:10px}
+  @media (max-width:980px){.tu-vids{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media (max-width:760px){.tu-meet,.tu-grid,.tu-cta{grid-template-columns:1fr}.tu-og{max-width:300px;margin-inline:auto}.tu-card{grid-template-columns:76px 1fr}}
+  @media (max-width:420px){.tu-ways .btn{width:100%;justify-content:center}}
+</style>

@@ -1,0 +1,31 @@
+---
+/* Home: one card pointing to /tutoring (private physics & chemistry lessons with Orieb G). */
+const ar = Astro.currentLocale === 'ar';
+const L = (en: string, a: string) => (ar ? a : en);
+const pre = ar ? '/ar' : '';
+---
+<section class="sec" id="tutoring" aria-labelledby="tutoringT">
+  <div class="wrap">
+    <a class="card tcard spot reveal" href={`${pre}/tutoring/`}>
+      <img src="/assets/tutoring/orieb-g-pointing.jpg" width="640" height="640" alt="" loading="lazy">
+      <span class="tc-body">
+        <span class="kicker">{L('Private tutoring · School & university', 'دروس خصوصية · مدرسة وجامعة')}</span>
+        <h2 id="tutoringT">{L('Interactive lessons I design and code, with Orieb G', 'دروس تفاعلية أصمّمها وأبرمجها، مع المعلمة Orieb G')}</h2>
+        <p>{L("Grade 10, grade 11 and Tawjihi, plus university intro courses (Circuits 1, Electronics 1, C++, Physics 1 & 2), online or in person. Try the free interactive Arabic lessons with quizzes and short videos.",
+              'للصف العاشر والأول الثانوي والتوجيهي، ومواد جامعية تمهيدية (دوائر كهربائية 1، إلكترونيات 1، ⁦C++⁩، فيزياء 1 و2)، عن بُعد أو حضورياً. جرّب الدروس التفاعلية المجانية مع اختبارات وفيديوهات قصيرة.')}</p>
+        <span class="tc-go">{L('See tutoring', 'تفاصيل الدروس')} <span aria-hidden="true" class="flip-rtl">→</span></span>
+      </span>
+    </a>
+  </div>
+</section>
+<style>
+  .tcard{display:grid;grid-template-columns:200px 1fr;gap:28px;align-items:center;color:inherit;overflow:hidden;padding:18px}
+  .tcard img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:20px;background:#b6a3d8}
+  .tc-body{display:grid;gap:8px}
+  .tc-body h2{font-size:clamp(1.3rem,1rem + 1.2vw,1.8rem);margin:0}
+  .tc-body p{color:var(--ink-2)}
+  .tc-go{color:var(--accent);font-weight:700}
+  .tc-body .kicker{display:block;width:fit-content;margin:0 0 4px;font:700 .78rem/1.2 var(--mono);text-transform:uppercase;letter-spacing:.14em;color:var(--accent)}
+  :global(:root[lang="ar"]) .tc-body .kicker{font-family:var(--font-ar);font-size:.9rem;letter-spacing:0;text-transform:none}
+  @media (max-width:640px){.tcard{grid-template-columns:110px 1fr;gap:16px}}
+</style>
