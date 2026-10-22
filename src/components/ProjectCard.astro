@@ -3,6 +3,7 @@
    The full description, highlights, extra links and the case study stay in the card (.p-detail / .case)
    and open in the shared overlay (app.js → openCase). */
 import { useT } from '../i18n';
+import Reveal from './react/Reveal.tsx';
 import type { Card } from '../data/cards';
 interface Props { card: Card; idPrefix?: string; headingLevel?: 'h3' | 'h4' }
 const { card, idPrefix = '', headingLevel = 'h3' } = Astro.props;
@@ -13,7 +14,8 @@ const m = card.media;
 const firstAction = card.actions[0];
 const detailLabel = card.caseStudy ? t('btn.case') : t('btn.details');
 ---
-<article class="card proj spot reveal" data-c={card.c} id={id}>
+<Reveal client:visible>
+<article class="card proj spot" data-c={card.c} id={id}>
   <div class="media">
     {m.kind === 'img' && (
       <figure class="frame tilt" data-full={m.src} tabindex="0" role="button" aria-label={t('zoom.aria')}>
@@ -69,3 +71,4 @@ const detailLabel = card.caseStudy ? t('btn.case') : t('btn.details');
     )}
   </div>
 </article>
+</Reveal>
