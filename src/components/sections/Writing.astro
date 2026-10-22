@@ -1,6 +1,7 @@
 ---
 /* Articles written by Orieb (hosted on the portfolio, imported to Medium). */
 import { useT } from '../../i18n';
+import Reveal from '../react/Reveal.tsx';
 interface Props { limit?: number; page?: boolean }
 const { limit, page = false } = Astro.props;
 const t = useT(Astro.currentLocale);
@@ -62,8 +63,9 @@ const shown = limit ? posts.slice(0, limit) : posts;
     )}
     {page && <h2 id="writingT" class="sr"><Fragment set:html={t('wr.all').replace('{n}', String(posts.length))} /></h2>}
     <div class="wr-grid">
-      {shown.map(x => (
-        <a class="card wr spot reveal" href={x.href} lang="en">
+      {shown.map((x, i) => (
+        <Reveal client:visible delay={i * 0.08}>
+        <a class="card wr spot" href={x.href} lang="en">
           <span class="wr-ico" aria-hidden="true">{x.icon}</span>
           <span class="wr-meta" lang={ar ? 'ar' : 'en'}>{x.time}</span>
           <h3 dir="ltr">{x.t}</h3>
@@ -71,6 +73,7 @@ const shown = limit ? posts.slice(0, limit) : posts;
           <span class="wr-tags">{x.tags.map(g => <span class="tag">{g}</span>)}</span>
           <span class="wr-go" lang={ar ? 'ar' : 'en'}><Fragment set:html={t('wr.read')} /></span>
         </a>
+      </Reveal>
       ))}
     </div>
     {!page && <div class="block-foot reveal"><a class="btn" href={`${pre}/writing/`}><Fragment set:html={t('wr.all').replace('{n}', String(posts.length))} /> <span aria-hidden="true" class="flip-rtl">→</span></a></div>}

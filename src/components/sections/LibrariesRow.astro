@@ -1,6 +1,7 @@
 ---
 /* Home: compact row of the two npm libraries and one card for all developer tools. */
 import { useT, langOf } from '../../i18n';
+import Reveal from '../react/Reveal.tsx';
 import { TOOLS } from '../../data/tools';
 const lang = langOf(Astro.currentLocale);
 const t = useT(Astro.currentLocale);
@@ -18,8 +19,9 @@ const libs = [
       <p><Fragment set:html={t('libs.p')} /></p>
     </div>
     <div class="lib-row">
-      {libs.map(l => (
-        <article class="card lib-card spot reveal">
+      {libs.map((l, i) => (
+        <Reveal client:visible delay={i * 0.08}>
+        <article class="card lib-card spot">
           <img src={l.img} alt="" width="1280" height="800" loading="lazy" />
           <div class="lib-body">
             <h3>{l.name}</h3>
@@ -28,6 +30,7 @@ const libs = [
             <div class="lib-links"><a href={l.npm} target="_blank" rel="noopener">npm ↗</a><a href={l.more}><Fragment set:html={t('libs.details')} /> <span aria-hidden="true" class="flip-rtl">→</span></a></div>
           </div>
         </article>
+      </Reveal>
       ))}
       <a class="card lib-card lib-tools spot reveal" href={`${pre}/work/#tools`}>
         <span class="lib-count ltr">{TOOLS.length}</span>
