@@ -705,3 +705,8 @@ footer.site-footer .wrap{display:block}
 .pj-num{font:800 2.4rem/1 var(--mono,monospace);color:var(--accent);opacity:.85}
 .pj-head h3{margin:0;font-size:clamp(1.4rem,2.6vw,1.9rem);letter-spacing:-.02em}
 .pj-head p{margin:6px 0 0;color:var(--ink-2);max-width:68ch}
+
+/* Framer Motion islands: let the animated wrapper be the grid/flex item so cards keep equal heights */
+astro-island,.reveal-fm>astro-slot{display:contents}
+.reveal-fm{height:100%}
+.reveal-fm>.card,.reveal-fm>astro-slot>.card{height:100%}
