@@ -11,8 +11,12 @@
     "build:hero": "node tools/build-hero3d.mjs"
   },
   "dependencies": {
+    "@astrojs/react": "^4.2.7",
     "@astrojs/sitemap": "^3.7.4",
-    "astro": "^5.18.2"
+    "astro": "^5.18.2",
+    "framer-motion": "^11.11.17",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "axe-core": "^4.10.2",
