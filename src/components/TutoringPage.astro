@@ -3,6 +3,7 @@
    Lessons live at /lessons/ (separate static site); the short videos are served from /assets/tutoring/. */
 import Base from '../layouts/Base.astro';
 import PageHead from './PageHead.astro';
+import Reveal from './react/Reveal.tsx';
 import { langOf } from '../i18n';
 import { PAGE_META, pageSchema } from '../data/seo';
 const lang = langOf(Astro.currentLocale);
@@ -71,8 +72,9 @@ const videos = [
       <div class="sec-title reveal"><span class="kicker">{L('Free interactive lessons · in Arabic', 'دروس تفاعلية مجانية · بالعربية')}</span><h2 id="tuLessons">{L('Start with a lesson', 'ابدأ بدرس')}</h2>
         <p>{L('Both follow grade-11 (الأول الثانوي العلمي) topics of the Jordanian curriculum; check them against the current textbook. Independent material, not endorsed by the Ministry of Education.', 'يتبع الدرسان موضوعات الصف الأول الثانوي العلمي في المنهاج الأردني؛ طابِقهما مع الكتاب المدرسي الحالي. محتوى مستقل، وليس معتمداً من وزارة التربية والتعليم.')}</p></div>
       <div class="tu-grid">
-        {lessons.map(x => (
-          <a class="card tu-card spot reveal" href={x.href} target="_blank" rel="noopener">
+        {lessons.map((x, i) => (
+          <Reveal client:visible delay={i * 0.08}>
+          <a class="card tu-card spot" href={x.href} target="_blank" rel="noopener">
             <span class="tu-ico" aria-hidden="true" dir="ltr">{x.ico}</span>
             <span class="tu-body">
               <span class="tu-meta">{x.subj} · {L('Grade 11', 'الأول الثانوي')}</span>
@@ -82,6 +84,7 @@ const videos = [
               <span class="tu-go">{L('Open the lesson ↗', 'افتح الدرس ↗')}</span>
             </span>
           </a>
+        </Reveal>
         ))}
       </div>
     </div>
@@ -92,8 +95,9 @@ const videos = [
       <div class="sec-title reveal"><span class="kicker">{L('University courses · Arabic with English terms', 'مواد جامعية · بالعربية مع المصطلحات الإنجليزية')}</span><h2 id="tuUni">{L('University intro courses', 'مواد جامعية تمهيدية')}</h2>
         <p>{L('Short interactive summaries from my B.Sc. in Communication & Software Engineering, each with worked examples, a quiz and a short video. Check them against your course syllabus.', 'ملخصات تفاعلية قصيرة من مواد تخصصي في هندسة الاتصالات والبرمجيات، لكل منها أمثلة محلولة واختبار قصير وفيديو. طابِقها مع مخطط مساقك.')}</p></div>
       <div class="tu-uni">
-        {uni.map(x => (
-          <a class="card tu-card spot reveal" href={`${LESSONS}university/${x.slug}/`} target="_blank" rel="noopener">
+        {uni.map((x, i) => (
+          <Reveal client:visible delay={i * 0.08}>
+          <a class="card tu-card spot" href={`${LESSONS}university/${x.slug}/`} target="_blank" rel="noopener">
             <span class="tu-ico" aria-hidden="true" dir="ltr">{x.ico}</span>
             <span class="tu-body">
               <span class="tu-meta" dir="ltr">{x.en}</span>
@@ -102,6 +106,7 @@ const videos = [
               <span class="tu-go">{L('Open the summary ↗', 'افتح الملخص ↗')}</span>
             </span>
           </a>
+        </Reveal>
         ))}
       </div>
     </div>
