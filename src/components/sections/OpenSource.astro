@@ -1,15 +1,97 @@
 ---
 import { useT } from '../../i18n';
 const t = useT(Astro.currentLocale);
+
+type Status = 'merged' | 'review' | 'res' | 'closed';
+interface Contribution {
+  icon: string;
+  lib: string;
+  num: string;
+  href: string;
+  status: Status;
+  text: string;
+  extra?: { label: string; href: string }[];
+}
+
+/** Code I got merged into other people's libraries, or that is in review there. */
+const shipped: Contribution[] = [
+  {
+    icon: '📄', lib: 'Mozilla pdf.js', num: 'PR #22320', href: 'https://github.com/mozilla/pdf.js/pull/22320', status: 'review', text: 'os.5',
+    extra: [{ label: 'os.repro', href: 'https://github.com/oriebalzyuot96/pdfjs-viewer-dpr-fix' }],
+  },
+  {
+    icon: '🅰️', lib: 'Analog', num: 'PR #2684', href: 'https://github.com/analogjs/analog/pull/2684', status: 'merged', text: 'os.6',
+    extra: [{ label: 'os.issue', href: 'https://github.com/analogjs/analog/issues/2683' }],
+  },
+  { icon: '📝', lib: 'ngx-markdown-it', num: 'PR #6', href: 'https://github.com/deiv/ngx-markdown-it/pull/6', status: 'merged', text: 'os.7' },
+  {
+    icon: '🛡️', lib: 'HOL plugin registry', num: 'PR #948', href: 'https://github.com/hashgraph-online/awesome-ai-plugins/pull/948', status: 'merged', text: 'os.8',
+    extra: [{ label: 'riskdebt', href: 'https://github.com/oriebalzyuot96/riskdebt' }],
+  },
+];
+
+/** Bugs I reported upstream with a reproducer. */
+const reported: Contribution[] = [
+  { icon: '📄', lib: 'Mozilla pdf.js', num: '#20306', href: 'https://github.com/mozilla/pdf.js/issues/20306', status: 'res', text: 'os.1' },
+  { icon: '🎨', lib: 'PrimeNG', num: '#13468', href: 'https://github.com/primefaces/primeng/issues/13468', status: 'res', text: 'os.2' },
+  { icon: '🎨', lib: 'PrimeNG', num: '#13479', href: 'https://github.com/primefaces/primeng/issues/13479', status: 'res', text: 'os.3' },
+  { icon: '🎨', lib: 'PrimeNG', num: '#13506', href: 'https://github.com/primefaces/primeng/issues/13506', status: 'closed', text: 'os.4' },
+];
+
+const pill: Record<Status, { cls: string; key: string }> = {
+  merged: { cls: 'live', key: 'os.merged' },
+  review: { cls: 'soon', key: 'os.review' },
+  res: { cls: 'live', key: 'os.res' },
+  closed: { cls: 'gated', key: 'os.closed' },
+};
+const groups = [
+  { id: 'ossShipped', title: 'os.shipped', sub: 'os.shippedSub', items: shipped },
+  { id: 'ossReported', title: 'os.reported', sub: 'os.reportedSub', items: reported },
+];
 ---
 <section class="sec" id="oss-sec" aria-labelledby="ossT">
   <div class="wrap">
     <div class="sec-title reveal"><span class="kicker"><Fragment set:html={t('os.k')} /></span><h2 id="ossT"><Fragment set:html={t('os.t')} /></h2><p><Fragment set:html={t('os.p')} /></p></div>
-    <div class="oss">
-      <a class="card issue spot reveal" href="https://github.com/mozilla/pdf.js/issues/20306" target="_blank" rel="noopener"><span class="lib">📄</span><div><h3><span>Mozilla pdf.js</span><span class="ltr" style="color:var(--accent)">#20306</span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('os.res')} /></span></span></h3><p><Fragment set:html={t('os.1')} /></p></div></a>
-      <a class="card issue spot reveal" href="https://github.com/primefaces/primeng/issues/13468" target="_blank" rel="noopener"><span class="lib">🎨</span><div><h3><span>PrimeNG</span><span class="ltr" style="color:var(--accent)">#13468</span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('os.res')} /></span></span></h3><p><Fragment set:html={t('os.2')} /></p></div></a>
-      <a class="card issue spot reveal" href="https://github.com/primefaces/primeng/issues/13479" target="_blank" rel="noopener"><span class="lib">🎨</span><div><h3><span>PrimeNG</span><span class="ltr" style="color:var(--accent)">#13479</span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('os.res')} /></span></span></h3><p><Fragment set:html={t('os.3')} /></p></div></a>
-      <a class="card issue spot reveal" href="https://github.com/primefaces/primeng/issues/13506" target="_blank" rel="noopener"><span class="lib">🎨</span><div><h3><span>PrimeNG</span><span class="ltr" style="color:var(--accent)">#13506</span><span class="pill live"><span class="d"></span><span><Fragment set:html={t('os.closed')} /></span></span></h3><p><Fragment set:html={t('os.4')} /></p></div></a>
-    </div>
+    {groups.map(g => (
+      <div class="oss-group" aria-labelledby={g.id}>
+        <h3 class="oss-h" id={g.id}><Fragment set:html={t(g.title)} /><small><Fragment set:html={t(g.sub)} /></small></h3>
+        <ul class="oss" role="list">
+          {g.items.map(c => (
+            <li class="card issue spot reveal">
+              <span class="lib" aria-hidden="true">{c.icon}</span>
+              <div>
+                <h4>
+                  <a class="oss-main" href={c.href} target="_blank" rel="noopener"><span>{c.lib}</span><span class="ltr" style="color:var(--accent)">{c.num}</span></a>
+                  <span class={`pill ${pill[c.status].cls}`}><span class="d"></span><span><Fragment set:html={t(pill[c.status].key)} /></span></span>
+                </h4>
+                <p><Fragment set:html={t(c.text)} /></p>
+                {c.extra && (
+                  <p class="oss-links">
+                    {c.extra.map(x => <a class="ltr" href={x.href} target="_blank" rel="noopener">{x.label.startsWith('os.') ? <Fragment set:html={t(x.label)} /> : x.label} ↗</a>)}
+                  </p>
+                )}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
   </div>
 </section>
+
+<style>
+  .oss-group + .oss-group { margin-top: 36px; }
+  .oss-h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin: 0 0 14px; font-size: 1.05rem; }
+  .oss-h small { font-size: .88rem; font-weight: 400; color: var(--ink-2); }
+  .oss { margin: 0; padding: 0; list-style: none; }
+  .issue h4 { margin: 0; font-size: 1rem; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .oss-main { display: inline-flex; gap: 8px; color: inherit; text-decoration: none; }
+  /* The whole card is clickable through the title link; the extra links sit above it. */
+  .issue { position: relative; }
+  .oss-main::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
+  .oss-main:focus-visible { outline: none; }
+  .issue:has(.oss-main:focus-visible) { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .oss-links { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 8px 0 0; font-size: .86rem; font-weight: 600; }
+  .oss-links a { color: var(--accent); }
+  .oss-links a:hover, .oss-links a:focus-visible { text-decoration: underline; }
+</style>

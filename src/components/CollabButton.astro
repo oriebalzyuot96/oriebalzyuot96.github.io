@@ -1,0 +1,193 @@
+---
+/**
+ * "Let's collaborate": an ink button whose surface reaches for the pointer.
+ * Strands of ink stretch toward the cursor, cling while it is close, and snap
+ * back with a wobble when pulled too far. Drawn as plain circles on a canvas;
+ * an SVG blur + alpha-threshold filter melts them into one liquid shape.
+ * It is a real link, so it works with the keyboard, without JS and with
+ * reduced motion (then the ink sits still).
+ */
+import { useT } from '../i18n';
+const t = useT(Astro.currentLocale);
+const href = 'mailto:alzuotorieb9999@gmail.com?subject=' + encodeURIComponent("Let's collaborate");
+---
+<div class="collab" data-collab>
+  <svg class="collab-defs" aria-hidden="true" focusable="false" width="0" height="0">
+    <filter id="collab-goo" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur" />
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -10" />
+    </filter>
+  </svg>
+  <canvas class="collab-ink" aria-hidden="true"></canvas>
+  <a class="collab-btn" href={href}><Fragment set:html={t('collab.cta')} /></a>
+  <p class="collab-hint" aria-hidden="true"><Fragment set:html={t('collab.hint')} /></p>
+</div>
+
+<style>
+  .collab { position: relative; display: grid; place-items: center; height: 230px; margin: 8px 0 18px; touch-action: pan-y; }
+  .collab-defs { position: absolute; }
+  .collab-ink { position: absolute; inset: 0; width: 100%; height: 100%; filter: url(#collab-goo); pointer-events: none; }
+  .collab-btn {
+    position: relative; z-index: 1; display: grid; place-items: center;
+    min-width: 230px; height: 64px; padding: 0 30px; border-radius: 999px;
+    color: var(--bg); font-weight: 750; font-size: 1.12rem; letter-spacing: -.01em; text-decoration: none;
+    /* Without JS (or before it runs) the pill itself is the ink. */
+    background: var(--ink);
+    transition: transform .35s cubic-bezier(.22, 1, .36, 1);
+  }
+  .collab.is-live .collab-btn { background: transparent; }
+  .collab-btn:hover { transform: translateY(-2px); }
+  .collab-btn:active { transform: translateY(1px) scale(.98); }
+  .collab-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 16px; }
+  .collab-hint { position: absolute; bottom: 4px; margin: 0; font-size: .8rem; color: var(--ink-3); }
+  :global(:root[data-contrast]) .collab-ink { filter: none; }
+</style>
+
+<script>
+  type Strand = { ax: number; ay: number; x: number; y: number; vx: number; vy: number; grab: number; cool: number };
+
+  const SUB = 1 / 240;     // physics substep, s
+  const AWARE = 170;       // the ink notices the pointer within this distance of the pill, px
+  const MAX_LEN = 130;     // longest a strand stretches while clinging, px
+  const SNAP = 175;        // pointer this far from a strand's root: the strand lets go
+  const STRANDS = 9;
+
+  for (const root of document.querySelectorAll<HTMLElement>('[data-collab]')) {
+    const canvas = root.querySelector<HTMLCanvasElement>('.collab-ink')!;
+    const btn = root.querySelector<HTMLAnchorElement>('.collab-btn')!;
+    const g = canvas.getContext('2d')!;
+    const html = document.documentElement;
+    const reduceMQ = matchMedia('(prefers-reduced-motion: reduce)');
+    const still = () => html.dataset.motion === 'reduced' || (html.dataset.motion !== 'full' && reduceMQ.matches);
+
+    let W = 0, H = 0, dpr = 1, ink = '#1f1b2e';
+    let pill = { cx: 0, cy: 0, hw: 115, hh: 32 };
+    const ptr = { x: -1e4, y: -1e4, in: false };
+    let strands: Strand[] = [];
+    let wobble = 0, wobbleV = 0, hover = 0, raf = 0, last = 0, visible = false;
+
+    const readInk = () => { ink = getComputedStyle(root).getPropertyValue('--ink').trim() || ink; };
+
+    /** Anchor points spread around the pill's outline. */
+    const layout = () => {
+      const r = root.getBoundingClientRect();
+      const b = btn.getBoundingClientRect();
+      dpr = Math.min(2, devicePixelRatio || 1);
+      W = r.width; H = r.height;
+      canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+      pill = { cx: b.left - r.left + b.width / 2, cy: b.top - r.top + b.height / 2, hw: b.width / 2, hh: b.height / 2 };
+      // Roots just inside the outline, all the way round, so a strand can leave from any side.
+      strands = Array.from({ length: STRANDS }, (_, i) => {
+        const a = (i / STRANDS) * Math.PI * 2 + 0.35;
+        const ax = pill.cx + Math.cos(a) * (pill.hw - pill.hh * 0.35);
+        const ay = pill.cy + Math.sin(a) * pill.hh * 0.82;
+        return { ax, ay, x: ax, y: ay, vx: 0, vy: 0, grab: 0, cool: 0 };
+      });
+    };
+
+    /** Distance from a point to the pill's edge (negative inside). */
+    const edgeDist = (x: number, y: number) => {
+      const dx = Math.max(Math.abs(x - pill.cx) - (pill.hw - pill.hh), 0);
+      return Math.hypot(dx, y - pill.cy) - pill.hh;
+    };
+
+    const step = (dt: number) => {
+      const edge = edgeDist(ptr.x, ptr.y);
+      const inside = ptr.in && edge < 0;
+      // 0 when the pointer is far or over the button, up to 1 right next to its edge.
+      const near = ptr.in && !still() && !inside ? Math.max(0, 1 - edge / AWARE) : 0;
+      hover += ((inside ? 1 : 0) - hover) * Math.min(1, dt * 10);
+      // The strands rooted closest to the pointer reach for it; the rest settle home.
+      const order = strands.map((s, i) => ({ i, d: Math.hypot(s.ax - ptr.x, s.ay - ptr.y) })).sort((a, b) => a.d - b.d);
+      const reaching = new Set(order.slice(0, near > 0.6 ? 3 : near > 0 ? 2 : 0).map(o => o.i));
+      for (let k = 0; k < dt / SUB; k++) {
+        for (const [i, s] of strands.entries()) {
+          s.cool = Math.max(0, s.cool - SUB);
+          const wants = reaching.has(i) && s.cool === 0;
+          s.grab += ((wants ? 1 : 0) - s.grab) * SUB * (wants ? 5 : 3);
+          // Aim at the pointer, never longer than MAX_LEN; a strand only leans at first and
+          // stretches all the way as the pointer comes close.
+          const dx = ptr.x - s.ax, dy = ptr.y - s.ay;
+          const dist = Math.hypot(dx, dy) || 1;
+          const len = Math.min(dist, MAX_LEN) * s.grab * (0.45 + 0.55 * near);
+          const tx = s.ax + (dx / dist) * len;
+          const ty = s.ay + (dy / dist) * len;
+          if (s.grab > 0.5 && dist > SNAP) {
+            // Pulled out of reach: let go and recoil past home; the body wobbles.
+            s.grab = 0; s.cool = 0.8; s.vx *= -0.4; s.vy *= -0.4;
+            wobbleV += 10;
+          }
+          const stiff = 120 + 180 * (1 - s.grab), damp = 10;
+          s.vx += ((tx - s.x) * stiff - s.vx * damp) * SUB;
+          s.vy += ((ty - s.y) * stiff - s.vy * damp + 60) * SUB; // a little gravity: ink droops
+          s.x += s.vx * SUB; s.y += s.vy * SUB;
+          if (Math.hypot(s.x - s.ax, s.y - s.ay) > SNAP) {
+            // Snap: the strand lets go and recoils; the body wobbles.
+            s.grab = 0; s.cool = 0.9; s.vx *= -0.35; s.vy *= -0.35;
+            wobbleV += 9;
+          }
+        }
+        wobbleV += (-wobble * 260 - wobbleV * 7) * SUB;
+        wobble += wobbleV * SUB;
+      }
+    };
+
+    const draw = () => {
+      g.setTransform(dpr, 0, 0, dpr, 0, 0);
+      g.clearRect(0, 0, W, H);
+      g.fillStyle = ink;
+      const lift = hover * 2;
+      const sx = 1 + wobble * 0.012, sy = 1 - wobble * 0.012;
+      // Body: a stadium made of circles plus a bar, slightly squashed by the wobble.
+      g.beginPath();
+      g.roundRect(pill.cx - pill.hw * sx, pill.cy - pill.hh * sy - lift, pill.hw * 2 * sx, pill.hh * 2 * sy, pill.hh * sy);
+      g.fill();
+      // Strands: beads that thin out toward the tip, which ends in a droplet.
+      for (const s of strands) {
+        const len = Math.hypot(s.x - s.ax, s.y - s.ay);
+        if (len < 4) continue;
+        const beads = Math.ceil(len / 6);
+        const tip = Math.max(5, 11 - len / 30);
+        for (let b = 0; b <= beads; b++) {
+          const t = b / beads;
+          const r = 13 * (1 - t) ** 1.4 + tip * t ** 3 + 2.2;
+          g.beginPath();
+          g.arc(s.ax + (s.x - s.ax) * t, s.ay + (s.y - s.ay) * t - lift * (1 - t), r, 0, Math.PI * 2);
+          g.fill();
+        }
+      }
+    };
+
+    const frame = (now: number) => {
+      raf = 0;
+      const dt = Math.min(1 / 30, (now - (last || now)) / 1000);
+      last = now;
+      step(dt);
+      draw();
+      const moving = strands.some(s => Math.abs(s.vx) + Math.abs(s.vy) > 0.5 || Math.hypot(s.x - s.ax, s.y - s.ay) > 1) || Math.abs(wobbleV) > 0.05 || ptr.in;
+      if (visible && moving) raf = requestAnimationFrame(frame);
+      else last = 0;
+    };
+    const kick = () => { if (!raf && visible) raf = requestAnimationFrame(frame); };
+
+    const toLocal = (e: PointerEvent) => {
+      const r = root.getBoundingClientRect();
+      ptr.x = e.clientX - r.left; ptr.y = e.clientY - r.top;
+    };
+    root.addEventListener('pointermove', e => { toLocal(e); ptr.in = true; kick(); });
+    root.addEventListener('pointerdown', e => { toLocal(e); ptr.in = true; kick(); });
+    root.addEventListener('pointerleave', () => { ptr.in = false; kick(); });
+    root.addEventListener('pointercancel', () => { ptr.in = false; kick(); });
+    btn.addEventListener('click', () => { wobbleV += 14; kick(); });
+
+    new ResizeObserver(() => { layout(); draw(); kick(); }).observe(root);
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; kick(); }).observe(root);
+    new MutationObserver(() => { readInk(); draw(); }).observe(html, { attributes: true, attributeFilter: ['data-theme', 'data-accent', 'data-contrast', 'data-skin'] });
+    matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { readInk(); draw(); });
+
+    readInk();
+    layout();
+    draw();
+    root.classList.add('is-live');
+  }
+</script>

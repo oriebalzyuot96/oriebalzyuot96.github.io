@@ -1,5 +1,6 @@
 ---
 import { useT } from '../../i18n';
+import CollabButton from '../CollabButton.astro';
 const t = useT(Astro.currentLocale);
 ---
 <section class="sec" id="contact" style="padding-top:0" aria-labelledby="contactT">
@@ -8,6 +9,7 @@ const t = useT(Astro.currentLocale);
       <div class="avatars"><img src="/assets/orieb-face.jpg" alt="" width="96" height="96"></div>
       <h2 id="contactT"><Fragment set:html={t('ct2.t')} /></h2>
       <p><Fragment set:html={t('ct2.p')} /></p>
+      <CollabButton />
       <div class="c-grid">
         <div class="c-card"><small><Fragment set:html={t('i.email')} /></small><a class="ltr" href="mailto:alzuotorieb9999@gmail.com"><span>alzuotorieb9999@gmail.com</span></a><button class="copy" data-copy="alzuotorieb9999@gmail.com"><Fragment set:html={t('copy')} /></button></div>
         <div class="c-card"><small>WhatsApp</small><a class="ltr" href="https://wa.me/962775853203" target="_blank" rel="noopener"><span>+962 77585 3203</span></a><button class="copy" data-copy="+962775853203"><Fragment set:html={t('copy')} /></button></div>
